@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="utf-8"?>
+<QuestNodes>
+    <QuestNode>
+        <Id>Письмо</Id>
+        <Title>Пролог</Title>
+        <ImgPath></ImgPath>
+        <Description>Дорогой друг! Прости, что не писал Вам последние 2 года, не хотел отвлекать Вас, я понимаю, что после смерти Вашего ботюшки, нашего уважаемого графа на тебя свалилось много дел в столице. В Вашем родном имении все по-прежнему тихо, Ваш дядюшка следит здесь за порядком. У меня для Вас есть новость, но для меня это целое событие. Не столь давно в нашу деревню приехала молодая учительница… Мой юный граф, я женюсь в конце недели. Если у Вас будет время, окажите мне величайшую честь и посетите этот важный момент моей жизни. 
+
+С уважением, Ваш верный слуга Харин.
+        </Description>
+        <Choices>
+            <Choice>
+                <Text>Далее</Text>
+                <NextId>Письмо-далее</NextId>
+            </Choice>
+        </Choices>
+    </QuestNode>
+    <QuestNode>
+        <Id>Письмо-далее</Id>
+        <Title></Title>
+        <ImgPath></ImgPath>
+        <Description>Харин, мой старый добрый друг! Кто бы мог подумать, что этот балагур найдет себе пару.</Description>
+        <Choices>
+            <Choice>
+                <Text>Немедленно отправиться в поместье к другу</Text>
+                <NextId>Письмо.1</NextId>
+            </Choice>
+            <Choice>
+                <Text>У меня ещё есть дела в городе</Text>
+                <NextId>Письмо.2</NextId>
+            </Choice>
+        </Choices>
+    </QuestNode>
+    <QuestNode>
+        <Id>Письмо.1</Id>
+        <Title></Title>
+        <ImgPath></ImgPath>
+        <Description>Кучер, седлайте Бурана, я ненадолго покину город. За делами присмотрит Освальд.</Description>
+        <Choices>
+            <Choice>
+                <Text></Text>
+                <NextId>Глава_1.1</NextId>
+            </Choice>
+        </Choices>
+    </QuestNode>
+    <QuestNode>
+        <Id>Письмо.2</Id>
+        <Title></Title>
+        <ImgPath></ImgPath>
+        <Description>Как ни к стати, у меня еще много дел.</Description>
+        <Choices>
+            <Choice>
+                <Text>Далее</Text>
+                <NextId>1</NextId>
+            </Choice>
+        </Choices>
+    </QuestNode>
+    <QuestNode>
+        <Id>1</Id>
+        <Title></Title>
+        <ImgPath></ImgPath>
+        <Description>Куда желаете отправиться, граф?</Description>
+        <Choices>
+            <Choice>
+                <Text>Конюшни</Text>
+                <NextId>2</NextId>
+            </Choice>
+            <Choice>
+                <Text>Бордель</Text>
+                <NextId>3</NextId>
+            </Choice>
+            <Choice>
+                <Text>Стрельбище</Text>
+                <NextId></NextId>
+            </Choice>
+            <Choice>
+                <Text>Лаборатория</Text>
+                <NextId></NextId>
+            </Choice>
+            <Choice>
+                <Text>Погулять по улице</Text>
+                <NextId></NextId>
+            </Choice>
+            <Choice>
+                <Text>Отправиться в поместье к другу (Глава 1)</Text>
+                <NextId></NextId>
+            </Choice>
+        </Choices>
+    </QuestNode>
+    <QuestNode>
+        <Id>2</Id>
+        <Title></Title>
+        <ImgPath></ImgPath>
+        <Description>Доброе утро, граф! Желаете потренироваться?</Description>
+        <Choices>
+            <Choice>
+                <Text>С удовольствием, мне и Бурану не помешает разминка.</Text>
+                <NextId>2</NextId>
+            </Choice>
+            <Choice>
+                <Text>Не сейчас. Какие новости в окрестностях?</Text>
+                <NextId>2.1</NextId>
+            </Choice>
+            <Choice>
+                <Text>Покинуть конюшни.</Text>
+                <NextId>1</NextId>
+            </Choice>
+        </Choices>
+    </QuestNode>
+    <QuestNode>
+        <Id>2.1</Id>
+        <Title></Title>
+        <ImgPath></ImgPath>
+        <Description>В городе тишь да гладь, только лишь старый мост нуждается в ремонте.</Description>
+        <Choices>
+            <Choice>
+                <Text>Месяц назад я отправлял туда ремонтников</Text>
+                <NextId>2.2</NextId>
+            </Choice>
+            <Choice>
+                <Text>Меня это мало интересует. Пожалуй, лучше разомнусь</Text>
+                <NextId>2</NextId>
+            </Choice>
+            <Choice>
+                <Text>Я зря теряю тут время</Text>
+                <NextId>1</NextId>
+            </Choice>
+        </Choices>
+    </QuestNode>
+    <QuestNode>
+        <Id>2.2</Id>
+        <Title></Title>
+        <ImgPath></ImgPath>
+        <Description>Ваш батюшка сталкивался с этой проблемой. Помнится, именно этот мост стал причиной его гибели. Говорят, виной оползни, но суеверные твердят о красноглазых монстрах.</Description>
+        <Choices>
+            <Choice>
+                <Text>Оползни? Чушь, здесь их никогда не было. Монстры еще большая чушь. Я лично проверю этот мост
+                    позже.
+                </Text>
+                <NextId>2.3</NextId>
+            </Choice>
+            <Choice>
+                <Text>Оползни, монстры…. Вижу, ты уже принял с утра. Может зайду, когда протрезвеешь</Text>
+                <NextId>1</NextId>
+            </Choice>
+            <Choice>
+                <Text>Да, я помню записки отца о «видениях рабочих». Никогда не воспринимал эту информацию всерьез. Пожалуй, стоит все еще раз проверить, тем более в моих планах поездка через этот мост.
+                </Text>
+                <NextId>1</NextId>
+            </Choice>
+            <Choice>
+                <Text>Уф… Знакомые истории. Лучше проверю своего коня перед дорогой</Text>
+                <NextId>2.3</NextId>
+            </Choice>
+        </Choices>
+    </QuestNode>
+    <QuestNode>
+        <Id>2.3</Id>
+        <Title></Title>
+        <ImgPath></ImgPath>
+        <Description>Я могу еще Вам помочь, граф?</Description>
+        <Choices>
+            <Choice>
+                <Text>Тренировка мне не помешает</Text>
+                <NextId>2.3</NextId>
+            </Choice>
+            <Choice>
+                <Text>Благодарю. Я узнал все, что меня интересует</Text>
+                <NextId>1</NextId>
+            </Choice>
+            <Choice>
+                <Text>Да, прекрати отнимать мое время глупыми разговорами</Text>
+                <NextId>1</NextId>
+            </Choice>
+        </Choices>
+    </QuestNode>
+    <QuestNode>
+        <Id>3</Id>
+        <Title></Title>
+        <ImgPath></ImgPath>
+        <Description>Прекрасного дня, юный граф! Желаете приятно провести время?</Description>
+        <Choices>
+            <Choice>
+                <Text>Для начала не отказался бы от вина</Text>
+                <NextId>3.0</NextId>
+            </Choice>
+            <Choice>
+                <Text>Я осмотрюсь</Text>
+                <NextId>3.1</NextId>
+            </Choice>
+            <Choice>
+                <Text>Происходило ли что-нибудь интересное?</Text>
+                <NextId>3.3</NextId>
+            </Choice>
+            <Choice>
+                <Text>Да, отдых бы мне не помешал</Text>
+                <NextId>3.1</NextId>
+            </Choice>
+            <Choice>
+                <Text>Что я тут вообще делаю?</Text>
+                <NextId>1</NextId>
+            </Choice>
+        </Choices>
+    </QuestNode>
+    <QuestNode>
+        <Id>3.0</Id>
+        <Title></Title>
+        <ImgPath></ImgPath>
+        <Description>
+        </Description>
+        <Choices>
+            <Choice>
+                <Text>Что это было? Ох, и крепкое вино сегодня</Text>
+                <NextId>3.1</NextId>
+            </Choice>
+        </Choices>
+    </QuestNode>
+    <QuestNode>
+        <Id>3.1</Id>
+        <Title></Title>
+        <ImgPath></ImgPath>
+        <Description>
+            Мы всегда рады таким достопочтенным и щедрым гостям. Желаете еще чего-нибудь?
+        </Description>
+        <Choices>
+            <Choice>
+                <Text>Еще вина</Text>
+                <NextId>3.2</NextId>
+            </Choice>
+            <Choice>
+                <Text>Меня интересуют местные сплетни</Text>
+                <NextId>3.3</NextId>
+            </Choice>
+            <Choice>
+                <Text>Осмотреться</Text>
+                <NextId>3.1</NextId>
+            </Choice>
+            <Choice>
+                <Text>Раз я все равно здесь, покажите, кто у вас есть</Text>
+                <NextId>3.1</NextId>
+            </Choice>
+            <Choice>
+                <Text>Засиделся я, мне пора</Text>
+                <NextId>1</NextId>
+            </Choice>
+        </Choices>
+    </QuestNode>
+    <QuestNode>
+        <Id>3.2</Id>
+        <Title></Title>
+        <ImgPath></ImgPath>
+        <Description>
+            При всем уважении, граф, мы не можем угощать бесплатно.
+        </Description>
+        <Choices>
+            <Choice>
+                <Text>Ты хоть понимаешь, с кем говоришь? Быстро тащи вино или я завтра же выкину тебя и твою забегаловку
+                    из моего города!
+                </Text>
+                <NextId>3.4</NextId>
+            </Choice>
+            <Choice>
+                <Text>Прошу прощения, забыл кошель дома. Чтобы мой визит не был напрасным, расскажите местные сплетни
+                </Text>
+                <NextId>3.3</NextId>
+            </Choice>
+            <Choice>
+                <Text>Я не против воспользоваться особыми услугами</Text>
+                <NextId>3.2</NextId>
+            </Choice>
+            <Choice>
+                <Text>Осмотреться</Text>
+                <NextId>3.1</NextId>
+            </Choice>
+            <Choice>
+                <Text>Раз так, мне пора.</Text>
+                <NextId>1</NextId>
+            </Choice>
+        </Choices>
+    </QuestNode>
+    <QuestNode>
+        <Id>3.3</Id>
+        <Title></Title>
+        <ImgPath></ImgPath>
+        <Description>
+            Один гость рассказывал о таинственном сокровище недалеко от заброшенной астрономической башни к западу отсюда.
+        </Description>
+        <Choices>
+            <Choice>
+                <Text>Сокровище? Вы серьезно?</Text>
+                <NextId>3.5</NextId>
+            </Choice>
+            <Choice>
+                <Text>Этот бред мне трезвым не понять</Text>
+                <NextId>3.2</NextId>
+            </Choice>
+            <Choice>
+                <Text>Это все конечно хорошо, но я здесь с другой целью</Text>
+                <NextId>3.3</NextId>
+            </Choice>
+            <Choice>
+                <Text>Осмотреться</Text>
+                <NextId>3.3</NextId>
+            </Choice>
+            <Choice>
+                <Text> Мне пора</Text>
+                <NextId>1</NextId>
+            </Choice>
+        </Choices>
+    </QuestNode>
+    <QuestNode>
+        <Id>3.4</Id>
+        <Title></Title>
+        <ImgPath></ImgPath>
+        <Description>
+            Ваш батюшка всегда был вежлив. Жаль, что Вы не такой. Пейте сколько влезет. Теперь прошу меня извинить, у меня другие дела.
+        </Description>
+        <Choices>
+            <Choice>
+                <Text>Выпить.</Text>
+                <NextId>3.4</NextId>
+            </Choice>
+            <Choice>
+                <Text>Осмотреться</Text>
+                <NextId>3.4</NextId>
+            </Choice>
+            <Choice>
+                <Text>Прошу прощения, не знаю, что на меня нашло. Раз с выпивкой не получилось, может расскажете свежие сплетни?</Text>
+                <NextId>3.3</NextId>
+            </Choice>
+            <Choice>
+                <Text>Уйти</Text>
+                <NextId>1</NextId>
+            </Choice>
+        </Choices>
+    </QuestNode>
+    <QuestNode>
+        <Id>3.5</Id>
+        <Title></Title>
+        <ImgPath></ImgPath>
+        <Description>
+            Мне тоже показалось это глупостью, но в своей комнате гость забыл карту и странный ключ. За вещами он так и не вернулся, если хотите – можете взять.
+        </Description>
+        <Choices>
+            <Choice>
+                <Text>Надо проверить эту башню</Text>
+                <NextId>3.6</NextId>
+            </Choice>
+            <Choice>
+                <Text>Я не люблю собирать чужой мусор.</Text>
+                <NextId>3.6</NextId>
+            </Choice>
+            <Choice>
+                <Text>Эти разговоры уже наскучили мне.</Text>
+                <NextId>1</NextId>
+            </Choice>
+            <Choice>
+                <Text>Уйти</Text>
+                <NextId>1</NextId>
+            </Choice>
+        </Choices>
+    </QuestNode>
+    <QuestNode>
+        <Id>3.6</Id>
+        <Title></Title>
+        <ImgPath></ImgPath>
+        <Description>
+            Мы можем еще чем-то услужить, граф?
+        </Description>
+        <Choices>
+            <Choice>
+                <Text>Игра "бордель"</Text>
+                <NextId>1</NextId>
+            </Choice>
+            <Choice>
+                <Text>Уйти</Text>
+                <NextId>1</NextId>
+            </Choice>
+        </Choices>
+    </QuestNode>
+    
+    <!--
+    
+    <QuestNode>
+            <Id></Id>
+            <Title></Title>
+            <ImgPath></ImgPath>
+            <Description>
+                 
+            </Description>
+            <Choices>
+                <Choice>
+                    <Text></Text>
+                    <NextId></NextId>
+                </Choice>
+            </Choices>
+        </QuestNode>
+        
+         
+    -->
+</QuestNodes>
