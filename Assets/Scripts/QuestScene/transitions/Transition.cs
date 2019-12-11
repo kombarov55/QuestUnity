@@ -16,7 +16,7 @@ namespace DefaultNamespace.transitions
             this.questNodeId = questNodeId;
         }
 
-        public abstract void run(QuestNode currentQuestNode, int clickedChoiceNum, QuestSceneController questSceneController);
+        public abstract void run(QuestNode currentQuestNode, int clickedChoiceNum, QuestSceneFlow questSceneFlow);
 
     }
 }

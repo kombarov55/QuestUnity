@@ -1,28 +1,34 @@
 using System.Collections.Generic;
 using DefaultNamespace.model;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace DefaultNamespace
 {
-    public class QuestSceneController : MonoBehaviour
+    public class QuestPanelController : MonoBehaviour
     {
-        public QuestScenePresenter questScenePresenter;
+        
         public CachedUserData cachedUserData;
-        public QuestNodesRepository questNodesRepository;
         public TransitionService transitionService;
 
+        private QuestPanelPresenter _questPanelPresenter;
+        
         private QuestNode currentQuestNode;
+        private QuestNodesRepository questNodesRepository;
+        private QuestSceneFlow questSceneFlow;
 
-        public void init(CachedUserData cachedUserData, QuestNodesRepository questNodesRepository,
-            TransitionService transitionService, AudioScript audioScript)
+        public void init(QuestSceneFlow questSceneFlow, CachedUserData cachedUserData, TransitionService transitionService, AudioScript audioScript, Image background)
         {
-            this.cachedUserData = cachedUserData;
-            this.questNodesRepository = questNodesRepository;
-            this.transitionService = transitionService;
-
-            questScenePresenter.init(audioScript);
+            _questPanelPresenter = GetComponent<QuestPanelPresenter>();
+            questNodesRepository = GetComponent<QuestNodesRepository>();
             
-            questScenePresenter.setChoiceHandler(choiceNum => handleTransition(choiceNum));
+            this.cachedUserData = cachedUserData;
+            this.transitionService = transitionService;
+            this.questSceneFlow = questSceneFlow;
+
+            _questPanelPresenter.init(audioScript, background);
+            
+            _questPanelPresenter.setChoiceHandler(choiceNum => handleTransition(choiceNum));
         }
         
         /**
@@ -35,7 +41,6 @@ namespace DefaultNamespace
             gameObject.SetActive(true);
             currentQuestNode = findCurrentQuestNode();
             displayQuestNode(currentQuestNode.imgPath, currentQuestNode.title, currentQuestNode.description, currentQuestNode.choices);
-            questScenePresenter.setCoinCount(cachedUserData.coinCount);
         }
 
         public void hide()
@@ -50,31 +55,22 @@ namespace DefaultNamespace
             currentQuestNode = questNode;
         }
 
-        public void decrementCoinCount()
-        {
-            if (cachedUserData.coinCount >= 1) 
-            {
-                cachedUserData.coinCount = cachedUserData.coinCount - 1;
-                questScenePresenter.setCoinCount(cachedUserData.coinCount);
-            }
-        }
-
         public void displayQuestNode(string imgPath, string title, string description, List<QuestNodeChoice> choices)
         {
-            questScenePresenter.setImg(imgPath);
-            questScenePresenter.setTitle(title);
-            questScenePresenter.setDescription(description);
+            _questPanelPresenter.setImg(imgPath);
+            _questPanelPresenter.setTitle(title);
+            _questPanelPresenter.setDescription(description);
             List<string> choicesStr = new List<string>();
             foreach (var choice in choices)
             {
                 choicesStr.Add(choice.text);
             }
-            questScenePresenter.setChoices(choicesStr);
+            _questPanelPresenter.setChoices(choicesStr);
         }
 
         public void handleTransition(int choiceNum)
         {
-            transitionService.find(currentQuestNode.id, choiceNum).run(currentQuestNode, choiceNum, this);
+            transitionService.find(currentQuestNode.id, choiceNum).run(currentQuestNode, choiceNum, questSceneFlow);
         }
 
         private QuestNode findCurrentQuestNode()

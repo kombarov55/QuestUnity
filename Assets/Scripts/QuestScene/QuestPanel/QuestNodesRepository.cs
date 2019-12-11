@@ -55,19 +55,19 @@ namespace DefaultNamespace
                 
                 var node = new QuestNode();
 
-                node.id = getValue(xmlNode, "Id");
-                node.imgPath = getValue(xmlNode, "ImgPath");
-                node.description = getValue(xmlNode, "Description");
+                node.id = XmlHelper.getValue(xmlNode, "Id");
+                node.imgPath = XmlHelper.getValue(xmlNode, "ImgPath");
+                node.description = XmlHelper.getValue(xmlNode, "Description");
                 node.choices = new List<QuestNodeChoice>();
 
-                XmlNodeList xmlNodeListChoices = getChildByName(xmlNode, "Choices").ChildNodes;
+                XmlNodeList xmlNodeListChoices = XmlHelper.getChildByName(xmlNode, "Choices").ChildNodes;
                 for (var i1 = 0; i1 < xmlNodeListChoices.Count; i1++)
                 {
                     XmlNode choiceXmlNode = xmlNodeListChoices[i1];
 
                     var choice = new QuestNodeChoice();
-                    choice.text = getValue(choiceXmlNode, "Text");
-                    choice.nextId = getValue(choiceXmlNode, "NextId");
+                    choice.text = XmlHelper.getValue(choiceXmlNode, "Text");
+                    choice.nextId = XmlHelper.getValue(choiceXmlNode, "NextId");
                     
                     node.choices.Add(choice);
                 }
@@ -76,26 +76,6 @@ namespace DefaultNamespace
             }
 
             return result;
-        }
-
-        private string getValue(XmlNode elem, string name)
-        {
-            XmlNode node = getChildByName(elem, name);
-            return node.InnerText;
-        }
-
-        private XmlNode getChildByName(XmlNode elem, string name)
-        {
-            for (var i = 0; i < elem.ChildNodes.Count; i++)
-            {
-                var child = elem.ChildNodes[i];
-                if (child.Name == name)
-                {
-                    return child;
-                }
-            }
-
-            return null;
         }
     }
     

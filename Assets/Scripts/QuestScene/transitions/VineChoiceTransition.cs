@@ -1,3 +1,4 @@
+using DefaultNamespace.MainPanel;
 using DefaultNamespace.model;
 
 namespace DefaultNamespace.transitions
@@ -8,17 +9,21 @@ namespace DefaultNamespace.transitions
         {
         }
 
-        public override void run(QuestNode currentQuestNode, int clickedChoiceNum, QuestSceneController questSceneController)
+        public override void run(QuestNode currentQuestNode, int clickedChoiceNum, QuestSceneFlow questSceneFlow)
         {
-            int coinCount = questSceneController.cachedUserData.coinCount;
+            MainPanelController mainPanelController = questSceneFlow.mainPanelController;
+            QuestPanelController questPanelController = questSceneFlow.questPanelController;
+            CachedUserData cachedUserData = questSceneFlow.cachedUserData;
+            
+            int coinCount = cachedUserData.coinCount;
             
             if (coinCount >= 1)
             {
-                questSceneController.decrementCoinCount();
-                questSceneController.displayQuestNode("3.0");
+                mainPanelController.decrementCoinCount();
+                questPanelController.displayQuestNode("3.0");
             } else 
             { 
-                questSceneController.displayQuestNode("3.2");
+                questPanelController.displayQuestNode("3.2");
             }
         }
     }

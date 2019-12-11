@@ -5,11 +5,10 @@ using UnityEngine.UI;
 
 namespace DefaultNamespace
 {
-    public class QuestScenePresenter : MonoBehaviour
+    public class QuestPanelPresenter : MonoBehaviour
     {
         private Action<int> choiceHandler;
 
-        public Text coinCountText; 
         public Text title;
         public Image img;
         public Text description;
@@ -20,9 +19,10 @@ namespace DefaultNamespace
 
         private List<GameObject> buttons = new List<GameObject>();
 
-        public void init(AudioScript audioScript)
+        public void init(AudioScript audioScript, Image background)
         {
             this.audioScript = audioScript;
+            img = background;
         }
 
         public void setTitle(string str)
@@ -32,7 +32,10 @@ namespace DefaultNamespace
 
         public void setImg(string path)
         {
-//            img.sprite = Resources.Load<Sprite>(path);
+            if (path != null && path != "")
+            {
+                img.sprite = Resources.Load<Sprite>(path);
+            }
         }
 
         public void setDescription(string str)
@@ -49,11 +52,6 @@ namespace DefaultNamespace
         public void setChoiceHandler(Action<int> choiceHandler)
         {
             this.choiceHandler = choiceHandler;
-        }
-
-        public void setCoinCount(int count)
-        {
-            coinCountText.text = "" + count;
         }
 
         public void playClickingSound()

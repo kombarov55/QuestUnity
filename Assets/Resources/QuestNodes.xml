@@ -3,7 +3,7 @@
     <QuestNode>
         <Id>Письмо</Id>
         <Title>Пролог</Title>
-        <ImgPath></ImgPath>
+        <ImgPath>Images/Letter</ImgPath>
         <Description>Дорогой друг! Прости, что не писал Вам последние 2 года, не хотел отвлекать Вас, я понимаю, что после смерти Вашего ботюшки, нашего уважаемого графа на тебя свалилось много дел в столице. В Вашем родном имении все по-прежнему тихо, Ваш дядюшка следит здесь за порядком. У меня для Вас есть новость, но для меня это целое событие. Не столь давно в нашу деревню приехала молодая учительница… Мой юный граф, я женюсь в конце недели. Если у Вас будет время, окажите мне величайшую честь и посетите этот важный момент моей жизни. 
 
 С уважением, Ваш верный слуга Харин.
@@ -57,8 +57,8 @@
     </QuestNode>
     <QuestNode>
         <Id>1</Id>
-        <Title></Title>
-        <ImgPath></ImgPath>
+        <Title>Город</Title>
+        <ImgPath>Images/Town</ImgPath>
         <Description>Куда желаете отправиться, граф?</Description>
         <Choices>
             <Choice>
@@ -89,8 +89,8 @@
     </QuestNode>
     <QuestNode>
         <Id>2</Id>
-        <Title></Title>
-        <ImgPath></ImgPath>
+        <Title>Конюшни</Title>
+        <ImgPath>Images/HorseStable</ImgPath>
         <Description>Доброе утро, граф! Желаете потренироваться?</Description>
         <Choices>
             <Choice>
@@ -176,8 +176,8 @@
     </QuestNode>
     <QuestNode>
         <Id>3</Id>
-        <Title></Title>
-        <ImgPath></ImgPath>
+        <Title>Бордель</Title>
+        <ImgPath>Images/Bordel</ImgPath>
         <Description>Прекрасного дня, юный граф! Желаете приятно провести время?</Description>
         <Choices>
             <Choice>

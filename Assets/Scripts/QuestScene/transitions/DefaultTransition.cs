@@ -7,10 +7,12 @@ namespace DefaultNamespace.transitions
         public DefaultTransition() : base("", -1)
         { }
 
-        public override void run(QuestNode currentQuestNode, int clickedChoiceNum, QuestSceneController questSceneController)
+        public override void run(QuestNode currentQuestNode, int clickedChoiceNum, QuestSceneFlow questSceneFlow)
         {
+            QuestPanelController questPanelController = questSceneFlow.questPanelController;
+
             string nextId = currentQuestNode.choices[clickedChoiceNum].nextId;
-            questSceneController.displayQuestNode(nextId);
+            questPanelController.displayQuestNode(nextId);
         }
     }
 }

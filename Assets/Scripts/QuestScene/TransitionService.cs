@@ -6,7 +6,7 @@ namespace DefaultNamespace
 {
     public class TransitionService : MonoBehaviour
     {
-        public QuestSceneController questSceneController;
+        public QuestPanelController questPanelController;
         
         private List<Transition> transitions = new List<Transition>();
         private Transition defaultTransition = new DefaultTransition();
@@ -14,11 +14,12 @@ namespace DefaultNamespace
         public void Start()
         {
             transitions.Add(new VineChoiceTransition("3", 0));
+            transitions.Add(new VineChoiceTransition("3.1", 0));
         }
 
-        public void init(QuestSceneController questSceneController)
+        public void init(QuestPanelController questPanelController)
         {
-            this.questSceneController = questSceneController;
+            this.questPanelController = questPanelController;
         }
 
         public Transition find(string questNodeId, int choiceNum)
