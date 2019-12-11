@@ -579,12 +579,15 @@ MonoBehaviour:
     type: 3}
   journalPanel: {fileID: 6489117442415762208, guid: f01b990bfff3e03dc91f7932807c48fd,
     type: 3}
+  animationPanel: {fileID: 2223993742860295501, guid: 384db9cc526624db0a00583712aa5375,
+    type: 3}
   audioGameObject: {fileID: 606190998}
   cachedUserData: {fileID: 1335600913}
   transitionService: {fileID: 1335600910}
   questPanelController: {fileID: 0}
   journalPanelController: {fileID: 0}
   mainPanelController: {fileID: 0}
+  animationPanelController: {fileID: 0}
 --- !u!114 &1335600910
 MonoBehaviour:
   m_ObjectHideFlags: 0

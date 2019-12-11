@@ -13,13 +13,20 @@ namespace DefaultNamespace
 
         public void Start()
         {
-            transitions.Add(new VineChoiceTransition("3", 0));
-            transitions.Add(new VineChoiceTransition("3.1", 0));
+            transitions.Add(new VineChoiceTransition("3", 0, "3.1"));
+            transitions.Add(new VineChoiceTransition("3.1", 0, "3.1"));
+            transitions.Add(new VineChoiceTransition("3.3", 1, "3.3"));
+            
+            transitions.Add(new PortraitTransition("3", 1, "3.1"));
+            transitions.Add(new PortraitTransition("3.1", 2, "3.1"));
+            transitions.Add(new PortraitTransition("3.2", 3, "3.2"));
+            transitions.Add(new PortraitTransition("3.3", 3, "3.3"));
+            transitions.Add(new PortraitTransition("3.4", 1, "3.4"));
         }
 
-        public void init(QuestPanelController questPanelController)
+        public void init()
         {
-            this.questPanelController = questPanelController;
+            
         }
 
         public Transition find(string questNodeId, int choiceNum)

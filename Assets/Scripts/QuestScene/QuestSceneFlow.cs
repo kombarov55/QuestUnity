@@ -1,3 +1,4 @@
+using DefaultNamespace.AnimationPanel;
 using DefaultNamespace.JournalPanel;
 using DefaultNamespace.MainPanel;
 using UnityEngine;
@@ -14,6 +15,7 @@ namespace DefaultNamespace
 
         public GameObject questScenePanel;
         public GameObject journalPanel;
+        public GameObject animationPanel;
 
         public GameObject audioGameObject;
 
@@ -23,10 +25,11 @@ namespace DefaultNamespace
         public QuestPanelController questPanelController;
         public JournalPanelController journalPanelController;
         public MainPanelController mainPanelController;
-        
+        public AnimationPanelController animationPanelController;
 
         private GameObject instantiatedQuestScenePanel;
         private GameObject instantiatedJournalPanel;
+        private GameObject instantiatedAnimationPanel;
 
         /**
          * При старте показываем обычную сцену
@@ -49,12 +52,18 @@ namespace DefaultNamespace
             questPanelController.init(this, cachedUserData, transitionService, audioGameObject.GetComponent<AudioScript>(), rootPanel.GetComponent<Image>());
 
             transitionService = GetComponent<TransitionService>();
-            transitionService.init(questPanelController);
+            transitionService.init();
 
             journalPanelController = instantiatedJournalPanel.GetComponent<JournalPanelController>();
 
             mainPanelController = rootPanel.transform.Find("MainPanel").GetComponent<MainPanelController>();
             mainPanelController.init(cachedUserData);
+
+            instantiatedAnimationPanel = Instantiate(animationPanel, rootPanel.transform);
+            instantiatedAnimationPanel.SetActive(false);
+            
+            animationPanelController = instantiatedAnimationPanel.GetComponent<AnimationPanelController>();
+            animationPanelController.init();
         }
 
         public void showQuestScene()
@@ -65,6 +74,11 @@ namespace DefaultNamespace
         public void showJournalPanel()
         {
             journalPanelController.show();
+        }
+
+        public void showAnimation(string path)
+        {
+            
         }
         
         

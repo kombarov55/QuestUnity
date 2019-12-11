@@ -3,13 +3,10 @@ using DefaultNamespace.model;
 
 namespace DefaultNamespace.transitions
 {
-    public class VineChoiceTransition : Transition
+    public class VineChoiceTransition3_3 : Transition
     {
-        private string successId;
-        
-        public VineChoiceTransition(string questNodeId, int choiceNum, string successId) : base(questNodeId, choiceNum)
+        public VineChoiceTransition3_3(string questNodeId, int choiceNum) : base(questNodeId, choiceNum)
         {
-            this.successId = successId;
         }
 
         public override void run(QuestNode currentQuestNode, int clickedChoiceNum, QuestSceneFlow questSceneFlow)
@@ -23,7 +20,7 @@ namespace DefaultNamespace.transitions
             if (coinCount >= 1)
             {
                 mainPanelController.decrementCoinCount();
-                questPanelController.displayQuestNode(successId);
+                questPanelController.displayQuestNode("3.3");
             } else 
             { 
                 questPanelController.displayQuestNode("3.2");
