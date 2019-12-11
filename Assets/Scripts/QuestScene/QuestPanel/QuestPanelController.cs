@@ -10,11 +10,12 @@ namespace DefaultNamespace
         
         public CachedUserData cachedUserData;
         public TransitionService transitionService;
+        public QuestNodesRepository questNodesRepository;
 
         private QuestPanelPresenter _questPanelPresenter;
         
         private QuestNode currentQuestNode;
-        private QuestNodesRepository questNodesRepository;
+        
         private QuestSceneFlow questSceneFlow;
 
         public void init(QuestSceneFlow questSceneFlow, CachedUserData cachedUserData, TransitionService transitionService, AudioScript audioScript, Image background)
@@ -51,6 +52,11 @@ namespace DefaultNamespace
         public void displayQuestNode(string id)
         {
             QuestNode questNode = questNodesRepository.findById(id);
+            displayQuestNode(questNode);
+        }
+        
+        public void displayQuestNode(QuestNode questNode)
+        {
             displayQuestNode(questNode.imgPath, questNode.title, questNode.description, questNode.choices);
             currentQuestNode = questNode;
         }

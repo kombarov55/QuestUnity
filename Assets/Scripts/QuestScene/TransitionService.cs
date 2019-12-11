@@ -16,7 +16,8 @@ namespace DefaultNamespace
             transitions.Add(new VineChoiceTransition("3", 0, "3.1"));
             transitions.Add(new VineChoiceTransition("3.1", 0, "3.1"));
             transitions.Add(new VineChoiceTransition("3.3", 1, "3.3"));
-            
+            transitions.Add(new FreeVineTransition("3.4", 0));
+
             transitions.Add(new PortraitTransition("3", 1, "3.1"));
             transitions.Add(new PortraitTransition("3.1", 2, "3.1"));
             transitions.Add(new PortraitTransition("3.2", 3, "3.2"));
