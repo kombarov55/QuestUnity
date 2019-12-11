@@ -1,6 +1,7 @@
 using DefaultNamespace.AnimationPanel;
 using DefaultNamespace.JournalPanel;
 using DefaultNamespace.MainPanel;
+using DefaultNamespace.OnQuestNodeShow;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,6 +22,7 @@ namespace DefaultNamespace
 
         public CachedUserData cachedUserData;
         public TransitionService transitionService;
+        public OnQuestNodeShowService onQuestNodeShowService;
 
         public QuestPanelController questPanelController;
         public JournalPanelController journalPanelController;
@@ -43,16 +45,19 @@ namespace DefaultNamespace
 
         private void init()
         {
+
+            transitionService = GetComponent<TransitionService>();
+            transitionService.init();
+
+            onQuestNodeShowService = GetComponent<OnQuestNodeShowService>();
+            
             instantiatedQuestScenePanel = Instantiate(questScenePanel, rootPanel.transform);
             instantiatedQuestScenePanel.SetActive(false);
             instantiatedJournalPanel = Instantiate(journalPanel, rootPanel.transform);
             instantiatedJournalPanel.SetActive(false);
 
             questPanelController = instantiatedQuestScenePanel.GetComponent<QuestPanelController>();
-            questPanelController.init(this, cachedUserData, transitionService, audioGameObject.GetComponent<AudioScript>(), rootPanel.GetComponent<Image>());
-
-            transitionService = GetComponent<TransitionService>();
-            transitionService.init();
+            questPanelController.init(this, cachedUserData, transitionService, onQuestNodeShowService, audioGameObject.GetComponent<AudioScript>(), rootPanel.GetComponent<Image>());
 
             journalPanelController = instantiatedJournalPanel.GetComponent<JournalPanelController>();
 

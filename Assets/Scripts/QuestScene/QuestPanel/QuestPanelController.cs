@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using DefaultNamespace.model;
+using DefaultNamespace.OnQuestNodeShow;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +12,7 @@ namespace DefaultNamespace
         public CachedUserData cachedUserData;
         public TransitionService transitionService;
         public QuestNodesRepository questNodesRepository;
+        public OnQuestNodeShowService onQuestNodeShowService;
 
         private QuestPanelPresenter _questPanelPresenter;
         
@@ -18,13 +20,14 @@ namespace DefaultNamespace
         
         private QuestSceneFlow questSceneFlow;
 
-        public void init(QuestSceneFlow questSceneFlow, CachedUserData cachedUserData, TransitionService transitionService, AudioScript audioScript, Image background)
+        public void init(QuestSceneFlow questSceneFlow, CachedUserData cachedUserData, TransitionService transitionService, OnQuestNodeShowService onQuestNodeShowService, AudioScript audioScript, Image background)
         {
             _questPanelPresenter = GetComponent<QuestPanelPresenter>();
             questNodesRepository = GetComponent<QuestNodesRepository>();
             
             this.cachedUserData = cachedUserData;
             this.transitionService = transitionService;
+            this.onQuestNodeShowService = onQuestNodeShowService;
             this.questSceneFlow = questSceneFlow;
 
             _questPanelPresenter.init(audioScript, background);
@@ -41,7 +44,7 @@ namespace DefaultNamespace
         {
             gameObject.SetActive(true);
             currentQuestNode = findCurrentQuestNode();
-            displayQuestNode(currentQuestNode.imgPath, currentQuestNode.title, currentQuestNode.description, currentQuestNode.choices);
+            displayQuestNode(currentQuestNode);
         }
 
         public void hide()
@@ -58,10 +61,11 @@ namespace DefaultNamespace
         public void displayQuestNode(QuestNode questNode)
         {
             displayQuestNode(questNode.imgPath, questNode.title, questNode.description, questNode.choices);
+            onQuestNodeShowService.findOnQuestNodeShow(questNode.id).run(questSceneFlow);
             currentQuestNode = questNode;
         }
 
-        public void displayQuestNode(string imgPath, string title, string description, List<QuestNodeChoice> choices)
+        private void displayQuestNode(string imgPath, string title, string description, List<QuestNodeChoice> choices)
         {
             _questPanelPresenter.setImg(imgPath);
             _questPanelPresenter.setTitle(title);

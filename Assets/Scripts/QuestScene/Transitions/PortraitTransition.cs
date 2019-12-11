@@ -1,4 +1,5 @@
 using DefaultNamespace.AnimationPanel;
+using DefaultNamespace.MainPanel;
 using DefaultNamespace.model;
 
 namespace DefaultNamespace.transitions
@@ -20,9 +21,12 @@ namespace DefaultNamespace.transitions
 
             AnimationPanelController animationPanelController = questSceneFlow.animationPanelController;
             QuestPanelController questPanelController = questSceneFlow.questPanelController;
+            MainPanelController mainPanelController = questSceneFlow.mainPanelController;
+
             animationPanelController.show("Images/Portrait", () =>
             {
                 questPanelController.displayQuestNode(nextId);
+                questSceneFlow.mainPanelController.openJournalItem("Портрет");
             });
         }
     }

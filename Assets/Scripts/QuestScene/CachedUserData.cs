@@ -5,6 +5,6 @@ namespace DefaultNamespace
     public class CachedUserData : MonoBehaviour
     {
         public string currentSceneId;
-        public int coinCount = 5;
+        public int coinCount = 0;
     }
 }

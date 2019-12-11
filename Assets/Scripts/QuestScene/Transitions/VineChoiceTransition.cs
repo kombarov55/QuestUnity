@@ -38,6 +38,7 @@ namespace DefaultNamespace.transitions
                     QuestNode questNode = questPanelController.questNodesRepository.findById("3.0");
                     questNode.choices[0].nextId = successId;
                     questPanelController.displayQuestNode(questNode);
+                    mainPanelController.openJournalItem("Красные глаза");
                 });
             } else 
             { 

@@ -1,4 +1,5 @@
 using DefaultNamespace.AnimationPanel;
+using DefaultNamespace.MainPanel;
 using DefaultNamespace.model;
 
 namespace DefaultNamespace.transitions
@@ -14,6 +15,7 @@ namespace DefaultNamespace.transitions
         {
             QuestPanelController questPanelController = questSceneFlow.questPanelController;
             AnimationPanelController animationPanelController = questSceneFlow.animationPanelController;
+            MainPanelController mainPanelController = questSceneFlow.mainPanelController;
 
             
             /*
@@ -28,6 +30,7 @@ namespace DefaultNamespace.transitions
                 QuestNode questNode = questPanelController.questNodesRepository.findById("3.0");
                 questNode.choices[0].nextId = "3.4";
                 questPanelController.displayQuestNode(questNode);
+                mainPanelController.openJournalItem("Красные глаза");
             });
         }
     }
