@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using DefaultNamespace.model;
 using UnityEngine;
@@ -11,16 +12,34 @@ namespace DefaultNamespace.JournalPanel
         public GameObject journalItemPrefab;
         public GameObject journalItemContainer;
 
+        private AudioScript audioScript; 
+
+        private Action<int> onItemSelectedCallback;
+
         private List<GameObject> instantiatedJournalItems = new List<GameObject>();
 
+        public void init(AudioScript audioScript)
+        {
+            this.audioScript = audioScript;
+        }
+        
+        public void setOnItemSelectedCallback(Action<int> callback)
+        {
+            onItemSelectedCallback = callback;
+        }
+        
         public void showJournalItems(List<JournalItem> journalItems)
         {
-            foreach (JournalItem journalItem in journalItems)
+            for (var i = 0; i < journalItems.Count; i++)
             {
+                JournalItem journalItem = journalItems[i];
+
                 GameObject gameObject = Instantiate(journalItemPrefab, journalItemContainer.transform);
-                Text titleText = gameObject.transform.Find("Title").GetComponent<Text>();
-                Text descriptionText = gameObject.transform.Find("Description").GetComponent<Text>();
-                Image image = gameObject.transform.Find("Image").GetComponent<Image>();
+                Text titleText = gameObject.transform.Find("Horizontal").Find("InnerVertical").Find("Title")
+                    .GetComponent<Text>();
+                Text descriptionText = gameObject.transform.Find("Horizontal").Find("InnerVertical").Find("Description")
+                    .GetComponent<Text>();
+                Image image = gameObject.transform.Find("Horizontal").Find("Image").GetComponent<Image>();
 
                 titleText.text = journalItem.title;
                 descriptionText.text = journalItem.description;
@@ -30,7 +49,21 @@ namespace DefaultNamespace.JournalPanel
                     image.sprite = imageSprite;
                 }
 
+                gameObject.AddComponent<OnClickComponent>();
+                var valueToInvoke = i;
+                gameObject.GetComponent<OnClickComponent>().action = () => onItemSelectedCallback.Invoke(valueToInvoke);
+                gameObject.GetComponent<OnClickComponent>().audioScript = audioScript;
+
                 instantiatedJournalItems.Add(gameObject);
+            }
+        }
+
+        public void clear()
+        {
+            journalItemContainer.transform.DetachChildren();
+            foreach (var instantiatedJournalItem in instantiatedJournalItems)
+            {
+                Destroy(instantiatedJournalItem);
             }
         }
 

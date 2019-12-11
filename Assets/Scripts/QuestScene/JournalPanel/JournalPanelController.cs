@@ -9,7 +9,21 @@ namespace DefaultNamespace.JournalPanel
     {
         private JournalPanelPresenter journalPanelPresenter;
         private JournalItemRepository journalItemRepository;
+        
+        private QuestSceneFlow questSceneFlow;
+        private AudioScript audioScript;
 
+        private List<JournalItem> journalItems;
+
+        public void init(QuestSceneFlow questSceneFlow, AudioScript audioScript)
+        {
+            Start();
+            this.questSceneFlow = questSceneFlow;
+            this.audioScript = audioScript;
+            journalPanelPresenter.init(audioScript);
+        }
+        
+        
         public void Start()
         {
             journalPanelPresenter = GetComponent<JournalPanelPresenter>();
@@ -21,13 +35,34 @@ namespace DefaultNamespace.JournalPanel
             Start();
             
             gameObject.SetActive(true);
-            List<JournalItem> journalItems = journalItemRepository.getAll();
+            journalItems = journalItemRepository.getAll();
+            journalPanelPresenter.setOnItemSelectedCallback(i => toJournalItemPanel(i));
             journalPanelPresenter.showJournalItems(journalItems);
         }
 
         public void hide()
         {
             gameObject.SetActive(false);
+        }
+
+        public void playOnClickSound()
+        { 
+            audioScript.playButtonClickSound();
+        }
+
+        public void onBackClicked()
+        {
+            questSceneFlow.hideJournalPanel();
+            questSceneFlow.showMainPanel();
+        }
+
+        public void toJournalItemPanel(int selectedIndex)
+        {
+            JournalItem selectedItem = journalItems[selectedIndex];
+            journalPanelPresenter.clear();
+            questSceneFlow.hideJournalPanel();
+            questSceneFlow.showJournalItemPanel(selectedItem);
+            
         }
     }
 }

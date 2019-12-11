@@ -4,11 +4,11 @@ namespace DefaultNamespace
 {
     public class Utils
     {
-        public static double currentTime()
+        public static long currentTime()
         {
             var datetime = DateTime.UtcNow - new DateTime(1970, 1, 1);
             double milliseconds = datetime.TotalMilliseconds;
-            return milliseconds;
+            return (long) milliseconds;
         }
     }
 }

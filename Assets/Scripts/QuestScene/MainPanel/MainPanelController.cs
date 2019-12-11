@@ -36,12 +36,17 @@ namespace DefaultNamespace.MainPanel
 
         public void setStatusLineText(string text)
         {
-            statusLineStartTime = (long) Utils.currentTime(); 
+            statusLineStartTime = Utils.currentTime(); 
             mainPanelPresenter.setStatusLineText(text);
         }
 
         public void Update()
         {
+            if (statusLineStartTime == -1 && mainPanelPresenter.hasStatusText())
+            {
+                statusLineStartTime = Utils.currentTime();
+            }
+            
             if (statusLineStartTime != -1 && (Utils.currentTime() - statusLineStartTime) > statusLineDuration)
             {
                 statusLineStartTime = -1;

@@ -17,5 +17,11 @@ namespace DefaultNamespace.MainPanel
         {
             statusLineText.text = text;
         }
+
+        public bool hasStatusText()
+        {
+            var statusText = statusLineText.text;
+            return statusText != null && statusText != "";
+        }
     }
 }

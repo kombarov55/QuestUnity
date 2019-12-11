@@ -32,7 +32,7 @@ namespace DefaultNamespace.transitions
                  5. Отобразить эту сцену
                  
                  */
-                animationPanelController.show("Images/Screamer", () =>
+                animationPanelController.show("Images/RedEyes", () =>
                 {
                     mainPanelController.decrementCoinCount();
                     QuestNode questNode = questPanelController.questNodesRepository.findById("3.0");
