@@ -5614,6 +5614,7 @@ GameObject:
   - component: {fileID: 1335600908}
   - component: {fileID: 1335600907}
   - component: {fileID: 1335600909}
+  - component: {fileID: 1335600911}
   m_Layer: 0
   m_Name: Scripts
   m_TagString: Untagged
@@ -5674,6 +5675,7 @@ MonoBehaviour:
   transitionService: {fileID: 1335600910}
   onQuestNodeShowService: {fileID: 0}
   audioScript: {fileID: 0}
+  journalItemsService: {fileID: 0}
   questPanelController: {fileID: 0}
   journalPanelController: {fileID: 0}
   journalItemPanelController: {fileID: 0}
@@ -5704,6 +5706,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   questPanelController: {fileID: 0}
+--- !u!114 &1335600911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1335600905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a0a87f7a05c4f3f954d5e791f89efea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1335600912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5731,6 +5745,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentSceneId: 
   coinCount: 5
+  openedJournalItems: []
 --- !u!1 &1560767874
 GameObject:
   m_ObjectHideFlags: 0

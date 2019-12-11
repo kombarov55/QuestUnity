@@ -4,26 +4,27 @@ using UnityEngine;
 
 namespace DefaultNamespace.JournalPanel
 {
-    
     public class JournalPanelController : MonoBehaviour
     {
         private JournalPanelPresenter journalPanelPresenter;
         private JournalItemRepository journalItemRepository;
-        
+
         private QuestSceneFlow questSceneFlow;
         private AudioScript audioScript;
+        private JournalItemsService journalItemsService;
 
         private List<JournalItem> journalItems;
 
-        public void init(QuestSceneFlow questSceneFlow, AudioScript audioScript)
+        public void init(QuestSceneFlow questSceneFlow, AudioScript audioScript, JournalItemsService journalItemsService)
         {
             Start();
             this.questSceneFlow = questSceneFlow;
             this.audioScript = audioScript;
+            this.journalItemsService = journalItemsService;
             journalPanelPresenter.init(audioScript);
         }
-        
-        
+
+
         public void Start()
         {
             journalPanelPresenter = GetComponent<JournalPanelPresenter>();
@@ -32,10 +33,8 @@ namespace DefaultNamespace.JournalPanel
 
         public void show()
         {
-            Start();
-            
             gameObject.SetActive(true);
-            journalItems = journalItemRepository.getAll();
+            journalItems = journalItemsService.GetOpenedJournalItems(journalItemRepository);
             journalPanelPresenter.setOnItemSelectedCallback(i => toJournalItemPanel(i));
             journalPanelPresenter.showJournalItems(journalItems);
         }
@@ -46,12 +45,13 @@ namespace DefaultNamespace.JournalPanel
         }
 
         public void playOnClickSound()
-        { 
+        {
             audioScript.playButtonClickSound();
         }
 
         public void onBackClicked()
         {
+            journalPanelPresenter.clear();
             questSceneFlow.hideJournalPanel();
             questSceneFlow.showMainPanel();
         }
@@ -62,7 +62,6 @@ namespace DefaultNamespace.JournalPanel
             journalPanelPresenter.clear();
             questSceneFlow.hideJournalPanel();
             questSceneFlow.showJournalItemPanel(selectedItem);
-            
         }
     }
 }

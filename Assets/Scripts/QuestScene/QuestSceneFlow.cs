@@ -27,6 +27,7 @@ namespace DefaultNamespace
         public TransitionService transitionService;
         public OnQuestNodeShowService onQuestNodeShowService;
         public AudioScript audioScript;
+        public JournalItemsService journalItemsService;
 
         public QuestPanelController questPanelController;
         public JournalPanelController journalPanelController;
@@ -66,6 +67,9 @@ namespace DefaultNamespace
             
             transitionService = GetComponent<TransitionService>();
             transitionService.init();
+            
+            journalItemsService = GetComponent<JournalItemsService>();
+            journalItemsService.init();
 
             onQuestNodeShowService = GetComponent<OnQuestNodeShowService>();
 
@@ -73,13 +77,13 @@ namespace DefaultNamespace
             questPanelController.init(this, cachedUserData, transitionService, onQuestNodeShowService, audioScript, rootPanel.GetComponent<Image>());
 
             journalPanelController = journalPanel.GetComponent<JournalPanelController>();
-            journalPanelController.init(this, audioScript);
+            journalPanelController.init(this, audioScript, journalItemsService);
 
             journalItemPanelController = journalItemPanel.GetComponent<JournalItemPanelController>();
             journalItemPanelController.init(this, audioScript);
 
             mainPanelController = mainPanel.GetComponent<MainPanelController>();
-            mainPanelController.init(cachedUserData);
+            mainPanelController.init(cachedUserData, journalItemsService);
             
             animationPanelController = animationPanel.GetComponent<AnimationPanelController>();
             animationPanelController.init();

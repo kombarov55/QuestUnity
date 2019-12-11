@@ -17,6 +17,12 @@ namespace DefaultNamespace.OnQuestNodeShow
         
         public OnQuestNodeShow findOnQuestNodeShow(string questNodeId)
         {
+
+            if (list.Count == 0)
+            {
+                Start();
+            }
+            
             foreach (var onQuestNodeShow in list)
             {
                 if (onQuestNodeShow.questNodeId == questNodeId)
