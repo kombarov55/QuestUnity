@@ -5,19 +5,25 @@ using UnityEngine.UI;
 
 namespace DefaultNamespace
 {
-    public class
-        QuestScenePresenter : MonoBehaviour
+    public class QuestScenePresenter : MonoBehaviour
     {
         private Action<int> choiceHandler;
 
+        public Text coinCountText; 
         public Text title;
         public Image img;
         public Text description;
         public GameObject buttonsPanel;
-
         public GameObject buttonPrefab;
 
+        public AudioScript audioScript;
+
         private List<GameObject> buttons = new List<GameObject>();
+
+        public void init(AudioScript audioScript)
+        {
+            this.audioScript = audioScript;
+        }
 
         public void setTitle(string str)
         {
@@ -45,6 +51,16 @@ namespace DefaultNamespace
             this.choiceHandler = choiceHandler;
         }
 
+        public void setCoinCount(int count)
+        {
+            coinCountText.text = "" + count;
+        }
+
+        public void playClickingSound()
+        { 
+            audioScript.playButtonClickSound();
+        }
+
         private void clearChoices()
         {
             buttonsPanel.transform.DetachChildren();
@@ -63,7 +79,7 @@ namespace DefaultNamespace
                 string choiceText = choices[i];
                 var gameObject = Instantiate(buttonPrefab, buttonsPanel.transform);
                 gameObject.GetComponent<Button>().gameObject.GetComponentInChildren<Text>().text = choiceText;
-                gameObject.AddComponent<OnClickComponent>();
+                gameObject.AddComponent<OnClickComponent>().audioScript = audioScript;
                 var valueToInvoke = i;
                 gameObject.GetComponent<OnClickComponent>().action = () => choiceHandler.Invoke(valueToInvoke);
 

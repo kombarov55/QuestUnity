@@ -13,6 +13,12 @@ namespace DefaultNamespace
 
         public void Start()
         {
+            transitions.Add(new VineChoiceTransition("3", 0));
+        }
+
+        public void init(QuestSceneController questSceneController)
+        {
+            this.questSceneController = questSceneController;
         }
 
         public Transition find(string questNodeId, int choiceNum)

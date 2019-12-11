@@ -10,7 +10,7 @@ namespace DefaultNamespace.transitions
         public int choiceNum;
         public string questNodeId;
 
-        public Transition(int choiceNum, string questNodeId)
+        public Transition(string questNodeId, int choiceNum)
         {
             this.choiceNum = choiceNum;
             this.questNodeId = questNodeId;
