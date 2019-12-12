@@ -35,9 +35,43 @@ namespace DefaultNamespace.MainPanel
             {
                 setStatusLineText("Открыта запись в журнале (" + noteId + ")");
                 journalItemsService.openJournalItem(noteId);
+                incUnreadJournalItemsCounter();
             }
         }
 
+        public void addInventoryItem(string id)
+        {
+            if (!cachedUserData.addedInventoryItems.Contains(id))
+            {
+                cachedUserData.addedInventoryItems.Add(id);
+                setStatusLineText(id + " добавлен в инвентарь.");
+                incUnseenInventoryItemsCount();
+            }
+        }
+
+        public void incUnreadJournalItemsCounter()
+        {
+            cachedUserData.unreadJournalItemsCount += 1;
+            mainPanelPresenter.setJournalButtonText("Журнал (" + cachedUserData.unreadJournalItemsCount + ")");
+        }
+
+        public void incUnseenInventoryItemsCount()
+        {
+            cachedUserData.unseenInventoryItemsCount += 1;
+            mainPanelPresenter.setInventoryButtonText("Инвентарь (" + cachedUserData.unseenInventoryItemsCount + ")");
+        }
+
+        public void dropUnreadJournalItemsCounter()
+        {
+            cachedUserData.unreadJournalItemsCount = 0;
+            mainPanelPresenter.setJournalButtonText("Журнал");
+        }
+        
+        public void dropUnseenInventoryItemsCount()
+        {
+            cachedUserData.unseenInventoryItemsCount = 0;
+            mainPanelPresenter.setInventoryButtonText("Инвентарь");
+        }
 
         public void setStatusLineText(string text)
         {

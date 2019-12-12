@@ -64,6 +64,7 @@ namespace DefaultNamespace
             displayQuestNode(questNode.imgPath, questNode.title, questNode.description, questNode.choices);
             onQuestNodeShowService.findOnQuestNodeShow(questNode.id).run(questSceneFlow);
             currentQuestNode = questNode;
+            cachedUserData.currentSceneId = currentQuestNode.id;
         }
 
         private void displayQuestNode(string imgPath, string title, string description, List<QuestNodeChoice> choices)

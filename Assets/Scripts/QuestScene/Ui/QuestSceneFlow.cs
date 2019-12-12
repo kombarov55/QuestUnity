@@ -4,6 +4,8 @@ using DefaultNamespace.JournalPanel;
 using DefaultNamespace.MainPanel;
 using DefaultNamespace.model;
 using DefaultNamespace.OnQuestNodeShow;
+using DefaultNamespace.Panels.InventoryPanel;
+using QuestScene.Repositories;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,6 +22,7 @@ namespace DefaultNamespace
         public GameObject journalPanelPrefab;
         public GameObject journalItemPanelPrefab;
         public GameObject animationPanelPrefab;
+        public GameObject inventoryPanelPrefab;
 
         public GameObject audioGameObject;
 
@@ -34,12 +37,14 @@ namespace DefaultNamespace
         public JournalItemPanelController journalItemPanelController;
         public MainPanelController mainPanelController;
         public AnimationPanelController animationPanelController;
+        public InventoryPanelController InventoryPanelController;
 
         private GameObject questPanel;
         private GameObject journalPanel;
         private GameObject journalItemPanel;
         private GameObject animationPanel;
         private GameObject mainPanel;
+        private GameObject inventoryPanel;
 
         /**
          * При старте показываем обычную сцену
@@ -64,6 +69,8 @@ namespace DefaultNamespace
             animationPanel.SetActive(false);
             journalItemPanel = Instantiate(journalItemPanelPrefab, rootPanel.transform);
             journalItemPanel.SetActive(false);
+            inventoryPanel = Instantiate(inventoryPanelPrefab, rootPanel.transform);
+            inventoryPanel.SetActive(false);
             
             transitionService = GetComponent<TransitionService>();
             transitionService.init();
@@ -87,10 +94,15 @@ namespace DefaultNamespace
             
             animationPanelController = animationPanel.GetComponent<AnimationPanelController>();
             animationPanelController.init();
+
+            InventoryPanelController = inventoryPanel.GetComponent<InventoryPanelController>();
+            InventoryPanelController.init(audioScript, this);
         }
 
         public void showQuestScene()
         {
+            mainPanel.SetActive(true);
+            questPanel.SetActive(true);
             questPanelController.show();
         }
 
@@ -106,6 +118,7 @@ namespace DefaultNamespace
 
         public void showJournalPanel()
         {
+            mainPanelController.dropUnreadJournalItemsCounter();
             journalPanelController.show();
         }
         
@@ -125,6 +138,17 @@ namespace DefaultNamespace
             journalItemPanel.SetActive(false);
         }
 
+        public void showInventoryPanel()
+        {
+            inventoryPanel.SetActive(true);
+            mainPanelController.dropUnseenInventoryItemsCount();
+            InventoryPanelController.show(InventoryItemsRepository.findOpened(cachedUserData.addedInventoryItems));
+        }
+
+        public void hideInventoryPanel()
+        {
+            inventoryPanel.SetActive(false);
+        }
 
     }
 }

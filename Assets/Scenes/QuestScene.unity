@@ -271,6 +271,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 425469763}
   m_CullTransparentMesh: 0
+--- !u!114 &439027215 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8167234960880290997, guid: 0cbcf683b17bb1108ac568530e4a9be8,
+    type: 3}
+  m_PrefabInstance: {fileID: 1074473234}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &606190998
 GameObject:
   m_ObjectHideFlags: 0
@@ -759,7 +771,12 @@ PrefabInstance:
     - target: {fileID: 8167234960880291002, guid: 0cbcf683b17bb1108ac568530e4a9be8,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 181
+      objectReference: {fileID: 0}
+    - target: {fileID: 8167234960880291002, guid: 0cbcf683b17bb1108ac568530e4a9be8,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 73.9
       objectReference: {fileID: 0}
     - target: {fileID: 8167234959678998411, guid: 0cbcf683b17bb1108ac568530e4a9be8,
         type: 3}
@@ -784,7 +801,12 @@ PrefabInstance:
     - target: {fileID: 8167234959678998411, guid: 0cbcf683b17bb1108ac568530e4a9be8,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 8167234959678998411, guid: 0cbcf683b17bb1108ac568530e4a9be8,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 73.9
       objectReference: {fileID: 0}
     - target: {fileID: 8167234961398351518, guid: 0cbcf683b17bb1108ac568530e4a9be8,
         type: 3}
@@ -809,7 +831,12 @@ PrefabInstance:
     - target: {fileID: 8167234961398351518, guid: 0cbcf683b17bb1108ac568530e4a9be8,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 211.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8167234961398351518, guid: 0cbcf683b17bb1108ac568530e4a9be8,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 73.9
       objectReference: {fileID: 0}
     - target: {fileID: 8167234959678998404, guid: 0cbcf683b17bb1108ac568530e4a9be8,
         type: 3}
@@ -878,6 +905,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8167234960880290997, guid: 0cbcf683b17bb1108ac568530e4a9be8,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8167234960880290997, guid: 0cbcf683b17bb1108ac568530e4a9be8,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 606190999}
@@ -885,6 +917,56 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: playButtonClickSound
+      objectReference: {fileID: 0}
+    - target: {fileID: 8167234960880290997, guid: 0cbcf683b17bb1108ac568530e4a9be8,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8167234960880290997, guid: 0cbcf683b17bb1108ac568530e4a9be8,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8167234960880290997, guid: 0cbcf683b17bb1108ac568530e4a9be8,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1335600908}
+    - target: {fileID: 8167234960880290997, guid: 0cbcf683b17bb1108ac568530e4a9be8,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: hideMainPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 8167234960880290997, guid: 0cbcf683b17bb1108ac568530e4a9be8,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8167234960880290997, guid: 0cbcf683b17bb1108ac568530e4a9be8,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8167234960880290997, guid: 0cbcf683b17bb1108ac568530e4a9be8,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8167234960880290997, guid: 0cbcf683b17bb1108ac568530e4a9be8,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 1335600908}
+    - target: {fileID: 8167234960880290997, guid: 0cbcf683b17bb1108ac568530e4a9be8,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: showInventoryPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 8167234960880290997, guid: 0cbcf683b17bb1108ac568530e4a9be8,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8167234961398351505, guid: 0cbcf683b17bb1108ac568530e4a9be8,
         type: 3}
@@ -5591,6 +5673,74 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1890677900, guid: 0cbcf683b17bb1108ac568530e4a9be8, type: 3}
+      propertyPath: inventoryButton
+      value: 
+      objectReference: {fileID: 439027215}
+    - target: {fileID: 1890677900, guid: 0cbcf683b17bb1108ac568530e4a9be8, type: 3}
+      propertyPath: journalButton
+      value: 
+      objectReference: {fileID: 1811215014}
+    - target: {fileID: 2842522834510744063, guid: 0cbcf683b17bb1108ac568530e4a9be8,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5874828427581882548, guid: 0cbcf683b17bb1108ac568530e4a9be8,
+        type: 3}
+      propertyPath: m_ChildForceExpandWidth
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5874828427581882548, guid: 0cbcf683b17bb1108ac568530e4a9be8,
+        type: 3}
+      propertyPath: m_ChildForceExpandHeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5874828427581882548, guid: 0cbcf683b17bb1108ac568530e4a9be8,
+        type: 3}
+      propertyPath: m_ChildControlWidth
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5874828427581882548, guid: 0cbcf683b17bb1108ac568530e4a9be8,
+        type: 3}
+      propertyPath: m_ChildAlignment
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8167234959678998408, guid: 0cbcf683b17bb1108ac568530e4a9be8,
+        type: 3}
+      propertyPath: m_Name
+      value: JournalButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 8167234960880291001, guid: 0cbcf683b17bb1108ac568530e4a9be8,
+        type: 3}
+      propertyPath: m_Name
+      value: InventoryButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 8167234961398351517, guid: 0cbcf683b17bb1108ac568530e4a9be8,
+        type: 3}
+      propertyPath: m_Name
+      value: BackButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 8167234959946732495, guid: 0cbcf683b17bb1108ac568530e4a9be8,
+        type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8167234960200161771, guid: 0cbcf683b17bb1108ac568530e4a9be8,
+        type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8167234961667756762, guid: 0cbcf683b17bb1108ac568530e4a9be8,
+        type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8167234961667756762, guid: 0cbcf683b17bb1108ac568530e4a9be8,
+        type: 3}
+      propertyPath: m_Text
+      value: "\u0416\u0443\u0440\u043D\u0430\u043B"
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0cbcf683b17bb1108ac568530e4a9be8, type: 3}
 --- !u!224 &1074473235 stripped
@@ -5670,6 +5820,8 @@ MonoBehaviour:
     type: 3}
   animationPanelPrefab: {fileID: 2223993742860295501, guid: 384db9cc526624db0a00583712aa5375,
     type: 3}
+  inventoryPanelPrefab: {fileID: 3184605110831234427, guid: ec6c4d06de2c1da9aae20b6a2720ebbe,
+    type: 3}
   audioGameObject: {fileID: 606190998}
   cachedUserData: {fileID: 1335600913}
   transitionService: {fileID: 1335600910}
@@ -5681,6 +5833,7 @@ MonoBehaviour:
   journalItemPanelController: {fileID: 0}
   mainPanelController: {fileID: 0}
   animationPanelController: {fileID: 0}
+  InventoryPanelController: {fileID: 0}
 --- !u!114 &1335600909
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5746,6 +5899,9 @@ MonoBehaviour:
   currentSceneId: 
   coinCount: 5
   openedJournalItems: []
+  addedInventoryItems: []
+  unreadJournalItemsCount: 0
+  unseenInventoryItemsCount: 0
 --- !u!1 &1560767874
 GameObject:
   m_ObjectHideFlags: 0
@@ -5812,6 +5968,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1811215014 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8167234959678998404, guid: 0cbcf683b17bb1108ac568530e4a9be8,
+    type: 3}
+  m_PrefabInstance: {fileID: 1074473234}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2014716612
 GameObject:
   m_ObjectHideFlags: 0

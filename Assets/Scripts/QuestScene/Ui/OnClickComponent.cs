@@ -11,7 +11,11 @@ namespace DefaultNamespace
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            audioScript.playButtonClickSound();
+            if (audioScript != null)
+            {
+                audioScript.playButtonClickSound();
+            }
+
             action.Invoke();
         }
     }

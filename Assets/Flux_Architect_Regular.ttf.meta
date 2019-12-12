@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1403d0888cb5f52d68876f3d66465f94
+guid: 7aa25a67ccd25ac8a889a14fb442e52c
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -8,11 +8,11 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: Roboto
+  fontName: Flux Architect
   fontNames:
-  - Roboto
+  - Flux Architect
   fallbackFontReferences:
-  - {fileID: 12800000, guid: 8bf45739ee7ad08278d116396e680589, type: 3}
+  - {fileID: 12800000, guid: 1403d0888cb5f52d68876f3d66465f94, type: 3}
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1

@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -302, y: 581.4994}
+  m_AnchoredPosition: {x: -302, y: 581.35565}
   m_SizeDelta: {x: 604, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &4958757995600956504
@@ -418,7 +418,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 6219455502465588322}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.99998844
+  m_Size: 0.5
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -438,7 +438,7 @@ GameObject:
   - component: {fileID: 7573980359162242732}
   - component: {fileID: 5495638249451302425}
   m_Layer: 5
-  m_Name: Scroll View (1)
+  m_Name: Scroll View
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

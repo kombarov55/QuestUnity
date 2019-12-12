@@ -687,7 +687,7 @@ PrefabInstance:
     - target: {fileID: 2364475260755916643, guid: c54a8a7cc6a16e865b63facd9c0673fd,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 46.7
+      value: 60.1
       objectReference: {fileID: 0}
     - target: {fileID: 2364475260755916643, guid: c54a8a7cc6a16e865b63facd9c0673fd,
         type: 3}
@@ -748,6 +748,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Text
       value: "\u0418\u043D\u0432\u0435\u043D\u0442\u0430\u0440\u044C"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2364475259891229234, guid: c54a8a7cc6a16e865b63facd9c0673fd,
+        type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c54a8a7cc6a16e865b63facd9c0673fd, type: 3}
@@ -842,7 +847,7 @@ PrefabInstance:
     - target: {fileID: 2364475260755916643, guid: c54a8a7cc6a16e865b63facd9c0673fd,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 46.7
+      value: 60.1
       objectReference: {fileID: 0}
     - target: {fileID: 2364475260755916643, guid: c54a8a7cc6a16e865b63facd9c0673fd,
         type: 3}
@@ -918,6 +923,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2364475259891229234, guid: c54a8a7cc6a16e865b63facd9c0673fd,
+        type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c54a8a7cc6a16e865b63facd9c0673fd, type: 3}
@@ -1012,7 +1022,7 @@ PrefabInstance:
     - target: {fileID: 2364475260755916643, guid: c54a8a7cc6a16e865b63facd9c0673fd,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 46.7
+      value: 60.1
       objectReference: {fileID: 0}
     - target: {fileID: 2364475260755916643, guid: c54a8a7cc6a16e865b63facd9c0673fd,
         type: 3}
@@ -1078,6 +1088,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Text
       value: "\u0416\u0443\u0440\u043D\u0430\u043B"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2364475259891229234, guid: c54a8a7cc6a16e865b63facd9c0673fd,
+        type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c54a8a7cc6a16e865b63facd9c0673fd, type: 3}

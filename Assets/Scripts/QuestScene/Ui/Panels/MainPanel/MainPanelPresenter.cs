@@ -7,6 +7,8 @@ namespace DefaultNamespace.MainPanel
     {
         public Text coinCountText;
         public Text statusLineText;
+        public Button journalButton;
+        public Button inventoryButton;
         
         public void setCoinCountText(int count)
         {
@@ -22,6 +24,16 @@ namespace DefaultNamespace.MainPanel
         {
             var statusText = statusLineText.text;
             return statusText != null && statusText != "";
+        }
+
+        public void setJournalButtonText(string text)
+        {
+            journalButton.GetComponentInChildren<Text>().text = text;
+        }
+
+        public void setInventoryButtonText(string text)
+        {
+            inventoryButton.GetComponentInChildren<Text>().text = text;
         }
     }
 }

@@ -35,6 +35,21 @@ namespace QuestScene.Repositories
             return null;
         }
 
+        public static List<InventoryItem> findOpened(List<string> openedItemsIds)
+        {
+            List<InventoryItem> result = new List<InventoryItem>();
+            foreach (var id in openedItemsIds)
+            {
+                var item = findById(id);
+                if (item != null)
+                {
+                    result.Add(item);
+                }
+            }
+            return result;
+        }
+        
+
         private static List<InventoryItem> load()
         {
             TextAsset textAsset = (TextAsset) Resources.Load("Inventory");
