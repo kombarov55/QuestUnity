@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Xml;
+using DefaultNamespace;
 using DefaultNamespace.model;
 using UnityEngine;
 
-namespace DefaultNamespace
+namespace QuestScene.Repositories
 {
     public class QuestNodesRepository : MonoBehaviour
     {

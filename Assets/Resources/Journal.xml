@@ -46,7 +46,7 @@
         <Id>Странный подарок</Id>
         <Title>Странный подарок</Title>
         <Description>Надо же, явилась тут, про разломы говорит, и ещё шкатулку вручила. Говорит, от неё зависит судьба мира. Какая ответственность, у меня аж коленки задрожали. </Description>
-        <ImgPath>Images/Box</ImgPath>
+        <ImgPath>Images/BoxBackground</ImgPath>
     </JournalItem>
     
     <!--

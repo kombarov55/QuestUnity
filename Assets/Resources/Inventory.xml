@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<InventoryItems>
+    <InventoryItem>
+        <Id>Карта и ключ</Id>
+        <Name>Карта и ключ</Name>
+        <Description>Старинная карта и ключ.</Description>
+        <ImgPath>Images/KeyAndMap</ImgPath>
+    </InventoryItem>
+    <InventoryItem>
+        <Id>Шкатулка</Id>
+        <Name>Шкатулка</Name>
+        <Description>Таинственная шкатулка. Древняя сила запечатана в ней.</Description>
+        <ImgPath>Images/Box</ImgPath>
+    </InventoryItem>
+    
+    <!--
+    
+    <InventoryItem>
+        <Id></Id>
+        <Name></Name>
+        <Description></Description>
+        <ImgPath></ImgPath>
+    </InventoryItem>
+    
+    -->
+</InventoryItems>

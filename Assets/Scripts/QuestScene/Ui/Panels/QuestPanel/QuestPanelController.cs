@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using DefaultNamespace.model;
 using DefaultNamespace.OnQuestNodeShow;
+using QuestScene.Repositories;
 using UnityEngine;
 using UnityEngine.UI;
 
