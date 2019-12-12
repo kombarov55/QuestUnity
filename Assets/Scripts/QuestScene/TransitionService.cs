@@ -23,6 +23,7 @@ namespace DefaultNamespace
             transitions.Add(new PortraitTransition("3.2", 3, "3.2"));
             transitions.Add(new PortraitTransition("3.3", 3, "3.3"));
             transitions.Add(new PortraitTransition("3.4", 1, "3.4"));
+            transitions.Add(new AddInventoryItemTransition("3.5", 0, "Ключ и карта", "3.6l"));
         }
 
         public void init()

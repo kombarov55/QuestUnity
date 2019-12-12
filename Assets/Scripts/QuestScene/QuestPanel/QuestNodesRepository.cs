@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Xml;
 using DefaultNamespace.model;
@@ -66,9 +67,16 @@ namespace DefaultNamespace
                     XmlNode choiceXmlNode = xmlNodeListChoices[i1];
 
                     var choice = new QuestNodeChoice();
-                    choice.text = XmlHelper.getValue(choiceXmlNode, "Text");
-                    choice.nextId = XmlHelper.getValue(choiceXmlNode, "NextId");
-                    
+                    try
+                    {
+                        choice.text = XmlHelper.getValue(choiceXmlNode, "Text");
+                        choice.nextId = XmlHelper.getValue(choiceXmlNode, "NextId");
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.Log("ошибка в вызове XmlHelper.GetValue у nodeId=" + node.id);
+                    }
+
                     node.choices.Add(choice);
                 }
 

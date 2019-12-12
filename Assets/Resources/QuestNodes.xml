@@ -71,15 +71,15 @@
             </Choice>
             <Choice>
                 <Text>Стрельбище</Text>
-                <NextId></NextId>
+                <NextId>4</NextId>
             </Choice>
             <Choice>
                 <Text>Лаборатория</Text>
-                <NextId></NextId>
+                <NextId>5</NextId>
             </Choice>
             <Choice>
                 <Text>Погулять по улице</Text>
-                <NextId></NextId>
+                <NextId>6</NextId>
             </Choice>
             <Choice>
                 <Text>Отправиться в поместье к другу (Глава 1)</Text>
@@ -363,16 +363,367 @@
             </Choice>
         </Choices>
     </QuestNode>
-    
+    <QuestNode>
+        <Id>4</Id>
+        <Title>Стрельбище</Title>
+        <ImgPath>Images/ShootingRange</ImgPath>
+        <Description>Здравия желаю, граф! Вы пришли на тренировку?</Description>
+        <Choices>
+            <Choice>
+                <Text>Да, сегодня прекрасный день для проверки своей меткости (игра "Стрельба из лука")</Text>
+                <NextId>4</NextId>
+            </Choice>
+            <Choice>
+                <Text>Не сейчас. Какие новости в округе?</Text>
+                <NextId>4.1</NextId>
+            </Choice>
+            <Choice>
+                <Text>Если честно, я попал сюда случайно</Text>
+                <NextId></NextId>
+            </Choice>
+        </Choices>
+    </QuestNode>
+    <QuestNode>
+        <Id>4.1</Id>
+        <Title></Title>
+        <ImgPath></ImgPath>
+        <Description>Охотники рассказывали о странном вое со стороны Вашего родового поместья.</Description>
+        <Choices>
+            <Choice>
+                <Text>Поместья? Я как раз собираюсь туда. Можете рассказать подробнее?</Text>
+                <NextId>4.2</NextId>
+            </Choice>
+            <Choice>
+                <Text> Странное совпадение, я как раз собирался в это поместье</Text>
+                <NextId>4.2</NextId>
+            </Choice>
+            <Choice>
+                <Text>Меня интересовали действительно полезные новости, а не городские легенды. Лучше потренируюсь (игра "Стрельба из лука")</Text>
+                <NextId>4.3</NextId>
+            </Choice>
+            <Choice>
+                <Text>Стрельба и разговоры меня не интересуют. До свидания</Text>
+                <NextId>1</NextId>
+            </Choice>
+        </Choices>
+    </QuestNode>
+    <QuestNode>
+        <Id>4.2</Id>
+        <Title></Title>
+        <ImgPath></ImgPath>
+        <Description>Говорят, бесовщина началась с таинственной смерти в астрономической башне. Будьте осторожны, граф! Дорога к поместью забрала много жизней, в том числе жизнь нашего дорогого графа, Вашего отца!</Description>
+        <Choices>
+            <Choice>
+                <Text>Я уже взрослый, сам разберусь.</Text>
+                <NextId>4.3</NextId>
+            </Choice>
+            <Choice>
+                <Text>Благодарю за предупреждения. Буду внимателен в пути. </Text>
+                <NextId>4.3</NextId>
+            </Choice>
+            <Choice>
+                <Text>Если поездка действительно опасна, стоит потренироваться (игра "Стрельба из лука")</Text>
+                <NextId>4.3</NextId>
+            </Choice>
+            <Choice>
+                <Text>Засиделся я здесь. Мне пора</Text>
+                <NextId>1</NextId>
+            </Choice>
+        </Choices>
+    </QuestNode>
+    <QuestNode>
+        <Id>4.3</Id>
+        <Title></Title>
+        <ImgPath></ImgPath>
+        <Description>Я могу ещё чем то помочь, граф?</Description>
+        <Choices>
+            <Choice>
+                <Text>Пожалуй, я ещё потренируюсь. (игра "Стрельба из лука")</Text>
+                <NextId>4.3</NextId>
+            </Choice>
+            <Choice>
+                <Text>Я услышал всё, что хотел. До свидания!</Text>
+                <NextId>1</NextId>
+            </Choice>
+            <Choice>
+                <Text>Да, не путаться под ногами и не тратить мое драгоценное время.</Text>
+                <NextId>1</NextId>
+            </Choice>
+        </Choices>
+    </QuestNode>
+    <QuestNode>
+        <Id>5</Id>
+        <Title></Title>
+        <ImgPath>Images/AlchemyLab</ImgPath>
+        <Description>Эта лабораторию построил для меня отец, когда я только приехал в город. Он всегда поддерживал моё увлечение наукой. Что у нас на полках?</Description>
+        <Choices>
+            <Choice>
+                <Text>Готовить зелье</Text>
+                <NextId>5</NextId>
+            </Choice>
+            <Choice>
+                <Text>Уйти</Text>
+                <NextId>1</NextId>
+            </Choice>
+        </Choices>
+    </QuestNode>
+    <QuestNode>
+        <Id>6</Id>
+        <Title></Title>
+        <ImgPath>Images/Town1</ImgPath>
+        <Description>Какой чудесный город! Не могу поверить, что он был возведён на средства моих предков. Здесь так тихо и спокойно... *слышен крик помощи*</Description>
+        <Choices>
+            <Choice>
+                <Text>Что? Преступники в моём городе?</Text>
+                <NextId>6.1</NextId>
+            </Choice>
+            <Choice>
+                <Text>Не моё дело, пускай займётся стража</Text>
+                <NextId>6.2</NextId>
+            </Choice>
+            <Choice>
+                <Text>Здесь не безопасно, лучше вернуться</Text>
+                <NextId>1</NextId>
+            </Choice>
+        </Choices>
+    </QuestNode>
+    <QuestNode>
+        <Id>6.1</Id>
+        <Title></Title>
+        <ImgPath></ImgPath>
+        <Description>За углом вы видите головореза, пытающегося отнять шкатулку у юной девушки.</Description>
+        <Choices>
+            <Choice>
+                <Text>Помочь девушке</Text>
+                <NextId>6.3</NextId>
+            </Choice>
+            <Choice>
+                <Text>Помочь головорезу</Text>
+                <NextId>6.4</NextId>
+            </Choice>
+            <Choice>
+                <Text>Незаметно уйти</Text>
+                <NextId>1</NextId>
+            </Choice>
+        </Choices>
+    </QuestNode>
+    <QuestNode>
+        <Id>6.2</Id>
+        <Title></Title>
+        <ImgPath></ImgPath>
+        <Description>Вы предпочли не лезть не в своё дело. Постепенно крики становились всё тише, а Вы удалялись всё дальше. </Description>
+        <Choices>
+            <Choice>
+                <Text>Продолжить</Text>
+                <NextId>1</NextId>
+            </Choice>
+        </Choices>
+    </QuestNode>
+    <QuestNode>
+        <Id>6.3</Id>
+        <Title></Title>
+        <ImgPath></ImgPath>
+        <Description>Эй! В моём городе не место таким как ты!</Description>
+        <Choices>
+            <Choice> <!--(Игра 3 в ряд. В случае поражения – ожидание 15 минут, потом снова 3 в ряд до победы, противник слабый) -->
+                <Text>Продолжить</Text>
+                <NextId>6.3.1</NextId>
+            </Choice>
+        </Choices>
+    </QuestNode>
+    <QuestNode>
+        <Id>6.3.1</Id>
+        <Title></Title>
+        <ImgPath>Images/Town2</ImgPath>
+        <Description>Спасибо, что спасли меня, граф. Я Аннабель, жрица леса.</Description>
+        <Choices>
+            <Choice>
+                <Text>Жрица леса? Что это значит?</Text>
+                <NextId>6.5</NextId>
+            </Choice>
+            <Choice>
+                <Text>Рад знакомству, Аннабель. Я Геберт Лонгрен.</Text>
+                <NextId>6.6</NextId>
+            </Choice>
+            <Choice>
+                <Text>Бандиту нужны были не Вы, а шкатулка. Что в ней?</Text>
+                <NextId>6.7</NextId>
+            </Choice>
+            <Choice>
+                <Text>Я разве похож на спасителя? За всё надо платить. Деньги есть или договоримся?</Text>
+                <NextId>6.8</NextId>
+            </Choice>
+        </Choices>
+    </QuestNode>
+    <QuestNode>
+        <Id>6.5</Id>
+        <Title></Title>
+        <ImgPath></ImgPath>
+        <Description>Я наследница древнего рода, это всё, что я могу сказать.</Description>
+        <Choices>
+            <Choice>
+                <Text>Что ж, Ваше право.</Text>
+                <NextId>6.9</NextId>
+            </Choice>
+            <Choice>
+                <Text>Я рисковал жизнью не ради дурацких загадок! Отвечай на мои вопросы, иначе пожалеешь!</Text>
+                <NextId>6.10</NextId>
+            </Choice>
+            <Choice>
+                <Text>Я зря теряю с тобой время. Пока!</Text>
+                <NextId>1</NextId>
+            </Choice>
+        </Choices>
+    </QuestNode>
+    <QuestNode>
+        <Id>6.6</Id>
+        <Title></Title>
+        <ImgPath></ImgPath>
+        <Description>Я знаю. кто Вы, граф. Я и сёстры слышали о Вашей достойной семье. Если честно, я искала встречи с Вами.</Description>
+        <Choices>
+            <Choice>
+                <Text>Продолжить</Text>
+                <NextId>6.9</NextId>
+            </Choice>
+        </Choices>
+    </QuestNode>
+    <QuestNode>
+        <Id>6.7</Id>
+        <Title></Title>
+        <ImgPath></ImgPath>
+        <Description>Шкатулка это то, что привело меня сюда. Я знала, она поможет мне найти Вас.</Description>
+        <Choices>
+            <Choice>
+                <Text>Продолжить</Text>
+                <NextId>6.9</NextId>
+            </Choice>
+        </Choices>
+    </QuestNode>
+    <QuestNode>
+        <Id>6.8</Id>
+        <Title></Title>
+        <ImgPath></ImgPath>
+        <Description>Я разочарована, граф. Я слышала, что вы честный и благородный человек.</Description>
+        <Choices>
+            <Choice>
+                <Text>Как видишь, не все слухи правдивы.</Text>
+                <NextId>6.10</NextId>
+            </Choice>
+            <Choice>
+                <Text>Простите, я ещё не отошёл от битвы. Я не должен был позволять себе грубостей. Кто Вы и что за шкатулка у Вас в руках?</Text>
+                <NextId>6.9</NextId>
+            </Choice>
+        </Choices>
+    </QuestNode>
+    <QuestNode>
+        <Id>6.9</Id>
+        <Title></Title>
+        <ImgPath></ImgPath>
+        <Description>Я проделала долгий путь из лесов Оссилора, виной тому - древнее пророчество о великом зле, проникшем в наш мир через разлом. Но я опоздала, духи мрачных миров уже здесь, скоро они уничтожат весь наш мир. Пророчество гласит, что лишь наследник дома Лонгренов ообладает силой, способной навсегда запечатать разлом и уничтожить этих тварей. Знаки привели меня сюда... Граф, прошу, не перебивайте меня. Я отвечу на все Ваши вопросы позже и не здесь. В моей шкатулке есть то, что необходимо для спасения мира... или для его скорейшего уничтожения. Откройте её, когда придёт время. </Description>
+        <Choices>
+            <Choice>
+                <Text>Продолжить</Text>
+                <NextId>6.9.1</NextId>
+            </Choice>
+        </Choices>
+    </QuestNode>
+    <QuestNode>
+        <Id>6.9.1</Id>
+        <Title></Title>
+        <ImgPath></ImgPath>
+        <Description>*Аннабель медленно исчезает*</Description>
+        <Choices>
+            <Choice>
+                <Text>Попытаться открыть шкатулку.</Text>
+                <NextId>6.11</NextId>
+            </Choice>
+            <Choice>
+                <Text>Уйти</Text>
+                <NextId>1</NextId>
+            </Choice>
+        </Choices>
+    </QuestNode>
+    <QuestNode>
+        <Id>6.11</Id>
+        <Title></Title>
+        <ImgPath></ImgPath>
+        <Description>Крышка шкатулки не поддаётся</Description>
+        <Choices>
+            <Choice>
+                <Text>Уйти</Text>
+                <NextId>1</NextId>
+            </Choice>
+        </Choices>
+    </QuestNode>
+    <QuestNode>
+        <Id>6.10</Id>
+        <Title></Title>
+        <ImgPath></ImgPath>
+        <Description>Жаль, но древний род Лонгренов уже не тот, что столетия назад.
+*Аннабель растворяется в воздухе*</Description>
+        <Choices>
+            <Choice>
+                <Text>Продолжить</Text>
+                <NextId>6.10.1</NextId>
+            </Choice>
+        </Choices>
+    </QuestNode>
+    <QuestNode>
+        <Id>6.10.1</Id>
+        <Title></Title>
+        <ImgPath></ImgPath>
+        <Description>Что? Она просто исчезла? Этого не может быть...</Description>
+        <Choices>
+            <Choice>
+                <Text>Уйти</Text>
+                <NextId>1</NextId>
+            </Choice>
+        </Choices>
+    </QuestNode>
+    <QuestNode>
+        <Id>6.4</Id>
+        <Title></Title>
+        <ImgPath></ImgPath>
+        <Description>Привет, приятель. Думаю, добычи хватит на нас двоих</Description>
+        <Choices>
+            <Choice> <!--Игра 3 в ряд, противник погибает с одного удара. Труп девушки и шкатулка исчезают. -->
+                <Text>Продолжить</Text>
+                <NextId>6.4.1</NextId>
+            </Choice>
+        </Choices>
+    </QuestNode>
+    <QuestNode>
+        <Id>6.4.1</Id>
+        <Title></Title>
+        <ImgPath>Images/Town3</ImgPath>
+        <Description>Идиот! Ты всё испортил!</Description>
+        <Choices>
+            <Choice> <!-- (Игра 3 в ряд. В случае поражения – ожидание 15 минут, потом снова 3 в ряд до победы, противник слабый) -->
+                <Text>Продолжить</Text>
+                <NextId>6.4.2</NextId>
+            </Choice>
+        </Choices>
+    </QuestNode>
+    <QuestNode>
+        <Id>6.4.2</Id>
+        <Title></Title>
+        <ImgPath></ImgPath>
+        <Description>Что это было? Нужно во всём срочно разобраться</Description>
+        <Choices>
+            <Choice>
+                <Text>Уйти</Text>
+                <NextId>1</NextId>
+            </Choice>
+        </Choices>
+    </QuestNode>
+
     <!--
     
     <QuestNode>
             <Id></Id>
             <Title></Title>
             <ImgPath></ImgPath>
-            <Description>
-                 
-            </Description>
+            <Description></Description>
             <Choices>
                 <Choice>
                     <Text></Text>

@@ -1,10 +1,10 @@
 namespace DefaultNamespace.OnQuestNodeShow
 {
-    public class AddItenvtoryItemOnShow : OnQuestNodeShow
+    public class AddInventoryItemOnShow : OnQuestNodeShow
     {
         private string itemName;
         
-        public AddItenvtoryItemOnShow(string questNodeId, string itemName) : base(questNodeId)
+        public AddInventoryItemOnShow(string questNodeId, string itemName) : base(questNodeId)
         {
             this.itemName = itemName;
         }

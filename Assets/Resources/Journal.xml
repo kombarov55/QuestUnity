@@ -30,6 +30,24 @@
         <Description>Такие сокровища и на моих землях! Диву даёшься как такое может происходить. Может, на моей земле несколько веков назад обитали ператы? Йо - хо - хо, запрячу ка я сокровище под старым маяком? Звучит здорово. Тем не менее, в сундуке может лежать что то полезное.</Description>
         <ImgPath>Images/Treasure</ImgPath>
     </JournalItem>
+    <JournalItem>
+        <Id>Проклятая башня</Id>
+        <Title>Проклятая башня</Title>
+        <Description>Мдауш, не стоит туда соваться.</Description>
+        <ImgPath>Images/CursedTower</ImgPath>
+    </JournalItem>
+    <JournalItem>
+        <Id>Таинственная незнакомка</Id>
+        <Title>Таинственная незнакомка</Title>
+        <Description>Кто она такая? Никто не знает. Очутилась посреди базара, со странной шкатулкой в руках. И ещё всякое ворьё промышляет, в моём то городе! Чем стража занята? </Description>
+        <ImgPath>Images/FemaleStranger</ImgPath>
+    </JournalItem>
+    <JournalItem>
+        <Id>Странный подарок</Id>
+        <Title>Странный подарок</Title>
+        <Description>Надо же, явилась тут, про разломы говорит, и ещё шкатулку вручила. Говорит, от неё зависит судьба мира. Какая ответственность, у меня аж коленки задрожали. </Description>
+        <ImgPath>Images/Box</ImgPath>
+    </JournalItem>
     
     <!--
     
