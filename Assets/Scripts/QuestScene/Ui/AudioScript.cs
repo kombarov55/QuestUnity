@@ -5,14 +5,28 @@ using UnityEngine;
 public class AudioScript : MonoBehaviour
 {
     public AudioClip buttonClickAudioClip;
-    public AudioSource buttonClickAudioSource;
+    public AudioClip screamAudioClip;
+    
+    public AudioSource audioSource;
     void Start()
     {
-        buttonClickAudioSource.clip = buttonClickAudioClip;
+        
     }
 
     public void playButtonClickSound()
     {
-        buttonClickAudioSource.Play();
+        audioSource.clip = buttonClickAudioClip;
+        audioSource.Play();
+    }
+
+    public void playScreamSound()
+    {
+        audioSource.clip = screamAudioClip;
+        audioSource.Play();
+    }
+
+    public void stop()
+    {
+        audioSource.Stop();
     }
 }

@@ -94,8 +94,8 @@
         <Description>Доброе утро, граф! Желаете потренироваться?</Description>
         <Choices>
             <Choice>
-                <Text>С удовольствием, мне и Бурану не помешает разминка.</Text>
-                <NextId>2</NextId>
+                <Text>С удовольствием, мне и Бурану не помешает разминка. (игра "Гонки")</Text>
+                <NextId></NextId>
             </Choice>
             <Choice>
                 <Text>Не сейчас. Какие новости в окрестностях?</Text>
@@ -118,8 +118,8 @@
                 <NextId>2.2</NextId>
             </Choice>
             <Choice>
-                <Text>Меня это мало интересует. Пожалуй, лучше разомнусь</Text>
-                <NextId>2</NextId>
+                <Text>Меня это мало интересует. Пожалуй, лучше разомнусь (игра "Гонки")</Text>
+                <NextId>?</NextId>
             </Choice>
             <Choice>
                 <Text>Я зря теряю тут время</Text>
@@ -146,7 +146,7 @@
                 <NextId>1</NextId>
             </Choice>
             <Choice>
-                <Text>Уф… Знакомые истории. Лучше проверю своего коня перед дорогой</Text>
+                <Text>Уф… Знакомые истории. Лучше проверю своего коня перед дорогой (игра "Гонки")</Text>
                 <NextId>2.3</NextId>
             </Choice>
         </Choices>
@@ -158,7 +158,7 @@
         <Description>Я могу еще Вам помочь, граф?</Description>
         <Choices>
             <Choice>
-                <Text>Тренировка мне не помешает</Text>
+                <Text>Тренировка мне не помешает (игра "Гонки")</Text>
                 <NextId>2.3</NextId>
             </Choice>
             <Choice>
@@ -178,19 +178,19 @@
         <Description>Прекрасного дня, юный граф! Желаете приятно провести время?</Description>
         <Choices>
             <Choice>
-                <Text>Для начала не отказался бы от вина</Text>
-                <NextId>3.0</NextId>
+                <Text>Для начала не отказался бы от вина (1 монета)</Text>
+                <NextId>?</NextId>
             </Choice>
             <Choice>
                 <Text>Я осмотрюсь</Text>
-                <NextId>3.1</NextId>
+                <NextId>?</NextId>
             </Choice>
             <Choice>
                 <Text>Происходило ли что-нибудь интересное?</Text>
                 <NextId>3.3</NextId>
             </Choice>
             <Choice>
-                <Text>Да, отдых бы мне не помешал</Text>
+                <Text>Да, отдых бы мне не помешал (игра "Борель")</Text>
                 <NextId>3.1</NextId>
             </Choice>
             <Choice>
@@ -203,11 +203,10 @@
         <Id>3.0</Id>
         <Title></Title>
         <ImgPath></ImgPath>
-        <Description>
-        </Description>
+        <Description>Что это было? Ох, и крепкое вино сегодня</Description>
         <Choices>
             <Choice>
-                <Text>Что это было? Ох, и крепкое вино сегодня</Text>
+                <Text>Продолжить</Text>
                 <NextId>3.1</NextId>
             </Choice>
         </Choices>
@@ -219,8 +218,8 @@
         <Description>Мы всегда рады таким достопочтенным и щедрым гостям. Желаете еще чего-нибудь?</Description>
         <Choices>
             <Choice>
-                <Text>Еще вина</Text>
-                <NextId>3.2</NextId>
+                <Text>Еще вина (1 монета)</Text>
+                <NextId>?</NextId>
             </Choice>
             <Choice>
                 <Text>Меня интересуют местные сплетни</Text>
@@ -228,10 +227,10 @@
             </Choice>
             <Choice>
                 <Text>Осмотреться</Text>
-                <NextId>3.1</NextId>
+                <NextId>?</NextId>
             </Choice>
             <Choice>
-                <Text>Раз я все равно здесь, покажите, кто у вас есть</Text>
+                <Text>Раз я все равно здесь, покажите, кто у вас есть (игра "Бордель")</Text>
                 <NextId>3.1</NextId>
             </Choice>
             <Choice>
@@ -255,12 +254,12 @@
                 <NextId>3.3</NextId>
             </Choice>
             <Choice>
-                <Text>Я не против воспользоваться особыми услугами</Text>
+                <Text>Я не против воспользоваться особыми услугами (игра "Борель")</Text>
                 <NextId>3.2</NextId>
             </Choice>
             <Choice>
                 <Text>Осмотреться</Text>
-                <NextId>3.1</NextId>
+                <NextId>?</NextId>
             </Choice>
             <Choice>
                 <Text>Раз так, мне пора.</Text>
@@ -279,16 +278,16 @@
                 <NextId>3.5</NextId>
             </Choice>
             <Choice>
-                <Text>Этот бред мне трезвым не понять</Text>
-                <NextId>3.2</NextId>
+                <Text>Этот бред мне трезвым не понять (1 монета)</Text>
+                <NextId>?</NextId>
             </Choice>
             <Choice>
-                <Text>Это все конечно хорошо, но я здесь с другой целью</Text>
+                <Text>Это все конечно хорошо, но я здесь с другой целью (игра "Бордель")</Text>
                 <NextId>3.3</NextId>
             </Choice>
             <Choice>
                 <Text>Осмотреться</Text>
-                <NextId>3.3</NextId>
+                <NextId>?</NextId>
             </Choice>
             <Choice>
                 <Text> Мне пора</Text>
@@ -304,11 +303,11 @@
         <Choices>
             <Choice>
                 <Text>Выпить.</Text>
-                <NextId>3.4</NextId>
+                <NextId>?</NextId>
             </Choice>
             <Choice>
                 <Text>Осмотреться</Text>
-                <NextId>3.4</NextId>
+                <NextId>?</NextId>
             </Choice>
             <Choice>
                 <Text>Прошу прощения, не знаю, что на меня нашло. Раз с выпивкой не получилось, может расскажете свежие сплетни?</Text>
@@ -352,7 +351,7 @@
         <Choices>
             <Choice>
                 <Text>Игра "бордель"</Text>
-                <NextId>1</NextId>
+                <NextId>?</NextId>
             </Choice>
             <Choice>
                 <Text>Уйти</Text>
@@ -368,7 +367,7 @@
         <Choices>
             <Choice>
                 <Text>Да, сегодня прекрасный день для проверки своей меткости (игра "Стрельба из лука")</Text>
-                <NextId>4</NextId>
+                <NextId>?</NextId>
             </Choice>
             <Choice>
                 <Text>Не сейчас. Какие новости в округе?</Text>
@@ -376,7 +375,7 @@
             </Choice>
             <Choice>
                 <Text>Если честно, я попал сюда случайно</Text>
-                <NextId></NextId>
+                <NextId>1</NextId>
             </Choice>
         </Choices>
     </QuestNode>
@@ -455,8 +454,8 @@
         <Description>Эта лабораторию построил для меня отец, когда я только приехал в город. Он всегда поддерживал моё увлечение наукой. Что у нас на полках?</Description>
         <Choices>
             <Choice>
-                <Text>Готовить зелье</Text>
-                <NextId>5</NextId>
+                <Text>Готовить зелье (игра "Алхимия")</Text>
+                <NextId>?</NextId>
             </Choice>
             <Choice>
                 <Text>Уйти</Text>

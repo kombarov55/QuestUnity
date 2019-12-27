@@ -134,6 +134,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coinCountText: {fileID: 5874828427517565863}
   statusLineText: {fileID: 2842522834510744063}
+  journalButton: {fileID: 0}
+  inventoryButton: {fileID: 0}
 --- !u!114 &1890677901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -297,11 +299,11 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 0
-  m_Spacing: 0
-  m_ChildForceExpandWidth: 1
+  m_ChildAlignment: 2
+  m_Spacing: 1
+  m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 1
+  m_ChildControlWidth: 0
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
@@ -682,12 +684,12 @@ PrefabInstance:
     - target: {fileID: 2364475260755916643, guid: c54a8a7cc6a16e865b63facd9c0673fd,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 139.4
       objectReference: {fileID: 0}
     - target: {fileID: 2364475260755916643, guid: c54a8a7cc6a16e865b63facd9c0673fd,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 60.1
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 2364475260755916643, guid: c54a8a7cc6a16e865b63facd9c0673fd,
         type: 3}
@@ -842,12 +844,12 @@ PrefabInstance:
     - target: {fileID: 2364475260755916643, guid: c54a8a7cc6a16e865b63facd9c0673fd,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 158.6
       objectReference: {fileID: 0}
     - target: {fileID: 2364475260755916643, guid: c54a8a7cc6a16e865b63facd9c0673fd,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 60.1
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 2364475260755916643, guid: c54a8a7cc6a16e865b63facd9c0673fd,
         type: 3}
@@ -1017,12 +1019,12 @@ PrefabInstance:
     - target: {fileID: 2364475260755916643, guid: c54a8a7cc6a16e865b63facd9c0673fd,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 123.4
       objectReference: {fileID: 0}
     - target: {fileID: 2364475260755916643, guid: c54a8a7cc6a16e865b63facd9c0673fd,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 60.1
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 2364475260755916643, guid: c54a8a7cc6a16e865b63facd9c0673fd,
         type: 3}

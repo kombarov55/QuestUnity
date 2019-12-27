@@ -93,7 +93,7 @@ namespace DefaultNamespace
             mainPanelController.init(cachedUserData, journalItemsService);
             
             animationPanelController = animationPanel.GetComponent<AnimationPanelController>();
-            animationPanelController.init();
+            animationPanelController.init(audioScript);
 
             InventoryPanelController = inventoryPanel.GetComponent<InventoryPanelController>();
             InventoryPanelController.init(audioScript, this);

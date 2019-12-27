@@ -8,13 +8,14 @@ namespace DefaultNamespace.transitions
     {
 
         private string nextId;
-        
-        public PortraitTransition(string questNodeId, int choiceNum, string nextId) : base(questNodeId, choiceNum)
+
+        public PortraitTransition(string questNodeId, string choiceText, string choiceNextId, string nextId) : base(questNodeId, choiceText, choiceNextId)
         {
             this.nextId = nextId;
         }
 
-        public override void run(QuestNode currentQuestNode, int clickedChoiceNum, QuestSceneFlow questSceneFlow)
+        public override void run(QuestNode currentQuestNode, QuestNodeChoice selectedChoice,
+            QuestSceneFlow questSceneFlow)
         {
             // Показать анимацию с портретом
             // вернуться на сл экран 

@@ -7,16 +7,18 @@ namespace DefaultNamespace.transitions
  */
     public abstract class Transition
     {
-        public int choiceNum;
+        public string choiceText;
+        public string choiceNextId;
         public string questNodeId;
 
-        public Transition(string questNodeId, int choiceNum)
+        protected Transition(string questNodeId, string choiceText, string choiceNextId)
         {
-            this.choiceNum = choiceNum;
+            this.choiceText = choiceText;
+            this.choiceNextId = choiceNextId;
             this.questNodeId = questNodeId;
         }
 
-        public abstract void run(QuestNode currentQuestNode, int clickedChoiceNum, QuestSceneFlow questSceneFlow);
+        public abstract void run(QuestNode currentQuestNode, QuestNodeChoice selectedChoice, QuestSceneFlow questSceneFlow);
 
     }
 }

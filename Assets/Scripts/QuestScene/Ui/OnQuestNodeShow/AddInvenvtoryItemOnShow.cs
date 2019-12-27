@@ -11,7 +11,7 @@ namespace DefaultNamespace.OnQuestNodeShow
 
         public override void run(QuestSceneFlow questSceneFlow)
         {
-            questSceneFlow.mainPanelController.setStatusLineText("Предмет (" + itemName + ") добавлен в инвентарь!");
+            questSceneFlow.mainPanelController.addInventoryItem(itemName);
         }
     }
 }

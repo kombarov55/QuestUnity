@@ -6,12 +6,12 @@ namespace DefaultNamespace.transitions
 {
     public class FreeVineTransition : Transition
     {
-        
-        public FreeVineTransition(string questNodeId, int choiceNum) : base(questNodeId, choiceNum)
+        public FreeVineTransition(string questNodeId, string choiceText, string choiceNextId) : base(questNodeId, choiceText, choiceNextId)
         {
         }
 
-        public override void run(QuestNode currentQuestNode, int clickedChoiceNum, QuestSceneFlow questSceneFlow)
+        public override void run(QuestNode currentQuestNode, QuestNodeChoice selectedChoice,
+            QuestSceneFlow questSceneFlow)
         {
             QuestPanelController questPanelController = questSceneFlow.questPanelController;
             AnimationPanelController animationPanelController = questSceneFlow.animationPanelController;
@@ -25,7 +25,9 @@ namespace DefaultNamespace.transitions
                  4. Изменить в ней id следующего на successId
                  5. Отобразить эту сцену
             */
-            animationPanelController.show("Images/Screamer", () =>
+            animationPanelController.show("Images/Screamer", 
+                audioScript => audioScript.playScreamSound(),
+                () =>
             {
                 QuestNode questNode = questPanelController.questNodesRepository.findById("3.0");
                 questNode.choices[0].nextId = "3.4";

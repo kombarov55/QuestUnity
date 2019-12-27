@@ -15,8 +15,10 @@ namespace DefaultNamespace.OnQuestNodeShow
             list.Add(new OpenDiaryNoteOnShow("3.3", "Древнее сокровище"));
             list.Add(new OpenDiaryNoteOnShow("4.2", "Проклятая башня"));
             list.Add(new OpenDiaryNoteOnShow("6.3.1", "Таинственная незнакомка"));
-            list.Add(new OpenDiaryNoteOnShow("6.9.1", "Странный подарок"));
-            list.Add(new AddInventoryItemOnShow("6.9.1", "Шкатулка"));
+            list.Add(new CombinedOnQuestNodeShow("6.9.1",
+                new OpenDiaryNoteOnShow("6.9.1", "Странный подарок"),
+                new AddInventoryItemOnShow("6.9.1", "Шкатулка")
+            ));
         }
         
         public OnQuestNodeShow findOnQuestNodeShow(string questNodeId)

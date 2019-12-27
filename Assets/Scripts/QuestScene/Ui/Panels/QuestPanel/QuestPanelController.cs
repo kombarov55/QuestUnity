@@ -72,17 +72,15 @@ namespace DefaultNamespace
             _questPanelPresenter.setImg(imgPath);
             _questPanelPresenter.setTitle(title);
             _questPanelPresenter.setDescription(description);
-            List<string> choicesStr = new List<string>();
-            foreach (var choice in choices)
-            {
-                choicesStr.Add(choice.text);
-            }
-            _questPanelPresenter.setChoices(choicesStr);
+
+            var visibleChoices = findVisibleChoices(cachedUserData, choices);
+
+            _questPanelPresenter.setChoices(visibleChoices);
         }
 
-        public void handleTransition(int choiceNum)
+        public void handleTransition(QuestNodeChoice selectedChoice)
         {
-            transitionService.find(currentQuestNode.id, choiceNum).run(currentQuestNode, choiceNum, questSceneFlow);
+            transitionService.find(currentQuestNode.id, selectedChoice.text, selectedChoice.nextId).run(currentQuestNode, selectedChoice, questSceneFlow);
         }
 
         private QuestNode findCurrentQuestNode()
@@ -94,6 +92,23 @@ namespace DefaultNamespace
             }
 
             return questNodesRepository.findById(currentQuestNodeId);
+        }
+
+        private List<QuestNodeChoice> findVisibleChoices(CachedUserData cachedUserData, List<QuestNodeChoice> choices)
+        {
+            var visibleChoices = new List<QuestNodeChoice>();
+            
+            foreach (var choice in choices)
+            {
+                var isChoiceVisible = !cachedUserData.hiddenQuestNodes.Contains(choice.nextId);
+
+                if (isChoiceVisible)
+                {
+                    visibleChoices.Add(choice);
+                }
+            }
+
+            return visibleChoices;
         }
     }
 }

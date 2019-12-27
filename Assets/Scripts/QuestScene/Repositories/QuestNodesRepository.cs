@@ -73,7 +73,7 @@ namespace QuestScene.Repositories
                         choice.text = XmlHelper.getValue(choiceXmlNode, "Text");
                         choice.nextId = XmlHelper.getValue(choiceXmlNode, "NextId");
                     }
-                    catch (Exception e)
+                    catch (Exception)
                     {
                         Debug.Log("ошибка в вызове XmlHelper.GetValue у nodeId=" + node.id);
                     }

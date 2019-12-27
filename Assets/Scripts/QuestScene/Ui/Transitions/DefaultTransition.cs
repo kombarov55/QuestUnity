@@ -4,14 +4,14 @@ namespace DefaultNamespace.transitions
 {
     public class DefaultTransition : Transition
     {
-        public DefaultTransition() : base("", -1)
+        public DefaultTransition() : base("", "", "")
         { }
 
-        public override void run(QuestNode currentQuestNode, int clickedChoiceNum, QuestSceneFlow questSceneFlow)
+        public override void run(QuestNode currentQuestNode, QuestNodeChoice selectedChoice, QuestSceneFlow questSceneFlow)
         {
             QuestPanelController questPanelController = questSceneFlow.questPanelController;
 
-            string nextId = currentQuestNode.choices[clickedChoiceNum].nextId;
+            string nextId = selectedChoice.nextId;
             questPanelController.displayQuestNode(nextId);
         }
     }

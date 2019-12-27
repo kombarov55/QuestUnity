@@ -7,14 +7,15 @@ namespace DefaultNamespace.transitions
     {
         private string itemName;
         private string nextNodeId;
-        
-        public AddInventoryItemTransition(string questNodeId, int choiceNum, string itemName, string nextNodeId) : base(questNodeId, choiceNum)
+
+        public AddInventoryItemTransition(string questNodeId, string choiceText, string choiceNextId, string itemName, string nextNodeId) : base(questNodeId, choiceText, choiceNextId)
         {
             this.itemName = itemName;
             this.nextNodeId = nextNodeId;
         }
 
-        public override void run(QuestNode currentQuestNode, int clickedChoiceNum, QuestSceneFlow questSceneFlow)
+        public override void run(QuestNode currentQuestNode, QuestNodeChoice selectedChoice,
+            QuestSceneFlow questSceneFlow)
         {
             // добавить в инвентарь предмет. Перейти на сл. сцену
             questSceneFlow.mainPanelController.addInventoryItem(itemName);

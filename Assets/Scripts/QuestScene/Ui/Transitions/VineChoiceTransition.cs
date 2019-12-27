@@ -7,13 +7,14 @@ namespace DefaultNamespace.transitions
     public class VineChoiceTransition : Transition
     {
         private string successId;
-        
-        public VineChoiceTransition(string questNodeId, int choiceNum, string successId) : base(questNodeId, choiceNum)
+
+        public VineChoiceTransition(string questNodeId, string choiceText, string choiceNextId, string successId) : base(questNodeId, choiceText, choiceNextId)
         {
             this.successId = successId;
         }
 
-        public override void run(QuestNode currentQuestNode, int clickedChoiceNum, QuestSceneFlow questSceneFlow)
+        public override void run(QuestNode currentQuestNode, QuestNodeChoice selectedChoice,
+            QuestSceneFlow questSceneFlow)
         {
             MainPanelController mainPanelController = questSceneFlow.mainPanelController;
             QuestPanelController questPanelController = questSceneFlow.questPanelController;
@@ -32,7 +33,9 @@ namespace DefaultNamespace.transitions
                  5. Отобразить эту сцену
                  
                  */
-                animationPanelController.show("Images/RedEyes", () =>
+                animationPanelController.show("Images/RedEyes",
+                    audioScript => audioScript.playScreamSound(),
+                    () =>
                 {
                     mainPanelController.decrementCoinCount();
                     QuestNode questNode = questPanelController.questNodesRepository.findById("3.0");

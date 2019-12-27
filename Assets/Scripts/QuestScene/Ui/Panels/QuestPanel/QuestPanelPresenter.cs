@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using DefaultNamespace.model;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,7 +8,7 @@ namespace DefaultNamespace
 {
     public class QuestPanelPresenter : MonoBehaviour
     {
-        private Action<int> choiceHandler;
+        private Action<QuestNodeChoice> choiceHandler;
 
         public Text title;
         public Image img;
@@ -43,13 +44,13 @@ namespace DefaultNamespace
             description.text = str;
         }
 
-        public void setChoices(List<string> choices)
+        public void setChoices(List<QuestNodeChoice> choices)
         {
             clearChoices();
             instantiateChoiceButtons(choices);
         }
 
-        public void setChoiceHandler(Action<int> choiceHandler)
+        public void setChoiceHandler(Action<QuestNodeChoice> choiceHandler)
         {
             this.choiceHandler = choiceHandler;
         }
@@ -70,16 +71,16 @@ namespace DefaultNamespace
             buttons.Clear();
         }
 
-        private void instantiateChoiceButtons(List<string> choices)
+        private void instantiateChoiceButtons(List<QuestNodeChoice> choices)
         {
             for (var i = 0; i < choices.Count; i++)
             {
-                string choiceText = choices[i];
+                var choice = choices[i];
                 var gameObject = Instantiate(buttonPrefab, buttonsPanel.transform);
-                gameObject.GetComponent<Button>().gameObject.GetComponentInChildren<Text>().text = choiceText;
+                gameObject.GetComponent<Button>().gameObject.GetComponentInChildren<Text>().text = choice.text;
                 gameObject.AddComponent<OnClickComponent>().audioScript = audioScript;
-                var valueToInvoke = i;
-                gameObject.GetComponent<OnClickComponent>().action = () => choiceHandler.Invoke(valueToInvoke);
+                var choiceToInvoke = choice;
+                gameObject.GetComponent<OnClickComponent>().action = () => choiceHandler.Invoke(choiceToInvoke);
 
                 buttons.Add(gameObject);
             }    
