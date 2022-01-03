@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Xml;
 using DefaultNamespace.model;
 using UnityEngine;
-using UnityEngine.Experimental.PlayerLoop;
 
 namespace DefaultNamespace.JournalPanel
 {

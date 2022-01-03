@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace DefaultNamespace.MainPanel
@@ -9,6 +10,7 @@ namespace DefaultNamespace.MainPanel
         public Text statusLineText;
         public Button journalButton;
         public Button inventoryButton;
+        public Button backButton;
         
         public void setCoinCountText(int count)
         {
@@ -34,6 +36,6 @@ namespace DefaultNamespace.MainPanel
         public void setInventoryButtonText(string text)
         {
             inventoryButton.GetComponentInChildren<Text>().text = text;
-        }
+        } 
     }
 }

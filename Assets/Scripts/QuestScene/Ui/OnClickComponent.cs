@@ -13,9 +13,14 @@ namespace DefaultNamespace
         {
             if (audioScript != null)
             {
-                audioScript.playButtonClickSound();
+                audioScript.PlayButtonClickSound();
             }
 
+            InvokeOnClick();
+        }
+
+        protected void InvokeOnClick()
+        {
             action.Invoke();
         }
     }

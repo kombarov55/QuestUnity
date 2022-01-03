@@ -76,7 +76,7 @@ namespace DefaultNamespace.Panels.InventoryPanel
 
         public void playOnClickSound()
         {
-            audioScript.playButtonClickSound();
+            audioScript.PlayButtonClickSound();
         }
 
     }

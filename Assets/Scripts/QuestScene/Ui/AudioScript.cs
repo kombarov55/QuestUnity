@@ -13,7 +13,7 @@ public class AudioScript : MonoBehaviour
         
     }
 
-    public void playButtonClickSound()
+    public void PlayButtonClickSound()
     {
         audioSource.clip = buttonClickAudioClip;
         audioSource.Play();

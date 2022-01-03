@@ -46,7 +46,7 @@ namespace DefaultNamespace.JournalPanel
 
         public void playOnClickSound()
         {
-            audioScript.playButtonClickSound();
+            audioScript.PlayButtonClickSound();
         }
 
         public void onBackClicked()

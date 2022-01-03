@@ -7,6 +7,7 @@ using DefaultNamespace.OnQuestNodeShow;
 using DefaultNamespace.Panels.InventoryPanel;
 using QuestScene.Repositories;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 /**
@@ -148,6 +149,11 @@ namespace DefaultNamespace
         public void hideInventoryPanel()
         {
             inventoryPanel.SetActive(false);
+        }
+
+        public void back()
+        {
+            SceneManager.LoadScene("Scenes/MainMenu");
         }
 
     }

@@ -57,7 +57,7 @@ namespace DefaultNamespace
 
         public void playClickingSound()
         { 
-            audioScript.playButtonClickSound();
+            audioScript.PlayButtonClickSound();
         }
 
         private void clearChoices()

@@ -34,7 +34,7 @@ namespace DefaultNamespace.JournalItemPanel
 
         public void playOnButtonClickSound()
         {
-            audioScript.playButtonClickSound();
+            audioScript.PlayButtonClickSound();
         }
     }
 }
