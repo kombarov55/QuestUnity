@@ -14,8 +14,18 @@ namespace Other.MatchThreeGame.Assets.Scripts
         private void Start()
         {
             _toastBehaviour = toastComponent.GetComponent<ToastBehaviour>();
+            
+            ShowGoal();
+        }
 
-            StartCoroutine(_toastBehaviour.ShowWithFlyAway("Наберите " + Constants.GoalScore + " очков!", 2));
+        public void ShowGoal()
+        {
+            StartCoroutine(_toastBehaviour.ShowWithFlyAway("Наберите " + Constants.GoalScore + " очков!", 2));            
+        }
+
+        public void EndGame()
+        {
+            _toastBehaviour.ShowUntilClicked("Победа!", "Нажмите на экран для выхода", () => OnBackClicked());
         }
 
         public void OnBackClicked()
