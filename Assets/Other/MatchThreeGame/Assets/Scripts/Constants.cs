@@ -17,7 +17,8 @@
         public static readonly int Match3Score = 60;
         public static readonly int SubsequentMatchScore = 1000;
         
-        public static readonly int GoalScore = 10000;
+        public static readonly int GoalScore = 1;
+        public static readonly int TurnsCount = 30;
     }
 
    

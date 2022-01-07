@@ -1,7 +1,7 @@
 ﻿using DefaultNamespace;
 using DefaultNamespace.model;
 using DefaultNamespace.transitions;
-using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace QuestScene.Ui.Transitions
 {
@@ -13,8 +13,10 @@ namespace QuestScene.Ui.Transitions
 
         public override void run(QuestNode currentQuestNode, QuestNodeChoice selectedChoice, QuestSceneFlow questSceneFlow)
         {
-            Debug.Log("ПРИВЕТ!");
-            questSceneFlow.questPanelController.displayQuestNode("6.3");
+            questSceneFlow.cachedUserData.CurrentSceneId = "6.3.1";
+            CrossSceneStorage.BackSceneName = "Scenes/QuestScene";
+
+            SceneManager.LoadScene("Other/MatchThreeGame/Assets/Scenes/mainGame");
         }
     }
 }

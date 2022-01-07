@@ -278,6 +278,10 @@ public class ShapesManager : MonoBehaviour
 
             shapes.UndoSwap();
         }
+        else
+        {
+            _stateManager.TurnMade();
+        }
 
         //if more than 3 matches and no Bonus is contained in the line, we will award a new Bonus
         bool addBonus = totalMatches.Count() >= Constants.MinimumMatchesForBonus &&
@@ -437,6 +441,7 @@ public class ShapesManager : MonoBehaviour
     {
         _stateManager = GameObject.Find("State").GetComponent<StateManager>();
         _stateManager.SetScore(0);
+        _stateManager.SetTurnsLeft(Constants.TurnsCount);
     }
 
     private void IncreaseScore(int amount)

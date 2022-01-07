@@ -26,7 +26,7 @@ namespace Other.MatchThreeGame.Assets.Scripts
 
         public void EndGame()
         {
-            _toastBehaviour.ShowUntilClicked("Победа!", "Нажмите на экран для выхода", () => OnBackClicked());
+            StartCoroutine(_toastBehaviour.ShowWithFlyAway("Победа!", "", 2, () => OnBackClicked()));
         }
 
         public void OnBackClicked()

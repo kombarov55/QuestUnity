@@ -35,7 +35,7 @@ namespace DefaultNamespace
                 transitions.Add(new PortraitTransition("3.3", "Осмотреться", "?", "3.3"));
                 transitions.Add(new PortraitTransition("3.4", "Осмотреться", "?", "3.4"));
                 
-                transitions.Add(new ThreeInARowTransition("6.1", "Помочь девушке", "6.3"));
+                transitions.Add(new ThreeInARowTransition("6.3", "Продолжить", "6.3.1"));
 
                 transitions.Add(new AddInventoryItemTransition("3.5", "Надо проверить эту башню", "3.6", "Карта и ключ", "3.6"));
             }
