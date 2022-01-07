@@ -31,6 +31,7 @@ namespace DefaultNamespace
         public TransitionService transitionService;
         public OnQuestNodeShowService onQuestNodeShowService;
         public AudioScript audioScript;
+        public BackgroundMusicBehaviour backgroundMusicBehaviour;
         public JournalItemsService journalItemsService;
 
         public QuestPanelController questPanelController;
@@ -61,6 +62,7 @@ namespace DefaultNamespace
         {
             mainPanel = rootPanel.transform.Find("MainPanel").gameObject;
             audioScript = audioGameObject.GetComponent<AudioScript>();
+            backgroundMusicBehaviour = GameObject.Find("BackgroundMusic").GetComponent<BackgroundMusicBehaviour>();
 
             questPanel = Instantiate(questPanelPrefab, mainPanel.transform);
             questPanel.SetActive(false);
@@ -143,7 +145,7 @@ namespace DefaultNamespace
         {
             inventoryPanel.SetActive(true);
             mainPanelController.dropUnseenInventoryItemsCount();
-            InventoryPanelController.show(InventoryItemsRepository.findOpened(cachedUserData.addedInventoryItems));
+            InventoryPanelController.show(InventoryItemsRepository.findOpened(cachedUserData.AddedInventoryItems));
         }
 
         public void hideInventoryPanel()

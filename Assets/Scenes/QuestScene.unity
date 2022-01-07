@@ -295,6 +295,7 @@ GameObject:
   m_Component:
   - component: {fileID: 486296883}
   - component: {fileID: 486296882}
+  - component: {fileID: 486296884}
   m_Layer: 0
   m_Name: BackgroundMusic
   m_TagString: Untagged
@@ -314,7 +315,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: a9269ec13fffdcf458016f7df2827ca2, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.159
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -412,6 +413,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &486296884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 486296881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45756789de7a469ca1ef7fb25170b3f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 486296882}
 --- !u!1 &606190998
 GameObject:
   m_ObjectHideFlags: 0
@@ -443,7 +457,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonClickAudioClip: {fileID: 8300000, guid: 644ba49d814fd3c4bbba438c763d0ec3, type: 3}
-  screamAudioClip: {fileID: 8300000, guid: a0b73ec912d26d526a89ca86e7e2a87a, type: 3}
+  screamAudioClip: {fileID: 8300000, guid: ff09f2f85bddedb4e850090cb38179e8, type: 3}
   audioSource: {fileID: 606191000}
 --- !u!82 &606191000
 AudioSource:
@@ -4984,6 +4998,7 @@ MonoBehaviour:
   transitionService: {fileID: 1335600910}
   onQuestNodeShowService: {fileID: 0}
   audioScript: {fileID: 0}
+  backgroundMusicBehaviour: {fileID: 0}
   journalItemsService: {fileID: 0}
   questPanelController: {fileID: 0}
   journalPanelController: {fileID: 0}

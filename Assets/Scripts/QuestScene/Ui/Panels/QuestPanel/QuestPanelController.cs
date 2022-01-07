@@ -31,6 +31,8 @@ namespace DefaultNamespace
             this.onQuestNodeShowService = onQuestNodeShowService;
             this.questSceneFlow = questSceneFlow;
 
+            cachedUserData.Load();
+
             _questPanelPresenter.init(audioScript, background);
             
             _questPanelPresenter.setChoiceHandler(choiceNum => handleTransition(choiceNum));
@@ -57,6 +59,7 @@ namespace DefaultNamespace
         {
             QuestNode questNode = questNodesRepository.findById(id);
             displayQuestNode(questNode);
+            cachedUserData.CurrentSceneId = id;
         }
         
         public void displayQuestNode(QuestNode questNode)
@@ -64,7 +67,7 @@ namespace DefaultNamespace
             displayQuestNode(questNode.imgPath, questNode.title, questNode.description, questNode.choices);
             onQuestNodeShowService.findOnQuestNodeShow(questNode.id).run(questSceneFlow);
             currentQuestNode = questNode;
-            cachedUserData.currentSceneId = currentQuestNode.id;
+            cachedUserData.CurrentSceneId = currentQuestNode.id;
         }
 
         private void displayQuestNode(string imgPath, string title, string description, List<QuestNodeChoice> choices)
@@ -85,7 +88,7 @@ namespace DefaultNamespace
 
         private QuestNode findCurrentQuestNode()
         {
-            string currentQuestNodeId = cachedUserData.currentSceneId;
+            string currentQuestNodeId = cachedUserData.CurrentSceneId;
             if (currentQuestNodeId == null || currentQuestNodeId == "")
             {
                 currentQuestNodeId = QuestSceneConstants.FIRST_NODE_ID;
@@ -100,7 +103,7 @@ namespace DefaultNamespace
             
             foreach (var choice in choices)
             {
-                var isChoiceVisible = !cachedUserData.hiddenQuestNodes.Contains(choice.nextId);
+                var isChoiceVisible = !cachedUserData.HiddenQuestNodes.Contains(choice.nextId);
 
                 if (isChoiceVisible)
                 {

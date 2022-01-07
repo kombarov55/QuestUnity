@@ -24,7 +24,7 @@ namespace DefaultNamespace
         {
             List<JournalItem> result = new List<JournalItem>();
             
-            foreach (string id in cachedUserData.openedJournalItems)
+            foreach (string id in cachedUserData.OpenedJournalItems)
             {
                 result.Add(journalItemRepository.findById(id));
             }
@@ -36,13 +36,13 @@ namespace DefaultNamespace
         {
             if (!isJournalItemOpened(id))
             {
-                cachedUserData.openedJournalItems.Add(id);
+                cachedUserData.OpenedJournalItems.Add(id);
             }
         }
 
         public bool isJournalItemOpened(string id)
         {
-            foreach (var itemId in cachedUserData.openedJournalItems)
+            foreach (var itemId in cachedUserData.OpenedJournalItems)
             {
                 if (itemId == id)
                 {

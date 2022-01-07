@@ -17,15 +17,15 @@ namespace DefaultNamespace.MainPanel
             this.cachedUserData = cachedUserData;
             this.journalItemsService = journalItemsService;
             mainPanelPresenter = GetComponent<MainPanelPresenter>();
-            mainPanelPresenter.setCoinCountText(cachedUserData.coinCount);
+            mainPanelPresenter.setCoinCountText(cachedUserData.CoinCount);
         }
 
         public void decrementCoinCount()
         {
-            if (cachedUserData.coinCount >= 1)
+            if (cachedUserData.CoinCount >= 1)
             {
-                cachedUserData.coinCount = cachedUserData.coinCount - 1;
-                mainPanelPresenter.setCoinCountText(cachedUserData.coinCount);
+                cachedUserData.CoinCount = cachedUserData.CoinCount - 1;
+                mainPanelPresenter.setCoinCountText(cachedUserData.CoinCount);
             }
         }
 
@@ -41,9 +41,9 @@ namespace DefaultNamespace.MainPanel
 
         public void addInventoryItem(string id)
         {
-            if (!cachedUserData.addedInventoryItems.Contains(id))
+            if (!cachedUserData.AddedInventoryItems.Contains(id))
             {
-                cachedUserData.addedInventoryItems.Add(id);
+                cachedUserData.AddedInventoryItems.Add(id);
                 setStatusLineText("\"" + id + "\" добавлен в инвентарь.");
                 incUnseenInventoryItemsCount();
             }
@@ -51,25 +51,25 @@ namespace DefaultNamespace.MainPanel
 
         public void incUnreadJournalItemsCounter()
         {
-            cachedUserData.unreadJournalItemsCount += 1;
-            mainPanelPresenter.setJournalButtonText("Журнал (" + cachedUserData.unreadJournalItemsCount + ")");
+            cachedUserData.UnreadJournalItemsCount += 1;
+            mainPanelPresenter.setJournalButtonText("Журнал (" + cachedUserData.UnreadJournalItemsCount + ")");
         }
 
         public void incUnseenInventoryItemsCount()
         {
-            cachedUserData.unseenInventoryItemsCount += 1;
-            mainPanelPresenter.setInventoryButtonText("Инвентарь (" + cachedUserData.unseenInventoryItemsCount + ")");
+            cachedUserData.UnseenInventoryItemsCount += 1;
+            mainPanelPresenter.setInventoryButtonText("Инвентарь (" + cachedUserData.UnseenInventoryItemsCount + ")");
         }
 
         public void dropUnreadJournalItemsCounter()
         {
-            cachedUserData.unreadJournalItemsCount = 0;
+            cachedUserData.UnreadJournalItemsCount = 0;
             mainPanelPresenter.setJournalButtonText("Журнал");
         }
         
         public void dropUnseenInventoryItemsCount()
         {
-            cachedUserData.unseenInventoryItemsCount = 0;
+            cachedUserData.UnseenInventoryItemsCount = 0;
             mainPanelPresenter.setInventoryButtonText("Инвентарь");
         }
 

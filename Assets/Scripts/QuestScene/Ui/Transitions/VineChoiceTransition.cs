@@ -20,8 +20,9 @@ namespace DefaultNamespace.transitions
             QuestPanelController questPanelController = questSceneFlow.questPanelController;
             CachedUserData cachedUserData = questSceneFlow.cachedUserData;
             AnimationPanelController animationPanelController = questSceneFlow.animationPanelController;
-
-            int coinCount = cachedUserData.coinCount;
+            BackgroundMusicBehaviour backgroundMusicBehaviour = questSceneFlow.backgroundMusicBehaviour;
+            
+            int coinCount = cachedUserData.CoinCount;
             
             if (coinCount >= 1)
             {
@@ -33,10 +34,13 @@ namespace DefaultNamespace.transitions
                  5. Отобразить эту сцену
                  
                  */
+                    
+                backgroundMusicBehaviour.Pause();
                 animationPanelController.show("Images/RedEyes",
                     audioScript => audioScript.playScreamSound(),
                     () =>
                 {
+                    backgroundMusicBehaviour.Continue();
                     mainPanelController.decrementCoinCount();
                     QuestNode questNode = questPanelController.questNodesRepository.findById("3.0");
                     questNode.choices[0].nextId = successId;
