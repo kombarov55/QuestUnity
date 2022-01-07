@@ -28,6 +28,7 @@ namespace DefaultNamespace
         public void ToThreeInARow()
         {
             SceneManager.LoadScene("Other/MatchThreeGame/Assets/Scenes/mainGame");
+            CrossSceneStorage.BackSceneName = "Scenes/MainMenu";
         }
     }
 }

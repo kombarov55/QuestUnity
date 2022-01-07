@@ -1,4 +1,5 @@
-﻿using Other.MatchThreeGame.Assets.Scripts.UI;
+﻿using DefaultNamespace;
+using Other.MatchThreeGame.Assets.Scripts.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -30,7 +31,7 @@ namespace Other.MatchThreeGame.Assets.Scripts
 
         public void OnBackClicked()
         {
-            SceneManager.LoadScene("Scenes/MainMenu");
+            SceneManager.LoadScene(CrossSceneStorage.BackSceneName);
         }
     }
 }
