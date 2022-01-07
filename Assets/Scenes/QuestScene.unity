@@ -4201,8 +4201,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 606190999}
     - target: {fileID: 8167234961398351505, guid: 0cbcf683b17bb1108ac568530e4a9be8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1335600908}
+    - target: {fileID: 8167234961398351505, guid: 0cbcf683b17bb1108ac568530e4a9be8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: playButtonClickSound
+      objectReference: {fileID: 0}
+    - target: {fileID: 8167234961398351505, guid: 0cbcf683b17bb1108ac568530e4a9be8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: back
+      objectReference: {fileID: 0}
+    - target: {fileID: 8167234961398351505, guid: 0cbcf683b17bb1108ac568530e4a9be8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: DefaultNamespace.QuestSceneFlow, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8167234961398351517, guid: 0cbcf683b17bb1108ac568530e4a9be8, type: 3}
       propertyPath: m_Name

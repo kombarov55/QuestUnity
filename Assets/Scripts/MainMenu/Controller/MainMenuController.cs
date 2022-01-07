@@ -16,8 +16,8 @@ namespace DefaultNamespace.Controller
             _audioButton = GameObject.Find("StartGameButton").GetComponent<AudioButton>();
             _audioButton.OnClick = () => _sceneController.ToQuest();
 
-                _audioButton = GameObject.Find("ToMinigamesButton").GetComponent<AudioButton>();
-            _audioButton.OnClick = () => _sceneController.ShowMinigames();
+            _minigamesButton = GameObject.Find("ToMinigamesButton").GetComponent<AudioButton>();
+            _minigamesButton.OnClick = () => _sceneController.ShowMinigames();
         }
     }
 }

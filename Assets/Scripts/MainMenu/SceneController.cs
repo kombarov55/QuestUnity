@@ -27,7 +27,7 @@ namespace DefaultNamespace
         
         public void ToThreeInARow()
         {
-            SceneManager.LoadScene("Scenes/ThreeInARow");
+            SceneManager.LoadScene("Other/MatchThreeGame/Assets/Scenes/mainGame");
         }
     }
 }
