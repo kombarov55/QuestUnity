@@ -2,19 +2,20 @@
 using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
+using Other.MatchThreeGame.Assets.Scripts;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
 public class ShapesManager : MonoBehaviour
 {
-    public Text DebugText, ScoreText;
+    public Text DebugText;
     public bool ShowDebugInfo = false;
     //candy graphics taken from http://opengameart.org/content/candy-pack-1
 
     public ShapesArray shapes;
-
-    private int score;
+    
+    private StateManager _stateManager;
 
     public readonly Vector2 BottomRight = new Vector2(-1.67f, -4.27f);
     public readonly Vector2 CandySize = new Vector2(0.7f, 0.7f);
@@ -434,19 +435,13 @@ public class ShapesManager : MonoBehaviour
 
     private void InitializeVariables()
     {
-        score = 0;
-        ShowScore();
+        _stateManager = GameObject.Find("State").GetComponent<StateManager>();
+        _stateManager.SetScore(0);
     }
 
     private void IncreaseScore(int amount)
     {
-        score += amount;
-        ShowScore();
-    }
-
-    private void ShowScore()
-    {
-        ScoreText.text = "Score: " + score.ToString();
+        _stateManager.IncreaseScore(amount);
     }
 
     /// <summary>
@@ -562,10 +557,4 @@ public class ShapesManager : MonoBehaviour
 
         throw new System.Exception("Wrong type, check your premade level");
     }
-
-    public void Back()
-    {
-        SceneManager.LoadScene("Scenes/MainMenu");
-    }
-
 }
