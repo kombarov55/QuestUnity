@@ -12,7 +12,7 @@ namespace Other.MatchThreeGame.Assets.Scripts
         private List<Action<float>> OnScoreChangedSubscribers = new List<Action<float>>();
         
         
-        public void SubscribeOnValueChanged(Action<float> onScoreChanged)
+        public void SubscribeOnScoreChanged(Action<float> onScoreChanged)
         {
             OnScoreChangedSubscribers.Add(onScoreChanged);
         }
