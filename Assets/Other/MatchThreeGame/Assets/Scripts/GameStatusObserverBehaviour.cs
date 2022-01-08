@@ -1,4 +1,5 @@
-﻿using Other.MatchThreeGame.Assets.Scripts.Model;
+﻿using DefaultNamespace;
+using Other.MatchThreeGame.Assets.Scripts.Model;
 using Other.MatchThreeGame.Assets.Scripts.Service;
 using UnityEngine;
 
@@ -27,6 +28,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
                 } else if (currentGameStatus == GameStatus.FAILURE)
                 {
                     sceneController.ShowFailure();
+                    CachedUserData.Get().ThreeInARowLifes -= 1;
                 }
             });
         }
