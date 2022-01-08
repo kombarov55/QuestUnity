@@ -22,9 +22,9 @@ namespace DefaultNamespace
         {
             CurrentSceneId = PlayerPrefs.GetString("CurrentSceneId");
             _coinCount = PlayerPrefs.GetInt("CoinCount");
-            _openedJournalItems = PlayerPrefs.GetString("OpenedJournalItems").Split(',').ToList();
-            _addedInventoryItems = PlayerPrefs.GetString("AddedInventoryItems").Split(',').ToList();
-            _hiddenQuestNodes = PlayerPrefs.GetString("HiddenQuestNodes").Split(',').ToList();
+            _openedJournalItems = ReadList("OpenedJournalItems");
+            _addedInventoryItems = ReadList("AddedInventoryItems");
+            _hiddenQuestNodes = ReadList("HiddenQuestNodes");
             _unreadJournalItemsCount = PlayerPrefs.GetInt("UnreadJournalItemsCount");
             _unseenInventoryItemsCount = PlayerPrefs.GetInt("UnseenInventoryItemsCount");
             _threeInARowLifes = PlayerPrefs.GetInt("ThreeInARowLifes");
@@ -47,7 +47,7 @@ namespace DefaultNamespace
             SaveList("HiddenQuestNodes", new List<string>());
             PlayerPrefs.SetInt("UnreadJournalItemsCount", 0);
             PlayerPrefs.SetInt("UnseenInventoryItemsCount", 0);
-            PlayerPrefs.SetInt("ThreeInARowLifes", 6);
+            PlayerPrefs.SetInt("ThreeInARowLifes", 5);
         }
 
         public static bool IsGameStarted()
@@ -157,6 +157,17 @@ namespace DefaultNamespace
         private static void SaveList(string key, List<string> value)
         {
             PlayerPrefs.SetString(key, String.Join(",", value));            
+        }
+
+        private static List<string> ReadList(String key)
+        {
+            string value = PlayerPrefs.GetString("OpenedJournalItems");
+            if (value == "")
+            {
+                return new List<string>();
+            }
+
+            return value.Split(',').ToList();
         }
     }
 }

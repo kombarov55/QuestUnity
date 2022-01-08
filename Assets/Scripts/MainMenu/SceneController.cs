@@ -7,6 +7,7 @@ namespace DefaultNamespace
     {
         public GameObject mainMenuComponentPrefab;
         public GameObject miniGamesComponentPrefab;
+        public GameObject dialogComponentPrefab;
         
         public void ShowMinigames()
         {
@@ -29,6 +30,11 @@ namespace DefaultNamespace
         {
             SceneManager.LoadScene("Other/MatchThreeGame/Assets/Scenes/mainGame");
             CrossSceneStorage.BackSceneName = "Scenes/MainMenu";
+        }
+
+        public void ShowDialog()
+        {
+            dialogComponentPrefab.SetActive(true);
         }
     }
 }
