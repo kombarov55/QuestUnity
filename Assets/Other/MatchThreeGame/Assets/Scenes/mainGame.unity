@@ -326,7 +326,7 @@ GameObject:
   - component: {fileID: 431203986}
   - component: {fileID: 431203988}
   m_Layer: 5
-  m_Name: ToastOnClickArea
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -346,10 +346,10 @@ RectTransform:
   m_Father: {fileID: 362357809}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 646.53, y: 851.3}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &431203986
 MonoBehaviour:
@@ -964,8 +964,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -44.78}
-  m_SizeDelta: {x: -122, y: 15}
+  m_AnchoredPosition: {x: -1.4086914, y: -44.78003}
+  m_SizeDelta: {x: -216.8565, y: 15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1343605691
 MonoBehaviour:
@@ -1128,8 +1128,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -86.5, y: -43.9}
-  m_SizeDelta: {x: -155.3663, y: 22.640015}
+  m_AnchoredPosition: {x: -216.59624, y: -44.700012}
+  m_SizeDelta: {x: -484.9518, y: 22.64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1400776157
 MonoBehaviour:
@@ -1170,7 +1170,7 @@ MonoBehaviour:
     m_BestFit: 1
     m_MinSize: 15
     m_MaxSize: 108
-    m_Alignment: 4
+    m_Alignment: 5
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -1812,8 +1812,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 93.7, y: -43.5}
-  m_SizeDelta: {x: -120.55, y: 22.640015}
+  m_AnchoredPosition: {x: 213.55833, y: -45.400024}
+  m_SizeDelta: {x: -481.5156, y: 22.64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1873970435
 MonoBehaviour:
@@ -1842,7 +1842,7 @@ MonoBehaviour:
     m_BestFit: 1
     m_MinSize: 15
     m_MaxSize: 108
-    m_Alignment: 4
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
