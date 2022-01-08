@@ -7,11 +7,19 @@ namespace MainMenu.Controller
 {
     public class HeartCounterBehaviour : MonoBehaviour
     {
+
+        private string _subscriptionId;
+        
         private void Start()
         {
-            CachedUserData cachedUserData = CachedUserData.Get();
             Text text = GetComponent<Text>();
-            text.text = "x " + cachedUserData.ThreeInARowLifes;
+            text.text = "x " + Prefs.GetLifes();
+            _subscriptionId = Prefs.SubscribeOnLifesChange(amount => text.text = "x " + amount);
+        }
+
+        private void OnDestroy()
+        {
+            Prefs.UnsubscribeOnLifesChange(_subscriptionId);
         }
     }
 }

@@ -8,44 +8,75 @@ namespace MainMenu.Controller
 {
     public class HeartCountdownBehaviour : MonoBehaviour
     {
-        private readonly int _timeForNewLife = 30 * 60 * 1000;
-        private int _currentTime = 30 * 60 * 1000;
-
+    
         private Text _text;
-        private CachedUserData _cachedUserData;
-        
+
         private void Start()
         {
             _text = GetComponent<Text>();
-            _cachedUserData = CachedUserData.Get();
+            Prefs.SetLifes(0);
 
-            DisplayTime();
-            StartCoroutine(StartCountdown());
-        }
+            /*
+             * - Отсчитать сколько сердечек восстановилось за время
+             * - они восстанавливаются?
+             *   - начать отсчёт
+             *   - Поставить время на 30:00
+             */
 
-        public IEnumerator StartCountdown()
-        {
-            while (true)
+            RestoreLifes();
+            
+            if (Prefs.GetLifes() < GlobalConstants.MaxLifes)
             {
-                while (_currentTime > 0)
-                {
-                    yield return new WaitForSeconds(1);
-                    _currentTime -= 1000;
-                    DisplayTime();
-                }
-
-                _currentTime = _timeForNewLife;
-                _cachedUserData.ThreeInARowLifes += 1;
+                Prefs.SetLastLifeCountdownUpdate(DateTime.Now);
+                StartCoroutine(StartCountdown());
             }
         }
 
-        private void DisplayTime()
+        private void RestoreLifes()
         {
-            DateTime start = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-            DateTime date = start.AddMilliseconds(_currentTime).ToLocalTime();
-            string str = date.ToString("mm:ss");
+            var lifes = Prefs.GetLifes();
+            if (lifes == GlobalConstants.MaxLifes)
+            {
+                return;
+            }
+            
+            DateTime lastLifeCountdownUpdate = Prefs.GetLastLifeCountdownUpdate();
+            DateTime now = DateTime.Now;
 
-            _text.text = str;
+            var lifesRestored = now.Subtract(lastLifeCountdownUpdate).TotalMinutes / GlobalConstants.LifesCountdownInMinutes;
+
+            if (lifes + lifesRestored <= GlobalConstants.MaxLifes)
+            {
+                Prefs.SetLifes(lifes);
+            }
+            else
+            {
+                Prefs.SetLifes(GlobalConstants.MaxLifes);
+            }
+        }
+        
+        private IEnumerator StartCountdown()
+        {
+            while (Prefs.GetLifes() < GlobalConstants.MaxLifes)
+            {
+                DateTime now = DateTime.Now;
+                DateTime lastUpdate = Prefs.GetLastLifeCountdownUpdate();
+                TimeSpan diff = now.Subtract(lastUpdate);
+                TimeSpan cooldown = new TimeSpan(0, GlobalConstants.LifesCountdownInMinutes, 0);
+                TimeSpan timeLeft =  cooldown.Subtract(diff);
+
+                while (timeLeft.TotalSeconds > 0)
+                {
+                    _text.text = DateUtil.TimeSpanToString(timeLeft);
+                    
+                    yield return new WaitForSeconds(1);
+                    
+                    timeLeft = timeLeft.Subtract(TimeSpan.FromSeconds(1));
+                } 
+                
+                Prefs.SetLifes(Prefs.GetLifes() + 1);
+                Prefs.SetLastLifeCountdownUpdate(DateTime.Now);
+            } 
         }
     }
 }
