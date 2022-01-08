@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
+using Other.MatchThreeGame.Assets.Scripts.Model;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -21,6 +23,17 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
             return ShowWithFlyAway(text, "", delayInSeconds, () => { });
         }
         
+        public IEnumerator ShowWithFlyAway(string text, Action then)
+        {
+            return ShowWithFlyAway(text, "", 2, then); 
+        }
+
+        public IEnumerator ShowGoals(Goal goal)
+        {
+            string s = GoalToString(goal);
+            return ShowWithFlyAway(s, 2);
+        }
+        
         public IEnumerator ShowWithFlyAway(string text, string paragraph, int delayInSeconds, Action then)
         {
             gameObject.SetActive(true);
@@ -38,6 +51,11 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
             headerText.transform.position = _initialTextPosition;
             
             then.Invoke();
+        }
+
+        private string GoalToString(Goal goal)
+        {
+            return "Наберите " + goal.Amount + " очков!";
         }
     }
 }

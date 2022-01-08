@@ -1,63 +1,81 @@
 ﻿using System;
 using System.Collections.Generic;
+using Other.MatchThreeGame.Assets.Scripts.Model;
+using Other.MatchThreeGame.Assets.Scripts.Service;
 using UnityEngine;
 
 namespace Other.MatchThreeGame.Assets.Scripts
 {
     public class StateManager : MonoBehaviour
     {
-
-        private float score;
-        private int turnsLeft;
-        
-        private List<Action<float>> OnScoreChangedSubscribers = new List<Action<float>>();
-        private List<Action<int>> OnTurnSubscribers = new List<Action<int>>();
-        
-        
-        public void SubscribeOnScoreChanged(Action<float> onScoreChanged)
+        private Level _level;
+        public Level Level
         {
-            OnScoreChangedSubscribers.Add(onScoreChanged);
+            get => _level;
+            set
+            {
+                _level = value;
+                foreach (var subscriber in OnLevelInitializationSubscribers)
+                {
+                    subscriber.Invoke(value);
+                }
+            }
         }
 
-        public void SubscribeOnTurn(Action<int> action)
+        private List<Action<Level>> OnLevelInitializationSubscribers = new List<Action<Level>>();
+        private List<Action<Level>> OnScoreChangedSubscribers = new List<Action<Level>>();
+        private List<Action<Level>> OnTurnSubscribers = new List<Action<Level>>();
+
+        private void Start()
+        {
+            GoalService goalService = new GoalService();
+
+            Level = goalService.GetCurrentGoal();
+        }
+
+
+        public void SubscribeOnLevelInitialized(Action<Level> subscriber)
+        {
+            OnLevelInitializationSubscribers.Add(subscriber);
+            if (_level != null)
+            {
+                subscriber.Invoke(_level);
+            }
+        }
+        
+        public void SubscribeOnTurn(Action<Level> action)
         {
             OnTurnSubscribers.Add(action);
         }
 
-        public void SetScore(float newValue)
+        public void SubscribeOnScoreChanged(Action<Level> subscriber)
         {
-            score = newValue;
+            OnScoreChangedSubscribers.Add(subscriber);
+        }
+
+        public void SetScore(int newValue)
+        {
+            _level.Goals[0].CurrentAmount = newValue;
             
             foreach (var subscriber in OnScoreChangedSubscribers)
             {
-                subscriber.Invoke(newValue);
+                subscriber.Invoke(_level);
             }
         }
 
-        public void IncreaseScore(float newValue)
+        public void IncreaseScore(int newValue)
         {
-            SetScore(score + newValue);
+            SetScore(_level.Goals[0].CurrentAmount + newValue);
         }
 
         public void TurnMade()
         {
-            turnsLeft -= 1;
+            Level.TurnsLeft -= 1;
             
             foreach (var onTurnSubscriber in OnTurnSubscribers)
             {
-                onTurnSubscriber.Invoke(turnsLeft);
+                onTurnSubscriber.Invoke(Level);
             }
         }
-
-        public void SetTurnsLeft(int amount)
-        {
-            turnsLeft = amount;
-            
-            foreach (var onTurnSubscriber in OnTurnSubscribers)
-            {
-                onTurnSubscriber.Invoke(turnsLeft);
-            }            
-        }
-        
     }
 }

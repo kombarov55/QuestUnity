@@ -11,7 +11,8 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
             Text text = GetComponent<Text>();
             StateManager stateManager = GameObject.Find("State").GetComponent<StateManager>();
             
-            stateManager.SubscribeOnTurn(turnsLeft => text.text = turnsLeft.ToString());
+            stateManager.SubscribeOnLevelInitialized(level => text.text = level.TurnsLeft.ToString());
+            stateManager.SubscribeOnTurn(level => text.text = level.TurnsLeft.ToString());
         }
     }
 }

@@ -16,14 +16,14 @@ namespace QuestScene.Repositories
 
         public void Start()
         {
-            data = load();
+            data = Load();
         }
         
         public List<QuestNode> getAll()
         {
             if (data == null)
             {
-                data = load();
+                data = Load();
             }
             
             return data;
@@ -42,10 +42,10 @@ namespace QuestScene.Repositories
             return null;
         }
         
-        private List<QuestNode> load() 
+        private List<QuestNode> Load() 
         {
             TextAsset textAsset = (TextAsset) Resources.Load(pathToQuestNodes);  
-            XmlDocument xmldoc = new XmlDocument ();
+            XmlDocument xmldoc = new XmlDocument();
             xmldoc.LoadXml (textAsset.text);
             XmlNodeList questNodes = xmldoc.GetElementsByTagName("QuestNode");
 

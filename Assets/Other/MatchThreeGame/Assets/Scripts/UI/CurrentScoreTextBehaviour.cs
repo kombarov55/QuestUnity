@@ -11,9 +11,9 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
             Text text = gameObject.GetComponent<Text>();
             StateManager stateManager = GameObject.Find("State").GetComponent<StateManager>();
             
-            stateManager.SubscribeOnScoreChanged(newValue =>
+            stateManager.SubscribeOnScoreChanged(level =>
             {
-                text.text = newValue.ToString();
+                text.text = level.Goals[0].CurrentAmount.ToString();
             });
         }
     }

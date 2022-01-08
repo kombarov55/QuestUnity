@@ -440,8 +440,6 @@ public class ShapesManager : MonoBehaviour
     private void InitializeVariables()
     {
         _stateManager = GameObject.Find("State").GetComponent<StateManager>();
-        _stateManager.SetScore(0);
-        _stateManager.SetTurnsLeft(Constants.TurnsCount);
     }
 
     private void IncreaseScore(int amount)

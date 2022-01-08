@@ -1,4 +1,5 @@
 ﻿using DefaultNamespace;
+using Other.MatchThreeGame.Assets.Scripts.Model;
 using Other.MatchThreeGame.Assets.Scripts.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -15,18 +16,21 @@ namespace Other.MatchThreeGame.Assets.Scripts
         private void Start()
         {
             _toastBehaviour = toastComponent.GetComponent<ToastBehaviour>();
-            
-            ShowGoal();
         }
 
-        public void ShowGoal()
+        public void ShowGoals(Level level)
         {
-            StartCoroutine(_toastBehaviour.ShowWithFlyAway("Наберите " + Constants.GoalScore + " очков!", 2));            
+            StartCoroutine(_toastBehaviour.ShowGoals(level.Goals[0]));            
         }
 
-        public void EndGame()
+        public void ShowFailure()
         {
-            StartCoroutine(_toastBehaviour.ShowWithFlyAway("Победа!", "", 2, () => OnBackClicked()));
+            StartCoroutine(_toastBehaviour.ShowWithFlyAway("Поражение", OnBackClicked));
+        }
+
+        public void ShowVictory()
+        {
+            StartCoroutine(_toastBehaviour.ShowWithFlyAway("Победа", OnBackClicked));
         }
 
         public void OnBackClicked()

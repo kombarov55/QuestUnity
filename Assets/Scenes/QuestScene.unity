@@ -3225,6 +3225,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 5874828427084440459, guid: 0cbcf683b17bb1108ac568530e4a9be8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5874828427517565860, guid: 0cbcf683b17bb1108ac568530e4a9be8, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -5068,13 +5072,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b685f2918e7942afb311b72fd9a79cab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentSceneId: 
-  coinCount: 5
-  openedJournalItems: []
-  addedInventoryItems: []
-  hiddenQuestNodes: []
-  unreadJournalItemsCount: 0
-  unseenInventoryItemsCount: 0
 --- !u!1 &1560767874
 GameObject:
   m_ObjectHideFlags: 0
