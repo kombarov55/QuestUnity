@@ -23,6 +23,8 @@ namespace DefaultNamespace
             {
                 pair.Value.Invoke(amount);
             }
+            
+            SetLastLifeCountdownUpdate(DateTime.Now);
         }
 
         public static DateTime GetLastLifeCountdownUpdate()

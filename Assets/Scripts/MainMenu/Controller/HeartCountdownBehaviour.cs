@@ -14,7 +14,6 @@ namespace MainMenu.Controller
         private void Start()
         {
             _text = GetComponent<Text>();
-            Prefs.SetLifes(0);
 
             /*
              * - Отсчитать сколько сердечек восстановилось за время
@@ -27,8 +26,11 @@ namespace MainMenu.Controller
             
             if (Prefs.GetLifes() < GlobalConstants.MaxLifes)
             {
-                Prefs.SetLastLifeCountdownUpdate(DateTime.Now);
                 StartCoroutine(StartCountdown());
+            }
+            else
+            {
+                _text.text = "00:00";
             }
         }
 
@@ -42,12 +44,18 @@ namespace MainMenu.Controller
             
             DateTime lastLifeCountdownUpdate = Prefs.GetLastLifeCountdownUpdate();
             DateTime now = DateTime.Now;
+            TimeSpan diff = now.Subtract(lastLifeCountdownUpdate);
 
-            var lifesRestored = now.Subtract(lastLifeCountdownUpdate).TotalMinutes / GlobalConstants.LifesCountdownInMinutes;
+            var lifesRestored = (int) diff.TotalMinutes / GlobalConstants.LifesCountdownInMinutes;
 
             if (lifes + lifesRestored <= GlobalConstants.MaxLifes)
             {
-                Prefs.SetLifes(lifes);
+                Prefs.SetLifes(lifes + lifesRestored);
+
+                int minutesSpent = GlobalConstants.LifesCountdownInMinutes * lifesRestored;
+                DateTime dateTimeSinceLastHeartUpdate = lastLifeCountdownUpdate.AddMinutes(minutesSpent);
+
+                Prefs.SetLastLifeCountdownUpdate(dateTimeSinceLastHeartUpdate);
             }
             else
             {
@@ -75,7 +83,6 @@ namespace MainMenu.Controller
                 } 
                 
                 Prefs.SetLifes(Prefs.GetLifes() + 1);
-                Prefs.SetLastLifeCountdownUpdate(DateTime.Now);
             } 
         }
     }
