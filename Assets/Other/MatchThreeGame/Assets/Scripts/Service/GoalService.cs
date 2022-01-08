@@ -10,7 +10,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
             var goals = new List<Goal>();
             goals.Add(new Goal(GoalType.COLLECT_SCORE, 10000));
             
-            return new Level(goals, 1);
+            return new Level(goals, 10);
         }
     }
 }

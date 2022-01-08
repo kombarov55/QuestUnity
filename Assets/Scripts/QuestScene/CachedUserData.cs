@@ -7,7 +7,7 @@ namespace DefaultNamespace
 {
     public class CachedUserData : MonoBehaviour
     {
-
+        
         private string _currentSceneId;
         private int _coinCount;
         private List<string> _openedJournalItems;
@@ -16,33 +16,45 @@ namespace DefaultNamespace
         private int _unreadJournalItemsCount;
         private int _unseenInventoryItemsCount;
 
+        private int _threeInARowLifes;
+
         public void Load()
         {
             CurrentSceneId = PlayerPrefs.GetString("CurrentSceneId");
-            CoinCount = _currentSceneId == "" ? 5 : PlayerPrefs.GetInt("CoinCount");
-            OpenedJournalItems = _currentSceneId == ""
-                ? new List<string>()
-                : PlayerPrefs.GetString("OpenedJournalItems").Split(',').ToList();
-            AddedInventoryItems = _currentSceneId == ""
-                ? new List<string>()
-                : PlayerPrefs.GetString("AddedInventoryItems").Split(',').ToList();
-            HiddenQuestNodes = _currentSceneId == ""
-                ? new List<string>()
-                : PlayerPrefs.GetString("HiddenQuestNodes").Split(',').ToList();
-            UnreadJournalItemsCount = _currentSceneId == "" ? 0 : PlayerPrefs.GetInt("UnreadJournalItemsCount");
-            UnseenInventoryItemsCount = _currentSceneId == "" ? 0 : PlayerPrefs.GetInt("UnseenInventoryItemsCount");
+            _coinCount = PlayerPrefs.GetInt("CoinCount");
+            _openedJournalItems = PlayerPrefs.GetString("OpenedJournalItems").Split(',').ToList();
+            _addedInventoryItems = PlayerPrefs.GetString("AddedInventoryItems").Split(',').ToList();
+            _hiddenQuestNodes = PlayerPrefs.GetString("HiddenQuestNodes").Split(',').ToList();
+            _unreadJournalItemsCount = PlayerPrefs.GetInt("UnreadJournalItemsCount");
+            _unseenInventoryItemsCount = PlayerPrefs.GetInt("UnseenInventoryItemsCount");
+            _threeInARowLifes = PlayerPrefs.GetInt("ThreeInARowLifes");
         }
 
-        public static bool IsGameStarted()
+        public static CachedUserData Get()
         {
-            return PlayerPrefs.GetString("CurrentSceneId") != "";
+            var v = new CachedUserData();
+            v.Load();
+            return v;
         }
 
         public static void Reset()
         {
-            PlayerPrefs.DeleteKey("CurrentSceneId");
+            PlayerPrefs.SetInt("IsGameStarted", 1);
+            PlayerPrefs.SetString("CurrentSceneId", QuestSceneConstants.FIRST_NODE_ID);
+            PlayerPrefs.SetInt("CoinCount", 5);
+            SaveList("OpenedJournalItems", new List<string>());
+            SaveList("AddedInventoryItems", new List<string>());
+            SaveList("HiddenQuestNodes", new List<string>());
+            PlayerPrefs.SetInt("UnreadJournalItemsCount", 0);
+            PlayerPrefs.SetInt("UnseenInventoryItemsCount", 0);
+            PlayerPrefs.SetInt("ThreeInARowLifes", 6);
         }
-        
+
+        public static bool IsGameStarted()
+        {
+            return PlayerPrefs.GetInt("IsGameStarted") == 1;
+        }
+
         public string CurrentSceneId
         {
             get => _currentSceneId;
@@ -132,7 +144,17 @@ namespace DefaultNamespace
             SaveList("HiddenQuestNodes", _hiddenQuestNodes);
         }
 
-        private void SaveList(string key, List<string> value)
+        public int ThreeInARowLifes
+        {
+            get => _threeInARowLifes; 
+            set 
+            {
+                PlayerPrefs.SetInt("ThreeInARowLifes", value);
+                _threeInARowLifes = value;
+            }
+        }
+
+        private static void SaveList(string key, List<string> value)
         {
             PlayerPrefs.SetString(key, String.Join(",", value));            
         }
