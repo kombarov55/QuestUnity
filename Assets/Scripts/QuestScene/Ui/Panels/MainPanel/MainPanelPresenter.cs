@@ -14,7 +14,7 @@ namespace DefaultNamespace.MainPanel
         
         public void setCoinCountText(int count)
         {
-            coinCountText.text = "" + count;
+            coinCountText.text = "x " + count;
         }
         
         public void setStatusLineText(string text)
