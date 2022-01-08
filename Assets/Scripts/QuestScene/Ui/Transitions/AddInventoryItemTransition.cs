@@ -8,7 +8,7 @@ namespace DefaultNamespace.transitions
         private string itemName;
         private string nextNodeId;
 
-        public AddInventoryItemTransition(string questNodeId, string choiceText, string choiceNextId, string itemName, string nextNodeId) : base(questNodeId, choiceText, choiceNextId)
+        public AddInventoryItemTransition(string questNodeId, string choiceText, string nextChoiceId, string itemName, string nextNodeId) : base(questNodeId, choiceText, nextChoiceId)
         {
             this.itemName = itemName;
             this.nextNodeId = nextNodeId;

@@ -51,7 +51,7 @@ namespace DefaultNamespace
             foreach (var transition in transitions)
             {
                 if (transition.questNodeId == questNodeId && transition.choiceText == choiceText &&
-                    transition.choiceNextId == choiceNextId)
+                    transition.nextChoiceId == choiceNextId)
                 {
                     return transition;
                 }

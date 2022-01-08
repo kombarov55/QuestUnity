@@ -43,7 +43,7 @@ namespace DefaultNamespace.MainPanel
         {
             if (!cachedUserData.AddedInventoryItems.Contains(id))
             {
-                cachedUserData.AddedInventoryItems.Add(id);
+                cachedUserData.AddInventoryItem(id);
                 setStatusLineText("\"" + id + "\" добавлен в инвентарь.");
                 incUnseenInventoryItemsCount();
             }

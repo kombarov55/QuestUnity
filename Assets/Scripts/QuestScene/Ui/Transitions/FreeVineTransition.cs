@@ -6,7 +6,7 @@ namespace DefaultNamespace.transitions
 {
     public class FreeVineTransition : Transition
     {
-        public FreeVineTransition(string questNodeId, string choiceText, string choiceNextId) : base(questNodeId, choiceText, choiceNextId)
+        public FreeVineTransition(string questNodeId, string choiceText, string nextChoiceId) : base(questNodeId, choiceText, nextChoiceId)
         {
         }
 

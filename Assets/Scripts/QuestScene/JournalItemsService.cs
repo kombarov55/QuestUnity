@@ -36,7 +36,7 @@ namespace DefaultNamespace
         {
             if (!isJournalItemOpened(id))
             {
-                cachedUserData.OpenedJournalItems.Add(id);
+                cachedUserData.OpenJournalItem(id);
             }
         }
 

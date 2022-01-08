@@ -9,7 +9,7 @@ namespace DefaultNamespace.transitions
 
         private string nextId;
 
-        public PortraitTransition(string questNodeId, string choiceText, string choiceNextId, string nextId) : base(questNodeId, choiceText, choiceNextId)
+        public PortraitTransition(string questNodeId, string choiceText, string nextChoiceId, string nextId) : base(questNodeId, choiceText, nextChoiceId)
         {
             this.nextId = nextId;
         }

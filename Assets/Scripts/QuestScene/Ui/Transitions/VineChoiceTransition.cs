@@ -8,7 +8,7 @@ namespace DefaultNamespace.transitions
     {
         private string successId;
 
-        public VineChoiceTransition(string questNodeId, string choiceText, string choiceNextId, string successId) : base(questNodeId, choiceText, choiceNextId)
+        public VineChoiceTransition(string questNodeId, string choiceText, string nextChoiceId, string successId) : base(questNodeId, choiceText, nextChoiceId)
         {
             this.successId = successId;
         }

@@ -4,9 +4,8 @@ using DefaultNamespace.transitions;
 
 public class HideQuestNodeChoiceTransition : Transition
 {
-    private string targetQuestNodeId;
 
-    public HideQuestNodeChoiceTransition(string questNodeId, string choiceText, string choiceNextId) : base(questNodeId, choiceText, choiceNextId)
+    public HideQuestNodeChoiceTransition(string questNodeId, string choiceText, string nextChoiceId) : base(questNodeId, choiceText, nextChoiceId)
     {
     }
 
@@ -14,7 +13,7 @@ public class HideQuestNodeChoiceTransition : Transition
     {
         var questPanelController = questSceneFlow.questPanelController;
 
-        questSceneFlow.cachedUserData.HiddenQuestNodes.Add(choiceNextId);
+        questSceneFlow.cachedUserData.HideQuestNode(nextChoiceId);
         questPanelController.displayQuestNode(selectedChoice.nextId);
         
     }

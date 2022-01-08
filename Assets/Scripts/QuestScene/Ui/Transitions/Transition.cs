@@ -8,13 +8,13 @@ namespace DefaultNamespace.transitions
     public abstract class Transition
     {
         public string choiceText;
-        public string choiceNextId;
+        public string nextChoiceId;
         public string questNodeId;
 
-        protected Transition(string questNodeId, string choiceText, string choiceNextId)
+        protected Transition(string questNodeId, string choiceText, string nextChoiceId)
         {
             this.choiceText = choiceText;
-            this.choiceNextId = choiceNextId;
+            this.nextChoiceId = nextChoiceId;
             this.questNodeId = questNodeId;
         }
 

@@ -7,7 +7,7 @@ namespace QuestScene.Ui.Transitions
 {
     public class ThreeInARowTransition : Transition
     {
-        public ThreeInARowTransition(string questNodeId, string choiceText, string choiceNextId) : base(questNodeId, choiceText, choiceNextId)
+        public ThreeInARowTransition(string questNodeId, string choiceText, string nextChoiceId) : base(questNodeId, choiceText, nextChoiceId)
         {
         }
 

@@ -113,5 +113,28 @@ namespace DefaultNamespace
                 _unseenInventoryItemsCount = value;
             }
         }
+
+        public void OpenJournalItem(string itemId)
+        {
+            _openedJournalItems.Add(itemId);
+            SaveList("OpenedJournalItems", _openedJournalItems);
+        }
+        
+        public void AddInventoryItem(string itemId)
+        {
+            _addedInventoryItems.Add(itemId);
+            SaveList("AddedInventoryItems", _addedInventoryItems);
+        }
+        
+        public void HideQuestNode(string questNodeId)
+        {
+            _hiddenQuestNodes.Add(questNodeId);
+            SaveList("HiddenQuestNodes", _hiddenQuestNodes);
+        }
+
+        private void SaveList(string key, List<string> value)
+        {
+            PlayerPrefs.SetString(key, String.Join(",", value));            
+        }
     }
 }

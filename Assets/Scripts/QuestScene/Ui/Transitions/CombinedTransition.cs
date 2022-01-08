@@ -8,7 +8,7 @@ namespace QuestScene.Ui.Transitions
     {
         private Transition[] transitions;
         
-        public CombinedTransition(string questNodeId, string choiceText, string choiceNextId, params Transition[] transitions) : base(questNodeId, choiceText, choiceNextId)
+        public CombinedTransition(string questNodeId, string choiceText, string nextChoiceId, params Transition[] transitions) : base(questNodeId, choiceText, nextChoiceId)
         {
             this.transitions = transitions;
         }
