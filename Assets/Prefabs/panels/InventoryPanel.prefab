@@ -35,7 +35,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -304.00073, y: 395.68338}
+  m_AnchoredPosition: {x: -304.00073, y: 0}
   m_SizeDelta: {x: 604, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &3184605109828830925
@@ -328,7 +328,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u041D\u0430\u0437\u0430\u0434"
+  m_Text: 
 --- !u!1 &3184605110458557667
 GameObject:
   m_ObjectHideFlags: 0
@@ -407,7 +407,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -339.3, y: 441.63342}
+  m_AnchoredPosition: {x: -339.3, y: -0.000061035156}
   m_SizeDelta: {x: 745.2, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &3184605110473235269
@@ -949,8 +949,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -125, y: -50}
-  m_SizeDelta: {x: 200, y: 55}
+  m_AnchoredPosition: {x: -58, y: -50}
+  m_SizeDelta: {x: 75, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3184605111008544669
 CanvasRenderer:
@@ -980,8 +980,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: ce511a7e3fcd9c44cab3745901aea92b, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1368,7 +1368,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3184605111586757723}
   m_HandleRect: {fileID: 3184605111586757720}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 0.5000001
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -1569,8 +1569,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3184605111146180405}
   m_HandleRect: {fileID: 3184605111146180410}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 1
+  m_Value: 0.95092845
+  m_Size: 0
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
