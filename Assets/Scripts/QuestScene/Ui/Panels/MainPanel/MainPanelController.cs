@@ -52,25 +52,25 @@ namespace DefaultNamespace.MainPanel
         public void incUnreadJournalItemsCounter()
         {
             cachedUserData.UnreadJournalItemsCount += 1;
-            mainPanelPresenter.setJournalButtonText("Журнал (" + cachedUserData.UnreadJournalItemsCount + ")");
+            mainPanelPresenter.SetJournalCounterText(cachedUserData.UnreadJournalItemsCount);
         }
 
         public void incUnseenInventoryItemsCount()
         {
             cachedUserData.UnseenInventoryItemsCount += 1;
-            mainPanelPresenter.setInventoryButtonText("Инвентарь (" + cachedUserData.UnseenInventoryItemsCount + ")");
+            mainPanelPresenter.SetInventoryCounterText(cachedUserData.UnseenInventoryItemsCount);
         }
 
         public void dropUnreadJournalItemsCounter()
         {
             cachedUserData.UnreadJournalItemsCount = 0;
-            mainPanelPresenter.setJournalButtonText("Журнал");
+            mainPanelPresenter.SetJournalCounterText(0);
         }
         
         public void dropUnseenInventoryItemsCount()
         {
             cachedUserData.UnseenInventoryItemsCount = 0;
-            mainPanelPresenter.setInventoryButtonText("Инвентарь");
+            mainPanelPresenter.SetInventoryCounterText(0);
         }
 
         public void setStatusLineText(string text)

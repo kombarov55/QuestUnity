@@ -8,10 +8,11 @@ namespace DefaultNamespace.MainPanel
     {
         public Text coinCountText;
         public Text statusLineText;
-        public Button journalButton;
-        public Button inventoryButton;
-        public Button backButton;
-        
+        public Text _inventoryCounterText;
+        public Text _journalCounterText;
+        public Image _inventoryCounterBackground;
+        public Image _journalCounterBackground;
+
         public void setCoinCountText(int count)
         {
             coinCountText.text = "x " + count;
@@ -28,14 +29,18 @@ namespace DefaultNamespace.MainPanel
             return statusText != null && statusText != "";
         }
 
-        public void setJournalButtonText(string text)
+        public void SetJournalCounterText(int amount)
         {
-            journalButton.GetComponentInChildren<Text>().text = text;
+            _journalCounterText.text = "" + amount;
+            _journalCounterBackground.gameObject.SetActive(amount != 0);
+            _journalCounterText.gameObject.SetActive(amount != 0);
         }
-
-        public void setInventoryButtonText(string text)
+        
+        public void SetInventoryCounterText(int amount)
         {
-            inventoryButton.GetComponentInChildren<Text>().text = text;
-        } 
+            _inventoryCounterText.text = "" + amount;
+            _inventoryCounterBackground.gameObject.SetActive(amount != 0);
+            _inventoryCounterText.gameObject.SetActive(amount != 0);
+        }
     }
 }
