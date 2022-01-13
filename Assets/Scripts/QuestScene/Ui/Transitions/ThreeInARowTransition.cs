@@ -15,7 +15,7 @@ namespace QuestScene.Ui.Transitions
         public override void run(QuestNode currentQuestNode, QuestNodeChoice selectedChoice, QuestSceneFlow questSceneFlow)
         {
 
-            if (Prefs.Lifes > 0)
+            if (Prefs.ThreeInARowLifes > 0)
             {
                 Prefs.CurrentSceneId = "6.3.1";
                 CrossSceneStorage.BackSceneName = "Scenes/QuestScene";

@@ -10,23 +10,15 @@ namespace MainMenu.Controller
     {
     
         private Text _text;
+        private string _guid;
 
         private void Start()
         {
             _text = GetComponent<Text>();
 
-            /*
-             * - Отсчитать сколько сердечек восстановилось за время
-             * - они восстанавливаются?
-             *   - начать отсчёт
-             *   - Поставить время на 30:00
-             */
-
-            RestoreLifes();
-            
-            if (Prefs.Lifes < GlobalConstants.MaxLifes)
+            if (Prefs.ThreeInARowLifes < GlobalConstants.MaxLifes)
             {
-                StartCoroutine(StartCountdown());
+                _guid = Prefs.SubscribeOnLifesCountdown(text => _text.text = text);
             }
             else
             {
@@ -34,56 +26,12 @@ namespace MainMenu.Controller
             }
         }
 
-        private void RestoreLifes()
+        private void OnDestroy()
         {
-            var lifes = Prefs.Lifes;
-            if (lifes == GlobalConstants.MaxLifes)
+            if (_guid != null)
             {
-                return;
+                Prefs.UnsubscribeOnLifesChange(_guid);                
             }
-
-            DateTime lastLifeCountdownUpdate = Prefs.LastLifeCountdownUpdate;
-            DateTime now = DateTime.Now;
-            TimeSpan diff = now.Subtract(lastLifeCountdownUpdate);
-
-            var lifesRestored = (int) diff.TotalMinutes / GlobalConstants.LifesCountdownInMinutes;
-
-            if (lifes + lifesRestored <= GlobalConstants.MaxLifes)
-            {
-                Prefs.Lifes = lifes + lifesRestored;
-
-                int minutesSpent = GlobalConstants.LifesCountdownInMinutes * lifesRestored;
-                DateTime dateTimeSinceLastHeartUpdate = lastLifeCountdownUpdate.AddMinutes(minutesSpent);
-
-                Prefs.LastLifeCountdownUpdate = dateTimeSinceLastHeartUpdate;
-            }
-            else
-            {
-                Prefs.Lifes = GlobalConstants.MaxLifes;
-            }
-        }
-        
-        private IEnumerator StartCountdown()
-        {
-            while (Prefs.Lifes < GlobalConstants.MaxLifes)
-            {
-                DateTime now = DateTime.Now;
-                DateTime lastUpdate = Prefs.LastLifeCountdownUpdate;
-                TimeSpan diff = now.Subtract(lastUpdate);
-                TimeSpan cooldown = new TimeSpan(0, GlobalConstants.LifesCountdownInMinutes, 0);
-                TimeSpan timeLeft =  cooldown.Subtract(diff);
-
-                while (timeLeft.TotalSeconds > 0)
-                {
-                    _text.text = DateUtil.TimeSpanToString(timeLeft);
-                    
-                    yield return new WaitForSeconds(1);
-                    
-                    timeLeft = timeLeft.Subtract(TimeSpan.FromSeconds(1));
-                }
-
-                Prefs.Lifes = Prefs.Lifes + 1;
-            } 
         }
     }
 }

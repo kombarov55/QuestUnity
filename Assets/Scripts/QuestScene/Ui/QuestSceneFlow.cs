@@ -63,7 +63,6 @@ namespace DefaultNamespace
 
         private void init()
         {
-            Prefs.Lifes = 0;
             mainPanel = rootPanel.transform.Find("MainPanel").gameObject;
             audioScript = audioGameObject.GetComponent<AudioScript>();
             backgroundMusicBehaviour = GameObject.Find("BackgroundMusic").GetComponent<BackgroundMusicBehaviour>();

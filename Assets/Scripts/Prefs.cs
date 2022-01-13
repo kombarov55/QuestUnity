@@ -7,20 +7,21 @@ namespace DefaultNamespace
 {
     public class Prefs
     {
-        private static readonly string LifesKey = "ThreeInARowLifes";
+        private static readonly string ThreeInARowLifesKey = "ThreeInARowLifes";
         private static readonly string LastLifeCountdownUpdateKey = "LastLifeCountdownUpdate";
         private static readonly string CurrentSceneIdKey = "CurrentSceneId";
         private static readonly string CoinCountKey = "CoinCount";
         private static readonly string OpenedInventoryItemsKey = "OpenedInventoryItems";
 
         private static Dictionary<string, Action<int>> _onLifesChangeSubscribers = new Dictionary<string, Action<int>>();
+        private static Dictionary<string, Action<string>> _onLifesCountdownSubscribers = new Dictionary<string, Action<string>>();
 
-        public static int Lifes
+        public static int ThreeInARowLifes
         {
-            get => PlayerPrefs.GetInt(LifesKey);
+            get => PlayerPrefs.GetInt(ThreeInARowLifesKey);
             set
             {
-                PlayerPrefs.SetInt(LifesKey, value);
+                PlayerPrefs.SetInt(ThreeInARowLifesKey, value);
                 foreach (var pair in _onLifesChangeSubscribers)
                 {
                     pair.Value.Invoke(value);
@@ -84,10 +85,38 @@ namespace DefaultNamespace
 
             return guid;
         }
-        
+
         public static void UnsubscribeOnLifesChange(string guid)
         {
             _onLifesChangeSubscribers.Remove(guid);
+        }
+        
+        public static string SubscribeOnLifesCountdown(Action<string> action)
+        {
+            var guid = Guid.NewGuid().ToString();
+            _onLifesCountdownSubscribers.Add(guid, action);
+
+            return guid;
+        }
+        
+        public static void UnsubscribeOnLifesCountdown(string guid)
+        {
+            _onLifesCountdownSubscribers.Remove(guid);
+        }
+
+        public static void SubmitCountdown(string text)
+        {
+            foreach (var pair in _onLifesCountdownSubscribers)
+            {
+                try
+                {
+                    pair.Value.Invoke(text);
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError(e);
+                }
+            }
         }
         
     }

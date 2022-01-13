@@ -13,7 +13,7 @@ namespace MainMenu.Controller
         private void Start()
         {
             Text text = GetComponent<Text>();
-            text.text = "x " + Prefs.Lifes;
+            text.text = "x " + Prefs.ThreeInARowLifes;
             _subscriptionId = Prefs.SubscribeOnLifesChange(amount => text.text = "x " + amount);
         }
 
