@@ -24,7 +24,7 @@ namespace MainMenu.Controller
 
             RestoreLifes();
             
-            if (Prefs.GetLifes() < GlobalConstants.MaxLifes)
+            if (Prefs.Lifes < GlobalConstants.MaxLifes)
             {
                 StartCoroutine(StartCountdown());
             }
@@ -36,13 +36,13 @@ namespace MainMenu.Controller
 
         private void RestoreLifes()
         {
-            var lifes = Prefs.GetLifes();
+            var lifes = Prefs.Lifes;
             if (lifes == GlobalConstants.MaxLifes)
             {
                 return;
             }
-            
-            DateTime lastLifeCountdownUpdate = Prefs.GetLastLifeCountdownUpdate();
+
+            DateTime lastLifeCountdownUpdate = Prefs.LastLifeCountdownUpdate;
             DateTime now = DateTime.Now;
             TimeSpan diff = now.Subtract(lastLifeCountdownUpdate);
 
@@ -50,25 +50,25 @@ namespace MainMenu.Controller
 
             if (lifes + lifesRestored <= GlobalConstants.MaxLifes)
             {
-                Prefs.SetLifes(lifes + lifesRestored);
+                Prefs.Lifes = lifes + lifesRestored;
 
                 int minutesSpent = GlobalConstants.LifesCountdownInMinutes * lifesRestored;
                 DateTime dateTimeSinceLastHeartUpdate = lastLifeCountdownUpdate.AddMinutes(minutesSpent);
 
-                Prefs.SetLastLifeCountdownUpdate(dateTimeSinceLastHeartUpdate);
+                Prefs.LastLifeCountdownUpdate = dateTimeSinceLastHeartUpdate;
             }
             else
             {
-                Prefs.SetLifes(GlobalConstants.MaxLifes);
+                Prefs.Lifes = GlobalConstants.MaxLifes;
             }
         }
         
         private IEnumerator StartCountdown()
         {
-            while (Prefs.GetLifes() < GlobalConstants.MaxLifes)
+            while (Prefs.Lifes < GlobalConstants.MaxLifes)
             {
                 DateTime now = DateTime.Now;
-                DateTime lastUpdate = Prefs.GetLastLifeCountdownUpdate();
+                DateTime lastUpdate = Prefs.LastLifeCountdownUpdate;
                 TimeSpan diff = now.Subtract(lastUpdate);
                 TimeSpan cooldown = new TimeSpan(0, GlobalConstants.LifesCountdownInMinutes, 0);
                 TimeSpan timeLeft =  cooldown.Subtract(diff);
@@ -80,9 +80,9 @@ namespace MainMenu.Controller
                     yield return new WaitForSeconds(1);
                     
                     timeLeft = timeLeft.Subtract(TimeSpan.FromSeconds(1));
-                } 
-                
-                Prefs.SetLifes(Prefs.GetLifes() + 1);
+                }
+
+                Prefs.Lifes = Prefs.Lifes + 1;
             } 
         }
     }

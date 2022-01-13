@@ -6,6 +6,7 @@ using DefaultNamespace.model;
 using DefaultNamespace.OnQuestNodeShow;
 using DefaultNamespace.Panels.InventoryPanel;
 using QuestScene.Repositories;
+using QuestScene.Ui;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -41,6 +42,8 @@ namespace DefaultNamespace
         public AnimationPanelController animationPanelController;
         public InventoryPanelController InventoryPanelController;
 
+        public DialogBehaviour dialogBehaviour;
+
         private GameObject questPanel;
         private GameObject journalPanel;
         private GameObject journalItemPanel;
@@ -60,6 +63,7 @@ namespace DefaultNamespace
 
         private void init()
         {
+            Prefs.Lifes = 0;
             mainPanel = rootPanel.transform.Find("MainPanel").gameObject;
             audioScript = audioGameObject.GetComponent<AudioScript>();
             backgroundMusicBehaviour = GameObject.Find("BackgroundMusic").GetComponent<BackgroundMusicBehaviour>();
@@ -74,6 +78,9 @@ namespace DefaultNamespace
             journalItemPanel.SetActive(false);
             inventoryPanel = Instantiate(inventoryPanelPrefab, rootPanel.transform);
             inventoryPanel.SetActive(false);
+
+            dialogBehaviour = GameObject.Find("Dialog").GetComponent<DialogBehaviour>();
+            dialogBehaviour.gameObject.SetActive(false);
             
             transitionService = GetComponent<TransitionService>();
             transitionService.init();

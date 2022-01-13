@@ -17,15 +17,15 @@ namespace DefaultNamespace.MainPanel
             this.cachedUserData = cachedUserData;
             this.journalItemsService = journalItemsService;
             mainPanelPresenter = GetComponent<MainPanelPresenter>();
-            mainPanelPresenter.setCoinCountText(cachedUserData.CoinCount);
+            mainPanelPresenter.setCoinCountText(Prefs.CoinCount);
         }
 
         public void decrementCoinCount()
         {
-            if (cachedUserData.CoinCount >= 1)
+            if (Prefs.CoinCount >= 1)
             {
-                cachedUserData.CoinCount = cachedUserData.CoinCount - 1;
-                mainPanelPresenter.setCoinCountText(cachedUserData.CoinCount);
+                Prefs.CoinCount -= 1;
+                mainPanelPresenter.setCoinCountText(Prefs.CoinCount);
             }
         }
 

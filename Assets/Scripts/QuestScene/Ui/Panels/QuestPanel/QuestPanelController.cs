@@ -59,7 +59,7 @@ namespace DefaultNamespace
         {
             QuestNode questNode = questNodesRepository.findById(id);
             displayQuestNode(questNode);
-            cachedUserData.CurrentSceneId = id;
+            Prefs.CurrentSceneId = id;
         }
         
         public void displayQuestNode(QuestNode questNode)
@@ -67,7 +67,7 @@ namespace DefaultNamespace
             displayQuestNode(questNode.imgPath, questNode.title, questNode.description, questNode.choices);
             onQuestNodeShowService.findOnQuestNodeShow(questNode.id).run(questSceneFlow);
             currentQuestNode = questNode;
-            cachedUserData.CurrentSceneId = currentQuestNode.id;
+            Prefs.CurrentSceneId = currentQuestNode.id;
         }
 
         private void displayQuestNode(string imgPath, string title, string description, List<QuestNodeChoice> choices)
@@ -88,7 +88,7 @@ namespace DefaultNamespace
 
         private QuestNode findCurrentQuestNode()
         {
-            string currentQuestNodeId = cachedUserData.CurrentSceneId;
+            string currentQuestNodeId = Prefs.CurrentSceneId;
             if (currentQuestNodeId == null || currentQuestNodeId == "")
             {
                 currentQuestNodeId = QuestSceneConstants.FIRST_NODE_ID;

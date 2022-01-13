@@ -25,17 +25,23 @@ namespace Other.MatchThreeGame.Assets.Scripts
 
         public void ShowFailure()
         {
-            StartCoroutine(_toastBehaviour.ShowWithFlyAway("Поражение", OnBackClicked));
+            Prefs.CurrentSceneId = QuestSceneConstants.ThreeInArowFailureNodeId;
+            StartCoroutine(_toastBehaviour.ShowWithFlyAway("Поражение", ReturnToPreviousScene));
         }
 
         public void ShowVictory()
         {
-            StartCoroutine(_toastBehaviour.ShowWithFlyAway("Победа", OnBackClicked));
+            Prefs.CurrentSceneId = QuestSceneConstants.ThreeInARowVictoryNodeId;
+            StartCoroutine(_toastBehaviour.ShowWithFlyAway("Победа", ReturnToPreviousScene));
         }
 
-        public void OnBackClicked()
+        public void ReturnToPreviousScene()
         {
-            SceneManager.LoadScene(CrossSceneStorage.BackSceneName);
+            if (CrossSceneStorage.IsMinigameInQuest)
+            {
+                SceneManager.LoadScene(CrossSceneStorage.BackSceneName);
+            }
+            
         }
     }
 }

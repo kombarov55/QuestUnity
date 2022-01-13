@@ -22,7 +22,7 @@ namespace DefaultNamespace.transitions
             AnimationPanelController animationPanelController = questSceneFlow.animationPanelController;
             BackgroundMusicBehaviour backgroundMusicBehaviour = questSceneFlow.backgroundMusicBehaviour;
             
-            int coinCount = cachedUserData.CoinCount;
+            int coinCount = Prefs.CoinCount;
             
             if (coinCount >= 1)
             {

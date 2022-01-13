@@ -8,8 +8,6 @@ namespace DefaultNamespace
     public class CachedUserData : MonoBehaviour
     {
         
-        private string _currentSceneId;
-        private int _coinCount;
         private List<string> _openedJournalItems;
         private List<string> _addedInventoryItems;
         private List<string> _hiddenQuestNodes;
@@ -20,8 +18,6 @@ namespace DefaultNamespace
 
         public void Load()
         {
-            CurrentSceneId = PlayerPrefs.GetString("CurrentSceneId");
-            _coinCount = PlayerPrefs.GetInt("CoinCount");
             _openedJournalItems = ReadList("OpenedJournalItems");
             _addedInventoryItems = ReadList("AddedInventoryItems");
             _hiddenQuestNodes = ReadList("HiddenQuestNodes");
@@ -54,27 +50,7 @@ namespace DefaultNamespace
         {
             return PlayerPrefs.GetInt("IsGameStarted") == 1;
         }
-
-        public string CurrentSceneId
-        {
-            get => _currentSceneId;
-            set
-            {
-                PlayerPrefs.SetString("CurrentSceneId", value);
-                _currentSceneId = value;
-            }
-        }
-
-        public int CoinCount
-        {
-            get => _coinCount;
-            set
-            {
-                PlayerPrefs.SetInt("CoinCount", value);
-                _coinCount = value;
-            }
-        }
-
+        
         public List<string> OpenedJournalItems
         {
             get => _openedJournalItems;
