@@ -232,7 +232,7 @@ public class ShapesManager : MonoBehaviour
                     {
                         state = GameState.Animating;
                         FixSortingLayer(hitGo, hit.collider.gameObject);
-                        StartCoroutine(FindMatchesAndCollapse(hit, () => StartCoroutine(StartEnemyTurn())));
+                        StartCoroutine(FindMatchesAndCollapse(hit.collider.gameObject, () => StartCoroutine(StartEnemyTurn())));
                     }
                 }
             }
@@ -258,10 +258,9 @@ public class ShapesManager : MonoBehaviour
 
 
 
-    private IEnumerator FindMatchesAndCollapse(RaycastHit2D hit2, Action then)
+    private IEnumerator FindMatchesAndCollapse(GameObject hitGo2, Action then)
     {
         //get the second item that was part of the swipe
-        var hitGo2 = hit2.collider.gameObject;
         shapes.Swap(hitGo, hitGo2);
 
         //move the swapped ones
@@ -360,14 +359,25 @@ public class ShapesManager : MonoBehaviour
         then.Invoke();
     }
 
+    /*
+     * 1. Найти подходящие комбинации
+     * 2. Синициировать ход
+     */
     private IEnumerator StartEnemyTurn()
     {
         state = GameState.EnemyTurn;
         
         yield return new WaitForSeconds(1);
-        Debug.Log("Enemy turn made");
         
-        state = GameState.None;
+        IEnumerable<GameObject> match = Utilities.GetPotentialMatches(shapes);
+        Tuple<GameObject, GameObject> itemsToSwap = Utilities.FindItemsToSwap(shapes, match);
+
+        hitGo = itemsToSwap.Item1;
+
+        StartCoroutine(FindMatchesAndCollapse(itemsToSwap.Item2, () =>
+        {
+            state = GameState.None;
+        }));
     }
 
     /// <summary>
