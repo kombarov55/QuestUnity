@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
 using Other.MatchThreeGame.Assets.Scripts;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 
 public class ShapesManager : MonoBehaviour
@@ -185,6 +187,11 @@ public class ShapesManager : MonoBehaviour
         if (ShowDebugInfo)
             DebugText.text = DebugUtilities.GetArrayContents(shapes);
 
+        if (state == GameState.EnemyTurn)
+        {
+            return;
+        }
+        
         if (state == GameState.None)
         {
             //user has clicked or touched
@@ -207,7 +214,7 @@ public class ShapesManager : MonoBehaviour
             {
                 
 
-                var hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+                RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
                 //we have a hit
                 if (hit.collider != null && hitGo != hit.collider.gameObject)
                 {
@@ -225,7 +232,7 @@ public class ShapesManager : MonoBehaviour
                     {
                         state = GameState.Animating;
                         FixSortingLayer(hitGo, hit.collider.gameObject);
-                        StartCoroutine(FindMatchesAndCollapse(hit));
+                        StartCoroutine(FindMatchesAndCollapse(hit, () => StartCoroutine(StartEnemyTurn())));
                     }
                 }
             }
@@ -251,7 +258,7 @@ public class ShapesManager : MonoBehaviour
 
 
 
-    private IEnumerator FindMatchesAndCollapse(RaycastHit2D hit2)
+    private IEnumerator FindMatchesAndCollapse(RaycastHit2D hit2, Action then)
     {
         //get the second item that was part of the swipe
         var hitGo2 = hit2.collider.gameObject;
@@ -349,6 +356,18 @@ public class ShapesManager : MonoBehaviour
 
         state = GameState.None;
         StartCheckForPotentialMatches();
+        
+        then.Invoke();
+    }
+
+    private IEnumerator StartEnemyTurn()
+    {
+        state = GameState.EnemyTurn;
+        
+        yield return new WaitForSeconds(1);
+        Debug.Log("Enemy turn made");
+        
+        state = GameState.None;
     }
 
     /// <summary>
