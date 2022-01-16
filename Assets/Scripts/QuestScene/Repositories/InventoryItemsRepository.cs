@@ -64,10 +64,10 @@ namespace QuestScene.Repositories
                 var xmlNode = xmlNodes[i];
 
                 var item = new InventoryItem();
-                item.id = XmlHelper.getValue(xmlNode, "Id");
-                item.name = XmlHelper.getValue(xmlNode, "Name");
-                item.description = XmlHelper.getValue(xmlNode, "Description");
-                item.imgPath = XmlHelper.getValue(xmlNode, "ImgPath");
+                item.id = XmlHelper.GetValue(xmlNode, "Id");
+                item.name = XmlHelper.GetValue(xmlNode, "Name");
+                item.description = XmlHelper.GetValue(xmlNode, "Description");
+                item.imgPath = XmlHelper.GetValue(xmlNode, "ImgPath");
 
                 result.Add(item);
             }

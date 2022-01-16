@@ -18,7 +18,7 @@
     <QuestNode>
         <Id>Письмо-далее</Id>
         <Title></Title>
-        <ImgPath></ImgPath>
+        <ImgPath>Images/Letter</ImgPath>
         <Description>Харин, мой старый добрый друг! Кто бы мог подумать, что этот балагур найдет себе пару.</Description>
         <Choices>
             <Choice>
@@ -34,7 +34,7 @@
     <QuestNode>
         <Id>Письмо.1</Id>
         <Title></Title>
-        <ImgPath></ImgPath>
+        <ImgPath>Images/Letter</ImgPath>
         <Description>Кучер, седлайте Бурана, я ненадолго покину город. За делами присмотрит Освальд.</Description>
         <Choices>
             <Choice>
@@ -46,7 +46,7 @@
     <QuestNode>
         <Id>Письмо.2</Id>
         <Title></Title>
-        <ImgPath></ImgPath>
+        <ImgPath>Images/Letter</ImgPath>
         <Description>Как ни кстати, у меня еще много дел.</Description>
         <Choices>
             <Choice>
@@ -110,7 +110,7 @@
     <QuestNode>
         <Id>2.1</Id>
         <Title></Title>
-        <ImgPath></ImgPath>
+        <ImgPath>Images/HorseStable</ImgPath>
         <Description>В городе тишь да гладь, только лишь старый мост нуждается в ремонте.</Description>
         <Choices>
             <Choice>
@@ -130,7 +130,7 @@
     <QuestNode>
         <Id>2.2</Id>
         <Title></Title>
-        <ImgPath></ImgPath>
+        <ImgPath>Images/HorseStable</ImgPath>
         <Description>Ваш батюшка сталкивался с этой проблемой. Помнится, именно этот мост стал причиной его гибели. Говорят, виной оползни, но суеверные твердят о красноглазых монстрах.</Description>
         <Choices>
             <Choice>
@@ -154,7 +154,7 @@
     <QuestNode>
         <Id>2.3</Id>
         <Title></Title>
-        <ImgPath></ImgPath>
+        <ImgPath>Images/HorseStable</ImgPath>
         <Description>Я могу еще Вам помочь, граф?</Description>
         <Choices>
             <Choice>
@@ -202,7 +202,7 @@
     <QuestNode>
         <Id>3.0</Id>
         <Title></Title>
-        <ImgPath></ImgPath>
+        <ImgPath>Images/Bordel</ImgPath>
         <Description>Что это было? Ох, и крепкое вино сегодня</Description>
         <Choices>
             <Choice>
@@ -214,7 +214,7 @@
     <QuestNode>
         <Id>3.1</Id>
         <Title></Title>
-        <ImgPath></ImgPath>
+        <ImgPath>Images/Bordel</ImgPath>
         <Description>Мы всегда рады таким достопочтенным и щедрым гостям. Желаете еще чего-нибудь?</Description>
         <Choices>
             <Choice>
@@ -242,7 +242,7 @@
     <QuestNode>
         <Id>3.2</Id>
         <Title></Title>
-        <ImgPath></ImgPath>
+        <ImgPath>Images/Bordel</ImgPath>
         <Description>При всем уважении, граф, мы не можем угощать бесплатно.</Description>
         <Choices>
             <Choice>
@@ -270,7 +270,7 @@
     <QuestNode>
         <Id>3.3</Id>
         <Title></Title>
-        <ImgPath></ImgPath>
+        <ImgPath>Images/Bordel</ImgPath>
         <Description>Один гость рассказывал о таинственном сокровище недалеко от заброшенной астрономической башни к западу отсюда.</Description>
         <Choices>
             <Choice>
@@ -298,7 +298,7 @@
     <QuestNode>
         <Id>3.4</Id>
         <Title></Title>
-        <ImgPath></ImgPath>
+        <ImgPath>Images/Bordel</ImgPath>
         <Description>Ваш батюшка всегда был вежлив. Жаль, что Вы не такой. Пейте сколько влезет. Теперь прошу меня извинить, у меня другие дела.</Description>
         <Choices>
             <Choice>
@@ -322,7 +322,7 @@
     <QuestNode>
         <Id>3.5</Id>
         <Title></Title>
-        <ImgPath></ImgPath>
+        <ImgPath>Images/Bordel</ImgPath>
         <Description>Мне тоже показалось это глупостью, но в своей комнате гость забыл карту и странный ключ. За вещами он так и не вернулся, если хотите – можете взять.</Description>
         <Choices>
             <Choice>
@@ -346,7 +346,7 @@
     <QuestNode>
         <Id>3.6</Id>
         <Title></Title>
-        <ImgPath></ImgPath>
+        <ImgPath>Images/Bordel</ImgPath>
         <Description>Мы можем еще чем-то услужить, граф?</Description>
         <Choices>
             <Choice>
@@ -382,7 +382,7 @@
     <QuestNode>
         <Id>4.1</Id>
         <Title></Title>
-        <ImgPath></ImgPath>
+        <ImgPath>Images/ShootingRange</ImgPath>
         <Description>Охотники рассказывали о странном вое со стороны Вашего родового поместья.</Description>
         <Choices>
             <Choice>
@@ -406,7 +406,7 @@
     <QuestNode>
         <Id>4.2</Id>
         <Title></Title>
-        <ImgPath></ImgPath>
+        <ImgPath>Images/ShootingRange</ImgPath>
         <Description>Говорят, бесовщина началась с таинственной смерти в астрономической башне. Будьте осторожны, граф! Дорога к поместью забрала много жизней, в том числе жизнь нашего дорогого графа, Вашего отца!</Description>
         <Choices>
             <Choice>
@@ -430,7 +430,7 @@
     <QuestNode>
         <Id>4.3</Id>
         <Title></Title>
-        <ImgPath></ImgPath>
+        <ImgPath>Images/ShootingRange</ImgPath>
         <Description>Я могу ещё чем то помочь, граф?</Description>
         <Choices>
             <Choice>
@@ -486,7 +486,7 @@
     <QuestNode>
         <Id>6.1</Id>
         <Title></Title>
-        <ImgPath></ImgPath>
+        <ImgPath>Images/Town1</ImgPath>
         <Description>За углом вы видите головореза, пытающегося отнять шкатулку у юной девушки.</Description>
         <Choices>
             <Choice>
@@ -506,7 +506,7 @@
     <QuestNode>
         <Id>6.2</Id>
         <Title></Title>
-        <ImgPath></ImgPath>
+        <ImgPath>Images/Town1</ImgPath>
         <Description>Вы предпочли не лезть не в своё дело. Постепенно крики становились всё тише, а Вы удалялись всё дальше. </Description>
         <Choices>
             <Choice>
@@ -518,7 +518,7 @@
     <QuestNode>
         <Id>6.3</Id>
         <Title></Title>
-        <ImgPath></ImgPath>
+        <ImgPath>Images/Town1</ImgPath>
         <Description>Эй! В моём городе не место таким как ты!</Description>
         <Choices>
             <Choice> <!--(Игра 3 в ряд. В случае поражения – ожидание 15 минут, потом снова 3 в ряд до победы, противник слабый) -->
@@ -554,7 +554,7 @@
     <QuestNode>
         <Id>6.5</Id>
         <Title></Title>
-        <ImgPath></ImgPath>
+        <ImgPath>Images/Town2</ImgPath>
         <Description>Я наследница древнего рода, это всё, что я могу сказать.</Description>
         <Choices>
             <Choice>
@@ -574,7 +574,7 @@
     <QuestNode>
         <Id>6.6</Id>
         <Title></Title>
-        <ImgPath></ImgPath>
+        <ImgPath>Images/Town2</ImgPath>
         <Description>Я знаю. кто Вы, граф. Я и сёстры слышали о Вашей достойной семье. Если честно, я искала встречи с Вами.</Description>
         <Choices>
             <Choice>
@@ -586,7 +586,7 @@
     <QuestNode>
         <Id>6.7</Id>
         <Title></Title>
-        <ImgPath></ImgPath>
+        <ImgPath>Images/Town2</ImgPath>
         <Description>Шкатулка это то, что привело меня сюда. Я знала, она поможет мне найти Вас.</Description>
         <Choices>
             <Choice>
@@ -598,7 +598,7 @@
     <QuestNode>
         <Id>6.8</Id>
         <Title></Title>
-        <ImgPath></ImgPath>
+        <ImgPath>Images/Town2</ImgPath>
         <Description>Я разочарована, граф. Я слышала, что вы честный и благородный человек.</Description>
         <Choices>
             <Choice>
@@ -614,7 +614,7 @@
     <QuestNode>
         <Id>6.9</Id>
         <Title></Title>
-        <ImgPath></ImgPath>
+        <ImgPath>Images/Town2</ImgPath>
         <Description>Я проделала долгий путь из лесов Оссилора, виной тому - древнее пророчество о великом зле, проникшем в наш мир через разлом. Но я опоздала, духи мрачных миров уже здесь, скоро они уничтожат весь наш мир. Пророчество гласит, что лишь наследник дома Лонгренов ообладает силой, способной навсегда запечатать разлом и уничтожить этих тварей. Знаки привели меня сюда... Граф, прошу, не перебивайте меня. Я отвечу на все Ваши вопросы позже и не здесь. В моей шкатулке есть то, что необходимо для спасения мира... или для его скорейшего уничтожения. Откройте её, когда придёт время. </Description>
         <Choices>
             <Choice>
@@ -626,7 +626,7 @@
     <QuestNode>
         <Id>6.9.1</Id>
         <Title></Title>
-        <ImgPath></ImgPath>
+        <ImgPath>Images/Town2</ImgPath>
         <Description>*Аннабель медленно исчезает*</Description>
         <Choices>
             <Choice>
@@ -642,7 +642,7 @@
     <QuestNode>
         <Id>6.11</Id>
         <Title></Title>
-        <ImgPath></ImgPath>
+        <ImgPath>Images/Town2</ImgPath>
         <Description>Крышка шкатулки не поддаётся</Description>
         <Choices>
             <Choice>
@@ -654,7 +654,7 @@
     <QuestNode>
         <Id>6.10</Id>
         <Title></Title>
-        <ImgPath></ImgPath>
+        <ImgPath>Images/Town2</ImgPath>
         <Description>Жаль, но древний род Лонгренов уже не тот, что столетия назад.
 *Аннабель растворяется в воздухе*</Description>
         <Choices>
@@ -667,7 +667,7 @@
     <QuestNode>
         <Id>6.10.1</Id>
         <Title></Title>
-        <ImgPath></ImgPath>
+        <ImgPath>Images/Town2</ImgPath>
         <Description>Что? Она просто исчезла? Этого не может быть...</Description>
         <Choices>
             <Choice>
@@ -679,7 +679,7 @@
     <QuestNode>
         <Id>6.4</Id>
         <Title></Title>
-        <ImgPath></ImgPath>
+        <ImgPath>Images/Town2</ImgPath>
         <Description>Привет, приятель. Думаю, добычи хватит на нас двоих</Description>
         <Choices>
             <Choice> <!--Игра 3 в ряд, противник погибает с одного удара. Труп девушки и шкатулка исчезают. -->
@@ -703,7 +703,7 @@
     <QuestNode>
         <Id>6.4.2</Id>
         <Title></Title>
-        <ImgPath></ImgPath>
+        <ImgPath>Images/Town3</ImgPath>
         <Description>Что это было? Нужно во всём срочно разобраться</Description>
         <Choices>
             <Choice>

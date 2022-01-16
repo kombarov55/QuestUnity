@@ -57,9 +57,10 @@ namespace QuestScene.Repositories
                 
                 var node = new QuestNode();
 
-                node.id = XmlHelper.getValue(xmlNode, "Id");
-                node.imgPath = XmlHelper.getValue(xmlNode, "ImgPath");
-                node.description = XmlHelper.getValue(xmlNode, "Description");
+                node.id = XmlHelper.GetValue(xmlNode, "Id");
+                node.imgPath = XmlHelper.GetValue(xmlNode, "ImgPath");
+                node.title = XmlHelper.GetValue(xmlNode, "Title");
+                node.description = XmlHelper.GetValue(xmlNode, "Description");
                 node.choices = new List<QuestNodeChoice>();
 
                 XmlNodeList xmlNodeListChoices = XmlHelper.getChildByName(xmlNode, "Choices").ChildNodes;
@@ -70,8 +71,8 @@ namespace QuestScene.Repositories
                     var choice = new QuestNodeChoice();
                     try
                     {
-                        choice.text = XmlHelper.getValue(choiceXmlNode, "Text");
-                        choice.nextId = XmlHelper.getValue(choiceXmlNode, "NextId");
+                        choice.text = XmlHelper.GetValue(choiceXmlNode, "Text");
+                        choice.nextId = XmlHelper.GetValue(choiceXmlNode, "NextId");
                     }
                     catch (Exception)
                     {

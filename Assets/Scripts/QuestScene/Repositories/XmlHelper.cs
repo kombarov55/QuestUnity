@@ -4,7 +4,7 @@ namespace DefaultNamespace
 {
     public class XmlHelper
     {
-        public static string getValue(XmlNode elem, string name)
+        public static string GetValue(XmlNode elem, string name)
         {
             XmlNode node = getChildByName(elem, name);
             return node.InnerText;

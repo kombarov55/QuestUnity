@@ -48,10 +48,10 @@ namespace DefaultNamespace.JournalPanel
                 var xmlNode = xmlNodes[i];
                 
                 var journalItem = new JournalItem();
-                journalItem.id = XmlHelper.getValue(xmlNode, "Id");
-                journalItem.title = XmlHelper.getValue(xmlNode, "Title");
-                journalItem.description = XmlHelper.getValue(xmlNode, "Description");
-                journalItem.imgPath =  XmlHelper.getValue(xmlNode, "ImgPath");
+                journalItem.id = XmlHelper.GetValue(xmlNode, "Id");
+                journalItem.title = XmlHelper.GetValue(xmlNode, "Title");
+                journalItem.description = XmlHelper.GetValue(xmlNode, "Description");
+                journalItem.imgPath =  XmlHelper.GetValue(xmlNode, "ImgPath");
                 
                 result.Add(journalItem);
             }

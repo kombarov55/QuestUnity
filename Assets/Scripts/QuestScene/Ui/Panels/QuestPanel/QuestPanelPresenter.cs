@@ -20,6 +20,8 @@ namespace DefaultNamespace
 
         private List<GameObject> buttons = new List<GameObject>();
 
+        private string prevBackground = "";
+
         public void init(AudioScript audioScript, Image background)
         {
             this.audioScript = audioScript;
@@ -28,14 +30,23 @@ namespace DefaultNamespace
 
         public void setTitle(string str)
         {
-            title.text = str;
+            if (string.IsNullOrEmpty(str))
+            {
+                title.gameObject.SetActive(false);
+            }
+            else
+            {
+                title.gameObject.SetActive(true);
+                title.text = str;                
+            }
         }
 
         public void setImg(string path)
         {
-            if (path != null && path != "")
+            if (path != null && path != "" && prevBackground != path)
             {
                 img.sprite = Resources.Load<Sprite>(path);
+                prevBackground = path;
             }
         }
 
