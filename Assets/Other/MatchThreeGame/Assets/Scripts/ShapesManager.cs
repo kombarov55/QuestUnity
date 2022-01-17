@@ -259,6 +259,8 @@ public class ShapesManager : MonoBehaviour
 
     private IEnumerator FindMatchesAndCollapse(GameObject hitGo2, Action then)
     {
+        bool turnMade = false;
+        
         //get the second item that was part of the swipe
         shapes.Swap(hitGo, hitGo2);
 
@@ -286,6 +288,7 @@ public class ShapesManager : MonoBehaviour
         else
         {
             _stateManager.TurnMade();
+            turnMade = true;
         }
 
         //if more than 3 matches and no Bonus is contained in the line, we will award a new Bonus
@@ -354,8 +357,11 @@ public class ShapesManager : MonoBehaviour
 
         _stateManager.GameState = GameState.None;
         StartCheckForPotentialMatches();
-        
-        then.Invoke();
+
+        if (turnMade)
+        {
+            then.Invoke();
+        }
     }
 
     /*
