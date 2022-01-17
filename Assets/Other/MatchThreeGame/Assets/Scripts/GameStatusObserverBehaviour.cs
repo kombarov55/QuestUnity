@@ -18,19 +18,21 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
                 sceneController.ShowGoals(level);
             });
             
-            stateManager.SubscribeOnScoreChanged(level =>
-            {
-                GameStatus currentGameStatus = gameplayService.CalculateCurrentGameStatus(level);
-
-                if (currentGameStatus == GameStatus.VICTORY)
-                {
-                    sceneController.ShowVictory();
-                } else if (currentGameStatus == GameStatus.FAILURE)
-                {
-                    sceneController.ShowFailure();
-                    CachedUserData.Get().ThreeInARowLifes -= 1;
-                }
-            });
+            
+            
+            // stateManager.SubscribeOnScoreChanged(level =>
+            // {
+            //     GameStatus currentGameStatus = gameplayService.CalculateCurrentGameStatus(level);
+            //
+            //     if (currentGameStatus == GameStatus.VICTORY)
+            //     {
+            //         sceneController.ShowVictory();
+            //     } else if (currentGameStatus == GameStatus.FAILURE)
+            //     {
+            //         sceneController.ShowFailure();
+            //         CachedUserData.Get().ThreeInARowLifes -= 1;
+            //     }
+            // });
         }
     }
 }

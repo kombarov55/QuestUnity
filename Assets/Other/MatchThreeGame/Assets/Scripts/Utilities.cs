@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
+using Other.MatchThreeGame.Assets.Scripts;
 using UnityEngine;
 using Object = System.Object;
 
@@ -392,27 +394,29 @@ public static class Utilities
     {
         try
         {
+            Debug.Log(MatchToString(matchedGameObjects));
+            
             var match = matchedGameObjects.ToList();
-            
-            var optionalPair = FindWhatToCollapse1(match, shapes);
+
+            var optionalPair = WhatToSwapFinder3.Find(match, shapes);
             if (!optionalPair.IsEmpty)
             {
                 return optionalPair.Value;
             }
             
-            optionalPair = FindWhatToCollapse2(match, shapes);
+            optionalPair = WhatToSwapFinder4.Find(match, shapes);
             if (!optionalPair.IsEmpty)
             {
                 return optionalPair.Value;
             }
             
-            optionalPair = FindWhatToCollapse3(match, shapes);
+             optionalPair = WhatToSwapFinder1.Find(match, shapes);
             if (!optionalPair.IsEmpty)
             {
                 return optionalPair.Value;
             }
             
-            optionalPair = FindWhatToCollapse4(match, shapes);
+            optionalPair = WhatToSwapFinder2.Find(match, shapes);
             if (!optionalPair.IsEmpty)
             {
                 return optionalPair.Value;
@@ -423,374 +427,23 @@ public static class Utilities
         }
         catch (Exception e)
         {
+            Debug.LogError("error: " + MatchToString(matchedGameObjects));
             Debug.LogError(e);
-            return null;
+            throw e;
         }
     }
 
-    private static Optional<int> GetRowNumberIfThereAreTwoItemsWithSameRow(IEnumerable<GameObject> match)
+    private static string MatchToString(IEnumerable<GameObject> match)
     {
-        var v = (
-            from gameObject in match
-            group gameObject by gameObject.GetComponent<Shape>().Row
-            into NewGroup
-            where NewGroup.Key >= 2
-                select NewGroup
-            ).ToList();
-
-        if (v.Count > 0)
+        string result = "";
+        
+        foreach (var go in match)
         {
-            return new Optional<int>(v[0].Key);
-        }
-        else
-        {
-            return new Optional<int>();
-        }
-    }
-    
-    private static Optional<int> GetColumnNumberIfThereAreTwoItemsWithSameColumn(IEnumerable<GameObject> match)
-    {
-        var v = (
-            from gameObject in match
-            group gameObject by gameObject.GetComponent<Shape>().Column
-            into NewGroup
-            where NewGroup.Key >= 2
-            select NewGroup
-        ).ToList();
-
-        if (v.Count > 0)
-        {
-            return new Optional<int>(v[0].Key);
-        }
-        else
-        {
-            return new Optional<int>();
-        }
-    }
-    
-
-    public class Optional<T>
-    {
-        public T Value;
-        public bool IsEmpty;
-
-        public static Optional<object> Empty()
-        {
-            return new Optional<object>();
-        }
-
-        public static Optional<T> Of(T v)
-        {
-            return new Optional<T>();
-        }
-
-        public Optional(T value)
-        {
-            this.Value = value;
-            IsEmpty = false;
-        }
-
-        public Optional()
-        {
-            IsEmpty = true;
-        }
-    }
-    
-    private static Optional<Tuple<GameObject, GameObject>> FindWhatToCollapse1(List<GameObject> match, ShapesArray shapes)
-    {
-        /*
-             *   * * * * *
-             *   * * * * *
-             *   * & & * *
-             *   * * * & *
-             *   * * * * *
-             *   * * * * *
-             *
-             * and 
-             * 
-             *   * * * * *
-             *   * * * & *
-             *   * & & * *
-             *   * * * * *
-             *   * * * * *
-             *   * * * * *
-             *
-             * and
-             * 
-             *   * * * * *
-             *   * * * * *
-             *   * & & * *
-             *   & * * * *
-             *   * * * * *
-             *   * * * * *
-             *
-             * and
-             *
-             *   * * * * *
-             *   & * * * *
-             *   * & & * *
-             *   * * * * *
-             *   * * * * *
-             *   * * * * *
-             */
-    
-        var list = (
-            from go in match
-            select go.GetComponent<Shape>() into shape 
-            group shape by shape.Row
-            into NewGroup
-            where NewGroup.ToList().Count >= 2
-            select NewGroup
-        ).ToList();
-
-        if (list.Count == 0)
-        {
-            return new Optional<Tuple<GameObject, GameObject>>();
+            var shape = go.GetComponent<Shape>();
+            result += shape.Row + ":" + shape.Column + ",";
         }
         
-        int row = list[0].Key;
-        GameObject goToMove = (
-            from gameObject in match
-            where gameObject.GetComponent<Shape>().Row != row
-            select new {gameObject}
-        ).Single().gameObject;
-        
-        GameObject targetGo = shapes[row, goToMove.GetComponent<Shape>().Column];
-        
-        return new Optional<Tuple<GameObject, GameObject>>(new Tuple<GameObject, GameObject>(goToMove, targetGo));
+        return result;
     }
-    
-        private static Optional<Tuple<GameObject, GameObject>> FindWhatToCollapse2(List<GameObject> match, ShapesArray shapes)
-        {
-            /*
-         *   * * * * *
-         *   * * * * *
-         *   * * & * *
-         *   * * * & *
-         *   * * * & *
-         *   * * * * *
-         *
-         * and 
-         * 
-         *   * * * * *
-         *   * * * * *
-         *   * * * * &
-         *   * * * & *
-         *   * * * & *
-         *   * * * * *
-         *
-         * and
-         * 
-         *   * * * * *
-         *   * * * * *
-         *   * * * * *
-         *   * * * & *
-         *   * * * & *
-         *   * * & * *
-         *
-         * and
-         
-         *   * * * * *
-         *   * * * * *
-         *   * * * * *
-         *   * * * & *
-         *   * * * & *
-         *   * * * * &
-         * 
-         */
-            var list = (
-                from go in match
-                select go.GetComponent<Shape>() into shape 
-                group shape by shape.Column
-                into NewGroup
-                where NewGroup.ToList().Count >= 2
-                select NewGroup
-            ).ToList();
-    
-            if (list.Count == 0)
-            {
-                return new Optional<Tuple<GameObject, GameObject>>();
-            }
-            
-            int column = list[0].Key;
-            GameObject goToMove = (
-                from gameObject in match
-                where gameObject.GetComponent<Shape>().Column != column 
-                select new {gameObject}
-            ).Single().gameObject;
-
-            GameObject targetGo = shapes[goToMove.GetComponent<Shape>().Row, column];
-            
-            return new Optional<Tuple<GameObject, GameObject>>(new Tuple<GameObject, GameObject>(goToMove, targetGo));
-        }
-
-        public static Optional<Tuple<GameObject, GameObject>> FindWhatToCollapse3(List<GameObject> match, ShapesArray shapes)
-        {
-         /*
-         *   * * * * *
-         *   * * * & *
-         *   * * * * *
-         *   * * * & *
-         *   * * * & *
-         *   * * * * *
-         *
-         * and 
-         * 
-         *   * * * * *
-         *   * * * * *
-         *   * * * & *
-         *   * * * & *
-         *   * * * * *
-         *   * * * & *
-         *
-         */
-
-         var shapesArray = from go in match
-             select go.GetComponent<Shape>()
-             into shape select shape;
-
-         var list = (
-             from shape in shapesArray
-             group shape by shape.Row
-             into groupedByRow
-             where groupedByRow.ToList().Count == match.Count
-             select groupedByRow
-         ).ToList();
-
-         if (list.Count == 0)
-         {
-             return new Optional<Tuple<GameObject, GameObject>>();
-         }
-
-         var row = list[0].Key;
-
-         /*
-            1:2
-            2:2
-            4:2
-         
-            1:2
-            3:2
-            4:2
-
-           1) найти какой из этих 2х вариантов: 
-             1. отсортировать по column
-             2. 1.column - 0.column == 1 ?
-               1. следующий элемент = 0.column + 1  
-               2. следующий элемент = 2.column - 1
-          */
-
-         var sortedShapes = (
-             from shape in shapesArray
-             orderby shape.Row
-             select shape
-             ).ToList();
-
-         if (sortedShapes[1].Row - sortedShapes[0].Row == 1)
-         {
-             var targetRow = sortedShapes[0].Row + 1;
-             var targetColumn = sortedShapes[0].Column; 
-             
-             var targetGo = shapes[targetRow, targetColumn];
-
-             return new Optional<Tuple<GameObject, GameObject>>(
-                 new Tuple<GameObject, GameObject>(sortedShapes[0].gameObject, targetGo));
-         }
-         else
-         {
-             var targetRow = sortedShapes[sortedShapes.Count - 1].Row - 1;
-             var targetColumn = sortedShapes[0].Column; 
-             
-             var targetGo = shapes[targetRow, targetColumn];
-
-             return new Optional<Tuple<GameObject, GameObject>>(
-                 new Tuple<GameObject, GameObject>(sortedShapes[0].gameObject, targetGo));
-         }
-         
-        }
-        
-        public static Optional<Tuple<GameObject, GameObject>> FindWhatToCollapse4(List<GameObject> match, ShapesArray shapes)
-        {
-         /*
-         *   * * * * *
-         *   & & * & *
-         *   * * * * *
-         *   * * * * *
-         *   * * * * *
-         *   * * * * *
-         *
-         * and 
-         * 
-         *   * * * * *
-         *   * * * * *
-         *   * & * & &
-         *   * * * * *
-         *   * * * * *
-         *   * * * * *
-         *
-         */
-
-         var shapesArray = from go in match
-             select go.GetComponent<Shape>()
-             into shape select shape;
-
-         var list = (
-             from shape in shapesArray
-             group shape by shape.Column
-             into groupedByRow
-             where groupedByRow.ToList().Count == match.Count
-             select groupedByRow
-         ).ToList();
-
-         if (list.Count == 0)
-         {
-             return new Optional<Tuple<GameObject, GameObject>>();
-         }
-
-         var column = list[0].Key;
-
-         /*
-            1:2
-            2:2
-            4:2
-         
-            1:2
-            3:2
-            4:2
-
-           1) найти какой из этих 2х вариантов: 
-             1. отсортировать по column
-             2. 1.column - 0.column == 1 ?
-               1. следующий элемент = 0.column + 1  
-               2. следующий элемент = 2.column - 1
-          */
-
-         var sortedShapes = (
-             from shape in shapesArray
-             orderby shape.Column
-             select shape
-             ).ToList();
-
-         if (sortedShapes[1].Column - sortedShapes[0].Column == 1)
-         {
-             var targetRow = sortedShapes[0].Column;
-             var targetColumn = sortedShapes[0].Column + 1;
-             
-             var targetGo = shapes[targetRow, targetColumn];
-
-             return new Optional<Tuple<GameObject, GameObject>>(
-                 new Tuple<GameObject, GameObject>(sortedShapes[0].gameObject, targetGo));
-         }
-         else
-         {
-             var targetRow = sortedShapes[0].Column;
-             var targetColumn = sortedShapes[sortedShapes.Count - 1].Column - 1;
-             
-             var targetGo = shapes[targetRow, targetColumn];
-
-             return new Optional<Tuple<GameObject, GameObject>>(new Tuple<GameObject, GameObject>(sortedShapes[0].gameObject, targetGo));
-         }
-         
-        }
 }
 

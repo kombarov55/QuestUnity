@@ -21,8 +21,7 @@ public class ShapesManager : MonoBehaviour
 
     public readonly Vector2 BottomRight = new Vector2(-1.67f, -4.27f);
     public readonly Vector2 CandySize = new Vector2(0.7f, 0.7f);
-
-    private GameState state = GameState.None;
+    
     private GameObject hitGo = null;
     private Vector2[] SpawnPositions;
     public GameObject[] CandyPrefabs;
@@ -187,12 +186,12 @@ public class ShapesManager : MonoBehaviour
         if (ShowDebugInfo)
             DebugText.text = DebugUtilities.GetArrayContents(shapes);
 
-        if (state == GameState.EnemyTurn)
+        if (_stateManager.GameState == GameState.EnemyTurn)
         {
             return;
         }
         
-        if (state == GameState.None)
+        if (_stateManager.GameState == GameState.None)
         {
             //user has clicked or touched
             if (Input.GetMouseButtonDown(0))
@@ -202,12 +201,12 @@ public class ShapesManager : MonoBehaviour
                 if (hit.collider != null) //we have a hit!!!
                 {
                     hitGo = hit.collider.gameObject;
-                    state = GameState.SelectionStarted;
+                    _stateManager.GameState = GameState.SelectionStarted;
                 }
                 
             }
         }
-        else if (state == GameState.SelectionStarted)
+        else if (_stateManager.GameState == GameState.SelectionStarted)
         {
             //user dragged
             if (Input.GetMouseButton(0))
@@ -226,11 +225,11 @@ public class ShapesManager : MonoBehaviour
                     if (!Utilities.AreVerticalOrHorizontalNeighbors(hitGo.GetComponent<Shape>(),
                         hit.collider.gameObject.GetComponent<Shape>()))
                     {
-                        state = GameState.None;
+                        _stateManager.GameState = GameState.None;
                     }
                     else
                     {
-                        state = GameState.Animating;
+                        _stateManager.GameState = GameState.Animating;
                         FixSortingLayer(hitGo, hit.collider.gameObject);
                         StartCoroutine(FindMatchesAndCollapse(hit.collider.gameObject, () => StartCoroutine(StartEnemyTurn())));
                     }
@@ -353,7 +352,7 @@ public class ShapesManager : MonoBehaviour
             timesRun++;
         }
 
-        state = GameState.None;
+        _stateManager.GameState = GameState.None;
         StartCheckForPotentialMatches();
         
         then.Invoke();
@@ -365,7 +364,8 @@ public class ShapesManager : MonoBehaviour
      */
     private IEnumerator StartEnemyTurn()
     {
-        state = GameState.EnemyTurn;
+        _stateManager.GameState = GameState.EnemyTurn;
+        _stateManager.IsPlayersTurn = false;
         
         yield return new WaitForSeconds(1);
         
@@ -376,7 +376,8 @@ public class ShapesManager : MonoBehaviour
 
         StartCoroutine(FindMatchesAndCollapse(itemsToSwap.Item2, () =>
         {
-            state = GameState.None;
+            _stateManager.GameState = GameState.None;
+            _stateManager.IsPlayersTurn = true;
         }));
     }
 

@@ -9,6 +9,9 @@ namespace Other.MatchThreeGame.Assets.Scripts
     public class StateManager : MonoBehaviour
     {
         private Level _level;
+        private GameState _gameGameState = GameState.None;
+        private bool _isPlayersTurn = true;
+        
         public Level Level
         {
             get => _level;
@@ -22,9 +25,31 @@ namespace Other.MatchThreeGame.Assets.Scripts
             }
         }
 
+        public GameState GameState 
+        {
+            get => _gameGameState;
+            set => _gameGameState = value;
+        }
+        
+        public bool IsPlayersTurn 
+        {
+            get => _isPlayersTurn;
+            set
+            {
+                _isPlayersTurn = value;
+                foreach (var subscriber in OnIsPlayersTurnSubscribers)
+                {
+                    subscriber.Invoke(value);
+                }
+            }
+        }
+        
+        
+
         private List<Action<Level>> OnLevelInitializationSubscribers = new List<Action<Level>>();
         private List<Action<Level>> OnScoreChangedSubscribers = new List<Action<Level>>();
         private List<Action<Level>> OnTurnSubscribers = new List<Action<Level>>();
+        private List<Action<bool>> OnIsPlayersTurnSubscribers = new List<Action<bool>>();
 
         private void Start()
         {
@@ -51,6 +76,12 @@ namespace Other.MatchThreeGame.Assets.Scripts
         public void SubscribeOnScoreChanged(Action<Level> subscriber)
         {
             OnScoreChangedSubscribers.Add(subscriber);
+        }
+
+        public void SubscribeOnIsPlayersTurn(Action<bool> subscriber)
+        {
+            OnIsPlayersTurnSubscribers.Add(subscriber);
+            subscriber.Invoke(_isPlayersTurn);
         }
 
         public void SetScore(int newValue)
