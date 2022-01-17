@@ -24,10 +24,10 @@ namespace Other.MatchThreeGame.Assets.Scripts
                         OnHeal(stateManager, stateManager.IsPlayersTurn);
                         break;
                     case CollapseType.Coin: 
-                        OnCoin(stateManager, stateManager.IsPlayersTurn);
+                        OnHit(stateManager, stateManager.IsPlayersTurn);
                         break;
                     case CollapseType.Mana: 
-                        OnMana(stateManager, stateManager.IsPlayersTurn);
+                        OnHit(stateManager, stateManager.IsPlayersTurn);
                         break;
                 }
             });
