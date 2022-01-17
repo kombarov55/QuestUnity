@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Other.MatchThreeGame.Assets.Scripts.Model;
 using Other.MatchThreeGame.Assets.Scripts.Service;
 using UnityEngine;
@@ -85,7 +86,7 @@ namespace Other.MatchThreeGame.Assets.Scripts
         private List<Action<bool>> OnIsPlayersTurnSubscribers = new List<Action<bool>>();
         private List<Action<int>> OnPlayerHealthChangedSubscribers = new List<Action<int>>();
         private List<Action<int>> OnEnemyHealthChangedSubscribers = new List<Action<int>>();
-        private List<Action<IEnumerable<GameObject>>> OnCollapseSubscribers = new List<Action<IEnumerable<GameObject>>>();
+        private List<Action<List<GameObject>>> OnCollapseSubscribers = new List<Action<List<GameObject>>>();
 
         private void Start()
         {
@@ -152,16 +153,18 @@ namespace Other.MatchThreeGame.Assets.Scripts
             action.Invoke(_enemyHealthLeft);
         }
 
-        public void SubscribeOnCollapse(Action<IEnumerable<GameObject>> subscriber)
+        public void SubscribeOnCollapse(Action<List<GameObject>> subscriber)
         {
             OnCollapseSubscribers.Add(subscriber);
         }
 
         public void OnCollapse(IEnumerable<GameObject> match)
         {
+            var list = match.ToList();
+            
             foreach (var subscriber in OnCollapseSubscribers)
             {
-                subscriber.Invoke(match);
+                subscriber.Invoke(list);
             }
         }
     }
