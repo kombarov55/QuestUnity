@@ -20,7 +20,7 @@ namespace Other.MatchThreeGame.Assets.Scripts
 
         public void ShowGoals(Level level)
         {
-            StartCoroutine(_toastBehaviour.ShowGoals(level.Goals[0]));            
+            StartCoroutine(_toastBehaviour.ShowWithFlyAway("Победите противника", 1));            
         }
 
         public void ShowFailure()

@@ -13,7 +13,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
             
             stateManager.SubscribeOnScoreChanged(level =>
             {
-                text.text = level.Goals[0].CurrentAmount.ToString();
+                text.text = stateManager.Score.ToString();
             });
         }
     }

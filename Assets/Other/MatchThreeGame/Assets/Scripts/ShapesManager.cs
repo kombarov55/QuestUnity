@@ -309,6 +309,8 @@ public class ShapesManager : MonoBehaviour
         {
             //increase score
             IncreaseScore((totalMatches.Count() - 2) * Constants.Match3Score);
+            
+            _stateManager.OnCollapse(totalMatches);
 
             if (timesRun >= 2)
                 IncreaseScore(Constants.SubsequentMatchScore);
@@ -480,7 +482,7 @@ public class ShapesManager : MonoBehaviour
 
     private void IncreaseScore(int amount)
     {
-        _stateManager.IncreaseScore(amount);
+        //_stateManager.IncreaseScore(amount);
     }
 
     /// <summary>

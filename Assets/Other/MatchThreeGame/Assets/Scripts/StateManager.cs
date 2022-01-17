@@ -11,7 +11,11 @@ namespace Other.MatchThreeGame.Assets.Scripts
         private Level _level;
         private GameState _gameGameState = GameState.None;
         private bool _isPlayersTurn = true;
+        private int _playerHealthLeft;
+        private int _enemyHealthLeft;
         
+        public int Score;
+
         public Level Level
         {
             get => _level;
@@ -19,6 +23,35 @@ namespace Other.MatchThreeGame.Assets.Scripts
             {
                 _level = value;
                 foreach (var subscriber in OnLevelInitializationSubscribers)
+                {
+                    subscriber.Invoke(value);
+                }
+
+                PlayerHealthLeft = value.PlayerHealth;
+                EnemyHealthLeft = value.EnemyHealth;
+            }
+        }
+
+        public int PlayerHealthLeft
+        {
+            get => _playerHealthLeft;
+            set
+            {
+                _playerHealthLeft = value;
+                foreach (var subscriber in OnPlayerHealthChangedSubscribers)
+                {
+                    subscriber.Invoke(value);
+                }
+            }
+        }
+        
+        public int EnemyHealthLeft
+        {
+            get => _enemyHealthLeft;
+            set
+            {
+                _enemyHealthLeft = value;
+                foreach (var subscriber in OnEnemyHealthChangedSubscribers)
                 {
                     subscriber.Invoke(value);
                 }
@@ -50,12 +83,15 @@ namespace Other.MatchThreeGame.Assets.Scripts
         private List<Action<Level>> OnScoreChangedSubscribers = new List<Action<Level>>();
         private List<Action<Level>> OnTurnSubscribers = new List<Action<Level>>();
         private List<Action<bool>> OnIsPlayersTurnSubscribers = new List<Action<bool>>();
+        private List<Action<int>> OnPlayerHealthChangedSubscribers = new List<Action<int>>();
+        private List<Action<int>> OnEnemyHealthChangedSubscribers = new List<Action<int>>();
+        private List<Action<IEnumerable<GameObject>>> OnCollapseSubscribers = new List<Action<IEnumerable<GameObject>>>();
 
         private void Start()
         {
-            GoalService goalService = new GoalService();
+            LevelService levelService = new LevelService();
 
-            Level = goalService.GetCurrentGoal();
+            Level = levelService.GetCurrentLevel();
         }
 
 
@@ -86,19 +122,14 @@ namespace Other.MatchThreeGame.Assets.Scripts
 
         public void SetScore(int newValue)
         {
-            _level.Goals[0].CurrentAmount = newValue;
+            Score = newValue;
             
             foreach (var subscriber in OnScoreChangedSubscribers)
             {
                 subscriber.Invoke(_level);
             }
         }
-
-        public void IncreaseScore(int newValue)
-        {
-            SetScore(_level.Goals[0].CurrentAmount + newValue);
-        }
-
+        
         public void TurnMade()
         {
             Level.TurnsLeft -= 1;
@@ -106,6 +137,31 @@ namespace Other.MatchThreeGame.Assets.Scripts
             foreach (var onTurnSubscriber in OnTurnSubscribers)
             {
                 onTurnSubscriber.Invoke(Level);
+            }
+        }
+
+        public void SubscribeOnPlayerHealthChanged(Action<int> action)
+        {
+            OnPlayerHealthChangedSubscribers.Add(action);
+            action.Invoke(_playerHealthLeft);
+        }
+        
+        public void SubscribeOnEnemyHealthChanged(Action<int> action)
+        {
+            OnEnemyHealthChangedSubscribers.Add(action);
+            action.Invoke(_enemyHealthLeft);
+        }
+
+        public void SubscribeOnCollapse(Action<IEnumerable<GameObject>> subscriber)
+        {
+            OnCollapseSubscribers.Add(subscriber);
+        }
+
+        public void OnCollapse(IEnumerable<GameObject> match)
+        {
+            foreach (var subscriber in OnCollapseSubscribers)
+            {
+                subscriber.Invoke(match);
             }
         }
     }

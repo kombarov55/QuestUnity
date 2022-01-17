@@ -4,17 +4,20 @@ namespace Other.MatchThreeGame.Assets.Scripts.Model
 {
     public class Level
     {
-        public List<Goal> Goals;
         public int TurnsAmount;
         public int TurnsLeft;
 
+        public int PlayerHealth;
+        public int EnemyHealth;
+
         public Level() { }
 
-        public Level(List<Goal> goals, int turnsAmount)
+        public Level(int turnsAmount, int playerHealth, int enemyHealth)
         {
-            Goals = goals;
             TurnsAmount = turnsAmount;
             TurnsLeft = turnsAmount;
+            PlayerHealth = playerHealth;
+            EnemyHealth = enemyHealth;
         }
     }
 }

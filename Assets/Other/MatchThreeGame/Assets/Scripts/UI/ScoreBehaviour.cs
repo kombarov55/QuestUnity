@@ -12,8 +12,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
             Slider slider = gameObject.GetComponent<Slider>();
             StateManager stateManager = GameObject.Find("State").GetComponent<StateManager>();
             
-            stateManager.SubscribeOnLevelInitialized(level => slider.maxValue = level.Goals[0].Amount);
-            stateManager.SubscribeOnScoreChanged(level => slider.value = level.Goals[0].CurrentAmount);
+            stateManager.SubscribeOnScoreChanged(level => slider.value = stateManager.Score);
         }
     }
 }
