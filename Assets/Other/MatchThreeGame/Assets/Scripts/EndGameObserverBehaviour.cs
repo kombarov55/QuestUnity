@@ -17,6 +17,30 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
                 sceneController.ShowGoals(level);
             });
             
+            stateManager.SubscribeOnPlayerHealthChanged(healthAmount =>
+            {
+                if (healthAmount <= 0)
+                {
+                    sceneController.ShowFailure();
+                }
+            });
+            
+            stateManager.SubscribeOnEnemyHealthChanged(healthAmount =>
+            {
+                if (healthAmount <= 0)
+                {
+                    sceneController.ShowVictory();
+                }
+            });
+            
+            stateManager.SubscribeOnTurn(level =>
+            {
+                if (level.TurnsLeft <= 0)
+                {
+                    sceneController.ShowFailure();
+                }
+            });
+            
         }
     }
 }

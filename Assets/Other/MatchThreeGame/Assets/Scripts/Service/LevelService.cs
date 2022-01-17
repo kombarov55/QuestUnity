@@ -7,7 +7,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
     {
         public Level GetCurrentLevel()
         {
-            return new Level(300, 30, 10);
+            return new Level(1, 30, 10);
         }
     }
 }

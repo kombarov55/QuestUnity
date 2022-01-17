@@ -13,9 +13,9 @@ namespace Other.MatchThreeGame.Assets.Scripts
         private bool _isPlayersTurn = true;
         private int _playerHealthLeft;
         private int _enemyHealthLeft;
-        
-        public int Score;
 
+        public int Score;
+ 
         public Level Level
         {
             get => _level;

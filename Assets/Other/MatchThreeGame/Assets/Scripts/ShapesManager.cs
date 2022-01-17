@@ -287,8 +287,12 @@ public class ShapesManager : MonoBehaviour
         }
         else
         {
-            _stateManager.TurnMade();
             turnMade = true;
+            
+            if (_stateManager.IsPlayersTurn)
+            {
+                _stateManager.TurnMade();
+            }
         }
 
         //if more than 3 matches and no Bonus is contained in the line, we will award a new Bonus
