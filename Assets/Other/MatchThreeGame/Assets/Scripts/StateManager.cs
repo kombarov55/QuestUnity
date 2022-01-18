@@ -46,6 +46,11 @@ namespace Other.MatchThreeGame.Assets.Scripts
             get => _playerHealthLeft;
             set
             {
+                if (value < 0)
+                {
+                    value = 0;
+                }
+                
                 _playerHealthLeft = value;
                 foreach (var subscriber in OnPlayerHealthChangedSubscribers)
                 {
@@ -59,6 +64,11 @@ namespace Other.MatchThreeGame.Assets.Scripts
             get => _enemyHealthLeft;
             set
             {
+                if (value < 0)
+                {
+                    value = 0;
+                }
+                
                 _enemyHealthLeft = value;
                 foreach (var subscriber in OnEnemyHealthChangedSubscribers)
                 {
@@ -72,6 +82,11 @@ namespace Other.MatchThreeGame.Assets.Scripts
             get => _playerManaLeft;
             set
             {
+                if (value < 0)
+                {
+                    value = 0;
+                }
+                
                 _playerManaLeft = value;
                 foreach (var subscriber in OnPlayerManaChangedSubscribers)
                 {
@@ -85,6 +100,11 @@ namespace Other.MatchThreeGame.Assets.Scripts
             get => _enemyManaLeft;
             set
             {
+                if (value < 0)
+                {
+                    value = 0;
+                }
+                
                 _enemyManaLeft = value;
                 foreach (var subscriber in OnEnemyManaChangedSubscribers)
                 {

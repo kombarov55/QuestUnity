@@ -4454,6 +4454,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   closeButton: {fileID: 419807487}
+  scrollViewContent: {fileID: 127590025}
+  spellPrefab: {fileID: 3273699252302246111, guid: 94c83c355ac6eac4bbff5c36329510c2, type: 3}
 --- !u!114 &1497896374
 MonoBehaviour:
   m_ObjectHideFlags: 0
