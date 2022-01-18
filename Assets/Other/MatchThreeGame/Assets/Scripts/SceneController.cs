@@ -10,12 +10,15 @@ namespace Other.MatchThreeGame.Assets.Scripts
     {
 
         [SerializeField] private GameObject toastComponent;
+        [SerializeField] private AudioButton spellBookButton;
+        [SerializeField] private GameObject spellBookPanel;
 
         private ToastBehaviour _toastBehaviour;
         
         private void Start()
         {
             _toastBehaviour = toastComponent.GetComponent<ToastBehaviour>();
+            spellBookButton.OnClick = () => spellBookPanel.SetActive(true);
         }
 
         public void ShowGoals(Level level)

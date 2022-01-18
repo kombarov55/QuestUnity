@@ -48,11 +48,11 @@ namespace Other.MatchThreeGame.Assets.Scripts
         {
             if (isPlayersTurn)
             {
-                stateManager.EnemyHealthLeft -= 1;
+                stateManager.EnemyHealthLeft -= 5;
             }
             else
             {
-                stateManager.PlayerHealthLeft -= 1;                    
+                stateManager.PlayerHealthLeft -= 5;                    
             }    
         }
         private void OnHeal(StateManager stateManager, bool isPlayersTurn) 
