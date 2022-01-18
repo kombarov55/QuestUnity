@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Other.MatchThreeGame.Assets.Scripts.Model;
+using Other.MatchThreeGame.Assets.Scripts.Model.StatusEffects;
 using UnityEngine;
 
 namespace Other.MatchThreeGame.Assets.Scripts.Service
@@ -79,15 +80,31 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                 ), 
                 new Spell(
                     "DoubleTurn",
-                    "Двойной ход",
-                    "Сходить 2 раза",
+                    "Тройной удар",
+                    "Ваша скорость возрастает, благодаря чему перед атакой врага вы можете атаковать трижды",
                     "DoubleTurn.png",
-                    2,
+                    3,
+                    new List<SpellAction>()
+                    {
+                        new SequentialTurnsAction(3, true)
+                    },
+                    new List<StatusEffect>(),
+                    new List<StatusEffect>()
+                ),
+                new Spell(
+                    "MultipleDoubleTurn",
+                    "Скорость ветра",
+                    "Ваша скорость возрастает, благодаря чему в течение 3х ходов вы сможете атаковать дважды",
+                    "DoubleTurn.png",
+                    6,
                     new List<SpellAction>()
                     {
                         new SequentialTurnsAction(2, true)
+                    }, 
+                    new List<StatusEffect>()
+                    {
+                        new SequentialTurnsStatusEffect(2, "doubleturn.png", 2)
                     },
-                    new List<StatusEffect>(),
                     new List<StatusEffect>()
                 )
             };
