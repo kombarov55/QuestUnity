@@ -24,7 +24,7 @@ namespace Other.MatchThreeGame.Assets.Scripts
                         OnHeal(stateManager, stateManager.IsPlayersTurn);
                         break;
                     case CollapseType.Coin: 
-                        OnHit(stateManager, stateManager.IsPlayersTurn);
+                        OnCoin(stateManager, stateManager.IsPlayersTurn);
                         break;
                     case CollapseType.Mana: 
                         OnMana(stateManager, stateManager.IsPlayersTurn);
@@ -69,7 +69,10 @@ namespace Other.MatchThreeGame.Assets.Scripts
         
         private void OnCoin(StateManager stateManager, bool isPlayersTurn) 
         {
-            Debug.Log("COIN");
+            if (isPlayersTurn)
+            {
+                stateManager.CoinCount += 1;
+            }
         }
         
         private void OnMana(StateManager stateManager, bool isPlayersTurn) 

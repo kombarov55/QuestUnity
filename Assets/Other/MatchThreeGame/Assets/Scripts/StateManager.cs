@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using DefaultNamespace;
 using Other.MatchThreeGame.Assets.Scripts.Model;
 using Other.MatchThreeGame.Assets.Scripts.Service;
 using UnityEngine;
@@ -16,6 +17,7 @@ namespace Other.MatchThreeGame.Assets.Scripts
         private int _enemyHealthLeft;
         private int _playerManaLeft;
         private int _enemyManaLeft;
+        private int _coin;
 
         public int Score;
  
@@ -34,6 +36,8 @@ namespace Other.MatchThreeGame.Assets.Scripts
                 EnemyHealthLeft = value.EnemyHealth;
                 PlayerManaLeft = 10;
                 EnemyManaLeft = 10;
+
+                CoinCount = Prefs.CoinCount;
             }
         }
 
@@ -107,6 +111,20 @@ namespace Other.MatchThreeGame.Assets.Scripts
                 }
             }
         }
+
+        public int CoinCount
+        {
+            get => _coin;
+            set
+            {
+                _coin = value;
+                Prefs.CoinCount = value;
+                foreach (var subscriber in OnCoinCountChangedSubscribers)
+                {
+                    subscriber.Invoke(value);
+                }
+            }
+        }
         
         
 
@@ -119,6 +137,7 @@ namespace Other.MatchThreeGame.Assets.Scripts
         private List<Action<int>> OnPlayerManaChangedSubscribers = new List<Action<int>>();
         private List<Action<int>> OnEnemyManaChangedSubscribers = new List<Action<int>>();
         private List<Action<List<GameObject>>> OnCollapseSubscribers = new List<Action<List<GameObject>>>();
+        private List<Action<int>> OnCoinCountChangedSubscribers = new List<Action<int>>();
 
         private void Start()
         {
@@ -210,6 +229,12 @@ namespace Other.MatchThreeGame.Assets.Scripts
             {
                 subscriber.Invoke(list);
             }
+        }
+
+        public void SubscribeOnCoinCountChanged(Action<int> action)
+        {
+            OnCoinCountChangedSubscribers.Add(action);
+            action.Invoke(_coin);
         }
     }
 }
