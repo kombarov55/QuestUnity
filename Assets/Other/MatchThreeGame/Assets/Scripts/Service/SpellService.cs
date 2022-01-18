@@ -106,6 +106,19 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                         new SequentialTurnsStatusEffect(2, "doubleturn.png", 2)
                     },
                     new List<StatusEffect>()
+                ),
+                new Spell(
+                    "Shield",
+                    "Щит",
+                    "Вы окружает себя энергетическим щитом, уменьшающий получаемый урон от следующей атаки на 4 на протяжении 3х ходов",
+                    "DoubleTurn.png",
+                    6,
+                    new List<SpellAction>(), 
+                    new List<StatusEffect>()
+                    {
+                        new ShieldStatusEffect(3, "img", 4)
+                    },
+                    new List<StatusEffect>()
                 )
             };
         }

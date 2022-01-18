@@ -19,6 +19,8 @@
         
         public static readonly int GoalScore = 1;
         public static readonly int TurnsCount = 30;
+
+        public static readonly int Damage = 5;
     }
 
    

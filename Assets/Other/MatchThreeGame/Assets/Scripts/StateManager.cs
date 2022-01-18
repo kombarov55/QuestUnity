@@ -25,7 +25,9 @@ namespace Other.MatchThreeGame.Assets.Scripts
         public List<RunningStatusEffect> StatusEffectsOnEnemy = new List<RunningStatusEffect>();
         public int SequentialTurnsForPlayer = 1;
         public int SequentialTurnsForEnemy = 1;
-        
+        public int PlayerDamageBlocked = 0;
+        public int EnemyDamageBlocked = 0;
+
         public int Score;
 
         public int TurnsLeft

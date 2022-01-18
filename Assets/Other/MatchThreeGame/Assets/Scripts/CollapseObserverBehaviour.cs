@@ -48,13 +48,19 @@ namespace Other.MatchThreeGame.Assets.Scripts
         {
             if (isPlayersTurn)
             {
-                stateManager.EnemyHealthLeft -= 5;
-                stateManager.OnEnemyHealthChanged(-5);
+                int damageDealt = Constants.Damage - stateManager.EnemyDamageBlocked;
+
+                stateManager.EnemyHealthLeft -= damageDealt;
+                stateManager.EnemyDamageBlocked = 0;
+                stateManager.OnEnemyHealthChanged(-damageDealt);
             }
             else
             {
-                stateManager.PlayerHealthLeft -= 5;
-                stateManager.OnPlayerHealthChanged(-5);
+                int damageDealt = Constants.Damage - stateManager.PlayerDamageBlocked;
+                
+                stateManager.PlayerHealthLeft -= damageDealt;
+                stateManager.PlayerDamageBlocked = 0;
+                stateManager.OnPlayerHealthChanged(-damageDealt);
             }    
         }
         private void OnHeal(StateManager stateManager, bool isPlayersTurn) 
