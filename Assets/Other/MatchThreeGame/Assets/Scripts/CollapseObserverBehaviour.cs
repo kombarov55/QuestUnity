@@ -27,7 +27,7 @@ namespace Other.MatchThreeGame.Assets.Scripts
                         OnHit(stateManager, stateManager.IsPlayersTurn);
                         break;
                     case CollapseType.Mana: 
-                        OnHit(stateManager, stateManager.IsPlayersTurn);
+                        OnMana(stateManager, stateManager.IsPlayersTurn);
                         break;
                 }
             });
@@ -74,7 +74,14 @@ namespace Other.MatchThreeGame.Assets.Scripts
         
         private void OnMana(StateManager stateManager, bool isPlayersTurn) 
         {
-            Debug.Log("MANA");
+            if (isPlayersTurn && stateManager.PlayerManaLeft < stateManager.Level.PlayerMana)
+            {
+                stateManager.PlayerManaLeft += 1;
+            } 
+            else if (stateManager.EnemyManaLeft < stateManager.Level.EnemyMana)
+            {
+                stateManager.EnemyManaLeft += 1;
+            }
         }
     }
 

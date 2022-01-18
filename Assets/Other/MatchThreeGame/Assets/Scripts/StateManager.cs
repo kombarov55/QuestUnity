@@ -14,6 +14,8 @@ namespace Other.MatchThreeGame.Assets.Scripts
         private bool _isPlayersTurn = true;
         private int _playerHealthLeft;
         private int _enemyHealthLeft;
+        private int _playerManaLeft;
+        private int _enemyManaLeft;
 
         public int Score;
  
@@ -30,6 +32,8 @@ namespace Other.MatchThreeGame.Assets.Scripts
 
                 PlayerHealthLeft = value.PlayerHealth;
                 EnemyHealthLeft = value.EnemyHealth;
+                PlayerManaLeft = 10;
+                EnemyManaLeft = 10;
             }
         }
 
@@ -53,6 +57,32 @@ namespace Other.MatchThreeGame.Assets.Scripts
             {
                 _enemyHealthLeft = value;
                 foreach (var subscriber in OnEnemyHealthChangedSubscribers)
+                {
+                    subscriber.Invoke(value);
+                }
+            }
+        }
+        
+        public int PlayerManaLeft
+        {
+            get => _playerManaLeft;
+            set
+            {
+                _playerManaLeft = value;
+                foreach (var subscriber in OnPlayerManaChangedSubscribers)
+                {
+                    subscriber.Invoke(value);
+                }
+            }
+        }
+        
+        public int EnemyManaLeft
+        {
+            get => _enemyManaLeft;
+            set
+            {
+                _enemyManaLeft = value;
+                foreach (var subscriber in OnEnemyManaChangedSubscribers)
                 {
                     subscriber.Invoke(value);
                 }
@@ -86,6 +116,8 @@ namespace Other.MatchThreeGame.Assets.Scripts
         private List<Action<bool>> OnIsPlayersTurnSubscribers = new List<Action<bool>>();
         private List<Action<int>> OnPlayerHealthChangedSubscribers = new List<Action<int>>();
         private List<Action<int>> OnEnemyHealthChangedSubscribers = new List<Action<int>>();
+        private List<Action<int>> OnPlayerManaChangedSubscribers = new List<Action<int>>();
+        private List<Action<int>> OnEnemyManaChangedSubscribers = new List<Action<int>>();
         private List<Action<List<GameObject>>> OnCollapseSubscribers = new List<Action<List<GameObject>>>();
 
         private void Start()
@@ -151,6 +183,18 @@ namespace Other.MatchThreeGame.Assets.Scripts
         {
             OnEnemyHealthChangedSubscribers.Add(action);
             action.Invoke(_enemyHealthLeft);
+        }
+        
+        public void SubscribeOnPlayerManaChanged(Action<int> action)
+        {
+            OnPlayerManaChangedSubscribers.Add(action);
+            action.Invoke(_playerManaLeft);
+        }
+        
+        public void SubscribeOnEnemyManaChanged(Action<int> action)
+        {
+            OnEnemyManaChangedSubscribers.Add(action);
+            action.Invoke(_enemyManaLeft);
         }
 
         public void SubscribeOnCollapse(Action<List<GameObject>> subscriber)
