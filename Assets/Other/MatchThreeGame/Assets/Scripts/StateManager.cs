@@ -12,6 +12,7 @@ namespace Other.MatchThreeGame.Assets.Scripts
     {
         private Level _level;
         private GameState _gameGameState = GameState.None;
+        private int _turnsLeft;
         private bool _isPlayersTurn = true;
         private int _playerHealthLeft;
         private int _enemyHealthLeft;
@@ -25,6 +26,19 @@ namespace Other.MatchThreeGame.Assets.Scripts
         
         public int Score;
 
+        public int TurnsLeft
+        {
+            get => _turnsLeft;
+            set
+            {
+                _turnsLeft = value;
+                foreach (var subscriber in OnTurnsLeftChangedSubscribers)
+                {
+                    subscriber.Invoke(value);
+                }
+            }
+        }
+        
         public Level Level
         {
             get => _level;
@@ -40,6 +54,7 @@ namespace Other.MatchThreeGame.Assets.Scripts
                 EnemyHealthLeft = value.EnemyHealth;
                 PlayerManaLeft = 10;
                 EnemyManaLeft = 10;
+                _turnsLeft = value.TurnsAmount;
 
                 CoinCount = Prefs.CoinCount;
             }
@@ -168,7 +183,7 @@ namespace Other.MatchThreeGame.Assets.Scripts
 
         private List<Action<Level>> OnLevelInitializationSubscribers = new List<Action<Level>>();
         private List<Action<Level>> OnScoreChangedSubscribers = new List<Action<Level>>();
-        private List<Action<Level>> OnTurnSubscribers = new List<Action<Level>>();
+        private List<Action<int>> OnTurnsLeftChangedSubscribers = new List<Action<int>>();
         private List<Action<bool>> OnIsPlayersTurnSubscribers = new List<Action<bool>>();
         private List<Action<int>> OnPlayerHealthChangedSubscribers = new List<Action<int>>();
         private List<Action<int>> OnEnemyHealthChangedSubscribers = new List<Action<int>>();
@@ -207,9 +222,9 @@ namespace Other.MatchThreeGame.Assets.Scripts
             }
         }
         
-        public void SubscribeOnTurn(Action<Level> action)
+        public void SubscribeOnTurn(Action<int> action)
         {
-            OnTurnSubscribers.Add(action);
+            OnTurnsLeftChangedSubscribers.Add(action);
         }
 
         public void SubscribeOnScoreChanged(Action<Level> subscriber)
@@ -221,26 +236,6 @@ namespace Other.MatchThreeGame.Assets.Scripts
         {
             OnIsPlayersTurnSubscribers.Add(subscriber);
             subscriber.Invoke(_isPlayersTurn);
-        }
-
-        public void SetScore(int newValue)
-        {
-            Score = newValue;
-            
-            foreach (var subscriber in OnScoreChangedSubscribers)
-            {
-                subscriber.Invoke(_level);
-            }
-        }
-        
-        public void TurnMade()
-        {
-            Level.TurnsLeft -= 1;
-            
-            foreach (var onTurnSubscriber in OnTurnSubscribers)
-            {
-                onTurnSubscriber.Invoke(Level);
-            }
         }
 
         public void SubscribeOnPlayerHealthChanged(Action<int> action)

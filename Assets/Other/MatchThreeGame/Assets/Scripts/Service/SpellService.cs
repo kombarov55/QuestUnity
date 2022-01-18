@@ -63,6 +63,19 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                         new HealOverTimeStatusEffect(3, "Restoration.png", 3)
                     }, 
                     new List<StatusEffect>()
+                ),
+                new Spell(
+                    "AddTurns",
+                    "Воодушевление",
+                    "Дать себе дополнительно 3 хода",
+                    "AddTurns.png",
+                    4,
+                    new List<SpellAction>()
+                    {
+                        new AdditionalTurnAction(3)
+                    },
+                    new List<StatusEffect>(),
+                    new List<StatusEffect>()
                 )
             };
         }

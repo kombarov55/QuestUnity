@@ -33,9 +33,9 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
                 }
             });
             
-            stateManager.SubscribeOnTurn(level =>
+            stateManager.SubscribeOnTurn(amount =>
             {
-                if (level.TurnsLeft <= 0)
+                if (amount <= 0)
                 {
                     sceneController.ShowFailure();
                 }

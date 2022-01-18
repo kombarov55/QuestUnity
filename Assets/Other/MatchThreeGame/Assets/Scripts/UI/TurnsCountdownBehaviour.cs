@@ -12,7 +12,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
             StateManager stateManager = GameObject.Find("State").GetComponent<StateManager>();
             
             stateManager.SubscribeOnLevelInitialized(level => text.text = level.TurnsLeft.ToString());
-            stateManager.SubscribeOnTurn(level => text.text = level.TurnsLeft.ToString());
+            stateManager.SubscribeOnTurn(amount => text.text = amount.ToString());
         }
     }
 }

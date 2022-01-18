@@ -291,7 +291,7 @@ public class ShapesManager : MonoBehaviour
             
             if (_stateManager.IsPlayersTurn)
             {
-                _stateManager.TurnMade();
+                _stateManager.TurnsLeft -= 1;
             }
         }
 
