@@ -44,6 +44,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
             _stateManager.DidCastInThisTurn = true;
             
             _stateManager.PlayerManaLeft -= _spell.ManaCost;
+            _stateManager.OnPlayerManaChanged(-_spell.ManaCost);
             
             foreach (var spellAction in _spell.SpellActions)
             {

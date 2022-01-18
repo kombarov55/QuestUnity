@@ -8,6 +8,11 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
 
         public bool isPlayer;
         public GameObject currentMana;
+        public bool showManaDiff;
+        public GameObject manaDiffFadingTextPrefab;
+        public GameObject fadingTextInitialPosition;
+        public GameObject fadingTextTargetPosition;
+        public int fadingTextDurationInSeconds = 1;
         
         private void Start()
         {
@@ -23,6 +28,21 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
                     currentManaText.text = mana.ToString();
                     slider.value = mana;
                 });
+
+                if (showManaDiff)
+                {
+                    stateManager.SubscribeOnPlayerManaDiff(diff =>
+                    {                        var go = Instantiate(manaDiffFadingTextPrefab, gameObject.transform);
+                        go.transform.position = fadingTextInitialPosition.transform.position;
+                        
+                        var fadingTextBehaviour = go.GetComponent<FadingTextBehaviour>();
+                        fadingTextBehaviour.Display(
+                            diff,
+                            fadingTextDurationInSeconds,
+                            fadingTextTargetPosition.transform.position
+                        );
+                    });
+                }
             }
             else
             {
@@ -32,6 +52,21 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
                     currentManaText.text = mana.ToString();
                     slider.value = mana;
                 });
+                
+                if (showManaDiff)
+                {
+                    stateManager.SubscribeOnEnemyManaDiff(diff =>
+                    {                        var go = Instantiate(manaDiffFadingTextPrefab, gameObject.transform);
+                        go.transform.position = fadingTextInitialPosition.transform.position;
+                        
+                        var fadingTextBehaviour = go.GetComponent<FadingTextBehaviour>();
+                        fadingTextBehaviour.Display(
+                            diff,
+                            fadingTextDurationInSeconds,
+                            fadingTextTargetPosition.transform.position
+                        );
+                    });
+                }
             }
         }
     }

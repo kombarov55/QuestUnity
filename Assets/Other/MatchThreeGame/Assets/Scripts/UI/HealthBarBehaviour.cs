@@ -9,7 +9,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
         public bool isPlayer;
         public GameObject currentHealth;
         public bool showHealthDelta = false;
-        public GameObject fadingTextPrefab;
+        public GameObject healthDiffFadingTextPrefab;
         public GameObject fadingTextInitialPosition;
         public GameObject fadingTextTargetPosition;
         public float fadingTextDurationInSeconds = 1f;
@@ -37,7 +37,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
                 {
                     stateManager.SubscribeOnPlayerHealthDiff(diff =>
                     {
-                        var go = Instantiate(fadingTextPrefab, gameObject.transform);
+                        var go = Instantiate(healthDiffFadingTextPrefab, gameObject.transform);
                         go.transform.position = fadingTextInitialPosition.transform.position;
                         
                         var fadingTextBehaviour = go.GetComponent<FadingTextBehaviour>();
@@ -65,7 +65,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
                 {
                     stateManager.SubscribeOnEnemyHealthDiff(diff =>
                     {
-                        var go = Instantiate(fadingTextPrefab, gameObject.transform);
+                        var go = Instantiate(healthDiffFadingTextPrefab, gameObject.transform);
                         go.transform.position = fadingTextInitialPosition.transform.position;
                         var fadingTextBehaviour = go.GetComponent<FadingTextBehaviour>();
                         fadingTextBehaviour.Display(

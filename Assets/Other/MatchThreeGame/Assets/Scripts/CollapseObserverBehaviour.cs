@@ -84,10 +84,12 @@ namespace Other.MatchThreeGame.Assets.Scripts
             if (isPlayersTurn && stateManager.PlayerManaLeft < stateManager.Level.PlayerMana)
             {
                 stateManager.PlayerManaLeft += 1;
+                stateManager.OnPlayerManaChanged(1);
             } 
             else if (stateManager.EnemyManaLeft < stateManager.Level.EnemyMana)
             {
                 stateManager.EnemyManaLeft += 1;
+                stateManager.OnEnemyManaChanged(1);
             }
         }
     }
