@@ -50,6 +50,11 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
             {
                 spellAction.Invoke(_stateManager);
             }
+            
+            foreach (var statusEffect in _spell.StatusEffectsOnSelf)
+            {
+                _stateManager.AddStatusEffectOnPlayer(statusEffect);
+            }
         }
     }
 }

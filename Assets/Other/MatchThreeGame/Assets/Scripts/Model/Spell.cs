@@ -10,8 +10,10 @@ namespace Other.MatchThreeGame.Assets.Scripts.Model
         public string ImagePath;
         public int ManaCost;
         public List<SpellAction> SpellActions;
+        public List<StatusEffect> StatusEffectsOnSelf;
+        public List<StatusEffect> StatusEffectsOnEnemy;
 
-        public Spell(string id, string name, string description, string imagePath, int manaCost, List<SpellAction> spellActions)
+        public Spell(string id, string name, string description, string imagePath, int manaCost, List<SpellAction> spellActions, List<StatusEffect> statusEffectsOnSelf, List<StatusEffect> statusEffectsOnEnemy)
         {
             Id = id;
             Name = name;
@@ -19,6 +21,8 @@ namespace Other.MatchThreeGame.Assets.Scripts.Model
             ImagePath = imagePath;
             ManaCost = manaCost;
             SpellActions = spellActions;
+            StatusEffectsOnSelf = statusEffectsOnSelf;
+            StatusEffectsOnEnemy = statusEffectsOnEnemy;
         }
     }
 }
