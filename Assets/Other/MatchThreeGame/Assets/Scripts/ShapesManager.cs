@@ -376,22 +376,25 @@ public class ShapesManager : MonoBehaviour
      */
     private IEnumerator StartEnemyTurn()
     {
-        _stateManager.GameState = GameState.EnemyTurn;
-        _stateManager.IsPlayersTurn = false;
+        _stateManager.BeforeEnemyTurn();
         
-        yield return new WaitForSeconds(1);
-        
-        IEnumerable<GameObject> match = Utilities.GetPotentialMatches(shapes);
-        Tuple<GameObject, GameObject> itemsToSwap = Utilities.FindItemsToSwap(shapes, match);
-
-        hitGo = itemsToSwap.Item1;
-
-        StartCoroutine(FindMatchesAndCollapse(itemsToSwap.Item2, () =>
+        if (!_stateManager.IsPlayersTurn)
         {
-            _stateManager.GameState = GameState.None;
-            _stateManager.IsPlayersTurn = true;
-            _stateManager.DidCastInThisTurn = false;
-        }));
+            _stateManager.GameState = GameState.EnemyTurn;
+            
+            yield return new WaitForSeconds(1);
+
+            IEnumerable<GameObject> match = Utilities.GetPotentialMatches(shapes);
+            Tuple<GameObject, GameObject> itemsToSwap = Utilities.FindItemsToSwap(shapes, match);
+
+            hitGo = itemsToSwap.Item1;
+
+            StartCoroutine(FindMatchesAndCollapse(itemsToSwap.Item2, () =>
+            {
+                _stateManager.GameState = GameState.None;
+                _stateManager.AfterEnemyTurn();
+            }));
+        }
     }
 
     /// <summary>

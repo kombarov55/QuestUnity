@@ -76,6 +76,19 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     },
                     new List<StatusEffect>(),
                     new List<StatusEffect>()
+                ), 
+                new Spell(
+                    "DoubleTurn",
+                    "Двойной ход",
+                    "Сходить 2 раза",
+                    "DoubleTurn.png",
+                    2,
+                    new List<SpellAction>()
+                    {
+                        new SequentialTurnsAction(2, true)
+                    },
+                    new List<StatusEffect>(),
+                    new List<StatusEffect>()
                 )
             };
         }

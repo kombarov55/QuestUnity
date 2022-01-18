@@ -23,6 +23,8 @@ namespace Other.MatchThreeGame.Assets.Scripts
 
         public List<RunningStatusEffect> StatusEffectsOnPlayer = new List<RunningStatusEffect>();
         public List<RunningStatusEffect> StatusEffectsOnEnemy = new List<RunningStatusEffect>();
+        public int SequentialTurnsForPlayer = 1;
+        public int SequentialTurnsForEnemy = 1;
         
         public int Score;
 
@@ -141,14 +143,7 @@ namespace Other.MatchThreeGame.Assets.Scripts
         public bool IsPlayersTurn 
         {
             get => _isPlayersTurn;
-            set
-            {
-                _isPlayersTurn = value;
-                foreach (var subscriber in OnIsPlayersTurnSubscribers)
-                {
-                    subscriber.Invoke(value);
-                }
-            }
+            set =>    _isPlayersTurn = value;
         }
 
         public int CoinCount
@@ -392,6 +387,34 @@ namespace Other.MatchThreeGame.Assets.Scripts
             foreach (var subscriber in OnEnemyStatusEffectRemovedSubscribers)
             {
                 subscriber.Invoke(runningStatusEffect);
+            }
+        }
+
+        public void BeforeEnemyTurn()
+        {
+            SequentialTurnsForPlayer -= 1;
+            if (SequentialTurnsForPlayer == 0)
+            {
+                IsPlayersTurn = false;
+
+                foreach (var subscriber in OnIsPlayersTurnSubscribers)
+                {
+                    subscriber.Invoke(IsPlayersTurn);
+                }
+            } 
+        }
+
+        public void AfterEnemyTurn()
+        {
+            IsPlayersTurn = true;
+            DidCastInThisTurn = false;
+            SequentialTurnsForPlayer = 1;
+            
+            {
+                foreach (var subscriber in OnIsPlayersTurnSubscribers)
+                {
+                    subscriber.Invoke(IsPlayersTurn);
+                }
             }
         }
     }
