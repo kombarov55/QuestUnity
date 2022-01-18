@@ -18,6 +18,7 @@ namespace Other.MatchThreeGame.Assets.Scripts
         private int _playerManaLeft;
         private int _enemyManaLeft;
         private int _coin;
+        private bool _didCastInThisTurn = false;
 
         public int Score;
  
@@ -86,7 +87,7 @@ namespace Other.MatchThreeGame.Assets.Scripts
                 {
                     value = 0;
                 }
-                
+
                 _playerManaLeft = value;
                 foreach (var subscriber in OnPlayerManaChangedSubscribers)
                 {
@@ -146,6 +147,20 @@ namespace Other.MatchThreeGame.Assets.Scripts
             }
         }
         
+        public bool DidCastInThisTurn
+        {
+            get => _didCastInThisTurn;
+            set
+            {
+                _didCastInThisTurn = value;
+                
+                foreach (var subscriber in OnDidCastInThisTurnSubscribers)
+                {
+                    subscriber.Invoke(value);
+                }
+            }
+        }
+        
         
 
         private List<Action<Level>> OnLevelInitializationSubscribers = new List<Action<Level>>();
@@ -158,6 +173,12 @@ namespace Other.MatchThreeGame.Assets.Scripts
         private List<Action<int>> OnEnemyManaChangedSubscribers = new List<Action<int>>();
         private List<Action<List<GameObject>>> OnCollapseSubscribers = new List<Action<List<GameObject>>>();
         private List<Action<int>> OnCoinCountChangedSubscribers = new List<Action<int>>();
+        private List<Action<bool>> OnDidCastInThisTurnSubscribers = new List<Action<bool>>();
+        private List<Action<int>> OnPlayerHealthDiffSubscribers = new List<Action<int>>();
+        private List<Action<int>> OnEnemyHealthDiffSubscribers = new List<Action<int>>();
+        private List<Action<int>> OnPlayerManaDiffSubscribers = new List<Action<int>>();
+        private List<Action<int>> OnEnemyManaDiffSubscribers = new List<Action<int>>();
+        
 
         private void Start()
         {
@@ -255,6 +276,64 @@ namespace Other.MatchThreeGame.Assets.Scripts
         {
             OnCoinCountChangedSubscribers.Add(action);
             action.Invoke(_coin);
+        }
+
+        public void SubscribeOnDidCastInThisTurn(Action<bool> action)
+        {
+            OnDidCastInThisTurnSubscribers.Add(action);
+            action.Invoke(DidCastInThisTurn);
+        }
+
+        public void SubscribeOnPlayerHealthDiff(Action<int> action)
+        {
+            OnPlayerHealthDiffSubscribers.Add(action);
+        }
+        
+        public void SubscribeOnEnemyHealthDiff(Action<int> action)
+        {
+            OnEnemyHealthDiffSubscribers.Add(action);
+        }
+        
+        public void SubscribeOnPlayerManaDiff(Action<int> action)
+        {
+            OnPlayerManaDiffSubscribers.Add(action);
+        }
+        
+        public void SubscribeOnEnemyManaDiff(Action<int> action)
+        {
+            OnEnemyManaDiffSubscribers.Add(action);
+        }
+
+        public void OnPlayerHealthChanged(int amount)
+        {
+            foreach (var subscriber in OnPlayerHealthDiffSubscribers)
+            {
+                subscriber.Invoke(amount);
+            }
+        }
+        
+        public void OnEnemyHealthChanged(int amount)
+        {
+            foreach (var subscriber in OnEnemyHealthDiffSubscribers)
+            {
+                subscriber.Invoke(amount);
+            }
+        }
+        
+        public void OnPlayerManaChanged(int amount)
+        {
+            foreach (var subscriber in OnPlayerManaDiffSubscribers)
+            {
+                subscriber.Invoke(amount);
+            }
+        }
+        
+        public void OnEnemyManaChanged(int amount)
+        {
+            foreach (var subscriber in OnEnemyManaDiffSubscribers)
+            {
+                subscriber.Invoke(amount);
+            }
         }
     }
 }

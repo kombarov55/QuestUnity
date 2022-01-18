@@ -390,6 +390,7 @@ public class ShapesManager : MonoBehaviour
         {
             _stateManager.GameState = GameState.None;
             _stateManager.IsPlayersTurn = true;
+            _stateManager.DidCastInThisTurn = false;
         }));
     }
 

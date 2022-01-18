@@ -49,10 +49,12 @@ namespace Other.MatchThreeGame.Assets.Scripts
             if (isPlayersTurn)
             {
                 stateManager.EnemyHealthLeft -= 5;
+                stateManager.OnEnemyHealthChanged(-5);
             }
             else
             {
-                stateManager.PlayerHealthLeft -= 5;                    
+                stateManager.PlayerHealthLeft -= 5;
+                stateManager.OnPlayerHealthChanged(-5);
             }    
         }
         private void OnHeal(StateManager stateManager, bool isPlayersTurn) 
@@ -60,10 +62,12 @@ namespace Other.MatchThreeGame.Assets.Scripts
             if (isPlayersTurn && stateManager.PlayerHealthLeft < stateManager.Level.PlayerHealth)
             {
                 stateManager.PlayerHealthLeft += 1;
+                stateManager.OnPlayerHealthChanged(1);
             }
             else if (stateManager.EnemyHealthLeft < stateManager.Level.EnemyHealth)
             {
                 stateManager.EnemyHealthLeft += 1;
+                stateManager.OnEnemyHealthChanged(1);
             }
         }
         

@@ -8,6 +8,11 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
 
         public bool isPlayer;
         public GameObject currentHealth;
+        public bool showHealthDelta = false;
+        public GameObject fadingTextPrefab;
+        public GameObject fadingTextInitialPosition;
+        public GameObject fadingTextTargetPosition;
+        public float fadingTextDurationInSeconds = 1f;
         
         private void Start()
         {
@@ -27,6 +32,22 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
                     slider.value = value;
                     currentHealthText.text = value.ToString();
                 });
+
+                if (showHealthDelta)
+                {
+                    stateManager.SubscribeOnPlayerHealthDiff(diff =>
+                    {
+                        var go = Instantiate(fadingTextPrefab, gameObject.transform);
+                        go.transform.position = fadingTextInitialPosition.transform.position;
+                        
+                        var fadingTextBehaviour = go.GetComponent<FadingTextBehaviour>();
+                        fadingTextBehaviour.Display(
+                            diff,
+                            fadingTextDurationInSeconds,
+                            fadingTextTargetPosition.transform.position
+                        );
+                    });                    
+                }
             }
             else
             {
@@ -39,6 +60,21 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
                     slider.value = value;
                     currentHealthText.text = value.ToString();
                 });
+                
+                if (showHealthDelta)
+                {
+                    stateManager.SubscribeOnEnemyHealthDiff(diff =>
+                    {
+                        var go = Instantiate(fadingTextPrefab, gameObject.transform);
+                        go.transform.position = fadingTextInitialPosition.transform.position;
+                        var fadingTextBehaviour = go.GetComponent<FadingTextBehaviour>();
+                        fadingTextBehaviour.Display(
+                            diff,
+                            fadingTextDurationInSeconds,
+                            fadingTextTargetPosition.transform.position
+                        );
+                    });                    
+                }
             }
         }
     }

@@ -15,10 +15,12 @@
             if (stateManager.IsPlayersTurn)
             {
                 stateManager.EnemyHealthLeft -= DamageAmount;
+                stateManager.OnEnemyHealthChanged(-DamageAmount);
             }
             else
             {
                 stateManager.PlayerHealthLeft -= DamageAmount;
+                stateManager.OnPlayerHealthChanged(-DamageAmount);
             }
         }
     }

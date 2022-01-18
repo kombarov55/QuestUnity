@@ -16,10 +16,12 @@
             if (stateManager.IsPlayersTurn)
             {
                 stateManager.PlayerHealthLeft += HealAmount;
+                stateManager.OnPlayerHealthChanged(HealAmount);
             }
             else
             {
                 stateManager.EnemyHealthLeft += HealAmount;
+                stateManager.OnEnemyHealthChanged(HealAmount);
             }
         }
     }

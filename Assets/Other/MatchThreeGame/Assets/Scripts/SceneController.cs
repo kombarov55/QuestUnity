@@ -18,6 +18,20 @@ namespace Other.MatchThreeGame.Assets.Scripts
         private void Start()
         {
             _toastBehaviour = toastComponent.GetComponent<ToastBehaviour>();
+            StateManager stateManager = GameObject.Find("State").GetComponent<StateManager>();
+
+            stateManager.SubscribeOnDidCastInThisTurn(didCast =>
+            {
+                if (didCast)
+                {
+                    spellBookButton.gameObject.SetActive(false);
+                }
+                else
+                {
+                    spellBookButton.gameObject.SetActive(true);
+                }
+            });
+            
             spellBookButton.OnClick = () => spellBookPanel.SetActive(true);
         }
 
