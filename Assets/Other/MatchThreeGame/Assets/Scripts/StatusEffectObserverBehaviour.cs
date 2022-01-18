@@ -20,13 +20,23 @@ namespace Other.MatchThreeGame.Assets.Scripts
 
                         if (runningStatusEffect.TurnsLeft == 0)
                         {
-                            stateManager.RemoveStatusEffect(runningStatusEffect);
+                            stateManager.RemoveStatusEffectOnPlayer(runningStatusEffect);
                         }
                     }
                 }
                 else
                 {
-                    
+                    foreach (var runningStatusEffect in stateManager.StatusEffectsOnEnemy)
+                    {
+                        runningStatusEffect.TurnsLeft -= 1;
+                        runningStatusEffect.StatusEffect.Invoke(stateManager, false);
+                        stateManager.OnStatusEffectTickOnEnemy(runningStatusEffect);
+
+                        if (runningStatusEffect.TurnsLeft == 0)
+                        {
+                            stateManager.RemoveStatusEffectOnEnemy(runningStatusEffect);
+                        }
+                    }
                 }
             });
         }

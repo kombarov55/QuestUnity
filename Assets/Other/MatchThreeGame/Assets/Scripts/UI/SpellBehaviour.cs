@@ -55,6 +55,11 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
             {
                 _stateManager.AddStatusEffectOnPlayer(statusEffect);
             }
+
+            foreach (var statusEffect in _spell.StatusEffectsOnEnemy)
+            {
+                _stateManager.AddStatusEffectOnEnemy(statusEffect);
+            }
         }
     }
 }

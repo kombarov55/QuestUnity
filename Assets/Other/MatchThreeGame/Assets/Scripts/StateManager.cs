@@ -185,6 +185,9 @@ namespace Other.MatchThreeGame.Assets.Scripts
         public List<Action<RunningStatusEffect>> OnPlayerStatusEffectAddedSubscribers = new List<Action<RunningStatusEffect>>();
         public List<Action<RunningStatusEffect>> OnPlayerStatusEffectTickSubscribers = new List<Action<RunningStatusEffect>>();
         public List<Action<RunningStatusEffect>> OnPlayerStatusEffectRemovedSubscribers = new List<Action<RunningStatusEffect>>();
+        public List<Action<RunningStatusEffect>> OnEnemyStatusEffectAddedSubscribers = new List<Action<RunningStatusEffect>>();
+        public List<Action<RunningStatusEffect>> OnEnemyStatusEffectTickSubscribers = new List<Action<RunningStatusEffect>>();
+        public List<Action<RunningStatusEffect>> OnEnemyStatusEffectRemovedSubscribers = new List<Action<RunningStatusEffect>>();
 
 
         private void Start()
@@ -361,7 +364,7 @@ namespace Other.MatchThreeGame.Assets.Scripts
             }
         }
 
-        public void RemoveStatusEffect(RunningStatusEffect runningStatusEffect)
+        public void RemoveStatusEffectOnPlayer(RunningStatusEffect runningStatusEffect)
         {
             StatusEffectsOnPlayer.Remove(runningStatusEffect);
             foreach (var subscriber in OnPlayerStatusEffectRemovedSubscribers)
@@ -370,28 +373,30 @@ namespace Other.MatchThreeGame.Assets.Scripts
             }
         }
         
-        public void seupdate()
+        public void AddStatusEffectOnEnemy(StatusEffect statusEffect)
         {
-            foreach (var runningStatusEffect in StatusEffectsOnPlayer)
+            var runningStatusEffect = new RunningStatusEffect(statusEffect);
+            StatusEffectsOnEnemy.Add(runningStatusEffect);
+            foreach (var subscriber in OnEnemyStatusEffectAddedSubscribers)
             {
-                runningStatusEffect.TurnsLeft -= 1;
-                
-                runningStatusEffect.StatusEffect.Invoke(this, _isPlayersTurn);
+                subscriber.Invoke(runningStatusEffect);
+            }
+        }
 
-                foreach (var subscriber in OnPlayerStatusEffectTickSubscribers)
-                {
-                    subscriber.Invoke(runningStatusEffect);
-                }
+        public void OnStatusEffectTickOnEnemy(RunningStatusEffect runningStatusEffect)
+        {
+            foreach (var subscriber in OnEnemyStatusEffectTickSubscribers)
+            {
+                subscriber.Invoke(runningStatusEffect);
+            }
+        }
 
-                var endedStatusEffects = StatusEffectsOnPlayer.Where(v => v.TurnsLeft == 0);
-                foreach (var statusEffect in endedStatusEffects)
-                {
-                    StatusEffectsOnPlayer.Remove(statusEffect);
-                    foreach (var subscriber in OnPlayerStatusEffectRemovedSubscribers)
-                    {
-                        subscriber.Invoke(statusEffect);
-                    }
-                }
+        public void RemoveStatusEffectOnEnemy(RunningStatusEffect runningStatusEffect)
+        {
+            StatusEffectsOnEnemy.Remove(runningStatusEffect);
+            foreach (var subscriber in OnEnemyStatusEffectRemovedSubscribers)
+            {
+                subscriber.Invoke(runningStatusEffect);
             }
         }
     }
