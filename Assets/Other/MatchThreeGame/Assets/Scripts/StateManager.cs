@@ -339,7 +339,11 @@ namespace Other.MatchThreeGame.Assets.Scripts
 
         public void AddStatusEffectOnPlayer(StatusEffect statusEffect)
         {
-            var runningStatusEffect = new RunningStatusEffect(statusEffect);
+            AddStatusEffectOnPlayer(new RunningStatusEffect(statusEffect));
+        }
+        
+        public void AddStatusEffectOnPlayer(RunningStatusEffect runningStatusEffect)
+        {
             StatusEffectsOnPlayer.Add(runningStatusEffect);
             foreach (var subscriber in OnPlayerStatusEffectAddedSubscribers)
             {
@@ -366,7 +370,11 @@ namespace Other.MatchThreeGame.Assets.Scripts
         
         public void AddStatusEffectOnEnemy(StatusEffect statusEffect)
         {
-            var runningStatusEffect = new RunningStatusEffect(statusEffect);
+            AddStatusEffectOnEnemy(new RunningStatusEffect(statusEffect));
+        }
+        
+        public void AddStatusEffectOnEnemy(RunningStatusEffect runningStatusEffect)
+        {
             StatusEffectsOnEnemy.Add(runningStatusEffect);
             foreach (var subscriber in OnEnemyStatusEffectAddedSubscribers)
             {

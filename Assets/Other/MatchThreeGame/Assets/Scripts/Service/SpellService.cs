@@ -341,6 +341,22 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     },
                     new List<StatusEffect>(),
                     SpellType.Debuff
+                ),
+                new Spell(
+                    "StealBuffs",
+                    "Украсть статус-эффекты",
+                    "Название говорит само за себя))",
+                    "icnreasespellcasts.png",
+                    0,
+                    1,
+                    new List<SpellAction>()
+                    {
+                        new StealStatusEffectAction(v => true)
+                    },
+                    new List<SpellAction>(),
+                    new List<StatusEffect>(),
+                    new List<StatusEffect>(),
+                    SpellType.Buff
                 )
             };
         }
