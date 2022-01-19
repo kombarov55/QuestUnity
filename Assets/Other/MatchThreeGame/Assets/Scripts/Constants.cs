@@ -23,6 +23,8 @@
         public static readonly int Damage = 5;
         public static readonly int Heal = 3;
         public static readonly int Mana = 1;
+
+        public static readonly bool BattleLogEnabled = true;
     }
 
    

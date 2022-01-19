@@ -82,20 +82,29 @@ namespace Other.MatchThreeGame.Assets.Scripts
         }
         private void OnHeal(StateManager stateManager, bool isPlayersTurn) 
         {
-            if (isPlayersTurn && stateManager.PlayerHealthLeft < stateManager.Level.PlayerHealth)
+            if (isPlayersTurn)
             {
-                int healAmount = stateManager.BlockHealingOnPlayer ? 0 : Constants.Heal + stateManager.PlayerHealAddition;
-                
-                stateManager.PlayerHealthLeft += healAmount;
-                stateManager.OnPlayerHealthChanged(healAmount);
+                StateAlterationService.HealOnPlayer(stateManager, Constants.Heal);
             }
-            else if (stateManager.EnemyHealthLeft < stateManager.Level.EnemyHealth)
+            else
             {
-                int healAmount = stateManager.BlockHealingOnEnemy ? 0 : Constants.Heal + stateManager.EnemyHealAddition;
-                
-                stateManager.EnemyHealthLeft += healAmount;
-                stateManager.OnEnemyHealthChanged(healAmount);
+                StateAlterationService.HealOnEnemy(stateManager, Constants.Heal);
             }
+            
+            // if (isPlayersTurn && stateManager.PlayerHealthLeft < stateManager.Level.PlayerHealth)
+            // {
+            //     int healAmount = stateManager.BlockHealingOnPlayer ? 0 : Constants.Heal + stateManager.PlayerHealAddition;
+            //     
+            //     stateManager.PlayerHealthLeft += healAmount;
+            //     stateManager.OnPlayerHealthChanged(healAmount);
+            // }
+            // else if (stateManager.EnemyHealthLeft < stateManager.Level.EnemyHealth)
+            // {
+            //     int healAmount = stateManager.BlockHealingOnEnemy ? 0 : Constants.Heal + stateManager.EnemyHealAddition;
+            //     
+            //     stateManager.EnemyHealthLeft += healAmount;
+            //     stateManager.OnEnemyHealthChanged(healAmount);
+            // }
         }
         
         private void OnCoin(StateManager stateManager, bool isPlayersTurn) 

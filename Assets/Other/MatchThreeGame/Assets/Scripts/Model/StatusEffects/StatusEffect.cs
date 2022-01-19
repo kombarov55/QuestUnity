@@ -16,5 +16,11 @@ namespace Other.MatchThreeGame.Assets.Scripts.Model
         }
 
         public abstract void Tick(StateManager stateManager, bool isOnPlayer);
+
+        public virtual void Rollback()
+        {
+            
+        }
+        
     }
 }

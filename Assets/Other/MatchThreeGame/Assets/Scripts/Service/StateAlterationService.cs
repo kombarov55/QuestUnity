@@ -21,7 +21,24 @@
 
         public static void HealOnPlayer(StateManager stateManager, int amount)
         {
+            int healAmount = amount;
+
+            if (stateManager.BlockHealingOnPlayer)
+            {
+                healAmount = 0;
+            }
+            else
+            {
+                healAmount = amount + stateManager.PlayerHealAddition;
+
+                if (stateManager.PlayerHealthLeft + healAmount > stateManager.Level.PlayerHealth)
+                {
+                    healAmount = stateManager.Level.PlayerHealth - stateManager.PlayerHealthLeft;
+                }
+            }
             
+            stateManager.PlayerHealthLeft += healAmount;
+            stateManager.OnPlayerHealthChanged(healAmount);
         }
         
         public static void DoDamageToPlayer(StateManager stateManager, int damageAmount, bool wasReflected = false)
@@ -43,7 +60,24 @@
         
         public static void HealOnEnemy(StateManager stateManager, int amount)
         {
+            int healAmount = amount;
+
+            if (stateManager.BlockHealingOnEnemy)
+            {
+                healAmount = 0;
+            }
+            else
+            {
+                healAmount = amount + stateManager.EnemyHealAddition;
+
+                if (stateManager.EnemyHealthLeft + healAmount > stateManager.Level.EnemyHealth)
+                {
+                    healAmount = stateManager.Level.EnemyHealth - stateManager.EnemyHealthLeft;
+                }
+            }
             
+            stateManager.EnemyHealthLeft += healAmount;
+            stateManager.OnEnemyHealthChanged(healAmount);
         }
     }
 }

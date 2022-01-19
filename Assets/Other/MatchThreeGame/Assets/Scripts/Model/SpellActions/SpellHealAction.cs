@@ -10,9 +10,9 @@
             HealAmount = healAmount;
         }
     
-        public override void Invoke(StateManager stateManager)
+        public override void Cast(StateManager stateManager, bool isAffectedOnPlayer)
         {
-            if (stateManager.IsPlayersTurn)
+            if (isAffectedOnPlayer)
             {
                 stateManager.PlayerHealthLeft += HealAmount;
                 stateManager.OnPlayerHealthChanged(HealAmount);

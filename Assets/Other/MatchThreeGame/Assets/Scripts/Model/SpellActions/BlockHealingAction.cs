@@ -6,15 +6,15 @@
         {
         }
 
-        public override void Invoke(StateManager stateManager)
+        public override void Cast(StateManager stateManager, bool isAffectedOnPlayer)
         {
-            if (stateManager.IsPlayersTurn)
+            if (isAffectedOnPlayer)
             {
-                stateManager.BlockHealingOnEnemy = true;
+                stateManager.BlockHealingOnPlayer = true;
             }
             else
             {
-                stateManager.BlockHealingOnPlayer = true;
+                stateManager.BlockHealingOnEnemy = true;
             }
         }
     }

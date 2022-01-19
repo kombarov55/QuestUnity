@@ -10,9 +10,9 @@
             Amount = amount;
         }
 
-        public override void Invoke(StateManager stateManager)
+        public override void Cast(StateManager stateManager, bool isAffectedOnPlayer)
         {
-            if (stateManager.IsPlayersTurn)
+            if (isAffectedOnPlayer)
             {
                 stateManager.PlayerDamageAddition = Amount;
             }

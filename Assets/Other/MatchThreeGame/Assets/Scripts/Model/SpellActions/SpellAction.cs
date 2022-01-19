@@ -10,7 +10,7 @@
             ActionType = actionType;
         }
 
-        public abstract void Invoke(StateManager stateManager);
+        public abstract void Cast(StateManager stateManager, bool IsAffectedOnPlayer);
     }
 
 }

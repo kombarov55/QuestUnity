@@ -9,7 +9,7 @@
             TurnsToAdd = turnsToAdd;
         }
 
-        public override void Invoke(StateManager stateManager)
+        public override void Cast(StateManager stateManager, bool isAffectedOnPlayer)
         {
             stateManager.TurnsLeft += TurnsToAdd;
         }

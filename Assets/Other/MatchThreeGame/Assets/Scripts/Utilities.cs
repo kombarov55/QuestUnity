@@ -394,8 +394,6 @@ public static class Utilities
     {
         try
         {
-            Debug.Log(MatchToString(matchedGameObjects));
-            
             var match = matchedGameObjects.ToList();
 
             var optionalPair = WhatToSwapFinder3.Find(match, shapes);

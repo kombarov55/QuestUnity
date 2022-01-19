@@ -42,7 +42,6 @@ namespace Other.MatchThreeGame.Assets.Scripts
 
             if (list.Count == 0)
             {
-                Debug.Log("Find3: nothing");
                 return new Optional<Tuple<GameObject, GameObject>>();
             }
 
@@ -78,8 +77,6 @@ namespace Other.MatchThreeGame.Assets.Scripts
                 var targetColumn = sortedShapes[0].Column + 1; 
              
                 var targetGo = shapes[targetRow, targetColumn];
-                
-                Debug.Log("Find3: row=" + targetRow + ", column=" + targetColumn);
 
                 return new Optional<Tuple<GameObject, GameObject>>(
                     new Tuple<GameObject, GameObject>(sortedShapes[0].gameObject, targetGo));
@@ -87,10 +84,8 @@ namespace Other.MatchThreeGame.Assets.Scripts
             else
             {
                 var targetRow = sortedShapes[0].Row;
-                var targetColumn = sortedShapes[sortedShapes.Count - 1].Column - 1; 
+                var targetColumn = sortedShapes[sortedShapes.Count - 1].Column - 1;
 
-                Debug.Log("Find3: row=" + targetRow + ", column=" + targetColumn);
-             
                 var targetGo = shapes[targetRow, targetColumn];
 
                 return new Optional<Tuple<GameObject, GameObject>>(

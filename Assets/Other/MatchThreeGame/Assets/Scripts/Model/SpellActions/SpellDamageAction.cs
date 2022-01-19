@@ -1,4 +1,6 @@
-﻿namespace Other.MatchThreeGame.Assets.Scripts.Model
+﻿using Other.MatchThreeGame.Assets.Scripts.Service;
+
+namespace Other.MatchThreeGame.Assets.Scripts.Model
 {
     public class SpellDamageAction : SpellAction
     {
@@ -9,29 +11,15 @@
             DamageAmount = damageAmount;
         }
         
-        public override void Invoke(StateManager stateManager)
+        public override void Cast(StateManager stateManager, bool isAffectedOnPlayer)
         {
-            bool isPlayersTurn = stateManager.IsPlayersTurn;
-            
-            if (isPlayersTurn && stateManager.IsDamageToEnemyReflected)
+            if (isAffectedOnPlayer)
             {
-                isPlayersTurn = false;
-            }
-
-            if (!isPlayersTurn && stateManager.IsDamageToPlayerReflected)
-            {
-                isPlayersTurn = true;
-            }
-
-            if (isPlayersTurn)
-            {
-                stateManager.EnemyHealthLeft -= DamageAmount;
-                stateManager.OnEnemyHealthChanged(-DamageAmount);
+                StateAlterationService.DoDamageToPlayer(stateManager, DamageAmount);
             }
             else
             {
-                stateManager.PlayerHealthLeft -= DamageAmount;
-                stateManager.OnPlayerHealthChanged(-DamageAmount);
+                StateAlterationService.DoDamageToEnemy(stateManager, DamageAmount);
             }
         }
     }

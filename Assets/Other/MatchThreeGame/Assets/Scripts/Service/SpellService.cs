@@ -19,6 +19,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     "Бросить в противника огненный шар, наносящий 8 урона",
                     "fireball.png",
                     3,
+                    new List<SpellAction>(),
                     new List<SpellAction>()
                     {
                         new SpellDamageAction(8)
@@ -36,6 +37,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     {
                         new SpellHealAction(3)
                     }, 
+                    new List<SpellAction>(),
                     new List<StatusEffect>(),
                     new List<StatusEffect>()
                 ),
@@ -45,6 +47,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     "Поджечь врага, от чего он будет испытывать жуткую боль и 1 урона за ход. Длительность: 3 хода",
                     "ignition.png",
                     2,
+                    new List<SpellAction>(),
                     new List<SpellAction>(),
                     new List<StatusEffect>(),
                     new List<StatusEffect>()
@@ -58,6 +61,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     "Обратиться к силам природы за исцелением, получив 2хп в секунду на протяжении 3х ходов.",
                     "ignition.png",
                     2,
+                    new List<SpellAction>(),
                     new List<SpellAction>(),
                     new List<StatusEffect>()
                     {
@@ -75,6 +79,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     {
                         new AdditionalTurnAction(3)
                     },
+                    new List<SpellAction>(),
                     new List<StatusEffect>(),
                     new List<StatusEffect>()
                 ), 
@@ -88,6 +93,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     {
                         new SequentialTurnsAction(3, true)
                     },
+                    new List<SpellAction>(),
                     new List<StatusEffect>(),
                     new List<StatusEffect>()
                 ),
@@ -101,6 +107,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     {
                         new SequentialTurnsAction(2, true)
                     }, 
+                    new List<SpellAction>(),
                     new List<StatusEffect>()
                     {
                         new SequentialTurnsStatusEffect(2, "doubleturn.png", 2)
@@ -113,6 +120,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     "Вы окружает себя энергетическим щитом, уменьшающий получаемый урон от следующей атаки на 4 на протяжении 3х ходов",
                     "DoubleTurn.png",
                     6,
+                    new List<SpellAction>(),
                     new List<SpellAction>(), 
                     new List<StatusEffect>()
                     {
@@ -126,6 +134,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     "Вы окружает себя энергетическим щитом, уменьшающий получаемый урон от следующей атаки на 4 на протяжении 3х ходов",
                     "DoubleTurn.png",
                     6,
+                    new List<SpellAction>(),
                     new List<SpellAction>(), 
                     new List<StatusEffect>()
                     {
@@ -142,7 +151,8 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     new List<SpellAction>()
                     {
                         new ReflectDamageAction()
-                    }, 
+                    },
+                    new List<SpellAction>(),
                     new List<StatusEffect>()
                     {
                         new ReflectDamageStatusEffect(2, "")
@@ -155,6 +165,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     "В течение 3х ходов противник не сможет лечиться",
                     "reflect.png",
                     0,
+                    new List<SpellAction>(),
                     new List<SpellAction>(),
                     new List<StatusEffect>()
                     {
@@ -175,6 +186,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     {
                         new AdditionalDamageAction(3)
                     },
+                    new List<SpellAction>(),
                     new List<StatusEffect>()
                     {
                         new AdditionalDamageStatusEffect(3, "", 3)
@@ -191,6 +203,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     {
                         new AdditionalHealAction(3)
                     },
+                    new List<SpellAction>(),
                     new List<StatusEffect>()
                     {
                         new AdditionalHealStatusEffect(3, "", 3)
@@ -207,6 +220,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     {
                         new AdditionalManaRestoreAction(2)
                     },
+                    new List<SpellAction>(),
                     new List<StatusEffect>()
                     {
                         new AdditionalManaRestoreStatusEffect(3, "", 2)
@@ -219,6 +233,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     "Выжигает у врага 5 маны, далее в течение 3х ходов он будет терять по 3 маны",
                     "reflect.png",
                     0,
+                    new List<SpellAction>(),
                     new List<SpellAction>()
                     {
                         new ManaburnAction(5)

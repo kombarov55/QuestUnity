@@ -2,8 +2,6 @@
 
 namespace Other.MatchThreeGame.Assets.Scripts.Model
 {
-
-
     public class ShieldAction : SpellAction
     {
         public int Amount;
@@ -13,7 +11,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Model
             Amount = amount;
         }
 
-        public override void Invoke(StateManager stateManager)
+        public override void Cast(StateManager stateManager, bool isAffectedOnPlayer)
         {
             stateManager.PlayerDamageBlocked = Amount;
         }

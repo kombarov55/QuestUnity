@@ -55,7 +55,6 @@ namespace Other.MatchThreeGame.Assets.Scripts
             
             if (list.Count == 0)
             {
-                Debug.Log("Find1: nothing");
                 return new Optional<Tuple<GameObject, GameObject>>();
             }
             
@@ -69,9 +68,7 @@ namespace Other.MatchThreeGame.Assets.Scripts
             int column = goToMove.GetComponent<Shape>().Column;
             
             GameObject targetGo = shapes[row, column];
-            
-            Debug.Log("Find1: row=" + row + ", column=" + column);
-                
+
             return new Optional<Tuple<GameObject, GameObject>>(new Tuple<GameObject, GameObject>(goToMove, targetGo));
         }
     }

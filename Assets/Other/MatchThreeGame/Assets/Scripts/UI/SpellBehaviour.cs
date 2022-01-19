@@ -45,10 +45,15 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
             
             _stateManager.PlayerManaLeft -= _spell.ManaCost;
             _stateManager.OnPlayerManaChanged(-_spell.ManaCost);
-            
-            foreach (var spellAction in _spell.SpellActions)
+
+            foreach (var spellAction in _spell.SpellActionsToSelf)
             {
-                spellAction.Invoke(_stateManager);
+                spellAction.Cast(_stateManager, true);
+            }
+            
+            foreach (var spellAction in _spell.SpellActionsToEnemy)
+            {
+                spellAction.Cast(_stateManager, false);
             }
             
             foreach (var statusEffect in _spell.StatusEffectsOnSelf)

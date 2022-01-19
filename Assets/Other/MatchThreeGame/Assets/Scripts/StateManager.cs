@@ -159,7 +159,7 @@ namespace Other.MatchThreeGame.Assets.Scripts
         public bool IsPlayersTurn 
         {
             get => _isPlayersTurn;
-            set =>    _isPlayersTurn = value;
+            set =>  _isPlayersTurn = value;
         }
 
         public int CoinCount
