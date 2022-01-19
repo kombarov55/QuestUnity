@@ -21,6 +21,11 @@
 
         public static void HealPlayer(StateManager stateManager, int amount)
         {
+            if (stateManager.PlayerHealthLeft == stateManager.Level.PlayerHealth)
+            {
+                return;
+            }
+            
             int healAmount = amount;
 
             if (stateManager.BlockHealingOnPlayer)
@@ -60,6 +65,11 @@
         
         public static void HealEnemy(StateManager stateManager, int amount)
         {
+            if (stateManager.EnemyHealthLeft == stateManager.Level.EnemyHealth)
+            {
+                return;
+            }
+            
             int healAmount = amount;
 
             if (stateManager.BlockHealingOnEnemy)
