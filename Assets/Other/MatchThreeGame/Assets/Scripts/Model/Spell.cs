@@ -14,8 +14,9 @@ namespace Other.MatchThreeGame.Assets.Scripts.Model
         public List<SpellAction> SpellActionsToEnemy;
         public List<StatusEffect> StatusEffectsOnSelf;
         public List<StatusEffect> StatusEffectsOnEnemy;
+        public SpellType SpellType;
 
-        public Spell(string id, string name, string description, string imagePath, int manaCost, int cooldown, List<SpellAction> spellActionsToSelf, List<SpellAction> spellActionsToEnemy, List<StatusEffect> statusEffectsOnSelf, List<StatusEffect> statusEffectsOnEnemy)
+        public Spell(string id, string name, string description, string imagePath, int manaCost, int cooldown, List<SpellAction> spellActionsToSelf, List<SpellAction> spellActionsToEnemy, List<StatusEffect> statusEffectsOnSelf, List<StatusEffect> statusEffectsOnEnemy, SpellType spellType)
         {
             Id = id;
             Name = name;
@@ -27,6 +28,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Model
             SpellActionsToEnemy = spellActionsToEnemy;
             StatusEffectsOnSelf = statusEffectsOnSelf;
             StatusEffectsOnEnemy = statusEffectsOnEnemy;
+            SpellType = spellType;
         }
     }
 }
