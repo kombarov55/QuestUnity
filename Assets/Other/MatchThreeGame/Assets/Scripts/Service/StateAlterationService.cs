@@ -11,10 +11,10 @@
             }
             else
             {
-                int damageDealt = damageAmount - stateManager.EnemyDamageBlocked + stateManager.PlayerDamageAddition;
+                int damageDealt = damageAmount - stateManager.EnemyDamageBlocked.Value + stateManager.PlayerDamageAddition;
 
                 stateManager.EnemyHealthLeft -= damageDealt;
-                stateManager.EnemyDamageBlocked = 0;
+                stateManager.EnemyDamageBlocked.Value = 0;
                 stateManager.OnEnemyHealthChanged(-damageDealt);
             }
         }
@@ -54,11 +54,11 @@
             }
             else
             {
-                int damageDealt = damageAmount - stateManager.PlayerDamageBlocked +
+                int damageDealt = damageAmount - stateManager.PlayerDamageBlocked.Value +
                                   stateManager.EnemyDamageAddition;
 
                 stateManager.PlayerHealthLeft -= damageDealt;
-                stateManager.PlayerDamageBlocked = 0;
+                stateManager.PlayerDamageBlocked.Value = 0;
                 stateManager.OnPlayerHealthChanged(-damageDealt);
             }
         }

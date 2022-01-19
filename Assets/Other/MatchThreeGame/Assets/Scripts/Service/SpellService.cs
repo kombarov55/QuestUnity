@@ -139,7 +139,10 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     "DoubleTurn.png",
                     6,
                     0,
-                    new List<SpellAction>(),
+                    new List<SpellAction>()
+                    {
+                        new ShieldAction(4)
+                    },
                     new List<SpellAction>(), 
                     new List<StatusEffect>()
                     {

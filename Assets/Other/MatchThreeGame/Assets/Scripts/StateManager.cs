@@ -25,8 +25,8 @@ namespace Other.MatchThreeGame.Assets.Scripts
         public List<RunningStatusEffect> StatusEffectsOnEnemy = new List<RunningStatusEffect>();
         public int SequentialTurnsForPlayer = 1;
         public int SequentialTurnsForEnemy = 1;
-        public int PlayerDamageBlocked = 0;
-        public int EnemyDamageBlocked = 0;
+        public Observable<int> PlayerDamageBlocked = new Observable<int>(0);
+        public Observable<int> EnemyDamageBlocked = new Observable<int>(0);
         public bool IsDamageToPlayerReflected = false;
         public bool IsDamageToEnemyReflected = false;
         public bool BlockHealingOnPlayer = false;

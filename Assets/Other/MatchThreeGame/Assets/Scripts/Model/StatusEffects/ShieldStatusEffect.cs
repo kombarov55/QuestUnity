@@ -13,11 +13,11 @@
         {
             if (isOnPlayer) 
             {
-                stateManager.PlayerDamageBlocked = BlockedAmount;
+                stateManager.PlayerDamageBlocked.Value = BlockedAmount;
             }
             else
             {
-                stateManager.EnemyDamageBlocked = BlockedAmount;
+                stateManager.EnemyDamageBlocked.Value = BlockedAmount;
             }
         }
     }

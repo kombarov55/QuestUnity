@@ -4,16 +4,24 @@ namespace Other.MatchThreeGame.Assets.Scripts.Model
 {
     public class ShieldAction : SpellAction
     {
-        public int Amount;
+        public int BlockedAmount;
 
-        public ShieldAction(int amount) : base(SpellActionType.Buff)
+        public ShieldAction(int blockedAmount) : base(SpellActionType.Buff)
         {
-            Amount = amount;
+            BlockedAmount = blockedAmount;
         }
 
         public override void Cast(StateManager stateManager, bool isAffectedOnPlayer)
         {
-            stateManager.PlayerDamageBlocked = Amount;
+            if (isAffectedOnPlayer)
+            {
+                stateManager.PlayerDamageBlocked.Value = BlockedAmount;                
+            }
+            else
+            {
+                //TODO
+            }
+            
         }
     }
 }
