@@ -32,16 +32,27 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
             cooldownText.text = "Перезарядка: " + _spell.Cooldown + " ходов";
             currentCooldownText.text = "";
             
+            stateManager.SpellToCooldownObservable[_spell].Subscribe(currentCooldown =>
+            {
+                if (currentCooldown > 0)
+                {
+                    currentCooldownText.text = "Перезарядка: осталось " + currentCooldown + " ходов";                    
+                }
+                else
+                {
+                    currentCooldownText.text = "";
+                }
+            });
+            
             stateManager.SubscribeOnIsPlayersTurn(isPlayersTurn =>
             {
                 if (isPlayersTurn)
                 {
-                    int currentCooldown = stateManager.SpellToCooldown[_spell];
+                    int currentCooldown = stateManager.SpellToCooldownObservable[_spell].Value;
 
                     if (currentCooldown > 0)
                     {
-                        stateManager.SpellToCooldown[_spell] = currentCooldown - 1;
-                        currentCooldownText.text = "Перезарядка: осталось " + currentCooldown + " ходов";
+                        stateManager.SpellToCooldownObservable[_spell].Value = currentCooldown - 1;
                     }
                 }
             });
@@ -49,7 +60,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            if (_stateManager.PlayerManaLeft >= _spell.ManaCost && _stateManager.SpellToCooldown[_spell] == 0)
+            if (_stateManager.PlayerManaLeft >= _spell.ManaCost && _stateManager.SpellToCooldownObservable[_spell].Value == 0)
             {
                 Cast();
             }
@@ -60,7 +71,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
         {
             _spellBookPanel.SetActive(false);
             _stateManager.CastsLeftForPlayer.Value -= 1;
-            _stateManager.SpellToCooldown[_spell] = _spell.Cooldown;
+            _stateManager.SpellToCooldownObservable[_spell].Value = _spell.Cooldown;
             
             _stateManager.PlayerManaLeft -= _spell.ManaCost;
             _stateManager.OnPlayerManaChanged(-_spell.ManaCost);

@@ -39,7 +39,7 @@ namespace Other.MatchThreeGame.Assets.Scripts
         public int EnemyManaRestoreAddition = 0;
         public Observable<int> CastsLeftForPlayer = new Observable<int>(2);
         public Observable<int> CastsLeftForEnemy = new Observable<int>(1);
-        public Dictionary<Spell, int> SpellToCooldown = new Dictionary<Spell, int>();
+        public Dictionary<Spell, Observable<int>> SpellToCooldownObservable = new Dictionary<Spell, Observable<int>>();
 
         public int Score;
         
@@ -52,7 +52,7 @@ namespace Other.MatchThreeGame.Assets.Scripts
             var spells = new SpellService().GetAll();
             foreach (var spell in spells)
             {
-                SpellToCooldown[spell] = 0;
+                SpellToCooldownObservable[spell] = new Observable<int>(0);
             }
         }
 

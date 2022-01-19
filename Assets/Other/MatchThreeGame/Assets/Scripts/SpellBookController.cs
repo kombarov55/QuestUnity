@@ -22,7 +22,7 @@ namespace Other.MatchThreeGame.Assets.Scripts
             
             Clear();
 
-            foreach (var spell in stateManager.SpellToCooldown.Keys)
+            foreach (var spell in stateManager.SpellToCooldownObservable.Keys)
             {
                 var go = Instantiate(spellPrefab, scrollViewContent.transform);
                 go.GetComponent<SpellBehaviour>().Display(spell, stateManager, gameObject);
