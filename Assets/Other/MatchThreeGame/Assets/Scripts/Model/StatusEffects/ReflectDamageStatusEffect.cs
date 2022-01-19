@@ -10,11 +10,11 @@
         {
             if (isOnPlayer)
             {
-                stateManager.ReflectDamageOnEnemy = true;
+                stateManager.IsDamageToPlayerReflected = true;
             }
             else
             {
-                stateManager.ReflectDamageOnPlayer = true;
+                stateManager.IsDamageToEnemyReflected = true;
             }
         }
     }

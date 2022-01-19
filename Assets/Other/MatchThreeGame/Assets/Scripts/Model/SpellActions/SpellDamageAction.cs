@@ -13,12 +13,12 @@
         {
             bool isPlayersTurn = stateManager.IsPlayersTurn;
             
-            if (isPlayersTurn && stateManager.ReflectDamageOnEnemy)
+            if (isPlayersTurn && stateManager.IsDamageToEnemyReflected)
             {
                 isPlayersTurn = false;
             }
 
-            if (!isPlayersTurn && stateManager.ReflectDamageOnPlayer)
+            if (!isPlayersTurn && stateManager.IsDamageToPlayerReflected)
             {
                 isPlayersTurn = true;
             }

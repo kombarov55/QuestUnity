@@ -231,7 +231,6 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     {
                         new ManaburnStatusEffect(3, "", 3)
                     }
-                    
                 )
             };
         }

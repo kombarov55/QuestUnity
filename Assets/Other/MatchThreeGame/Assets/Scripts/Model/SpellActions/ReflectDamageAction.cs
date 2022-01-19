@@ -10,12 +10,12 @@
         {
             if (stateManager.IsPlayersTurn)
             {
-                stateManager.ReflectDamageOnPlayer = true;
+                stateManager.IsDamageToPlayerReflected = true;
                 ActionType = SpellActionType.PositiveBuff;
             }
             else
             {
-                stateManager.ReflectDamageOnEnemy = true;
+                stateManager.IsDamageToEnemyReflected = true;
             }
         }
     }

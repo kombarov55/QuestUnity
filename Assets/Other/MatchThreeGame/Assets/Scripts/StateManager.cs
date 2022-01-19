@@ -27,8 +27,8 @@ namespace Other.MatchThreeGame.Assets.Scripts
         public int SequentialTurnsForEnemy = 1;
         public int PlayerDamageBlocked = 0;
         public int EnemyDamageBlocked = 0;
-        public bool ReflectDamageOnPlayer = false;
-        public bool ReflectDamageOnEnemy = false;
+        public bool IsDamageToPlayerReflected = false;
+        public bool IsDamageToEnemyReflected = false;
         public bool BlockHealingOnPlayer = false;
         public bool BlockHealingOnEnemy = false;
         public int PlayerDamageAddition = 0;
@@ -37,6 +37,10 @@ namespace Other.MatchThreeGame.Assets.Scripts
         public int EnemyHealAddition = 0;
         public int PlayerManaRestoreAddition = 0;
         public int EnemyManaRestoreAddition = 0;
+        public int PlayerLifeRestoredOnHit = 0;
+        public int PlayerManaRestoredOnHit = 0;
+        public int EnemyLifeRestoredOnHit = 0;
+        public int EnemyManaRestoredOnHit = 0;
 
         public int Score;
 
@@ -432,8 +436,8 @@ namespace Other.MatchThreeGame.Assets.Scripts
         
         public void ResetStats()
         {
-            ReflectDamageOnEnemy = false;
-            ReflectDamageOnPlayer = false;
+            IsDamageToEnemyReflected = false;
+            IsDamageToPlayerReflected = false;
             BlockHealingOnEnemy = false;
             BlockHealingOnPlayer = false;
             PlayerDamageAddition = 0;

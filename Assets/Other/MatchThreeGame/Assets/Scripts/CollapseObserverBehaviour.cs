@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Other.MatchThreeGame.Assets.Scripts.Service;
 using UnityEngine;
 
 namespace Other.MatchThreeGame.Assets.Scripts
@@ -44,32 +45,40 @@ namespace Other.MatchThreeGame.Assets.Scripts
         }
         private void OnHit(StateManager stateManager, bool isPlayersTurn) 
         {
-            if (isPlayersTurn && stateManager.ReflectDamageOnEnemy)
-            {
-                isPlayersTurn = false;
-            }
-
-            if (!isPlayersTurn && stateManager.ReflectDamageOnPlayer)
-            {
-                isPlayersTurn = true;
-            }
-        
             if (isPlayersTurn)
             {
-                int damageDealt = Constants.Damage - stateManager.EnemyDamageBlocked + stateManager.PlayerDamageAddition;
-
-                stateManager.EnemyHealthLeft -= damageDealt;
-                stateManager.EnemyDamageBlocked = 0;
-                stateManager.OnEnemyHealthChanged(-damageDealt);
+                StateAlterationService.DoDamageToEnemy(stateManager, Constants.Damage);
+            } 
+            else {
+                StateAlterationService.DoDamageToPlayer(stateManager, Constants.Damage);
             }
-            else
-            {
-                int damageDealt = Constants.Damage - stateManager.PlayerDamageBlocked + stateManager.EnemyDamageAddition;
-                
-                stateManager.PlayerHealthLeft -= damageDealt;
-                stateManager.PlayerDamageBlocked = 0;
-                stateManager.OnPlayerHealthChanged(-damageDealt);
-            }    
+            
+            // if (isPlayersTurn && stateManager.IsDamageToEnemyReflected)
+            // {
+            //     isPlayersTurn = false;
+            // }
+            //
+            // if (!isPlayersTurn && stateManager.IsDamageToPlayerReflected)
+            // {
+            //     isPlayersTurn = true;
+            // }
+            //
+            // if (isPlayersTurn)
+            // {
+            //     int damageDealt = Constants.Damage - stateManager.EnemyDamageBlocked + stateManager.PlayerDamageAddition;
+            //
+            //     stateManager.EnemyHealthLeft -= damageDealt;
+            //     stateManager.EnemyDamageBlocked = 0;
+            //     stateManager.OnEnemyHealthChanged(-damageDealt);
+            // }
+            // else
+            // {
+            //     int damageDealt = Constants.Damage - stateManager.PlayerDamageBlocked + stateManager.EnemyDamageAddition;
+            //     
+            //     stateManager.PlayerHealthLeft -= damageDealt;
+            //     stateManager.PlayerDamageBlocked = 0;
+            //     stateManager.OnPlayerHealthChanged(-damageDealt);
+            // }    
         }
         private void OnHeal(StateManager stateManager, bool isPlayersTurn) 
         {
