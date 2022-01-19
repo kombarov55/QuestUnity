@@ -12,11 +12,15 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
         public Text title;
         public Text description;
         public Text manaCostText;
+        public Text cooldownText;
+        public Text currentCooldownText;
 
         private Spell _spell;
         private StateManager _stateManager;
         private GameObject _spellBookPanel;
 
+        private int _currentCooldown;
+        
         public void Display(Spell spell, StateManager stateManager, GameObject spellBookPanel)
         {
             _spell = spell;
@@ -27,11 +31,26 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
             description.text = spell.Description;
             image.sprite = Resources.Load<Sprite>(spell.ImagePath);
             manaCostText.text = spell.ManaCost + " маны";
+            cooldownText.text = "Перезарядка: " + _spell.Cooldown + " ходов";
+            _currentCooldown = 0;
+            currentCooldownText.text = "";
+            
+            stateManager.SubscribeOnIsPlayersTurn(isPlayersTurn =>
+            {
+                if (isPlayersTurn)
+                {
+                    if (_currentCooldown > 0)
+                    {
+                        _currentCooldown -= 1;
+                        currentCooldownText.text = "Перезарядка: осталось " + _currentCooldown + " ходов";
+                    }
+                }
+            });
         }
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            if (_stateManager.PlayerManaLeft >= _spell.ManaCost)
+            if (_stateManager.PlayerManaLeft >= _spell.ManaCost && _currentCooldown == 0)
             {
                 Cast();
             }
@@ -42,6 +61,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
         {
             _spellBookPanel.SetActive(false);
             _stateManager.CastsLeftForPlayer.Value -= 1;
+            _currentCooldown = _spell.Cooldown;
             
             _stateManager.PlayerManaLeft -= _spell.ManaCost;
             _stateManager.OnPlayerManaChanged(-_spell.ManaCost);

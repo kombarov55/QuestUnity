@@ -19,6 +19,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     "Бросить в противника огненный шар, наносящий 8 урона",
                     "fireball.png",
                     3,
+                    1,
                     new List<SpellAction>(),
                     new List<SpellAction>()
                     {
@@ -33,6 +34,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     "Наложить заклинание, излечивающее вам 3 очка здоровья",
                     "heal.png",
                     5,
+                    2,
                     new List<SpellAction>()
                     {
                         new SpellHealAction(3)
@@ -47,6 +49,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     "Поджечь врага, от чего он будет испытывать жуткую боль и 1 урона за ход. Длительность: 3 хода",
                     "ignition.png",
                     2,
+                    0,
                     new List<SpellAction>(),
                     new List<SpellAction>(),
                     new List<StatusEffect>(),
@@ -61,6 +64,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     "Обратиться к силам природы за исцелением, получив 2хп в секунду на протяжении 3х ходов.",
                     "ignition.png",
                     2,
+                    0,
                     new List<SpellAction>(),
                     new List<SpellAction>(),
                     new List<StatusEffect>()
@@ -75,6 +79,8 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     "Дать себе дополнительно 3 хода",
                     "AddTurns.png",
                     4,
+                    0,
+                    
                     new List<SpellAction>()
                     {
                         new AdditionalTurnAction(3)
@@ -89,6 +95,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     "Ваша скорость возрастает, благодаря чему перед атакой врага вы можете атаковать трижды",
                     "DoubleTurn.png",
                     3,
+                    0,
                     new List<SpellAction>()
                     {
                         new SequentialTurnsAction(3)
@@ -103,6 +110,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     "Ваша скорость возрастает, благодаря чему в течение 3х ходов вы сможете атаковать дважды",
                     "DoubleTurn.png",
                     6,
+                    0,
                     new List<SpellAction>()
                     {
                         new SequentialTurnsAction(2)
@@ -120,6 +128,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     "Вы окружает себя энергетическим щитом, уменьшающий получаемый урон от следующей атаки на 4 на протяжении 3х ходов",
                     "DoubleTurn.png",
                     6,
+                    0,
                     new List<SpellAction>(),
                     new List<SpellAction>(), 
                     new List<StatusEffect>()
@@ -134,6 +143,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     "Вы окружает себя энергетическим щитом, уменьшающий получаемый урон от следующей атаки на 4 на протяжении 3х ходов",
                     "DoubleTurn.png",
                     6,
+                    0,
                     new List<SpellAction>(),
                     new List<SpellAction>(), 
                     new List<StatusEffect>()
@@ -147,6 +157,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     "Отражение урона",
                     "В течение 2х ходов вы будете отражать урон врага",
                     "reflect.png",
+                    0,
                     0,
                     new List<SpellAction>()
                     {
@@ -165,6 +176,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     "В течение 3х ходов противник не сможет лечиться",
                     "reflect.png",
                     0,
+                    0,
                     new List<SpellAction>(),
                     new List<SpellAction>(),
                     new List<StatusEffect>()
@@ -181,6 +193,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     "Доп. урон",
                     "В течение 3х ходов любая ваша атака наносит на 3 урона больше",
                     "reflect.png",
+                    0,
                     0,
                     new List<SpellAction>()
                     {
@@ -199,6 +212,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     "В течение 3х ходов, восстанавлиая здоровье, вы восстанавливаете его на 3 больше",
                     "reflect.png",
                     0,
+                    0,
                     new List<SpellAction>()
                     {
                         new AdditionalHealAction(3)
@@ -216,6 +230,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     "В течение 3х ходов, восстанавливая ману фишками, вы восстанавливете на +2 больше",
                     "reflect.png",
                     0,
+                    0,
                     new List<SpellAction>()
                     {
                         new AdditionalManaRestoreAction(2)
@@ -232,6 +247,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     "Горение маны",
                     "Выжигает у врага 5 маны, далее в течение 3х ходов он будет терять по 3 маны",
                     "reflect.png",
+                    0,
                     0,
                     new List<SpellAction>(),
                     new List<SpellAction>()
@@ -253,6 +269,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     "Украсть 5 здорвья у врага",
                     "lifesteal.png",
                     0,
+                    0,
                     new List<SpellAction>(),
                     new List<SpellAction>()
                     {
@@ -266,6 +283,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     "Сколдовать несвколько раз",
                     "Потратьте одну попытку сколдовать, чтобы в этом ходу сколдовать ещё 3 раза... да это бредово, этот эффект нужен для предметов и тут можно его протестировать",
                     "icnreasespellcasts.png",
+                    0,
                     0,
                     new List<SpellAction>()
                     {
