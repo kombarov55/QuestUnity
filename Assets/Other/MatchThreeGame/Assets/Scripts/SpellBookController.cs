@@ -8,8 +8,7 @@ namespace Other.MatchThreeGame.Assets.Scripts
 {
     public class SpellBookController : MonoBehaviour
     {
-       public AudioButton closeButton;
-       public GameObject scrollViewContent;
+        public GameObject scrollViewContent;
        public GameObject spellPrefab;
 
        private List<GameObject> _instantiatedSpells = new List<GameObject>();
@@ -17,9 +16,7 @@ namespace Other.MatchThreeGame.Assets.Scripts
         public void Start()
         { 
             var stateManager = GameObject.Find("State").GetComponent<StateManager>();
-            
-            closeButton.OnClick = () => gameObject.SetActive(false);
-            
+
             Clear();
 
             foreach (var spell in stateManager.PlayerSpellsToCooldownObservable.Keys)

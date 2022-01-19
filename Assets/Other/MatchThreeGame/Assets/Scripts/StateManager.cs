@@ -42,7 +42,9 @@ namespace Other.MatchThreeGame.Assets.Scripts
         public Dictionary<Spell, Observable<int>> PlayerSpellsToCooldownObservable = new Dictionary<Spell, Observable<int>>();
         public List<Spell> SilentedSpellsForPlayer = new List<Spell>();
         public List<Spell> SilentedSpellsForEnemy = new List<Spell>();
+        
         public List<Spell> Spells;
+        public SoundManager SoundManager;
 
         public int Score;
         
@@ -57,6 +59,8 @@ namespace Other.MatchThreeGame.Assets.Scripts
             {
                 PlayerSpellsToCooldownObservable[spell] = new Observable<int>(0);
             }
+
+            SoundManager = GameObject.Find("SoundManager").GetComponent<SoundManager>();
         }
 
         public int TurnsLeft

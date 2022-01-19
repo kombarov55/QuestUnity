@@ -18,12 +18,14 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
         private Spell _spell;
         private StateManager _stateManager;
         private GameObject _spellBookPanel;
+        private SoundManager _soundManager;
         
         public void Display(Spell spell, StateManager stateManager, GameObject spellBookPanel)
         {
             _spell = spell;
             _stateManager = stateManager;
             _spellBookPanel = spellBookPanel;
+            _soundManager = stateManager.SoundManager;
             
             title.text = spell.Name;
             description.text = spell.Description;
@@ -71,7 +73,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
         }
 
 
-        public void Cast()
+        private void Cast()
         {
             _spellBookPanel.SetActive(false);
             _stateManager.CastsLeftForPlayer.Value -= 1;
@@ -79,6 +81,8 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
             
             _stateManager.PlayerManaLeft -= _spell.ManaCost;
             _stateManager.OnPlayerManaChanged(-_spell.ManaCost);
+            
+            PlaySpellSound();
 
             foreach (var spellAction in _spell.SpellActionsToSelf)
             {
@@ -98,6 +102,26 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
             foreach (var statusEffect in _spell.StatusEffectsOnEnemy)
             {
                 _stateManager.AddStatusEffectOnEnemy(statusEffect);
+            }
+        }
+        
+        private void PlaySpellSound() 
+        {
+            switch (_spell.SpellType)
+            {
+                case SpellType.Damage: 
+                    _soundManager.PlayDamageSpellSound();
+                    break;
+                case SpellType.Heal:
+                    _soundManager.PlayHealingSpellSound();
+                    break;
+                case SpellType.Buff: 
+                    _soundManager.PlayBuffSpellSound();
+                    break;
+                case SpellType.Debuff: 
+                    _soundManager.PlayDebuffSpellSound();
+                    break;
+                default: break; 
             }
         }
     }

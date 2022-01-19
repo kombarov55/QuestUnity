@@ -1,29 +1,65 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class SoundManager : MonoBehaviour {
 
     //crincle sound found here: http://freesound.org/people/volivieri/sounds/37171/
 
     public AudioClip crincleAudioClip;
-    AudioSource crincle;
-
+    public List<AudioClip> buffSpellAudioClips;
+    public List<AudioClip> debuffSpellAudioClips;
+    public List<AudioClip> damageSpellAudioClips;
+    public List<AudioClip> healingSpellAudioClips;
+    
+    AudioSource _crincle;
+    AudioSource _spellAudioSource;
 
     void Awake()
     {
-        crincle = AddAudio(crincleAudioClip);
-    }
-
-    AudioSource AddAudio( AudioClip audioClip)
-    {
-        AudioSource audioSource = this.gameObject.AddComponent<AudioSource>();
-        audioSource.playOnAwake = false;
-        audioSource.clip = audioClip;
-        return audioSource;
+        _crincle = AddAudio();
+        _spellAudioSource = AddAudio();
     }
 
     public void PlayCrincle()
     {
-        crincle.Play();
+        _crincle.clip = crincleAudioClip;
+        _crincle.Play();
     }
+
+    public void PlayBuffSpellSound()
+    {
+        PlayRandomSound(buffSpellAudioClips, _spellAudioSource);
+    }
+
+    public void PlayHealingSpellSound()
+    {
+        PlayRandomSound(healingSpellAudioClips, _spellAudioSource);
+    }
+
+    public void PlayDamageSpellSound()
+    {
+        PlayRandomSound(damageSpellAudioClips, _spellAudioSource);
+    }
+
+    public void PlayDebuffSpellSound()
+    {
+        PlayRandomSound(debuffSpellAudioClips, _spellAudioSource);
+    }
+    
+    
+    private AudioSource AddAudio()
+    {
+        AudioSource audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
+        return audioSource;
+    }
+
+    private void PlayRandomSound(List<AudioClip> audioClips, AudioSource audioSource)
+    {
+        var clip = audioClips[Random.Range(0, audioClips.Count - 1)];
+        audioSource.clip = clip;
+        audioSource.Play();
+    }
+    
 }

@@ -10,8 +10,7 @@ namespace Other.MatchThreeGame.Assets.Scripts
     {
 
         [SerializeField] private GameObject toastComponent;
-        [SerializeField] private AudioButton spellBookButton;
-        [SerializeField] private GameObject spellBookPanel;
+        [SerializeField] private GameObject spellBookButton;
 
         private ToastBehaviour _toastBehaviour;
         
@@ -24,15 +23,13 @@ namespace Other.MatchThreeGame.Assets.Scripts
             {
                 if (castsLeft > 0)
                 {
-                    spellBookButton.gameObject.SetActive(true);
+                    spellBookButton.SetActive(true);
                 }
                 else
                 {
-                    spellBookButton.gameObject.SetActive(false);
+                    spellBookButton.SetActive(false);
                 }
             }, true);
-
-            spellBookButton.OnClick = () => spellBookPanel.SetActive(true);
         }
 
         public void ShowGoals(Level level)
