@@ -2,9 +2,8 @@
 {
     public class BlockHealingAction : SpellAction
     {
-        public BlockHealingAction()
+        public BlockHealingAction() : base(SpellActionType.NegativeBuff)
         {
-            ActionType = SpellActionType.NegativeBuff;
         }
 
         public override void Invoke(StateManager stateManager)

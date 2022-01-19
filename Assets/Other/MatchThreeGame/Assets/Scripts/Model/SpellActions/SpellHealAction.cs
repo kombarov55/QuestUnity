@@ -5,9 +5,8 @@
 
         public int HealAmount;
         
-        public SpellHealAction(int healAmount)
+        public SpellHealAction(int healAmount) : base(SpellActionType.Heal)
         {
-            ActionType = SpellActionType.Heal;
             HealAmount = healAmount;
         }
     

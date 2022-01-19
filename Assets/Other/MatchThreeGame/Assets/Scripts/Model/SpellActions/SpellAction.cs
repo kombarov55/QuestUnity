@@ -5,6 +5,11 @@
     {
         public SpellActionType ActionType;
 
+        protected SpellAction(SpellActionType actionType)
+        {
+            ActionType = actionType;
+        }
+
         public abstract void Invoke(StateManager stateManager);
     }
 

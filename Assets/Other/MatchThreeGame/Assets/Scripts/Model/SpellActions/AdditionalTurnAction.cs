@@ -4,10 +4,9 @@
     {
         public int TurnsToAdd;
 
-        public AdditionalTurnAction(int turnsToAdd)
+        public AdditionalTurnAction(int turnsToAdd) : base(SpellActionType.PositiveBuff)
         {
             TurnsToAdd = turnsToAdd;
-            ActionType = SpellActionType.PositiveBuff;
         }
 
         public override void Invoke(StateManager stateManager)

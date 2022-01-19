@@ -33,8 +33,10 @@ namespace Other.MatchThreeGame.Assets.Scripts
         public bool BlockHealingOnEnemy = false;
         public int PlayerDamageAddition = 0;
         public int EnemyDamageAddition = 0;
-        public int PlayerHealthRestoreAddition = 0;
-        public int EnemyHealthRestoreAddition = 0;
+        public int PlayerHealAddition = 0;
+        public int EnemyHealAddition = 0;
+        public int PlayerManaRestoreAddition = 0;
+        public int EnemyManaRestoreAddition = 0;
 
         public int Score;
 
@@ -436,8 +438,10 @@ namespace Other.MatchThreeGame.Assets.Scripts
             BlockHealingOnPlayer = false;
             PlayerDamageAddition = 0;
             EnemyDamageAddition = 0;
-            PlayerHealthRestoreAddition = 0;
-            EnemyHealthRestoreAddition = 0;
+            PlayerHealAddition = 0;
+            EnemyHealAddition = 0;
+            PlayerManaRestoreAddition = 0;
+            EnemyManaRestoreAddition = 0;
         } 
     }
 }

@@ -180,6 +180,38 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                         new AdditionalDamageStatusEffect(3, "", 3)
                     },
                     new List<StatusEffect>()
+                ),
+                new Spell(
+                    "AdditionalHealing",
+                    "Доп. лечение",
+                    "В течение 3х ходов, восстанавлиая здоровье, вы восстанавливаете его на 3 больше",
+                    "reflect.png",
+                    0,
+                    new List<SpellAction>()
+                    {
+                        new AdditionalHealAction(3)
+                    },
+                    new List<StatusEffect>()
+                    {
+                        new AdditionalHealStatusEffect(3, "", 3)
+                    },
+                    new List<StatusEffect>()
+                ),
+                new Spell(
+                    "AdditionalHealing",
+                    "Доп. Восстановление маны",
+                    "В течение 3х ходов, восстанавливая ману фишками, вы восстанавливете на +2 больше",
+                    "reflect.png",
+                    0,
+                    new List<SpellAction>()
+                    {
+                        new AdditionalManaRestoreAction(2)
+                    },
+                    new List<StatusEffect>()
+                    {
+                        new AdditionalManaRestoreStatusEffect(3, "", 2)
+                    },
+                    new List<StatusEffect>()
                 )
             };
         }

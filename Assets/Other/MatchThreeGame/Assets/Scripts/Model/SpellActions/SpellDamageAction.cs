@@ -4,9 +4,8 @@
     {
         public int DamageAmount;
         
-        public SpellDamageAction(int damageAmount)
+        public SpellDamageAction(int damageAmount) : base(SpellActionType.Damage)
         {
-            ActionType = SpellActionType.Damage;
             DamageAmount = damageAmount;
         }
         

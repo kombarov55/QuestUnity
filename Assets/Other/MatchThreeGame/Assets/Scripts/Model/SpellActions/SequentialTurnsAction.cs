@@ -5,11 +5,10 @@
         public int Amount;
         public bool IsForPlayer;
 
-        public SequentialTurnsAction(int amount, bool isForPlayer)
+        public SequentialTurnsAction(int amount, bool isForPlayer) : base(SpellActionType.PositiveBuff)
         {
             Amount = amount;
             IsForPlayer = isForPlayer;
-            ActionType = SpellActionType.PositiveBuff;
         }
 
         public override void Invoke(StateManager stateManager)

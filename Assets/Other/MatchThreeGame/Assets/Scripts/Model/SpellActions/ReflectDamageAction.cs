@@ -2,6 +2,10 @@
 {
     public class ReflectDamageAction : SpellAction
     {
+        public ReflectDamageAction() : base(SpellActionType.NegativeBuff)
+        {
+        }
+
         public override void Invoke(StateManager stateManager)
         {
             if (stateManager.IsPlayersTurn)

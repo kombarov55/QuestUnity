@@ -8,10 +8,9 @@ namespace Other.MatchThreeGame.Assets.Scripts.Model
     {
         public int Amount;
 
-        public ShieldAction(int amount)
+        public ShieldAction(int amount) : base(SpellActionType.PositiveBuff)
         {
             Amount = amount;
-            ActionType = SpellActionType.PositiveBuff;
         }
 
         public override void Invoke(StateManager stateManager)

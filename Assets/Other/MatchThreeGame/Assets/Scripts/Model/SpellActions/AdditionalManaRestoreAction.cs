@@ -1,11 +1,10 @@
 ﻿namespace Other.MatchThreeGame.Assets.Scripts.Model
 {
-    public class AdditionalDamageAction : SpellAction
+    public class AdditionalManaRestoreAction : SpellAction
     {
-
         public int Amount;
 
-        public AdditionalDamageAction(int amount) : base(SpellActionType.PositiveBuff)
+        public AdditionalManaRestoreAction(int amount) : base(SpellActionType.Heal)
         {
             Amount = amount;
         }
@@ -14,11 +13,11 @@
         {
             if (stateManager.IsPlayersTurn)
             {
-                stateManager.PlayerDamageAddition = Amount;
+                stateManager.PlayerManaRestoreAddition = Amount;
             }
             else
             {
-                stateManager.EnemyDamageAddition = Amount;
+                stateManager.EnemyManaRestoreAddition = Amount;
             }
         }
     }

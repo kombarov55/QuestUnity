@@ -75,14 +75,14 @@ namespace Other.MatchThreeGame.Assets.Scripts
         {
             if (isPlayersTurn && stateManager.PlayerHealthLeft < stateManager.Level.PlayerHealth)
             {
-                int healAmount = stateManager.BlockHealingOnPlayer ? 0 : Constants.Heal + stateManager.PlayerHealthRestoreAddition;
+                int healAmount = stateManager.BlockHealingOnPlayer ? 0 : Constants.Heal + stateManager.PlayerHealAddition;
                 
                 stateManager.PlayerHealthLeft += healAmount;
                 stateManager.OnPlayerHealthChanged(healAmount);
             }
             else if (stateManager.EnemyHealthLeft < stateManager.Level.EnemyHealth)
             {
-                int healAmount = stateManager.BlockHealingOnEnemy ? 0 : Constants.Heal + stateManager.EnemyHealthRestoreAddition;
+                int healAmount = stateManager.BlockHealingOnEnemy ? 0 : Constants.Heal + stateManager.EnemyHealAddition;
                 
                 stateManager.EnemyHealthLeft += healAmount;
                 stateManager.OnEnemyHealthChanged(healAmount);
@@ -101,13 +101,17 @@ namespace Other.MatchThreeGame.Assets.Scripts
         {
             if (isPlayersTurn && stateManager.PlayerManaLeft < stateManager.Level.PlayerMana)
             {
-                stateManager.PlayerManaLeft += 1;
-                stateManager.OnPlayerManaChanged(1);
+                int manaRestoreAmount = Constants.Mana + stateManager.PlayerManaRestoreAddition;
+
+                stateManager.PlayerManaLeft += manaRestoreAmount;
+                stateManager.OnPlayerManaChanged(manaRestoreAmount);
             } 
             else if (stateManager.EnemyManaLeft < stateManager.Level.EnemyMana)
             {
-                stateManager.EnemyManaLeft += 1;
-                stateManager.OnEnemyManaChanged(1);
+                int manaRestoreAmount = Constants.Mana + stateManager.EnemyManaRestoreAddition;
+                
+                stateManager.EnemyManaLeft += manaRestoreAmount;
+                stateManager.OnEnemyManaChanged(manaRestoreAmount);
             }
         }
     }
