@@ -3,11 +3,11 @@ using System.Linq;
 
 namespace Other.MatchThreeGame.Assets.Scripts.Model
 {
-    public class StealStatusEffectAction : SpellAction
+    public class PassStatusEffectsAction : SpellAction
     {
         public Func<RunningStatusEffect, bool> StatusEffectSelector;
         
-        public StealStatusEffectAction(Func<RunningStatusEffect, bool> statusEffectSelector) : base(SpellActionType.Buff)
+        public PassStatusEffectsAction(Func<RunningStatusEffect, bool> statusEffectSelector) : base(SpellActionType.Buff)
         {
             StatusEffectSelector = statusEffectSelector;
         }

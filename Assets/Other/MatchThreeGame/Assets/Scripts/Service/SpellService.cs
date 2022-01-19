@@ -48,13 +48,16 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                 new Spell(
                     "ignite",
                     "Воспламенение",
-                    "Поджечь врага, от чего он будет испытывать жуткую боль и 1 урона за ход. Длительность: 3 хода",
+                    "Поджечь и себя и врага, от чего вы будете испытывать жуткую боль и 1 урона за ход. Длительность: 3 хода",
                     "ignition.png",
                     2,
                     0,
                     new List<SpellAction>(),
                     new List<SpellAction>(),
-                    new List<StatusEffect>(),
+                    new List<StatusEffect>()
+                    {
+                        new DamageOverTimeStatusEffect(3, "ignition.png", 1)
+                    },
                     new List<StatusEffect>()
                     {
                         new DamageOverTimeStatusEffect(3, "ignition.png", 1)
@@ -334,7 +337,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     0,
                     1,
                     new List<SpellAction>(),
-                new List<SpellAction>(),
+                    new List<SpellAction>(),
                     new List<StatusEffect>()
                     {
                         new SilenceStatusEffect(2, "", spell => spell.SpellType == SpellType.Heal)
@@ -351,9 +354,28 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     1,
                     new List<SpellAction>()
                     {
-                        new StealStatusEffectAction(v => true)
+                        new PassStatusEffectsAction(v => true)
                     },
                     new List<SpellAction>(),
+                    new List<StatusEffect>(),
+                    new List<StatusEffect>(),
+                    SpellType.Buff
+                ),
+                new Spell(
+                    "PassDebuffs",
+                    "Чистка",
+                    "Перекинуть на врага все негативные статус эффекты",
+                    "icnreasespellcasts.png",
+                    0,
+                    1,
+                    new List<SpellAction>(),
+                    new List<SpellAction>()
+                    {
+                        new PassStatusEffectsAction(runningStatusEffect => 
+                            runningStatusEffect.StatusEffect.ActionType == SpellActionType.Damage || 
+                            runningStatusEffect.StatusEffect.ActionType == SpellActionType.Debuff
+                        )
+                    },
                     new List<StatusEffect>(),
                     new List<StatusEffect>(),
                     SpellType.Buff
