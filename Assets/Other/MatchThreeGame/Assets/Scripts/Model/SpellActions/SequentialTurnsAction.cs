@@ -13,11 +13,11 @@
         {
             if (isAffectedOnPlayer)
             {
-                stateManager.SequentialTurnsForPlayer = Amount;
+                stateManager.SequentialTurnsForPlayer.Value = Amount;
             }
             else
             {
-                stateManager.SequentialTurnsForEnemy = Amount;
+                stateManager.SequentialTurnsForEnemy.Value = Amount;
             }
 
         }
