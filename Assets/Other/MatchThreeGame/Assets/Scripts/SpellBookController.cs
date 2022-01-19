@@ -20,13 +20,9 @@ namespace Other.MatchThreeGame.Assets.Scripts
             
             closeButton.OnClick = () => gameObject.SetActive(false);
             
-            var spellService = new SpellService();
-            
             Clear();
-            
-            List<Spell> spells = spellService.GetAll();
-            
-            foreach (var spell in spells)
+
+            foreach (var spell in stateManager.SpellToCooldown.Keys)
             {
                 var go = Instantiate(spellPrefab, scrollViewContent.transform);
                 go.GetComponent<SpellBehaviour>().Display(spell, stateManager, gameObject);

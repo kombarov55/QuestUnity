@@ -39,8 +39,22 @@ namespace Other.MatchThreeGame.Assets.Scripts
         public int EnemyManaRestoreAddition = 0;
         public Observable<int> CastsLeftForPlayer = new Observable<int>(2);
         public Observable<int> CastsLeftForEnemy = new Observable<int>(1);
+        public Dictionary<Spell, int> SpellToCooldown = new Dictionary<Spell, int>();
 
         public int Score;
+        
+        private void Start()
+        {
+            LevelService levelService = new LevelService();
+
+            Level = levelService.GetCurrentLevel();
+
+            var spells = new SpellService().GetAll();
+            foreach (var spell in spells)
+            {
+                SpellToCooldown[spell] = 0;
+            }
+        }
 
         public int TurnsLeft
         {
@@ -197,15 +211,6 @@ namespace Other.MatchThreeGame.Assets.Scripts
         public List<Action<RunningStatusEffect>> OnEnemyStatusEffectAddedSubscribers = new List<Action<RunningStatusEffect>>();
         public List<Action<RunningStatusEffect>> AfterEnemyStatusEffectTickSubscribers = new List<Action<RunningStatusEffect>>();
         public List<Action<RunningStatusEffect>> OnEnemyStatusEffectRemovedSubscribers = new List<Action<RunningStatusEffect>>();
-
-
-        private void Start()
-        {
-            LevelService levelService = new LevelService();
-
-            Level = levelService.GetCurrentLevel();
-        }
-
 
         public void SubscribeOnLevelInitialized(Action<Level> subscriber)
         {
