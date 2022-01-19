@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -57,7 +56,7 @@ namespace Other.MatchThreeGame.Assets.Scripts
         
             if (isPlayersTurn)
             {
-                int damageDealt = Constants.Damage - stateManager.EnemyDamageBlocked;
+                int damageDealt = Constants.Damage - stateManager.EnemyDamageBlocked + stateManager.PlayerDamageAddition;
 
                 stateManager.EnemyHealthLeft -= damageDealt;
                 stateManager.EnemyDamageBlocked = 0;
@@ -65,7 +64,7 @@ namespace Other.MatchThreeGame.Assets.Scripts
             }
             else
             {
-                int damageDealt = Constants.Damage - stateManager.PlayerDamageBlocked;
+                int damageDealt = Constants.Damage - stateManager.PlayerDamageBlocked + stateManager.EnemyDamageAddition;
                 
                 stateManager.PlayerHealthLeft -= damageDealt;
                 stateManager.PlayerDamageBlocked = 0;
@@ -76,14 +75,14 @@ namespace Other.MatchThreeGame.Assets.Scripts
         {
             if (isPlayersTurn && stateManager.PlayerHealthLeft < stateManager.Level.PlayerHealth)
             {
-                int healAmount = stateManager.BlockHealingOnPlayer ? 0 : Constants.Heal;
+                int healAmount = stateManager.BlockHealingOnPlayer ? 0 : Constants.Heal + stateManager.PlayerHealthRestoreAddition;
                 
                 stateManager.PlayerHealthLeft += healAmount;
                 stateManager.OnPlayerHealthChanged(healAmount);
             }
             else if (stateManager.EnemyHealthLeft < stateManager.Level.EnemyHealth)
             {
-                int healAmount = stateManager.BlockHealingOnEnemy ? 0 : Constants.Heal;
+                int healAmount = stateManager.BlockHealingOnEnemy ? 0 : Constants.Heal + stateManager.EnemyHealthRestoreAddition;
                 
                 stateManager.EnemyHealthLeft += healAmount;
                 stateManager.OnEnemyHealthChanged(healAmount);

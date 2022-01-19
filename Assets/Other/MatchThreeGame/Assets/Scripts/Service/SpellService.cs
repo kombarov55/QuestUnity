@@ -121,18 +121,18 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     new List<StatusEffect>()
                 ),
                 new Spell(
-                                    "Shield",
-                                    "Щит",
-                                    "Вы окружает себя энергетическим щитом, уменьшающий получаемый урон от следующей атаки на 4 на протяжении 3х ходов",
-                                    "DoubleTurn.png",
-                                    6,
-                                    new List<SpellAction>(), 
-                                    new List<StatusEffect>()
-                                    {
-                                        new ShieldStatusEffect(3, "img", 4)
-                                    },
-                                    new List<StatusEffect>()
-                                ),
+                    "Shield",
+                    "Щит",
+                    "Вы окружает себя энергетическим щитом, уменьшающий получаемый урон от следующей атаки на 4 на протяжении 3х ходов",
+                    "DoubleTurn.png",
+                    6,
+                    new List<SpellAction>(), 
+                    new List<StatusEffect>()
+                    {
+                        new ShieldStatusEffect(3, "img", 4)
+                    },
+                    new List<StatusEffect>()
+                ),
                 new Spell(
                     "ReflectDamage",
                     "Отражение урона",
@@ -156,14 +156,30 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     "reflect.png",
                     0,
                     new List<SpellAction>(),
-                new List<StatusEffect>()
-                {
-                    new BlockHealingStatusEffect(3, "")
-                },
-                new List<StatusEffect>()
-                {
-                    new BlockHealingStatusEffect(3, "")
-                }
+                    new List<StatusEffect>()
+                    {
+                        new BlockHealingStatusEffect(3, "")
+                    },
+                    new List<StatusEffect>()
+                    {
+                        new BlockHealingStatusEffect(3, "")
+                    }
+                ), 
+                new Spell(
+                    "AdditionalDamage",
+                    "Доп. урон",
+                    "В течение 3х ходов любая ваша атака наносит на 3 урона больше",
+                    "reflect.png",
+                    0,
+                    new List<SpellAction>()
+                    {
+                        new AdditionalDamageAction(3)
+                    },
+                    new List<StatusEffect>()
+                    {
+                        new AdditionalDamageStatusEffect(3, "", 3)
+                    },
+                    new List<StatusEffect>()
                 )
             };
         }
