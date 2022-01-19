@@ -20,7 +20,6 @@ namespace Other.MatchThreeGame.Assets.Scripts
         private int _playerManaLeft;
         private int _enemyManaLeft;
         private int _coin;
-        private bool _didCastInThisTurn = false;
 
         public List<RunningStatusEffect> StatusEffectsOnPlayer = new List<RunningStatusEffect>();
         public List<RunningStatusEffect> StatusEffectsOnEnemy = new List<RunningStatusEffect>();
@@ -38,10 +37,6 @@ namespace Other.MatchThreeGame.Assets.Scripts
         public int EnemyHealAddition = 0;
         public int PlayerManaRestoreAddition = 0;
         public int EnemyManaRestoreAddition = 0;
-        public int PlayerLifeRestoredOnHit = 0;
-        public int PlayerManaRestoredOnHit = 0;
-        public int EnemyLifeRestoredOnHit = 0;
-        public int EnemyManaRestoredOnHit = 0;
         public Observable<int> CastsLeftForPlayer = new Observable<int>(2);
         public Observable<int> CastsLeftForEnemy = new Observable<int>(1);
 
@@ -178,22 +173,8 @@ namespace Other.MatchThreeGame.Assets.Scripts
                 }
             }
         }
-        
-        public bool DidCastInThisTurn
-        {
-            get => _didCastInThisTurn;
-            set
-            {
-                _didCastInThisTurn = value;
-                
-                foreach (var subscriber in OnDidCastInThisTurnSubscribers)
-                {
-                    subscriber.Invoke(value);
-                }
-            }
-        }
-        
-        
+
+
 
         private List<Action<Level>> OnLevelInitializationSubscribers = new List<Action<Level>>();
         private List<Action<Level>> OnScoreChangedSubscribers = new List<Action<Level>>();
@@ -205,7 +186,6 @@ namespace Other.MatchThreeGame.Assets.Scripts
         private List<Action<int>> OnEnemyManaChangedSubscribers = new List<Action<int>>();
         private List<Action<List<GameObject>>> OnCollapseSubscribers = new List<Action<List<GameObject>>>();
         private List<Action<int>> OnCoinCountChangedSubscribers = new List<Action<int>>();
-        private List<Action<bool>> OnDidCastInThisTurnSubscribers = new List<Action<bool>>();
         private List<Action<int>> OnPlayerHealthDiffSubscribers = new List<Action<int>>();
         private List<Action<int>> OnEnemyHealthDiffSubscribers = new List<Action<int>>();
         private List<Action<int>> OnPlayerManaDiffSubscribers = new List<Action<int>>();
@@ -295,12 +275,6 @@ namespace Other.MatchThreeGame.Assets.Scripts
         {
             OnCoinCountChangedSubscribers.Add(action);
             action.Invoke(_coin);
-        }
-
-        public void SubscribeOnDidCastInThisTurn(Action<bool> action)
-        {
-            OnDidCastInThisTurnSubscribers.Add(action);
-            action.Invoke(DidCastInThisTurn);
         }
 
         public void SubscribeOnPlayerHealthDiff(Action<int> action)
@@ -426,7 +400,6 @@ namespace Other.MatchThreeGame.Assets.Scripts
         public void AfterEnemyTurn()
         {
             IsPlayersTurn = true;
-            DidCastInThisTurn = false;
             SequentialTurnsForPlayer = 1;
             
             {
@@ -449,7 +422,7 @@ namespace Other.MatchThreeGame.Assets.Scripts
             EnemyHealAddition = 0;
             PlayerManaRestoreAddition = 0;
             EnemyManaRestoreAddition = 0;
-            CastsLeftForPlayer.Value = 2;
+            CastsLeftForPlayer.Value = 1;
         } 
     }
 }
