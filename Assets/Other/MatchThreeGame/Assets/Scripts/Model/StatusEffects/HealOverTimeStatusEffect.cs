@@ -5,7 +5,7 @@
 
         public int HealAmount;
 
-        public HealOverTimeStatusEffect(int duration, string imagePath, int healAmount) : base(duration, imagePath)
+        public HealOverTimeStatusEffect(int duration, string imagePath, int healAmount) : base(duration, imagePath, SpellActionType.Heal)
         {
             HealAmount = healAmount;
         }

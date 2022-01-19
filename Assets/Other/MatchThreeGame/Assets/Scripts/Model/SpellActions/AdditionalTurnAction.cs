@@ -7,6 +7,7 @@
         public AdditionalTurnAction(int turnsToAdd)
         {
             TurnsToAdd = turnsToAdd;
+            ActionType = SpellActionType.PositiveBuff;
         }
 
         public override void Invoke(StateManager stateManager)

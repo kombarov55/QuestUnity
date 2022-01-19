@@ -4,7 +4,7 @@
     {
         public int BlockedAmount;
 
-        public ShieldStatusEffect(int duration, string imagePath, int blockedAmount) : base(duration, imagePath)
+        public ShieldStatusEffect(int duration, string imagePath, int blockedAmount) : base(duration, imagePath, SpellActionType.PositiveBuff)
         {
             BlockedAmount = blockedAmount;
         }

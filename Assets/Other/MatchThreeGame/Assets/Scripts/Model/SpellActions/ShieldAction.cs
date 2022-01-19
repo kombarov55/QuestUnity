@@ -11,6 +11,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Model
         public ShieldAction(int amount)
         {
             Amount = amount;
+            ActionType = SpellActionType.PositiveBuff;
         }
 
         public override void Invoke(StateManager stateManager)

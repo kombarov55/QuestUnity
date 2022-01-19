@@ -2,7 +2,7 @@
 {
     public class BlockHealingStatusEffect : StatusEffect
     {
-        public BlockHealingStatusEffect(int duration, string imagePath) : base(duration, imagePath)
+        public BlockHealingStatusEffect(int duration, string imagePath) : base(duration, imagePath, SpellActionType.NegativeBuff)
         {
         }
 

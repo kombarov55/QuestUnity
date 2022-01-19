@@ -6,7 +6,7 @@ namespace Other.MatchThreeGame.Assets.Scripts
     {
         public int DamageAmount;
 
-        public DamageOverTimeStatusEffect(int duration, string imagePath, int damageAmount) : base(duration, imagePath)
+        public DamageOverTimeStatusEffect(int duration, string imagePath, int damageAmount) : base(duration, imagePath, SpellActionType.Damage)
         {
             DamageAmount = damageAmount;
         }

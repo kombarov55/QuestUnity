@@ -7,6 +7,7 @@
             if (stateManager.IsPlayersTurn)
             {
                 stateManager.ReflectDamageOnPlayer = true;
+                ActionType = SpellActionType.PositiveBuff;
             }
             else
             {

@@ -2,6 +2,11 @@
 {
     public class BlockHealingAction : SpellAction
     {
+        public BlockHealingAction()
+        {
+            ActionType = SpellActionType.NegativeBuff;
+        }
+
         public override void Invoke(StateManager stateManager)
         {
             if (stateManager.IsPlayersTurn)

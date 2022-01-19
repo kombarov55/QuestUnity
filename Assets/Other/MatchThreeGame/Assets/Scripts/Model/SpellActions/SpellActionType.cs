@@ -2,6 +2,6 @@
 {
     public enum SpellActionType
     {
-        Damage, Heal
+        Damage, Heal, Other, NegativeBuff, PositiveBuff
     }
 }

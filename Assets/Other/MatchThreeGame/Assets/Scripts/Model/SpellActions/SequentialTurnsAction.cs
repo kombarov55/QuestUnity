@@ -9,6 +9,7 @@
         {
             Amount = amount;
             IsForPlayer = isForPlayer;
+            ActionType = SpellActionType.PositiveBuff;
         }
 
         public override void Invoke(StateManager stateManager)
