@@ -10,6 +10,8 @@ namespace Other.MatchThreeGame.Assets.Scripts
             
             stateManager.SubscribeOnIsPlayersTurn(isPlayersTurn =>
             {
+                ResetStats(stateManager);
+                
                 if (isPlayersTurn)
                 {
                     foreach (var runningStatusEffect in stateManager.StatusEffectsOnPlayer)
@@ -39,6 +41,14 @@ namespace Other.MatchThreeGame.Assets.Scripts
                     }
                 }
             });
+        }
+        
+        private void ResetStats(StateManager stateManager)
+        {
+            stateManager.ReflectDamageOnEnemy = false;
+            stateManager.ReflectDamageOnPlayer = false;
+            stateManager.BlockHealingOnEnemy = false;
+            stateManager.BlockHealingOnPlayer = false;
         }
     }
 }

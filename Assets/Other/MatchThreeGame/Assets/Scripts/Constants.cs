@@ -21,6 +21,7 @@
         public static readonly int TurnsCount = 30;
 
         public static readonly int Damage = 5;
+        public static readonly int Heal = 3;
     }
 
    

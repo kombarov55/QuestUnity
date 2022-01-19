@@ -29,6 +29,8 @@ namespace Other.MatchThreeGame.Assets.Scripts
         public int EnemyDamageBlocked = 0;
         public bool ReflectDamageOnPlayer = false;
         public bool ReflectDamageOnEnemy = false;
+        public bool BlockHealingOnPlayer = false;
+        public bool BlockHealingOnEnemy = false;
 
         public int Score;
 

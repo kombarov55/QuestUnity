@@ -148,6 +148,22 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                         new ReflectDamageStatusEffect(2, "")
                     },
                     new List<StatusEffect>()
+                ),
+                new Spell(
+                    "BlockHealing",
+                    "Блокировка лечения",
+                    "В течение 3х ходов противник не сможет лечиться",
+                    "reflect.png",
+                    0,
+                    new List<SpellAction>(),
+                new List<StatusEffect>()
+                {
+                    new BlockHealingStatusEffect(3, "")
+                },
+                new List<StatusEffect>()
+                {
+                    new BlockHealingStatusEffect(3, "")
+                }
                 )
             };
         }

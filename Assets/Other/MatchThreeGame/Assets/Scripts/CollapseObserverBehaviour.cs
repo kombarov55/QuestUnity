@@ -6,8 +6,7 @@ using UnityEngine;
 namespace Other.MatchThreeGame.Assets.Scripts
 {
     public class CollapseObserverBehaviour : MonoBehaviour
-    {
-        private void Start()
+    {        private void Start()
         {
             StateManager stateManager = GameObject.Find("State").GetComponent<StateManager>();
             
@@ -77,13 +76,17 @@ namespace Other.MatchThreeGame.Assets.Scripts
         {
             if (isPlayersTurn && stateManager.PlayerHealthLeft < stateManager.Level.PlayerHealth)
             {
-                stateManager.PlayerHealthLeft += 1;
-                stateManager.OnPlayerHealthChanged(1);
+                int healAmount = stateManager.BlockHealingOnPlayer ? 0 : Constants.Heal;
+                
+                stateManager.PlayerHealthLeft += healAmount;
+                stateManager.OnPlayerHealthChanged(healAmount);
             }
             else if (stateManager.EnemyHealthLeft < stateManager.Level.EnemyHealth)
             {
-                stateManager.EnemyHealthLeft += 1;
-                stateManager.OnEnemyHealthChanged(1);
+                int healAmount = stateManager.BlockHealingOnEnemy ? 0 : Constants.Heal;
+                
+                stateManager.EnemyHealthLeft += healAmount;
+                stateManager.OnEnemyHealthChanged(healAmount);
             }
         }
         
