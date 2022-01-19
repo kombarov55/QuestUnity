@@ -12,7 +12,19 @@
         
         public override void Invoke(StateManager stateManager)
         {
-            if (stateManager.IsPlayersTurn)
+            bool isPlayersTurn = stateManager.IsPlayersTurn;
+            
+            if (isPlayersTurn && stateManager.ReflectDamageOnEnemy)
+            {
+                isPlayersTurn = false;
+            }
+
+            if (!isPlayersTurn && stateManager.ReflectDamageOnPlayer)
+            {
+                isPlayersTurn = true;
+            }
+
+            if (isPlayersTurn)
             {
                 stateManager.EnemyHealthLeft -= DamageAmount;
                 stateManager.OnEnemyHealthChanged(-DamageAmount);

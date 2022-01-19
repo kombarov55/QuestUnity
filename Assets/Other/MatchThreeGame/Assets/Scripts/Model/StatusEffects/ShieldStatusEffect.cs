@@ -9,7 +9,7 @@
             BlockedAmount = blockedAmount;
         }
 
-        public override void Invoke(StateManager stateManager, bool isOnPlayer)
+        public override void Tick(StateManager stateManager, bool isOnPlayer)
         {
             if (isOnPlayer) 
             {

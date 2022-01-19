@@ -27,6 +27,8 @@ namespace Other.MatchThreeGame.Assets.Scripts
         public int SequentialTurnsForEnemy = 1;
         public int PlayerDamageBlocked = 0;
         public int EnemyDamageBlocked = 0;
+        public bool ReflectDamageOnPlayer = false;
+        public bool ReflectDamageOnEnemy = false;
 
         public int Score;
 
@@ -195,10 +197,10 @@ namespace Other.MatchThreeGame.Assets.Scripts
         private List<Action<int>> OnEnemyManaDiffSubscribers = new List<Action<int>>();
         
         public List<Action<RunningStatusEffect>> OnPlayerStatusEffectAddedSubscribers = new List<Action<RunningStatusEffect>>();
-        public List<Action<RunningStatusEffect>> OnPlayerStatusEffectTickSubscribers = new List<Action<RunningStatusEffect>>();
+        public List<Action<RunningStatusEffect>> AfterPlayerStatusEffectTickSubscribers = new List<Action<RunningStatusEffect>>();
         public List<Action<RunningStatusEffect>> OnPlayerStatusEffectRemovedSubscribers = new List<Action<RunningStatusEffect>>();
         public List<Action<RunningStatusEffect>> OnEnemyStatusEffectAddedSubscribers = new List<Action<RunningStatusEffect>>();
-        public List<Action<RunningStatusEffect>> OnEnemyStatusEffectTickSubscribers = new List<Action<RunningStatusEffect>>();
+        public List<Action<RunningStatusEffect>> AfterEnemyStatusEffectTickSubscribers = new List<Action<RunningStatusEffect>>();
         public List<Action<RunningStatusEffect>> OnEnemyStatusEffectRemovedSubscribers = new List<Action<RunningStatusEffect>>();
 
 
@@ -348,9 +350,9 @@ namespace Other.MatchThreeGame.Assets.Scripts
             }
         }
 
-        public void OnStatusEffectTickOnPlayer(RunningStatusEffect runningStatusEffect)
+        public void AfterStatusEffectTickOnPlayer(RunningStatusEffect runningStatusEffect)
         {
-            foreach (var subscriber in OnPlayerStatusEffectTickSubscribers)
+            foreach (var subscriber in AfterPlayerStatusEffectTickSubscribers)
             {
                 subscriber.Invoke(runningStatusEffect);
             }
@@ -375,9 +377,9 @@ namespace Other.MatchThreeGame.Assets.Scripts
             }
         }
 
-        public void OnStatusEffectTickOnEnemy(RunningStatusEffect runningStatusEffect)
+        public void AfterStatusEffectTickOnEnemy(RunningStatusEffect runningStatusEffect)
         {
-            foreach (var subscriber in OnEnemyStatusEffectTickSubscribers)
+            foreach (var subscriber in AfterEnemyStatusEffectTickSubscribers)
             {
                 subscriber.Invoke(runningStatusEffect);
             }

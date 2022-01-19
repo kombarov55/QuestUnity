@@ -28,7 +28,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
                     _statusEffectGos.Add(go);
                 });
 
-                stateManager.OnPlayerStatusEffectTickSubscribers.Add(runningStatusEffect =>
+                stateManager.AfterPlayerStatusEffectTickSubscribers.Add(runningStatusEffect =>
                 {
                     foreach (var statusEffectGo in _statusEffectGos)
                     {
@@ -62,7 +62,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
                     _statusEffectGos.Add(go);
                 });
             
-                stateManager.OnEnemyStatusEffectTickSubscribers.Add(runningStatusEffect =>
+                stateManager.AfterEnemyStatusEffectTickSubscribers.Add(runningStatusEffect =>
                 {
                     foreach (var statusEffectGo in _statusEffectGos)
                     {

@@ -15,8 +15,8 @@ namespace Other.MatchThreeGame.Assets.Scripts
                     foreach (var runningStatusEffect in stateManager.StatusEffectsOnPlayer)
                     {
                         runningStatusEffect.TurnsLeft -= 1;
-                        runningStatusEffect.StatusEffect.Invoke(stateManager, true);
-                        stateManager.OnStatusEffectTickOnPlayer(runningStatusEffect);
+                        runningStatusEffect.StatusEffect.Tick(stateManager, true);
+                        stateManager.AfterStatusEffectTickOnPlayer(runningStatusEffect);
 
                         if (runningStatusEffect.TurnsLeft == 0)
                         {
@@ -29,8 +29,8 @@ namespace Other.MatchThreeGame.Assets.Scripts
                     foreach (var runningStatusEffect in stateManager.StatusEffectsOnEnemy)
                     {
                         runningStatusEffect.TurnsLeft -= 1;
-                        runningStatusEffect.StatusEffect.Invoke(stateManager, false);
-                        stateManager.OnStatusEffectTickOnEnemy(runningStatusEffect);
+                        runningStatusEffect.StatusEffect.Tick(stateManager, false);
+                        stateManager.AfterStatusEffectTickOnEnemy(runningStatusEffect);
 
                         if (runningStatusEffect.TurnsLeft == 0)
                         {

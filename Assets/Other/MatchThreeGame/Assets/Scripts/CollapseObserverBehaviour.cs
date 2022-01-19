@@ -46,6 +46,16 @@ namespace Other.MatchThreeGame.Assets.Scripts
         }
         private void OnHit(StateManager stateManager, bool isPlayersTurn) 
         {
+            if (isPlayersTurn && stateManager.ReflectDamageOnEnemy)
+            {
+                isPlayersTurn = false;
+            }
+
+            if (!isPlayersTurn && stateManager.ReflectDamageOnPlayer)
+            {
+                isPlayersTurn = true;
+            }
+        
             if (isPlayersTurn)
             {
                 int damageDealt = Constants.Damage - stateManager.EnemyDamageBlocked;

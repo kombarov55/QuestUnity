@@ -41,5 +41,11 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
                 }
             });
         }
+
+        private void ResetStats(StateManager stateManager)
+        {
+            stateManager.ReflectDamageOnEnemy = false;
+            stateManager.ReflectDamageOnPlayer = false;
+        }
     }
 }

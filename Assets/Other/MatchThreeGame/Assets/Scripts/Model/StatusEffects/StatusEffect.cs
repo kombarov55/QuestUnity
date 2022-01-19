@@ -11,6 +11,6 @@
             ImagePath = imagePath;
         }
 
-        public abstract void Invoke(StateManager stateManager, bool isOnPlayer);
+        public abstract void Tick(StateManager stateManager, bool isOnPlayer);
     }
 }
