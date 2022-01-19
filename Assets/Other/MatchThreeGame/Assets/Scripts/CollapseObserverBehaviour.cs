@@ -84,11 +84,11 @@ namespace Other.MatchThreeGame.Assets.Scripts
         {
             if (isPlayersTurn)
             {
-                StateAlterationService.HealOnPlayer(stateManager, Constants.Heal);
+                StateAlterationService.HealPlayer(stateManager, Constants.Heal);
             }
             else
             {
-                StateAlterationService.HealOnEnemy(stateManager, Constants.Heal);
+                StateAlterationService.HealEnemy(stateManager, Constants.Heal);
             }
             
             // if (isPlayersTurn && stateManager.PlayerHealthLeft < stateManager.Level.PlayerHealth)

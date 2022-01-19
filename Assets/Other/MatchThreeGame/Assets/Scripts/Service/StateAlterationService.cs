@@ -19,7 +19,7 @@
             }
         }
 
-        public static void HealOnPlayer(StateManager stateManager, int amount)
+        public static void HealPlayer(StateManager stateManager, int amount)
         {
             int healAmount = amount;
 
@@ -58,7 +58,7 @@
             }
         }
         
-        public static void HealOnEnemy(StateManager stateManager, int amount)
+        public static void HealEnemy(StateManager stateManager, int amount)
         {
             int healAmount = amount;
 

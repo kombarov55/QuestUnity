@@ -91,7 +91,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     3,
                     new List<SpellAction>()
                     {
-                        new SequentialTurnsAction(3, true)
+                        new SequentialTurnsAction(3)
                     },
                     new List<SpellAction>(),
                     new List<StatusEffect>(),
@@ -105,7 +105,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     6,
                     new List<SpellAction>()
                     {
-                        new SequentialTurnsAction(2, true)
+                        new SequentialTurnsAction(2)
                     }, 
                     new List<SpellAction>(),
                     new List<StatusEffect>()
@@ -246,6 +246,20 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     {
                         new ManaburnStatusEffect(3, "", 3)
                     }
+                ),
+                new Spell(
+                    "Lifesteal",
+                    "Вампиризм",
+                    "Украсть 5 здорвья у врага",
+                    "lifesteal.png",
+                    0,
+                    new List<SpellAction>(),
+                    new List<SpellAction>()
+                    {
+                        new LifestealAction(5)
+                    },
+                    new List<StatusEffect>(),
+                    new List<StatusEffect>()
                 )
             };
         }

@@ -3,17 +3,15 @@
     public class SequentialTurnsAction : SpellAction
     {
         public int Amount;
-        public bool IsForPlayer;
 
-        public SequentialTurnsAction(int amount, bool isForPlayer) : base(SpellActionType.PositiveBuff)
+        public SequentialTurnsAction(int amount) : base(SpellActionType.PositiveBuff)
         {
             Amount = amount;
-            IsForPlayer = isForPlayer;
         }
 
         public override void Cast(StateManager stateManager, bool isAffectedOnPlayer)
         {
-            if (IsForPlayer)
+            if (isAffectedOnPlayer)
             {
                 stateManager.SequentialTurnsForPlayer = Amount;
             }
