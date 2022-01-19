@@ -325,6 +325,22 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     new List<StatusEffect>(),
                     new List<StatusEffect>(),
                     SpellType.Buff
+                ),
+                new Spell(
+                    "SilenceHealingSpells",
+                    "Блокирвка лечащей магии",
+                    "Блокирует лечащую магию у врага на 2 хода",
+                    "icnreasespellcasts.png",
+                    0,
+                    1,
+                    new List<SpellAction>(),
+                new List<SpellAction>(),
+                    new List<StatusEffect>()
+                    {
+                        new SilenceStatusEffect(2, "", spell => spell.SpellType == SpellType.Heal)
+                    },
+                    new List<StatusEffect>(),
+                    SpellType.Debuff
                 )
             };
         }

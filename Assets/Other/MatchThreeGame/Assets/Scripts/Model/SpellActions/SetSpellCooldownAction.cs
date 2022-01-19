@@ -18,12 +18,12 @@ namespace Other.MatchThreeGame.Assets.Scripts.Model
         {
             if (isAffectedOnPlayer)
             {
-                var spell = stateManager.SpellToCooldownObservable.Keys.ToList()
+                var spell = stateManager.PlayerSpellsToCooldownObservable.Keys.ToList()
                     .Find(v => SpellSelector.Invoke(v));
 
                 if (spell != null)
                 {
-                    stateManager.SpellToCooldownObservable[spell].Value = CooldownAmountToSet;
+                    stateManager.PlayerSpellsToCooldownObservable[spell].Value = CooldownAmountToSet;
                 }
             }
             else
