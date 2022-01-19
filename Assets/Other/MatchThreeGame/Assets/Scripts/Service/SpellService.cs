@@ -212,6 +212,26 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                         new AdditionalManaRestoreStatusEffect(3, "", 2)
                     },
                     new List<StatusEffect>()
+                ), 
+                new Spell(
+                    "Manaburn",
+                    "Горение маны",
+                    "Выжигает у врага 5 маны, далее в течение 3х ходов он будет терять по 3 маны",
+                    "reflect.png",
+                    0,
+                    new List<SpellAction>()
+                    {
+                        new ManaburnAction(5)
+                    },
+                    new List<StatusEffect>()
+                    {
+                        new ManaburnStatusEffect(3, "", 3)
+                    },
+                    new List<StatusEffect>()
+                    {
+                        new ManaburnStatusEffect(3, "", 3)
+                    }
+                    
                 )
             };
         }
