@@ -41,7 +41,8 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
         public void Cast()
         {
             _spellBookPanel.SetActive(false);
-            _stateManager.DidCastInThisTurn = true;
+            _stateManager.CastsLeftForPlayer.Value -= 1;
+            // _stateManager.DidCastInThisTurn = true;
             
             _stateManager.PlayerManaLeft -= _spell.ManaCost;
             _stateManager.OnPlayerManaChanged(-_spell.ManaCost);

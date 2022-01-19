@@ -11,9 +11,9 @@ namespace Other.MatchThreeGame.Assets.Scripts.Model
             Amount = amount;
         }
 
-        public override void Cast(StateManager stateManager, bool IsAffectedOnPlayer)
+        public override void Cast(StateManager stateManager, bool isAffectedOnPlayer)
         {
-            if (IsAffectedOnPlayer)
+            if (isAffectedOnPlayer)
             {
                 StateAlterationService.DoDamageToPlayer(stateManager, Amount);
                 StateAlterationService.HealEnemy(stateManager, Amount);

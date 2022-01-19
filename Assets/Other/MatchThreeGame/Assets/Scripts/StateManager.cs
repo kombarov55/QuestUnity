@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DefaultNamespace;
+using DefaultNamespace.Common;
 using Other.MatchThreeGame.Assets.Scripts.Model;
 using Other.MatchThreeGame.Assets.Scripts.Service;
 using UnityEngine;
@@ -41,6 +42,8 @@ namespace Other.MatchThreeGame.Assets.Scripts
         public int PlayerManaRestoredOnHit = 0;
         public int EnemyLifeRestoredOnHit = 0;
         public int EnemyManaRestoredOnHit = 0;
+        public Observable<int> CastsLeftForPlayer = new Observable<int>(2);
+        public Observable<int> CastsLeftForEnemy = new Observable<int>(1);
 
         public int Score;
 
@@ -446,6 +449,7 @@ namespace Other.MatchThreeGame.Assets.Scripts
             EnemyHealAddition = 0;
             PlayerManaRestoreAddition = 0;
             EnemyManaRestoreAddition = 0;
+            CastsLeftForPlayer.Value = 2;
         } 
     }
 }

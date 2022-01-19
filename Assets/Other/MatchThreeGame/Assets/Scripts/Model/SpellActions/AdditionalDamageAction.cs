@@ -5,7 +5,7 @@
 
         public int Amount;
 
-        public AdditionalDamageAction(int amount) : base(SpellActionType.PositiveBuff)
+        public AdditionalDamageAction(int amount) : base(SpellActionType.Buff)
         {
             Amount = amount;
         }

@@ -4,7 +4,7 @@
     {
         public int Amount;
 
-        public SequentialTurnsAction(int amount) : base(SpellActionType.PositiveBuff)
+        public SequentialTurnsAction(int amount) : base(SpellActionType.Buff)
         {
             Amount = amount;
         }

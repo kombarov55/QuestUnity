@@ -4,7 +4,7 @@
     {
         public int Amount;
 
-        public AdditionalHealStatusEffect(int duration, string imagePath, int amount) : base(duration, imagePath, SpellActionType.PositiveBuff)
+        public AdditionalHealStatusEffect(int duration, string imagePath, int amount) : base(duration, imagePath, SpellActionType.Buff)
         {
             Amount = amount;
         }

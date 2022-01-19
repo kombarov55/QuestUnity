@@ -4,7 +4,7 @@
     {
         public int TurnsToAdd;
 
-        public AdditionalTurnAction(int turnsToAdd) : base(SpellActionType.PositiveBuff)
+        public AdditionalTurnAction(int turnsToAdd) : base(SpellActionType.Buff)
         {
             TurnsToAdd = turnsToAdd;
         }

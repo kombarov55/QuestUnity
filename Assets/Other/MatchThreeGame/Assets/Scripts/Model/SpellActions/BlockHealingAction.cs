@@ -2,7 +2,7 @@
 {
     public class BlockHealingAction : SpellAction
     {
-        public BlockHealingAction() : base(SpellActionType.NegativeBuff)
+        public BlockHealingAction() : base(SpellActionType.Debuff)
         {
         }
 

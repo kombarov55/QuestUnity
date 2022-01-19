@@ -2,7 +2,7 @@
 {
     public class ReflectDamageAction : SpellAction
     {
-        public ReflectDamageAction() : base(SpellActionType.PositiveBuff)
+        public ReflectDamageAction() : base(SpellActionType.Buff)
         {
         }
 

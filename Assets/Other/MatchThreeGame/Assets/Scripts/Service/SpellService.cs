@@ -260,6 +260,20 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     },
                     new List<StatusEffect>(),
                     new List<StatusEffect>()
+                ),
+                new Spell(
+                    "IncreaseSpellCasts",
+                    "Сколдовать несвколько раз",
+                    "Потратьте одну попытку сколдовать, чтобы в этом ходу сколдовать ещё 3 раза... да это бредово, этот эффект нужен для предметов и тут можно его протестировать",
+                    "icnreasespellcasts.png",
+                    0,
+                    new List<SpellAction>()
+                    {
+                        new AddSpellCastsLeftAction(3)
+                    },
+                    new List<SpellAction>(),
+                    new List<StatusEffect>(),
+                    new List<StatusEffect>()
                 )
             };
         }

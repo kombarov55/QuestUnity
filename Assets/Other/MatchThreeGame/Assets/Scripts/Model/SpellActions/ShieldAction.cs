@@ -6,7 +6,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Model
     {
         public int Amount;
 
-        public ShieldAction(int amount) : base(SpellActionType.PositiveBuff)
+        public ShieldAction(int amount) : base(SpellActionType.Buff)
         {
             Amount = amount;
         }

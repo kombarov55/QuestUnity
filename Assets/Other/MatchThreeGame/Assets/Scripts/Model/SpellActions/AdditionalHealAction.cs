@@ -4,7 +4,7 @@
     {
         public int Amount;
 
-        public AdditionalHealAction(int amount) : base(SpellActionType.PositiveBuff)
+        public AdditionalHealAction(int amount) : base(SpellActionType.Buff)
         {
             Amount = amount;
         }
