@@ -12,6 +12,12 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
 
         public Image background;
         public GameObject gameGoalPanel;
+        public Text enemyNameText;
+        public Text playerHealthText;
+        public Text playerManaText;
+        public Text enemyHealthText;
+        public Text enemyManaText;
+
         public GameObject messagePanel;
         public Text messageHeader;
         public float durationOfShowInSeconds = 1f;
@@ -26,11 +32,18 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
             _stateManager = stateManager;
         }
 
-        public void ShowGoal()
+        public void ShowGoal(Level level)
         {
             gameObject.SetActive(true);
             gameGoalPanel.SetActive(true);
             _stateManager.IsAnyPanelDisplayedOnUI = true;
+            
+            playerHealthText.text = level.PlayerHealth.ToString();
+            playerManaText.text = level.PlayerMana.ToString();
+            enemyNameText.text = level.EnemyName;
+            enemyHealthText.text = level.EnemyHealth.ToString();
+            enemyManaText.text = level.EnemyMana.ToString();
+            
             StartCoroutine(FlyAwayAfterDelay(gameGoalPanel, true));
         }
 

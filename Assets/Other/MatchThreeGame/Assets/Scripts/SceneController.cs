@@ -26,7 +26,7 @@ namespace Other.MatchThreeGame.Assets.Scripts
 
         public void ShowGoals(Level level)
         {
-            _toastBehaviour.ShowGoal();
+            _toastBehaviour.ShowGoal(level);
             // StartCoroutine(_toastBehaviour.ShowWithFlyAway("Победите противника", 1));            
         }
 

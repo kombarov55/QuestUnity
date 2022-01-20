@@ -7,6 +7,8 @@ namespace Other.MatchThreeGame.Assets.Scripts.Model
         public int TurnsAmount;
         public int TurnsLeft;
 
+        public string EnemyName; 
+
         public int PlayerHealth;
         public int EnemyHealth;
 
@@ -17,8 +19,9 @@ namespace Other.MatchThreeGame.Assets.Scripts.Model
 
         public Level() { }
 
-        public Level(int turnsAmount, int playerHealth, int enemyHealth, int playerMana, int enemyMana, string enemyAvatarImagePath)
+        public Level(string enemyName, int turnsAmount, int playerHealth, int enemyHealth, int playerMana, int enemyMana, string enemyAvatarImagePath)
         {
+            EnemyName = enemyName;
             TurnsAmount = turnsAmount;
             TurnsLeft = turnsAmount;
             PlayerHealth = playerHealth;
