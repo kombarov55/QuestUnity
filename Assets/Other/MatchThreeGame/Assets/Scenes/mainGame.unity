@@ -1079,7 +1079,7 @@ RectTransform:
   - {fileID: 2110265359}
   - {fileID: 2022854578}
   m_Father: {fileID: 1066478621}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2148,8 +2148,8 @@ RectTransform:
   m_Father: {fileID: 602133834}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.64933336, y: 0}
-  m_AnchorMax: {x: 0.64933336, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2621,7 +2621,31 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4547106072383757564, guid: bf8b2c2437e00ae40b5fa235a8488b6a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4547106072383757564, guid: bf8b2c2437e00ae40b5fa235a8488b6a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4547106072383757564, guid: bf8b2c2437e00ae40b5fa235a8488b6a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1632518775}
+    - target: {fileID: 4547106072383757564, guid: bf8b2c2437e00ae40b5fa235a8488b6a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4547106072383757564, guid: bf8b2c2437e00ae40b5fa235a8488b6a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetIsAnyPanelDisplayedOnUIToTrue
+      objectReference: {fileID: 0}
+    - target: {fileID: 4547106072383757564, guid: bf8b2c2437e00ae40b5fa235a8488b6a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Other.MatchThreeGame.Assets.Scripts.StateManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4547106072383757564, guid: bf8b2c2437e00ae40b5fa235a8488b6a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4547106072383757566, guid: bf8b2c2437e00ae40b5fa235a8488b6a, type: 3}
       propertyPath: m_Name
@@ -2988,7 +3012,7 @@ RectTransform:
   - {fileID: 903007028}
   - {fileID: 1169526097}
   m_Father: {fileID: 1066478621}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -3914,10 +3938,10 @@ RectTransform:
   - {fileID: 1208953992}
   - {fileID: 526055225}
   - {fileID: 586935673}
-  - {fileID: 1497896372}
-  - {fileID: 1899470738}
   - {fileID: 878569082}
+  - {fileID: 1497896372}
   - {fileID: 362357809}
+  - {fileID: 1899470738}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4576,6 +4600,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   whatToClose: {fileID: 0}
   whatToOpen: {fileID: 1899470737}
+  setFlagsOnStateManager: 1
+  flagValue: 1
 --- !u!1001 &1180963431
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6416,7 +6442,7 @@ RectTransform:
   - {fileID: 1881613198}
   - {fileID: 1369512077}
   m_Father: {fileID: 1066478621}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -6593,6 +6619,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   whatToClose: {fileID: 1497896371}
   whatToOpen: {fileID: 878569081}
+  setFlagsOnStateManager: 0
+  flagValue: 0
 --- !u!1 &1542555103
 GameObject:
   m_ObjectHideFlags: 0
@@ -6629,6 +6657,27 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1552023594 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4547106072383757566, guid: bf8b2c2437e00ae40b5fa235a8488b6a, type: 3}
+  m_PrefabInstance: {fileID: 1873809366}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1552023595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1552023594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56c438424c184f669bc419c956d9e33f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whatToClose: {fileID: 1899470737}
+  whatToOpen: {fileID: 0}
+  setFlagsOnStateManager: 1
+  flagValue: 0
 --- !u!1001 &1592586844
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7024,6 +7073,7 @@ MonoBehaviour:
   EnemyHealAddition: 0
   PlayerManaRestoreAddition: 0
   EnemyManaRestoreAddition: 0
+  IsAnyPanelDisplayedOnUI: 0
   SoundManager: {fileID: 0}
   Score: 0
 --- !u!4 &1632518776
@@ -7073,7 +7123,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.64933336, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -7578,7 +7628,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.64933336, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -8197,8 +8247,8 @@ RectTransform:
   m_Father: {fileID: 1863203672}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.64933336, y: 0}
-  m_AnchorMax: {x: 0.64933336, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -8319,9 +8369,37 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1899470738}
     m_Modifications:
+    - target: {fileID: 4547106072383757564, guid: bf8b2c2437e00ae40b5fa235a8488b6a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4547106072383757564, guid: bf8b2c2437e00ae40b5fa235a8488b6a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4547106072383757564, guid: bf8b2c2437e00ae40b5fa235a8488b6a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1632518775}
+    - target: {fileID: 4547106072383757564, guid: bf8b2c2437e00ae40b5fa235a8488b6a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4547106072383757564, guid: bf8b2c2437e00ae40b5fa235a8488b6a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetIsAnyPanelDisplayedOnUIToFalse
+      objectReference: {fileID: 0}
+    - target: {fileID: 4547106072383757564, guid: bf8b2c2437e00ae40b5fa235a8488b6a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Other.MatchThreeGame.Assets.Scripts.StateManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4547106072383757564, guid: bf8b2c2437e00ae40b5fa235a8488b6a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4547106072383757566, guid: bf8b2c2437e00ae40b5fa235a8488b6a, type: 3}
       propertyPath: m_Name
-      value: Button
+      value: CloseButton
       objectReference: {fileID: 0}
     - target: {fileID: 4547106072383757566, guid: bf8b2c2437e00ae40b5fa235a8488b6a, type: 3}
       propertyPath: m_IsActive
@@ -8419,32 +8497,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4646961559226705724, guid: bf8b2c2437e00ae40b5fa235a8488b6a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: bf8b2c2437e00ae40b5fa235a8488b6a, type: 3}
 --- !u!224 &1873809367 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4547106072383757567, guid: bf8b2c2437e00ae40b5fa235a8488b6a, type: 3}
   m_PrefabInstance: {fileID: 1873809366}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1873809368 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4547106073035805109, guid: bf8b2c2437e00ae40b5fa235a8488b6a, type: 3}
-  m_PrefabInstance: {fileID: 1873809366}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1873809369
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1873809368}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56c438424c184f669bc419c956d9e33f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  whatToClose: {fileID: 1899470737}
-  whatToOpen: {fileID: 0}
 --- !u!1 &1873970433
 GameObject:
   m_ObjectHideFlags: 0
@@ -8667,7 +8727,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1899470738
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8692,7 +8752,7 @@ RectTransform:
   - {fileID: 571601744}
   - {fileID: 388529299}
   m_Father: {fileID: 1066478621}
-  m_RootOrder: 6
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -9516,8 +9576,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56c438424c184f669bc419c956d9e33f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  whatToClose: {fileID: 878569081}
+  whatToClose: {fileID: 0}
   whatToOpen: {fileID: 1497896371}
+  setFlagsOnStateManager: 0
+  flagValue: 0
 --- !u!1 &2022854577
 GameObject:
   m_ObjectHideFlags: 0

@@ -42,7 +42,8 @@ namespace Other.MatchThreeGame.Assets.Scripts
         public Dictionary<Spell, Observable<int>> PlayerSpellsToCooldownObservable = new Dictionary<Spell, Observable<int>>();
         public List<Spell> SilentedSpellsForPlayer = new List<Spell>();
         public List<Spell> SilentedSpellsForEnemy = new List<Spell>();
-        
+        public bool IsAnyPanelDisplayedOnUI = false;
+
         public List<Spell> Spells;
         public SoundManager SoundManager;
 
@@ -445,6 +446,6 @@ namespace Other.MatchThreeGame.Assets.Scripts
             CastsLeftForPlayer.Value = 1;
             SilentedSpellsForPlayer = new List<Spell>();
             SilentedSpellsForEnemy = new List<Spell>();
-        } 
+        }
     }
 }

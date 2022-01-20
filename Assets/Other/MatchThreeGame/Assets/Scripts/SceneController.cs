@@ -16,8 +16,9 @@ namespace Other.MatchThreeGame.Assets.Scripts
         
         private void Start()
         {
-            _toastBehaviour = toastComponent.GetComponent<ToastBehaviour>();
             StateManager stateManager = GameObject.Find("State").GetComponent<StateManager>();
+            _toastBehaviour = toastComponent.GetComponent<ToastBehaviour>();
+            _toastBehaviour.Init(stateManager);
 
             stateManager.CastsLeftForPlayer.Subscribe(castsLeft =>
             {

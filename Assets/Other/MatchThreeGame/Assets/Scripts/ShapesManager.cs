@@ -186,12 +186,12 @@ public class ShapesManager : MonoBehaviour
         if (ShowDebugInfo)
             DebugText.text = DebugUtilities.GetArrayContents(shapes);
 
-        if (_stateManager.GameState == GameState.EnemyTurn)
+        if (_stateManager.GameState == GameState.EnemyTurn && !_stateManager.IsAnyPanelDisplayedOnUI)
         {
             return;
         }
         
-        if (_stateManager.GameState == GameState.None)
+        if (_stateManager.GameState == GameState.None && !_stateManager.IsAnyPanelDisplayedOnUI)
         {
             //user has clicked or touched
             if (Input.GetMouseButtonDown(0))

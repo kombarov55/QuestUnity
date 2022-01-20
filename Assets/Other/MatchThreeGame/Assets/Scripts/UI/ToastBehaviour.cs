@@ -17,6 +17,13 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
         
         private Vector3 _initialTextPosition;
         private Action _onClickAction;
+
+        private StateManager _stateManager;
+
+        public void Init(StateManager stateManager)
+        {
+            _stateManager = stateManager;
+        }
         
         public IEnumerator ShowWithFlyAway(string text, int delayInSeconds)
         {
@@ -37,6 +44,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
         public IEnumerator ShowWithFlyAway(string text, string paragraph, int delayInSeconds, Action then)
         {
             gameObject.SetActive(true);
+            _stateManager.IsAnyPanelDisplayedOnUI = true;
             
             headerText.text = text;
             paragraphText.text = paragraph;
@@ -47,6 +55,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
             yield return new WaitForSeconds(0.4f);
             
             gameObject.SetActive(false);
+            _stateManager.IsAnyPanelDisplayedOnUI = false;
             
             headerText.transform.position = _initialTextPosition;
             

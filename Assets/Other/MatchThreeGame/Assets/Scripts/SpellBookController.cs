@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using Other.MatchThreeGame.Assets.Scripts.Model;
-using Other.MatchThreeGame.Assets.Scripts.Service;
 using Other.MatchThreeGame.Assets.Scripts.UI;
 using UnityEngine;
 
@@ -12,10 +10,10 @@ namespace Other.MatchThreeGame.Assets.Scripts
        public GameObject spellPrefab;
 
        private List<GameObject> _instantiatedSpells = new List<GameObject>();
-       
-        public void Start()
+
+       public void Start()
         { 
-            var stateManager = GameObject.Find("State").GetComponent<StateManager>();
+            StateManager stateManager = GameObject.Find("State").GetComponent<StateManager>();
 
             Clear();
 
@@ -25,6 +23,16 @@ namespace Other.MatchThreeGame.Assets.Scripts
                 go.GetComponent<SpellBehaviour>().Display(spell, stateManager, gameObject);
                 _instantiatedSpells.Add(go);
             }
+        }
+
+        public void OnEnable()
+        {
+            GameObject.Find("State").GetComponent<StateManager>().IsAnyPanelDisplayedOnUI = true;
+        }
+
+        public void OnDisable()
+        {
+            GameObject.Find("State").GetComponent<StateManager>().IsAnyPanelDisplayedOnUI = false;
         }
 
         private void Clear()

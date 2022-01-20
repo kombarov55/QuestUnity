@@ -13,9 +13,11 @@ namespace Other.MatchThreeGame.Assets.Scripts.Model
         public int PlayerMana;
         public int EnemyMana;
 
+        public string EnemyAvatarImagePath;
+
         public Level() { }
 
-        public Level(int turnsAmount, int playerHealth, int enemyHealth, int playerMana, int enemyMana)
+        public Level(int turnsAmount, int playerHealth, int enemyHealth, int playerMana, int enemyMana, string enemyAvatarImagePath)
         {
             TurnsAmount = turnsAmount;
             TurnsLeft = turnsAmount;
@@ -23,6 +25,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Model
             EnemyHealth = enemyHealth;
             PlayerMana = playerMana;
             EnemyMana = enemyMana;
+            EnemyAvatarImagePath = enemyAvatarImagePath;
         }
     }
 }

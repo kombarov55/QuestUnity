@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Other.MatchThreeGame.Assets.Scripts;
+using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace DefaultNamespace.Common.UI
@@ -7,6 +8,8 @@ namespace DefaultNamespace.Common.UI
     {
         public GameObject whatToClose;
         public GameObject whatToOpen;
+        public bool setFlagsOnStateManager = false;
+        public bool flagValue;
 
         public void OnPointerClick(PointerEventData eventData)
         {
@@ -18,6 +21,12 @@ namespace DefaultNamespace.Common.UI
             if (whatToOpen != null)
             {
                 whatToOpen.SetActive(true);
+            }
+
+            if (setFlagsOnStateManager)
+            {
+                var stateManager = GameObject.Find("State").GetComponent<StateManager>();
+                stateManager.IsAnyPanelDisplayedOnUI = flagValue;
             }
         }
     }
