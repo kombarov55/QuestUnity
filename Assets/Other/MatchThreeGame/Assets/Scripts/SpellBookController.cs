@@ -25,15 +25,7 @@ namespace Other.MatchThreeGame.Assets.Scripts
             }
         }
 
-        public void OnEnable()
-        {
-            GameObject.Find("State").GetComponent<StateManager>().IsAnyPanelDisplayedOnUI = true;
-        }
-
-        public void OnDisable()
-        {
-            GameObject.Find("State").GetComponent<StateManager>().IsAnyPanelDisplayedOnUI = false;
-        }
+        
 
         private void Clear()
         {

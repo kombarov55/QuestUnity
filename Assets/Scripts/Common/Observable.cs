@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEditor;
 
 namespace DefaultNamespace.Common
 {
     public class Observable<T>
     {
         private T _value;
-        private List<Action<T>> _subscribers = new List<Action<T>>();
+        private Dictionary<string, Action<T>> _subscribers = new Dictionary<string, Action<T>>();
 
         public Observable(T value)
         {
@@ -19,24 +20,30 @@ namespace DefaultNamespace.Common
             set
             {
                 _value = value;
-                foreach (var subscriber in _subscribers)
+                foreach (var pair in _subscribers)
                 {
-                    subscriber.Invoke(value);
+                    pair.Value.Invoke(value);
                 }
             }
         }
 
-        public void Subscribe(Action<T> subscriber, bool invokeOnSubscription = false)
+        public string Subscribe(Action<T> subscriber, bool invokeOnSubscription = false)
         {
-            _subscribers.Add(subscriber);
+            var guid = GUID.Generate().ToString();
+            
+            _subscribers[guid] = subscriber;
             if (invokeOnSubscription)
             {
                 subscriber.Invoke(Value);
             }
+
+            return guid;
         }
-        
-        
-        
-        
+
+        public void Unsubscribe(string guid)
+        {
+            _subscribers.Remove(guid);
+        }
+
     }
 }

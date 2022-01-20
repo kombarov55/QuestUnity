@@ -7,7 +7,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Model
         public string Id;
         public string Name;
         public string Description;
-        public string Image;
+        public string ImagePath;
         public List<SpellAction> ActionsOfSelfWhenUsed;
         public List<SpellAction> ActionsOfEnemyWhenUsed;
         public List<StatusEffect> StatusEffectsOnSelfWhenUsed;
@@ -19,7 +19,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Model
             string id, 
             string name, 
             string description, 
-            string image, 
+            string imagePath, 
             List<SpellAction> actionsOfSelfWhenUsed,
             List<SpellAction> actionsOfEnemyWhenUsed,
             List<StatusEffect> statusEffectsOnSelfWhenUsed,
@@ -31,7 +31,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Model
             Id = id;
             Name = name;
             Description = description;
-            Image = image;
+            ImagePath = imagePath;
             ActionsOfSelfWhenUsed = actionsOfSelfWhenUsed;
             ActionsOfEnemyWhenUsed = actionsOfEnemyWhenUsed;
             StatusEffectsOnSelfWhenUsed = statusEffectsOnSelfWhenUsed;
