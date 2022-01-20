@@ -1,11 +1,11 @@
 ﻿namespace Other.MatchThreeGame.Assets.Scripts.Model
 {
-    public class SpellHealAction : SpellAction
+    public class HealAction : SpellAction
     {
 
         public int HealAmount;
         
-        public SpellHealAction(int healAmount) : base(SpellActionType.Heal)
+        public HealAction(int healAmount) : base(SpellActionType.Heal)
         {
             HealAmount = healAmount;
         }

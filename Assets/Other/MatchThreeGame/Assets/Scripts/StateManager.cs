@@ -44,6 +44,8 @@ namespace Other.MatchThreeGame.Assets.Scripts
         public List<Spell> SilentedSpellsForEnemy = new List<Spell>();
         public bool IsAnyPanelDisplayedOnUI = false;
 
+        public List<InventoryItem> InventoryItemsOfPlayer;
+
         public List<Spell> Spells;
         public SoundManager SoundManager;
 
@@ -62,6 +64,8 @@ namespace Other.MatchThreeGame.Assets.Scripts
             }
 
             SoundManager = GameObject.Find("SoundManager").GetComponent<SoundManager>();
+
+            InventoryItemsOfPlayer = new ItemService().GetInventoryItems();
         }
 
         public int TurnsLeft

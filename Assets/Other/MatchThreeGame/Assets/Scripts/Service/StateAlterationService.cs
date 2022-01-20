@@ -89,5 +89,27 @@
             stateManager.EnemyHealthLeft += healAmount;
             stateManager.OnEnemyHealthChanged(healAmount);
         }
+
+        public static void RestoreManaForPlayer(StateManager stateManager, int Amount)
+        {
+            if (stateManager.PlayerManaLeft < stateManager.Level.PlayerMana)
+            {
+                int manaRestoreAmount = Amount + stateManager.PlayerManaRestoreAddition;
+
+                stateManager.PlayerManaLeft += manaRestoreAmount;
+                stateManager.OnPlayerManaChanged(manaRestoreAmount);
+            }
+        }
+        
+        public static void RestoreManaForEnemy(StateManager stateManager, int Amount)
+        {
+            if (stateManager.EnemyManaLeft < stateManager.Level.EnemyMana) 
+            {
+                int manaRestoreAmount = Amount + stateManager.EnemyManaRestoreAddition;
+                
+                stateManager.EnemyManaLeft += manaRestoreAmount;
+                stateManager.OnEnemyManaChanged(manaRestoreAmount);
+            }
+        }
     }
 }

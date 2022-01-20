@@ -117,19 +117,13 @@ namespace Other.MatchThreeGame.Assets.Scripts
         
         private void OnMana(StateManager stateManager, bool isPlayersTurn) 
         {
-            if (isPlayersTurn && stateManager.PlayerManaLeft < stateManager.Level.PlayerMana)
+            if (isPlayersTurn)
             {
-                int manaRestoreAmount = Constants.Mana + stateManager.PlayerManaRestoreAddition;
-
-                stateManager.PlayerManaLeft += manaRestoreAmount;
-                stateManager.OnPlayerManaChanged(manaRestoreAmount);
+                StateAlterationService.RestoreManaForPlayer(stateManager, Constants.Mana);
             } 
             else if (stateManager.EnemyManaLeft < stateManager.Level.EnemyMana)
             {
-                int manaRestoreAmount = Constants.Mana + stateManager.EnemyManaRestoreAddition;
-                
-                stateManager.EnemyManaLeft += manaRestoreAmount;
-                stateManager.OnEnemyManaChanged(manaRestoreAmount);
+                StateAlterationService.RestoreManaForEnemy(stateManager, Constants.Mana);
             }
         }
     }

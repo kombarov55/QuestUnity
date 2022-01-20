@@ -38,7 +38,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     2,
                     new List<SpellAction>()
                     {
-                        new SpellHealAction(3)
+                        new HealAction(3)
                     }, 
                     new List<SpellAction>(),
                     new List<StatusEffect>(),
