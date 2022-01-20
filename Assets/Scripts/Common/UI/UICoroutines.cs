@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -33,6 +34,12 @@ namespace DefaultNamespace.Common.UI
                 image.color = new Color(image.color.r, image.color.g, image.color.b, image.color.a + (Time.deltaTime / duration));
                 yield return null;
             }
+        }
+
+        public static IEnumerator InvokeAfterDelay(Action action, int durationInSeconds)
+        {
+            yield return new WaitForSeconds(durationInSeconds);
+            action.Invoke();
         }
     }
 }

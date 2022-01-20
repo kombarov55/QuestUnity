@@ -3,6 +3,7 @@ using System.Collections;
 using DefaultNamespace.Common.UI;
 using Other.MatchThreeGame.Assets.Scripts.Model;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Other.MatchThreeGame.Assets.Scripts.UI
@@ -20,7 +21,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
 
         public GameObject messagePanel;
         public Text messageHeader;
-        public float durationOfShowInSeconds = 1f;
+        public int durationOfShowInSeconds = 1;
         public float flyAwayDuration = 0.4f;
         public float flyAwayYDestination = 1500f;
         
@@ -38,6 +39,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
             gameGoalPanel.SetActive(true);
             _stateManager.IsAnyPanelDisplayedOnUI = true;
             
+            
             playerHealthText.text = level.PlayerHealth.ToString();
             playerManaText.text = level.PlayerMana.ToString();
             enemyNameText.text = level.EnemyName;
@@ -52,7 +54,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
             gameObject.SetActive(true);
             messagePanel.SetActive(true);
             messageHeader.text = "Победа!";
-            StartCoroutine(FlyAwayAfterDelay(messagePanel, false));
+            StartCoroutine(FlyAwayAfterDelay(messagePanel, false, () => SceneManager.LoadScene("MainMenu")));
         }
         
         public void ShowFailure()
@@ -63,7 +65,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
             StartCoroutine(FlyAwayAfterDelay(messagePanel, false));
         }
 
-        private IEnumerator FlyAwayAfterDelay(GameObject panel, bool fadeBackground)
+        private IEnumerator FlyAwayAfterDelay(GameObject panel, bool fadeBackground, Action then = null)
         {
             var rectTransform = panel.gameObject.GetComponent<RectTransform>();
             
@@ -83,11 +85,20 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
             }
             
             yield return new WaitForSeconds(flyAwayDuration);
-            rectTransform.position.Set(0, 0, 0);
-            background.color = prevBackgroundColor;
 
-            panel.SetActive(false);
-            gameObject.SetActive(false);
+            if (fadeBackground)
+            {
+                rectTransform.position.Set(0, 0, 0);
+                background.color = prevBackgroundColor;
+
+                panel.SetActive(false);
+                gameObject.SetActive(false);
+            }
+
+            if (then != null)
+            {
+                then.Invoke();
+            }
         }
     }
 }

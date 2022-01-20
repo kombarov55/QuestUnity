@@ -41,6 +41,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
         {
             itemNameText.text = inventoryItem.ItemTemplate.Name;
             itemDescriptionText.text = inventoryItem.ItemTemplate.Description;
+            itemImage.gameObject.SetActive(true);
             itemImage.sprite = Resources.Load<Sprite>(inventoryItem.ItemTemplate.ImagePath);
 
             useButton.gameObject.SetActive(true);
@@ -91,7 +92,6 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
 
             itemNameText.text = "";
             itemDescriptionText.text = "";
-            itemImage.sprite = null;
             useButton.gameObject.SetActive(false);
         }
     }
