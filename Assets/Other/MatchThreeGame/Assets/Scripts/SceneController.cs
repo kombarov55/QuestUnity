@@ -20,17 +20,8 @@ namespace Other.MatchThreeGame.Assets.Scripts
             _toastBehaviour = toastComponent.GetComponent<ToastBehaviour>();
             _toastBehaviour.Init(stateManager);
 
-            stateManager.CastsLeftForPlayer.Subscribe(castsLeft =>
-            {
-                if (castsLeft > 0)
-                {
-                    spellBookButton.SetActive(true);
-                }
-                else
-                {
-                    spellBookButton.SetActive(false);
-                }
-            }, true);
+            stateManager.SubscribeOnIsPlayersTurn(_ => spellBookButton.SetActive(IsSpellBookButtonActive(stateManager)));
+            stateManager.CastsLeftForPlayer.Subscribe(_ => spellBookButton.SetActive(IsSpellBookButtonActive(stateManager)), true);
         }
 
         public void ShowGoals(Level level)
@@ -57,6 +48,14 @@ namespace Other.MatchThreeGame.Assets.Scripts
                 SceneManager.LoadScene(CrossSceneStorage.BackSceneName);
             }
             
+        }
+
+        private bool IsSpellBookButtonActive(StateManager stateManager)
+        {
+            int castsLeft = stateManager.CastsLeftForPlayer.Value;
+            bool IsPlayersTurn = stateManager.IsPlayersTurn;
+
+            return IsPlayersTurn && castsLeft > 0;
         }
     }
 }
