@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
+using DefaultNamespace.Common.UI;
 using Other.MatchThreeGame.Assets.Scripts.Model;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Other.MatchThreeGame.Assets.Scripts.UI
@@ -11,12 +10,14 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
     public class ToastBehaviour : MonoBehaviour
     {
 
-        [SerializeField] Text headerText;
-        [SerializeField] Text paragraphText;
-        [SerializeField] GameObject targetTextPosition;
+        public Image background;
+        public GameObject gameGoalPanel;
+        public GameObject messagePanel;
+        public Text messageHeader;
+        public float durationOfShowInSeconds = 1f;
+        public float flyAwayDuration = 0.4f;
+        public float flyAwayYDestination = 1500f;
         
-        private Vector3 _initialTextPosition;
-        private Action _onClickAction;
 
         private StateManager _stateManager;
 
@@ -24,47 +25,30 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
         {
             _stateManager = stateManager;
         }
-        
-        public IEnumerator ShowWithFlyAway(string text, int delayInSeconds)
-        {
-            return ShowWithFlyAway(text, "", delayInSeconds, () => { });
-        }
-        
-        public IEnumerator ShowWithFlyAway(string text, Action then)
-        {
-            return ShowWithFlyAway(text, "", 2, then); 
-        }
 
-        public IEnumerator ShowGoals(Goal goal)
-        {
-            string s = GoalToString(goal);
-            return ShowWithFlyAway(s, 2);
-        }
-        
-        public IEnumerator ShowWithFlyAway(string text, string paragraph, int delayInSeconds, Action then)
+        public void ShowGoal()
         {
             gameObject.SetActive(true);
-            _stateManager.IsAnyPanelDisplayedOnUI = true;
-            
-            headerText.text = text;
-            paragraphText.text = paragraph;
-            yield return new WaitForSeconds(delayInSeconds);
-
-            _initialTextPosition = headerText.transform.position;
-            headerText.transform.positionTo(0.4f, targetTextPosition.transform.position);
-            yield return new WaitForSeconds(0.4f);
-            
-            gameObject.SetActive(false);
-            _stateManager.IsAnyPanelDisplayedOnUI = false;
-            
-            headerText.transform.position = _initialTextPosition;
-            
-            then.Invoke();
+            gameGoalPanel.SetActive(true);
+            StartCoroutine(FlyAwayAfterDelay(gameGoalPanel));
         }
 
-        private string GoalToString(Goal goal)
+        private IEnumerator FlyAwayAfterDelay(GameObject panel)
         {
-            return "Наберите " + goal.Amount + " очков!";
+            var rectTransform = panel.gameObject.GetComponent<RectTransform>();
+            
+            yield return new WaitForSeconds(durationOfShowInSeconds);
+
+            var prevBackgroundColor = background.color;
+            StartCoroutine(UICoroutines.FadeImageToZeroAlpha(background, flyAwayDuration));
+            rectTransform.positionTo(flyAwayDuration, new Vector3(gameObject.transform.position.x, flyAwayYDestination));
+            
+            yield return new WaitForSeconds(flyAwayDuration);
+            rectTransform.position.Set(0, 0, 0);
+            background.color = prevBackgroundColor;
+
+            panel.SetActive(false);
+            gameObject.SetActive(false);
         }
     }
 }

@@ -26,19 +26,20 @@ namespace Other.MatchThreeGame.Assets.Scripts
 
         public void ShowGoals(Level level)
         {
-            StartCoroutine(_toastBehaviour.ShowWithFlyAway("Победите противника", 1));            
+            _toastBehaviour.ShowGoal();
+            // StartCoroutine(_toastBehaviour.ShowWithFlyAway("Победите противника", 1));            
         }
 
         public void ShowFailure()
         {
             Prefs.CurrentSceneId = QuestSceneConstants.ThreeInArowFailureNodeId;
-            StartCoroutine(_toastBehaviour.ShowWithFlyAway("Поражение", ReturnToPreviousScene));
+            // StartCoroutine(_toastBehaviour.ShowWithFlyAway("Поражение", ReturnToPreviousScene));
         }
 
         public void ShowVictory()
         {
             Prefs.CurrentSceneId = QuestSceneConstants.ThreeInARowVictoryNodeId;
-            StartCoroutine(_toastBehaviour.ShowWithFlyAway("Победа", ReturnToPreviousScene));
+            // StartCoroutine(_toastBehaviour.ShowWithFlyAway("Победа", ReturnToPreviousScene));
         }
 
         public void ReturnToPreviousScene()

@@ -16,5 +16,15 @@ namespace DefaultNamespace.Common.UI
                 yield return null;
             }
         }
+        
+        public static IEnumerator FadeImageToZeroAlpha(Image image, float duration)
+        {
+            // image.color = new Color(image.color.r, image.color.g, image.color.b, 1);
+            while (image.color.a > 0.0f)
+            {
+                image.color = new Color(image.color.r, image.color.g, image.color.b, image.color.a - (Time.deltaTime / duration));
+                yield return null;
+            }
+        }
     }
 }
