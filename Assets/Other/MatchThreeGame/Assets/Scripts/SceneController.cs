@@ -39,6 +39,8 @@ namespace Other.MatchThreeGame.Assets.Scripts
         public void ShowVictory()
         {
             Prefs.CurrentSceneId = QuestSceneConstants.ThreeInARowVictoryNodeId;
+            _toastBehaviour.ShowVictory();
+            
             // StartCoroutine(_toastBehaviour.ShowWithFlyAway("Победа", ReturnToPreviousScene));
         }
 

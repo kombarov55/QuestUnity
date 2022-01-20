@@ -30,18 +30,44 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
         {
             gameObject.SetActive(true);
             gameGoalPanel.SetActive(true);
-            StartCoroutine(FlyAwayAfterDelay(gameGoalPanel));
+            _stateManager.IsAnyPanelDisplayedOnUI = true;
+            StartCoroutine(FlyAwayAfterDelay(gameGoalPanel, true));
         }
 
-        private IEnumerator FlyAwayAfterDelay(GameObject panel)
+        public void ShowVictory()
+        {
+            gameObject.SetActive(true);
+            messagePanel.SetActive(true);
+            messageHeader.text = "Победа!";
+            StartCoroutine(FlyAwayAfterDelay(messagePanel, false));
+        }
+        
+        public void ShowFailure()
+        {
+            gameObject.SetActive(true);
+            messagePanel.SetActive(true);
+            messageHeader.text = "Поражение";
+            StartCoroutine(FlyAwayAfterDelay(messagePanel, false));
+        }
+
+        private IEnumerator FlyAwayAfterDelay(GameObject panel, bool fadeBackground)
         {
             var rectTransform = panel.gameObject.GetComponent<RectTransform>();
             
             yield return new WaitForSeconds(durationOfShowInSeconds);
+            
+            _stateManager.IsAnyPanelDisplayedOnUI = false;
 
-            var prevBackgroundColor = background.color;
-            StartCoroutine(UICoroutines.FadeImageToZeroAlpha(background, flyAwayDuration));
             rectTransform.positionTo(flyAwayDuration, new Vector3(gameObject.transform.position.x, flyAwayYDestination));
+            var prevBackgroundColor = background.color;
+            if (fadeBackground)
+            {
+                StartCoroutine(UICoroutines.FadeImageToZeroAlpha(background, flyAwayDuration));                
+            }
+            else
+            {
+                StartCoroutine(UICoroutines.FadeImageToFullAlpha(background, flyAwayDuration));
+            }
             
             yield return new WaitForSeconds(flyAwayDuration);
             rectTransform.position.Set(0, 0, 0);

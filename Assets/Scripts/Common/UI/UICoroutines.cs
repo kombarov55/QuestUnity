@@ -19,10 +19,18 @@ namespace DefaultNamespace.Common.UI
         
         public static IEnumerator FadeImageToZeroAlpha(Image image, float duration)
         {
-            // image.color = new Color(image.color.r, image.color.g, image.color.b, 1);
             while (image.color.a > 0.0f)
             {
                 image.color = new Color(image.color.r, image.color.g, image.color.b, image.color.a - (Time.deltaTime / duration));
+                yield return null;
+            }
+        }
+        
+        public static IEnumerator FadeImageToFullAlpha(Image image, float duration)
+        {
+            while (image.color.a < 1f)
+            {
+                image.color = new Color(image.color.r, image.color.g, image.color.b, image.color.a + (Time.deltaTime / duration));
                 yield return null;
             }
         }
