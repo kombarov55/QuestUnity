@@ -83,7 +83,6 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
             _stateManager.OnPlayerManaChanged(-_spell.ManaCost);
             
             PlaySpellSound();
-            _stateManager.MagicEffectThrownOnPlayer.Value = _spell.SpellType;
 
             foreach (var spellAction in _spell.SpellActionsToSelf)
             {
@@ -103,6 +102,16 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
             foreach (var statusEffect in _spell.StatusEffectsOnEnemy)
             {
                 _stateManager.AddStatusEffectOnEnemy(statusEffect);
+            }
+
+            if (_spell.SpellActionsToSelf.Count != 0 || _spell.StatusEffectsOnSelf.Count != 0)
+            {
+                _stateManager.MagicEffectThrownOnPlayer.Value = _spell.SpellType;
+            }
+            
+            if (_spell.SpellActionsToEnemy.Count != 0 || _spell.StatusEffectsOnEnemy.Count != 0)
+            {
+                _stateManager.MagicEffectThrownOnEnemy.Value = _spell.SpellType;
             }
         }
         

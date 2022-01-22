@@ -33,17 +33,20 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
             
             var stateManager = GameObject.Find("State").GetComponent<StateManager>();
             
-            stateManager.MagicEffectThrownOnPlayer.Subscribe(spellType =>
-            {
+            (isOnPlayer ? 
+                    stateManager.MagicEffectThrownOnPlayer : 
+                    stateManager.MagicEffectThrownOnEnemy
+                ).Subscribe(spellType =>
+                {
 
-                gameObject.SetActive(true);
-                SetAlpha(1);
+                    gameObject.SetActive(true);
+                    SetAlpha(1);
                 
-                _animator.SetInteger("Type", GetRandomAnimationTypeForSpellType(spellType));
+                    _animator.SetInteger("Type", GetRandomAnimationTypeForSpellType(spellType));
 
-                StartCoroutine(UICoroutines.InvokeAfterDelay(animationDuration, () => StartCoroutine(UICoroutines.FadeImageToZeroAlpha(_image, fadeDuration))));
-                StartCoroutine(UICoroutines.InvokeAfterDelay(animationDuration + fadeDuration, () => _animator.SetInteger("Type", 0)));
-            });
+                    StartCoroutine(UICoroutines.InvokeAfterDelay(animationDuration, () => StartCoroutine(UICoroutines.FadeImageToZeroAlpha(_image, fadeDuration))));
+                    StartCoroutine(UICoroutines.InvokeAfterDelay(animationDuration + fadeDuration, () => _animator.SetInteger("Type", 0)));
+                });
         }
 
         private void SetAlpha(float a)
