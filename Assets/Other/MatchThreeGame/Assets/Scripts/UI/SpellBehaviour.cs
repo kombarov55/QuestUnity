@@ -83,6 +83,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
             _stateManager.OnPlayerManaChanged(-_spell.ManaCost);
             
             PlaySpellSound();
+            _stateManager.MagicEffectThrownOnPlayer.Value = _spell.SpellType;
 
             foreach (var spellAction in _spell.SpellActionsToSelf)
             {

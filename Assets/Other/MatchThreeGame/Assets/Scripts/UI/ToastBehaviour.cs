@@ -24,7 +24,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
         public int durationOfShowInSeconds = 1;
         public float flyAwayDuration = 0.4f;
         public float flyAwayYDestination = 1500f;
-        
+
 
         private StateManager _stateManager;
 

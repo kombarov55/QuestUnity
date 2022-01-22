@@ -36,7 +36,7 @@ namespace DefaultNamespace.Common.UI
             }
         }
 
-        public static IEnumerator InvokeAfterDelay(Action action, int durationInSeconds)
+        public static IEnumerator InvokeAfterDelay(float durationInSeconds, Action action)
         {
             yield return new WaitForSeconds(durationInSeconds);
             action.Invoke();

@@ -43,6 +43,7 @@ namespace Other.MatchThreeGame.Assets.Scripts
         public List<Spell> SilentedSpellsForPlayer = new List<Spell>();
         public List<Spell> SilentedSpellsForEnemy = new List<Spell>();
         public bool IsAnyPanelDisplayedOnUI = false;
+        public Observable<SpellType> MagicEffectThrownOnPlayer = new Observable<SpellType>(SpellType.Other);
 
         public List<InventoryItem> InventoryItemsOfPlayer;
 
