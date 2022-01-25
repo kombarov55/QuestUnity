@@ -131,7 +131,6 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
                 case SpellType.Debuff: 
                     _soundManager.PlayDebuffSpellSound();
                     break;
-                default: break; 
             }
         }
     }

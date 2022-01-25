@@ -17,7 +17,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     "fireball",
                     "Огненный шар",
                     "Бросить в противника огненный шар, наносящий 8 урона",
-                    "fireball.png",
+                    "RpgPack/S_Fire03",
                     3,
                     1,
                     new List<SpellAction>(),
@@ -33,7 +33,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     "heal",
                     "Лечение",
                     "Наложить заклинание, излечивающее вам 3 очка здоровья",
-                    "heal.png",
+                    "RpgPack/S_Fire08",
                     5,
                     2,
                     new List<SpellAction>()
@@ -49,7 +49,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     "ignite",
                     "Воспламенение",
                     "Поджечь и себя и врага, от чего вы будете испытывать жуткую боль и 1 урона за ход. Длительность: 3 хода",
-                    "ignition.png",
+                    "RpgPack/S_Fire02",
                     2,
                     0,
                     new List<SpellAction>(),
@@ -68,7 +68,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     "NatureRestoration",
                     "Природное восстановление",
                     "Обратиться к силам природы за исцелением, получив 2хп в секунду на протяжении 3х ходов.",
-                    "ignition.png",
+                    "RpgPack/S_Poison03",
                     2,
                     0,
                     new List<SpellAction>(),
@@ -84,7 +84,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     "AddTurns",
                     "Воодушевление",
                     "Дать себе дополнительно 3 хода",
-                    "AddTurns.png",
+                    "RpgPack/S_Shadow13",
                     4,
                     0,
                     
@@ -101,7 +101,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     "DoubleTurn",
                     "Тройной удар",
                     "Ваша скорость возрастает, благодаря чему перед атакой врага вы можете атаковать трижды",
-                    "DoubleTurn.png",
+                    "RpgPack/S_Wind05",
                     3,
                     0,
                     new List<SpellAction>()
@@ -117,7 +117,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     "MultipleDoubleTurn",
                     "Скорость ветра",
                     "Ваша скорость возрастает, благодаря чему в течение 3х ходов вы сможете атаковать дважды",
-                    "DoubleTurn.png",
+                    "RpgPack/S_Wind07",
                     6,
                     0,
                     new List<SpellAction>()
@@ -136,7 +136,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     "Shield",
                     "Щит",
                     "Вы окружает себя энергетическим щитом, уменьшающий получаемый урон от следующей атаки на 4 на протяжении 3х ходов",
-                    "DoubleTurn.png",
+                    "RpgPack/S_Magic04",
                     6,
                     0,
                     new List<SpellAction>()
@@ -152,26 +152,10 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     SpellType.Buff
                 ),
                 new Spell(
-                    "Shield",
-                    "Щит",
-                    "Вы окружает себя энергетическим щитом, уменьшающий получаемый урон от следующей атаки на 4 на протяжении 3х ходов",
-                    "DoubleTurn.png",
-                    6,
-                    0,
-                    new List<SpellAction>(),
-                    new List<SpellAction>(), 
-                    new List<StatusEffect>()
-                    {
-                        new ShieldStatusEffect(3, "img", 4)
-                    },
-                    new List<StatusEffect>(),
-                    SpellType.Buff
-                ),
-                new Spell(
                     "ReflectDamage",
                     "Отражение урона",
                     "В течение 2х ходов вы будете отражать урон врага",
-                    "reflect.png",
+                    "RpgPack/S_Shadow14",
                     0,
                     0,
                     new List<SpellAction>()
@@ -190,7 +174,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     "BlockHealing",
                     "Блокировка лечения",
                     "В течение 3х ходов противник не сможет лечиться",
-                    "reflect.png",
+                    "RpgPack/S_Axe05",
                     0,
                     0,
                     new List<SpellAction>(),
@@ -209,7 +193,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     "AdditionalDamage",
                     "Доп. урон",
                     "В течение 3х ходов любая ваша атака наносит на 3 урона больше",
-                    "reflect.png",
+                    "RpgPack/S_Sword01",
                     0,
                     0,
                     new List<SpellAction>()
@@ -228,7 +212,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     "AdditionalHealing",
                     "Доп. лечение",
                     "В течение 3х ходов, восстанавлиая здоровье, вы восстанавливаете его на 3 больше",
-                    "reflect.png",
+                    "RpgPack/S_Axe07",
                     0,
                     0,
                     new List<SpellAction>()
@@ -247,7 +231,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     "AdditionalHealing",
                     "Доп. Восстановление маны",
                     "В течение 3х ходов, восстанавливая ману фишками, вы восстанавливете на +2 больше",
-                    "reflect.png",
+                    "RpgPack/S_Axe04",
                     0,
                     0,
                     new List<SpellAction>()
@@ -266,7 +250,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     "Manaburn",
                     "Горение маны",
                     "Выжигает у врага 5 маны, далее в течение 3х ходов он будет терять по 3 маны",
-                    "reflect.png",
+                    "RpgPack/S_Ice03",
                     0,
                     0,
                     new List<SpellAction>(),
@@ -288,7 +272,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     "Lifesteal",
                     "Вампиризм",
                     "Украсть 5 здорвья у врага",
-                    "lifesteal.png",
+                    "RpgPack/S_Buff14",
                     0,
                     0,
                     new List<SpellAction>(),
@@ -304,7 +288,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     "IncreaseSpellCasts",
                     "Сколдовать несвколько раз",
                     "Потратьте одну попытку сколдовать, чтобы в этом ходу сколдовать ещё 3 раза... да это бредово, этот эффект нужен для предметов и тут можно его протестировать",
-                    "icnreasespellcasts.png",
+                    "RpgPack/S_Shadow10",
                     0,
                     0,
                     new List<SpellAction>()
@@ -320,7 +304,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     "ResetCooldownOnHealing",
                     "Восстановление",
                     "Обнулить перезарядку у лечащих заклинаний",
-                    "icnreasespellcasts.png",
+                    "RpgPack/S_Buff11",
                     0,
                     3,
                     new List<SpellAction>()
@@ -336,7 +320,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     "SilenceHealingSpells",
                     "Блокирвка лечащей магии",
                     "Блокирует лечащую магию у врага на 2 хода",
-                    "icnreasespellcasts.png",
+                    "RpgPack/S_Buff07",
                     0,
                     1,
                     new List<SpellAction>(),
@@ -352,7 +336,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     "StealBuffs",
                     "Украсть статус-эффекты",
                     "Название говорит само за себя))",
-                    "icnreasespellcasts.png",
+                    "RpgPack/S_Buff04",
                     0,
                     1,
                     new List<SpellAction>()
@@ -368,7 +352,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     "PassDebuffs",
                     "Чистка",
                     "Перекинуть на врага все негативные статус эффекты",
-                    "icnreasespellcasts.png",
+                    "RpgPack/S_Ice07",
                     0,
                     1,
                     new List<SpellAction>(),
