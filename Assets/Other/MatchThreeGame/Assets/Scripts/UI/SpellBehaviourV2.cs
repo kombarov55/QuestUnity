@@ -9,7 +9,6 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
     public class SpellBehaviourV2 : MonoBehaviour, IPointerClickHandler
     {
         public Image image;
-        public Text manacostText;
         public Text cooldownText;
         public Color disabledColor;
         
@@ -31,12 +30,10 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
                 if (currentCooldown == 0)
                 {
                     image.color = _enabledColor;
-                    manacostText.gameObject.SetActive(true);
                     cooldownText.gameObject.SetActive(false);
                 }
                 else
                 {
-                    manacostText.gameObject.SetActive(false);
                     cooldownText.gameObject.SetActive(true);
                     image.color = disabledColor;
 
