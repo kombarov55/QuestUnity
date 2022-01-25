@@ -14,7 +14,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     "SmallHealingPotion",
                     "Малое зелье здоровья",
                     "Восстанавливает вам 2 хп",
-                    "",
+                    "RpgPack/P_Orange02",
                     new List<SpellAction>()
                     {
                         new HealAction(2)
@@ -29,7 +29,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     "SmallManaPotion",
                     "Малое зелье маны",
                     "Восстанавливает вам 2 маны",
-                    "",
+                    "RpgPack/P_Blue02",
                     new List<SpellAction>()
                     {
                         new AddManaAction(2)

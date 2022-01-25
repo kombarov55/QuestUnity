@@ -14,7 +14,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
         public Text itemNameText;
         public Text itemDescriptionText;
         public Image itemImage;
-        public AudioButton useButton;
+        public AudioButton audioButton;
 
         private List<GameObject> _instantiatedItems = new List<GameObject>();
         private StateManager _stateManager;
@@ -22,12 +22,17 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
         private Observable<int> _amountObservable;
         private string _subscriberGuidOfItemAmountChangeOnButton;
 
+        private Button _button;
+
         private void Start()
         {
             _stateManager = GameObject.Find("State").GetComponent<StateManager>();
+            _button = audioButton.gameObject.GetComponent<Button>();
+            
             _stateManager.IsAnyPanelDisplayedOnUI = true;
             
             Clear();
+            ClearDisplayOfItem();            
             
             foreach (var inventoryItem in _stateManager.InventoryItemsOfPlayer)
             {
@@ -39,37 +44,45 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
 
         private void DisplaySelectedItem(InventoryItem inventoryItem)
         {
-            itemNameText.text = inventoryItem.ItemTemplate.Name;
-            itemDescriptionText.text = inventoryItem.ItemTemplate.Description;
-            itemImage.gameObject.SetActive(true);
-            itemImage.sprite = Resources.Load<Sprite>(inventoryItem.ItemTemplate.ImagePath);
-
-            useButton.gameObject.SetActive(true);
-            useButton.OnClick = () =>
+            if (inventoryItem == null)
             {
-                if (useButton.enabled)
-                {
-                    var itemTemplate = inventoryItem.ItemTemplate;
-                    itemTemplate.ActionsOfSelfWhenUsed.ForEach(v => v.Cast(_stateManager, true));
-                    itemTemplate.ActionsOfEnemyWhenUsed.ForEach(v => v.Cast(_stateManager, false));
-
-                    inventoryItem.Amount.Value -= 1;
-
-                    gameObject.SetActive(false);
-                }
-            };
-
-            if (_amountObservable != null)
-            {
-                _amountObservable.Unsubscribe(_subscriberGuidOfItemAmountChangeOnButton);
+                ClearDisplayOfItem();
             }
-
-            _amountObservable = inventoryItem.Amount;
-            
-            _subscriberGuidOfItemAmountChangeOnButton = _amountObservable.Subscribe(amount =>
+            else
             {
-                useButton.enabled = amount != 0;
-            }, true);
+                itemNameText.text = inventoryItem.ItemTemplate.Name;
+                itemDescriptionText.text = inventoryItem.ItemTemplate.Description;
+                itemImage.gameObject.SetActive(true);
+                itemImage.sprite = Resources.Load<Sprite>(inventoryItem.ItemTemplate.ImagePath);
+
+                audioButton.gameObject.SetActive(true);
+                audioButton.OnClick = () =>
+                {
+                    if (_button.interactable)
+                    {
+                        var itemTemplate = inventoryItem.ItemTemplate;
+                        itemTemplate.ActionsOfSelfWhenUsed.ForEach(v => v.Cast(_stateManager, true));
+                        itemTemplate.ActionsOfEnemyWhenUsed.ForEach(v => v.Cast(_stateManager, false));
+
+                        inventoryItem.Amount.Value -= 1;
+
+                        ClearDisplayOfItem();
+                        gameObject.SetActive(false);
+                    }
+                };
+
+                if (_amountObservable != null)
+                {
+                    _amountObservable.Unsubscribe(_subscriberGuidOfItemAmountChangeOnButton);
+                }
+
+                _amountObservable = inventoryItem.Amount;
+            
+                _subscriberGuidOfItemAmountChangeOnButton = _amountObservable.Subscribe(amount =>
+                {
+                    _button.interactable = amount != 0;
+                }, true);                
+            }
         }
 
         public void OnEnable()
@@ -89,10 +102,14 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
             {
                 Destroy(go);
             }
+        }
 
+        private void ClearDisplayOfItem()
+        {
             itemNameText.text = "";
             itemDescriptionText.text = "";
-            useButton.gameObject.SetActive(false);
+            itemImage.gameObject.SetActive(false);
+            audioButton.gameObject.SetActive(false);
         }
     }
 }
