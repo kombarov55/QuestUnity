@@ -106,6 +106,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
         private void Cast(Spell spell)
         {
             gameObject.SetActive(false);
+            _spellObservable.Value = null;
             _stateManager.CastsLeftForPlayer.Value -= 1;
             _stateManager.PlayerSpellsToCooldownObservable[spell].Value = spell.Cooldown;
             

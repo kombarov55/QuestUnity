@@ -96,8 +96,8 @@ namespace Other.MatchThreeGame.Assets.Scripts
 
                 PlayerHealthLeft = value.PlayerHealth;
                 EnemyHealthLeft = value.EnemyHealth;
-                PlayerManaLeft = 10;
-                EnemyManaLeft = 10;
+                PlayerManaLeft = value.PlayerMana;
+                EnemyManaLeft = value.EnemyMana;
                 _turnsLeft = value.TurnsAmount;
 
                 CoinCount = Prefs.CoinCount;
