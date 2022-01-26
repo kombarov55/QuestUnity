@@ -3546,8 +3546,8 @@ GameObject:
   - component: {fileID: 490982245}
   - component: {fileID: 490982249}
   - component: {fileID: 490982248}
-  - component: {fileID: 490982247}
   - component: {fileID: 490982246}
+  - component: {fileID: 490982247}
   m_Layer: 5
   m_Name: SpellBook
   m_TagString: Untagged
@@ -3614,10 +3614,23 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 490982248}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 490982247}
+        m_TargetAssemblyTypeName: DefaultNamespace.Common.UI.OpenNextPanelButtonBehaviour,
+          Assembly-CSharp
+        m_MethodName: OnPointerClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &490982247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3627,7 +3640,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 490982244}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56c438424c184f669bc419c956d9e33f, type: 3}
+  m_Script: {fileID: 11500000, guid: cc2da3e8696f4a3ca96aeb21eed5249c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   whatToClose: {fileID: 0}
@@ -7846,7 +7859,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 1128252478}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -8726,8 +8739,8 @@ GameObject:
   - component: {fileID: 1232088570}
   - component: {fileID: 1232088574}
   - component: {fileID: 1232088573}
-  - component: {fileID: 1232088572}
   - component: {fileID: 1232088571}
+  - component: {fileID: 1232088572}
   m_Layer: 5
   m_Name: Inventory
   m_TagString: Untagged
@@ -8794,10 +8807,23 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 1232088573}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1232088572}
+        m_TargetAssemblyTypeName: DefaultNamespace.Common.UI.OpenNextPanelButtonBehaviour,
+          Assembly-CSharp
+        m_MethodName: OnPointerClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1232088572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8807,13 +8833,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1232088569}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56c438424c184f669bc419c956d9e33f, type: 3}
+  m_Script: {fileID: 11500000, guid: cc2da3e8696f4a3ca96aeb21eed5249c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   whatToClose: {fileID: 0}
   whatToOpen: {fileID: 449581700}
-  setFlagsOnStateManager: 0
-  flagValue: 0
+  setFlagsOnStateManager: 1
+  flagValue: 1
 --- !u!114 &1232088573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9418,7 +9444,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toastComponent: {fileID: 362357808}
-  spellBookButton: {fileID: 0}
+  spellBookButton: {fileID: 490982246}
+  inventoryBookButton: {fileID: 1232088571}
 --- !u!4 &1323094442
 Transform:
   m_ObjectHideFlags: 0

@@ -263,9 +263,9 @@ public class ShapesManager : MonoBehaviour
         shapes.Swap(hitGo, hitGo2);
 
         //move the swapped ones
-        hitGo.transform.positionTo(Constants.AnimationDuration, hitGo2.transform.position);
-        hitGo2.transform.positionTo(Constants.AnimationDuration, hitGo.transform.position);
-        yield return new WaitForSeconds(Constants.AnimationDuration);
+        hitGo.transform.positionTo(Constants.SwapDuration, hitGo2.transform.position);
+        hitGo2.transform.positionTo(Constants.SwapDuration, hitGo.transform.position);
+        yield return new WaitForSeconds(Constants.SwapDuration);
 
         //get the matches via the helper methods
         var hitGomatchesInfo = shapes.GetMatches(hitGo);
@@ -277,9 +277,9 @@ public class ShapesManager : MonoBehaviour
         //if user's swap didn't create at least a 3-match, undo their swap
         if (totalMatches.Count() < Constants.MinimumMatches)
         {
-            hitGo.transform.positionTo(Constants.AnimationDuration, hitGo2.transform.position);
-            hitGo2.transform.positionTo(Constants.AnimationDuration, hitGo.transform.position);
-            yield return new WaitForSeconds(Constants.AnimationDuration);
+            hitGo.transform.positionTo(Constants.SwapDuration, hitGo2.transform.position);
+            hitGo2.transform.positionTo(Constants.SwapDuration, hitGo.transform.position);
+            yield return new WaitForSeconds(Constants.SwapDuration);
 
             shapes.UndoSwap();
         }
@@ -321,6 +321,12 @@ public class ShapesManager : MonoBehaviour
 
             foreach (var item in totalMatches)
             {
+                item.transform.scaleTo(Constants.CollapseDuration, 0f);
+            }
+            yield return new WaitForSeconds(Constants.CollapseDuration);
+            
+            foreach (var item in totalMatches)
+            {
                 shapes.Remove(item);
                 RemoveFromScene(item);
             }
@@ -342,6 +348,7 @@ public class ShapesManager : MonoBehaviour
 
             int maxDistance = Mathf.Max(collapsedCandyInfo.MaxDistance, newCandyInfo.MaxDistance);
 
+            // yield return new WaitForSeconds(Constants.ExplosionDuration);
             MoveAndAnimate(newCandyInfo.AlteredCandy, maxDistance);
             MoveAndAnimate(collapsedCandyInfo.AlteredCandy, maxDistance);
 
@@ -360,7 +367,7 @@ public class ShapesManager : MonoBehaviour
         }
 
         _stateManager.GameState = GameState.None;
-        StartCheckForPotentialMatches();
+        // StartCheckForPotentialMatches();
 
         if (turnMade)
         {
@@ -469,7 +476,7 @@ public class ShapesManager : MonoBehaviour
         GameObject explosion = GetRandomExplosion();
         var newExplosion = Instantiate(explosion, item.transform.position, Quaternion.identity) as GameObject;
         Destroy(newExplosion, Constants.ExplosionDuration);
-        Destroy(item);
+        Destroy(item, Constants.ExplosionDuration);
     }
 
     /// <summary>
