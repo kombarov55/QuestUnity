@@ -1,13 +1,11 @@
 ﻿using System;
-using UnityEngine;
 using System.Collections;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 using Other.MatchThreeGame.Assets.Scripts;
-using UnityEngine.SceneManagement;
+using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
-
 
 public class ShapesManager : MonoBehaviour
 {
@@ -19,8 +17,8 @@ public class ShapesManager : MonoBehaviour
     
     private StateManager _stateManager;
 
-    public readonly Vector2 BottomRight = new Vector2(-1.67f, -4.27f + 0.7f);
-    public readonly Vector2 CandySize = new Vector2(0.7f, 0.7f);
+    public readonly Vector2 BottomRight = new Vector2(-2f, -5.27f + 0.7f);
+    public readonly Vector2 CandySize = new Vector2(0.7f * 0.8f, 0.7f * 0.8f);
     
     private GameObject hitGo = null;
     private Vector2[] SpawnPositions;
@@ -296,9 +294,9 @@ public class ShapesManager : MonoBehaviour
         }
 
         //if more than 3 matches and no Bonus is contained in the line, we will award a new Bonus
-        bool addBonus = totalMatches.Count() >= Constants.MinimumMatchesForBonus &&
+        bool addBonus = Constants.BonusEnabled && (totalMatches.Count() >= Constants.MinimumMatchesForBonus &&
             !BonusTypeUtilities.ContainsDestroyWholeRowColumn(hitGomatchesInfo.BonusesContained) &&
-            !BonusTypeUtilities.ContainsDestroyWholeRowColumn(hitGo2matchesInfo.BonusesContained);
+            !BonusTypeUtilities.ContainsDestroyWholeRowColumn(hitGo2matchesInfo.BonusesContained));
 
         Shape hitGoCache = null;
         if (addBonus)
@@ -515,7 +513,7 @@ public class ShapesManager : MonoBehaviour
             if (item.GetComponent<Shape>().Type.Contains(color))
                 return item;
         }
-        throw new System.Exception("Wrong type");
+        throw new Exception("Wrong type");
     }
 
     /// <summary>
@@ -604,6 +602,6 @@ public class ShapesManager : MonoBehaviour
             }
         }
 
-        throw new System.Exception("Wrong type, check your premade level");
+        throw new Exception("Wrong type, check your premade level");
     }
 }
