@@ -29,7 +29,7 @@ namespace DefaultNamespace.Common
 
         public string Subscribe(Action<T> subscriber, bool invokeOnSubscription = false)
         {
-            var guid = GUID.Generate().ToString();
+            string guid = DateTime.Now.ToString("yyyyMMddHHmmss");
             
             _subscribers[guid] = subscriber;
             if (invokeOnSubscription)
