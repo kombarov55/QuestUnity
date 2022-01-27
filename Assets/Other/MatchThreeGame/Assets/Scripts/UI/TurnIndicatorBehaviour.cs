@@ -18,6 +18,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
             {
                 GameLifecycleObservables.BeforeEnemyTurn.Subscribe(() => gameObject.SetActive(true));
                 GameLifecycleObservables.AfterEnemyTurn.Subscribe(() => gameObject.SetActive(false));
+                gameObject.SetActive(false);
             }
         }
     }
