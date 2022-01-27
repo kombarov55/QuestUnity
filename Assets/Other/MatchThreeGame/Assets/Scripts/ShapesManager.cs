@@ -384,7 +384,9 @@ public class ShapesManager : MonoBehaviour
     private IEnumerator StartEnemyTurn()
     {
         _stateManager.BeforeEnemyTurn();
-        
+        GameLifecycleObservables.AfterPlayerTurn.Emit();
+        GameLifecycleObservables.BeforeEnemyTurn.Emit();
+
         if (!_stateManager.IsPlayersTurn)
         {
             _stateManager.GameState = GameState.EnemyTurn;
@@ -400,6 +402,8 @@ public class ShapesManager : MonoBehaviour
             {
                 _stateManager.GameState = GameState.None;
                 _stateManager.AfterEnemyTurn();
+                GameLifecycleObservables.AfterEnemyTurn.Emit();
+                GameLifecycleObservables.BeforePlayerTurn.Emit();
             }));
         }
     }
