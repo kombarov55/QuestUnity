@@ -8,7 +8,15 @@ namespace DefaultNamespace
 
         public static AudioScript AudioScript()
         {
-            return GameObject.FindWithTag("Audio").GetComponent<AudioScript>();
+            var go = GameObject.FindWithTag("Audio");
+            if (go != null)
+            {
+                return go.GetComponent<AudioScript>();
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public static AudioButton FindButton(string name)

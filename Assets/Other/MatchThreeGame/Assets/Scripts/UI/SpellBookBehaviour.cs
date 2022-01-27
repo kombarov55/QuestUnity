@@ -29,6 +29,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
         { 
             _stateManager = GameObject.Find("State").GetComponent<StateManager>();
             _soundManager = _stateManager.SoundManager;
+            _button = audioButton.GetComponent<Button>();
 
             ClearGrid();
 
