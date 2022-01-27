@@ -412,7 +412,8 @@ namespace Other.MatchThreeGame.Assets.Scripts
 
         public void BeforeEnemyTurn()
         {
-            SequentialTurnsForPlayer.Value -= 1;
+            // перенёс
+            // SequentialTurnsForPlayer.Value -= 1;
             if (SequentialTurnsForPlayer.Value == 0)
             {
                 IsPlayersTurn = false;

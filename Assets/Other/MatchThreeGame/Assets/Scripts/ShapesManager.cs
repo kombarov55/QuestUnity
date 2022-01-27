@@ -286,10 +286,12 @@ public class ShapesManager : MonoBehaviour
         else
         {
             turnMade = true;
-            
+
             if (_stateManager.IsPlayersTurn)
             {
+                GameLifecycleObservables.BeforeSuccessfulShapeSwapByPlayer.Emit();
                 _stateManager.TurnsLeft -= 1;
+                _stateManager.SequentialTurnsForPlayer.Value -= 1;
             }
         }
 
