@@ -4,7 +4,7 @@
     {
         public int Amount;
 
-        public AdditionalManaRestoreStatusEffect(int duration, string imagePath, int amount) : base(duration, imagePath, SpellActionType.Buff)
+        public AdditionalManaRestoreStatusEffect(int duration, int amount) : base(duration, "RpgPack/S_Buff10", SpellActionType.Buff)
         {
             Amount = amount;
         }

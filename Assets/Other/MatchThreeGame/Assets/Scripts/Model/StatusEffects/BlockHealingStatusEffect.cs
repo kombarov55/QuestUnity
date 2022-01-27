@@ -2,7 +2,7 @@
 {
     public class BlockHealingStatusEffect : StatusEffect
     {
-        public BlockHealingStatusEffect(int duration, string imagePath) : base(duration, imagePath, SpellActionType.Debuff)
+        public BlockHealingStatusEffect(int duration) : base(duration, "RpgPack/S_Buff07", SpellActionType.Debuff)
         {
         }
 

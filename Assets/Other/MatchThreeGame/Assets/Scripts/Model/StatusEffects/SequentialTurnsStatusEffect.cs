@@ -4,7 +4,7 @@
     {
         public int Amount;
 
-        public SequentialTurnsStatusEffect(int duration, string imagePath, int amount) : base(duration, imagePath, SpellActionType.Buff)
+        public SequentialTurnsStatusEffect(int duration, int amount) : base(duration, "RpgPack/S_Wind02", SpellActionType.Buff)
         {
             Amount = amount;
         }

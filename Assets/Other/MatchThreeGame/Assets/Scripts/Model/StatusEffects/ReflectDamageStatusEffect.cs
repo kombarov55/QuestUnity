@@ -2,7 +2,7 @@
 {
     public class ReflectDamageStatusEffect : StatusEffect
     {
-        public ReflectDamageStatusEffect(int duration, string imagePath) : base(duration, imagePath, SpellActionType.Buff)
+        public ReflectDamageStatusEffect(int duration) : base(duration, "RpgPack/S_Shadow14", SpellActionType.Buff)
         {
         }
 

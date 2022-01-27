@@ -4,7 +4,7 @@
     {
         public int Amount;
 
-        public AdditionalHealStatusEffect(int duration, string imagePath, int amount) : base(duration, imagePath, SpellActionType.Buff)
+        public AdditionalHealStatusEffect(int duration, int amount) : base(duration, "RpgPack/S_Poison03", SpellActionType.Buff)
         {
             Amount = amount;
         }

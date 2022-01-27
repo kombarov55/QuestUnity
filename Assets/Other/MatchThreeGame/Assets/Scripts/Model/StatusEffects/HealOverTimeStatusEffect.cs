@@ -5,7 +5,7 @@
 
         public int HealAmount;
 
-        public HealOverTimeStatusEffect(int duration, string imagePath, int healAmount) : base(duration, imagePath, SpellActionType.Heal)
+        public HealOverTimeStatusEffect(int duration, int healAmount) : base(duration, "RpgPack/S_Poison06", SpellActionType.Heal)
         {
             HealAmount = healAmount;
         }

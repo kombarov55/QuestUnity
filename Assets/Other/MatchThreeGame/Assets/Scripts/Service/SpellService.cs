@@ -56,11 +56,11 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     new List<SpellAction>(),
                     new List<StatusEffect>()
                     {
-                        new DamageOverTimeStatusEffect(3, "ignition.png", 1)
+                        new DamageOverTimeStatusEffect(3, 1)
                     },
                     new List<StatusEffect>()
                     {
-                        new DamageOverTimeStatusEffect(3, "ignition.png", 1)
+                        new DamageOverTimeStatusEffect(3, 1)
                     },
                     SpellType.Damage
                 ),
@@ -75,7 +75,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     new List<SpellAction>(),
                     new List<StatusEffect>()
                     {
-                        new HealOverTimeStatusEffect(3, "Restoration.png", 3)
+                        new HealOverTimeStatusEffect(3, 3)
                     }, 
                     new List<StatusEffect>(),
                     SpellType.Heal
@@ -127,7 +127,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     new List<SpellAction>(),
                     new List<StatusEffect>()
                     {
-                        new SequentialTurnsStatusEffect(2, "doubleturn.png", 2)
+                        new SequentialTurnsStatusEffect(2, 2)
                     },
                     new List<StatusEffect>(),
                     SpellType.Buff
@@ -146,7 +146,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     new List<SpellAction>(), 
                     new List<StatusEffect>()
                     {
-                        new ShieldStatusEffect(3, "img", 4)
+                        new ShieldStatusEffect(3, 4)
                     },
                     new List<StatusEffect>(),
                     SpellType.Buff
@@ -165,7 +165,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     new List<SpellAction>(),
                     new List<StatusEffect>()
                     {
-                        new ReflectDamageStatusEffect(2, "")
+                        new ReflectDamageStatusEffect(2)
                     },
                     new List<StatusEffect>(),
                     SpellType.Buff
@@ -181,11 +181,11 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     new List<SpellAction>(),
                     new List<StatusEffect>()
                     {
-                        new BlockHealingStatusEffect(3, "")
+                        new BlockHealingStatusEffect(3)
                     },
                     new List<StatusEffect>()
                     {
-                        new BlockHealingStatusEffect(3, "")
+                        new BlockHealingStatusEffect(3)
                     },
                     SpellType.Debuff
                 ), 
@@ -203,7 +203,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     new List<SpellAction>(),
                     new List<StatusEffect>()
                     {
-                        new AdditionalDamageStatusEffect(3, "", 3)
+                        new AdditionalDamageStatusEffect(3, 3)
                     },
                     new List<StatusEffect>(),
                     SpellType.Buff
@@ -222,7 +222,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     new List<SpellAction>(),
                     new List<StatusEffect>()
                     {
-                        new AdditionalHealStatusEffect(3, "", 3)
+                        new AdditionalHealStatusEffect(3, 3)
                     },
                     new List<StatusEffect>(),
                     SpellType.Buff
@@ -241,7 +241,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     new List<SpellAction>(),
                     new List<StatusEffect>()
                     {
-                        new AdditionalManaRestoreStatusEffect(3, "", 2)
+                        new AdditionalManaRestoreStatusEffect(3, 2)
                     },
                     new List<StatusEffect>(),
                     SpellType.Buff
@@ -260,11 +260,11 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     },
                     new List<StatusEffect>()
                     {
-                        new ManaburnStatusEffect(3, "", 3)
+                        new ManaburnStatusEffect(3, 3)
                     },
                     new List<StatusEffect>()
                     {
-                        new ManaburnStatusEffect(3, "", 3)
+                        new ManaburnStatusEffect(3, 3)
                     },
                     SpellType.Damage
                 ),
@@ -327,7 +327,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     new List<SpellAction>(),
                     new List<StatusEffect>()
                     {
-                        new SilenceStatusEffect(2, "", spell => spell.SpellType == SpellType.Heal)
+                        new SilenceStatusEffect(2, spell => spell.SpellType == SpellType.Heal)
                     },
                     new List<StatusEffect>(),
                     SpellType.Debuff

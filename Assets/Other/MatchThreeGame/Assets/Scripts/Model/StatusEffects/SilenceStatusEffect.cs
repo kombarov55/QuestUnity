@@ -7,7 +7,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Model.StatusEffects
     {
         public Func<Spell, bool> SpellSelector;
 
-        public SilenceStatusEffect(int duration, string imagePath, Func<Spell, bool> spellSelector) : base(duration, imagePath, SpellActionType.Debuff)
+        public SilenceStatusEffect(int duration, Func<Spell, bool> spellSelector) : base(duration, "RpgPack/S_Shadow08", SpellActionType.Debuff)
         {
             SpellSelector = spellSelector;
         }

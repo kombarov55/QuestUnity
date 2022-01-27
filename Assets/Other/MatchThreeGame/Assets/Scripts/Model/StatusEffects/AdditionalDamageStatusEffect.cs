@@ -4,7 +4,7 @@
     {
         public int Amount;
 
-        public AdditionalDamageStatusEffect(int duration, string imagePath, int amount) : base(duration, imagePath, SpellActionType.Buff)
+        public AdditionalDamageStatusEffect(int duration, int amount) : base(duration, "RpgPack/S_Sword16", SpellActionType.Buff)
         {
             Amount = amount;
         }

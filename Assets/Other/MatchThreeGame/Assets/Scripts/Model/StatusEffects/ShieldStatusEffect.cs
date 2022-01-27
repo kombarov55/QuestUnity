@@ -4,7 +4,7 @@
     {
         public int BlockedAmount;
 
-        public ShieldStatusEffect(int duration, string imagePath, int blockedAmount) : base(duration, imagePath, SpellActionType.Buff)
+        public ShieldStatusEffect(int duration, int blockedAmount) : base(duration, "RpgPack/E_Metal06", SpellActionType.Buff)
         {
             BlockedAmount = blockedAmount;
         }

@@ -5,7 +5,7 @@
 
         public int Amount;
 
-        public ManaburnStatusEffect(int duration, string imagePath, int amount) : base(duration, imagePath, SpellActionType.Damage)
+        public ManaburnStatusEffect(int duration, int amount) : base(duration, "RpgPack/S_Ice03", SpellActionType.Damage)
         {
             Amount = amount;
         }
