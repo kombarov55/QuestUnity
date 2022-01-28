@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace DefaultNamespace
 {
-    public class CachedUserData : MonoBehaviour
+    public class CachedPrefs : MonoBehaviour
     {
         
         private List<string> _openedJournalItems;
@@ -26,9 +26,9 @@ namespace DefaultNamespace
             _threeInARowLifes = PlayerPrefs.GetInt("ThreeInARowLifes");
         }
 
-        public static CachedUserData Get()
+        public static CachedPrefs Get()
         {
-            var v = new CachedUserData();
+            var v = new CachedPrefs();
             v.Load();
             return v;
         }

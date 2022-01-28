@@ -8,11 +8,11 @@ namespace DefaultNamespace
 {
     public class JournalItemsService : MonoBehaviour
     {
-        private CachedUserData cachedUserData;
+        private CachedPrefs _cachedPrefs;
 
         public void Start()
         {
-            cachedUserData = GetComponent<CachedUserData>();
+            _cachedPrefs = GetComponent<CachedPrefs>();
         }
         
         public void init()
@@ -24,7 +24,7 @@ namespace DefaultNamespace
         {
             List<JournalItem> result = new List<JournalItem>();
             
-            foreach (string id in cachedUserData.OpenedJournalItems)
+            foreach (string id in _cachedPrefs.OpenedJournalItems)
             {
                 result.Add(journalItemRepository.findById(id));
             }
@@ -36,13 +36,13 @@ namespace DefaultNamespace
         {
             if (!isJournalItemOpened(id))
             {
-                cachedUserData.OpenJournalItem(id);
+                _cachedPrefs.OpenJournalItem(id);
             }
         }
 
         public bool isJournalItemOpened(string id)
         {
-            foreach (var itemId in cachedUserData.OpenedJournalItems)
+            foreach (var itemId in _cachedPrefs.OpenedJournalItems)
             {
                 if (itemId == id)
                 {

@@ -25,7 +25,7 @@ namespace DefaultNamespace
 
         public GameObject audioGameObject;
 
-        public CachedUserData cachedUserData;
+        public CachedPrefs cachedPrefs;
         public TransitionService transitionService;
         public OnQuestNodeShowService onQuestNodeShowService;
         public AudioScript audioScript;
@@ -82,7 +82,7 @@ namespace DefaultNamespace
             onQuestNodeShowService = GetComponent<OnQuestNodeShowService>();
 
             questPanelController = questPanel.GetComponent<QuestPanelController>();
-            questPanelController.init(this, cachedUserData, transitionService, onQuestNodeShowService, audioScript, rootPanel.GetComponent<Image>());
+            questPanelController.init(this, cachedPrefs, transitionService, onQuestNodeShowService, audioScript, rootPanel.GetComponent<Image>());
 
             journalPanelController = journalPanel.GetComponent<JournalPanelController>();
             journalPanelController.init(this, audioScript, journalItemsService);
@@ -91,7 +91,7 @@ namespace DefaultNamespace
             journalItemPanelController.init(this, audioScript);
 
             mainPanelController = mainPanel.GetComponent<MainPanelController>();
-            mainPanelController.init(cachedUserData, journalItemsService);
+            mainPanelController.init(cachedPrefs, journalItemsService);
             
             animationPanelController = animationPanel.GetComponent<AnimationPanelController>();
             animationPanelController.init(audioScript);

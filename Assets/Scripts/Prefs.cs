@@ -11,7 +11,6 @@ namespace DefaultNamespace
         private static readonly string LastLifeCountdownUpdateKey = "LastLifeCountdownUpdate";
         private static readonly string CurrentSceneIdKey = "CurrentSceneId";
         private static readonly string CoinCountKey = "CoinCount";
-        private static readonly string OpenedInventoryItemsKey = "OpenedInventoryItems";
 
         private static Dictionary<string, Action<int>> _onLifesChangeSubscribers = new Dictionary<string, Action<int>>();
         private static Dictionary<string, Action<string>> _onLifesCountdownSubscribers = new Dictionary<string, Action<string>>();

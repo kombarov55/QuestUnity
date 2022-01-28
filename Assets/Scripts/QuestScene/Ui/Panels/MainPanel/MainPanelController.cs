@@ -5,16 +5,16 @@ namespace DefaultNamespace.MainPanel
     public class MainPanelController : MonoBehaviour
     {
         private MainPanelPresenter mainPanelPresenter;
-        private CachedUserData cachedUserData;
+        private CachedPrefs _cachedPrefs;
         private JournalItemsService journalItemsService;
 
         private long statusLineStartTime = -1;
 
         private long statusLineDuration = 5000;
 
-        public void init(CachedUserData cachedUserData, JournalItemsService journalItemsService)
+        public void init(CachedPrefs cachedPrefs, JournalItemsService journalItemsService)
         {
-            this.cachedUserData = cachedUserData;
+            this._cachedPrefs = cachedPrefs;
             this.journalItemsService = journalItemsService;
             mainPanelPresenter = GetComponent<MainPanelPresenter>();
             mainPanelPresenter.setCoinCountText(Prefs.CoinCount);
@@ -41,9 +41,9 @@ namespace DefaultNamespace.MainPanel
 
         public void addInventoryItem(string id)
         {
-            if (!cachedUserData.AddedInventoryItems.Contains(id))
+            if (!_cachedPrefs.AddedInventoryItems.Contains(id))
             {
-                cachedUserData.AddInventoryItem(id);
+                _cachedPrefs.AddInventoryItem(id);
                 setStatusLineText("\"" + id + "\" добавлен в инвентарь.");
                 incUnseenInventoryItemsCount();
             }
@@ -51,25 +51,25 @@ namespace DefaultNamespace.MainPanel
 
         public void incUnreadJournalItemsCounter()
         {
-            cachedUserData.UnreadJournalItemsCount += 1;
-            mainPanelPresenter.SetJournalCounterText(cachedUserData.UnreadJournalItemsCount);
+            _cachedPrefs.UnreadJournalItemsCount += 1;
+            mainPanelPresenter.SetJournalCounterText(_cachedPrefs.UnreadJournalItemsCount);
         }
 
         public void incUnseenInventoryItemsCount()
         {
-            cachedUserData.UnseenInventoryItemsCount += 1;
-            mainPanelPresenter.SetInventoryCounterText(cachedUserData.UnseenInventoryItemsCount);
+            _cachedPrefs.UnseenInventoryItemsCount += 1;
+            mainPanelPresenter.SetInventoryCounterText(_cachedPrefs.UnseenInventoryItemsCount);
         }
 
         public void dropUnreadJournalItemsCounter()
         {
-            cachedUserData.UnreadJournalItemsCount = 0;
+            _cachedPrefs.UnreadJournalItemsCount = 0;
             mainPanelPresenter.SetJournalCounterText(0);
         }
         
         public void dropUnseenInventoryItemsCount()
         {
-            cachedUserData.UnseenInventoryItemsCount = 0;
+            _cachedPrefs.UnseenInventoryItemsCount = 0;
             mainPanelPresenter.SetInventoryCounterText(0);
         }
 

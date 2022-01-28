@@ -17,7 +17,7 @@ namespace DefaultNamespace.Controller
             _audioButton = GameObject.Find("StartGameButton").GetComponent<AudioButton>();
             _audioButton.OnClick = () =>
             {
-                CachedUserData.Reset();
+                CachedPrefs.Reset();
                 _sceneController.ToQuest();
             };
 
@@ -26,7 +26,7 @@ namespace DefaultNamespace.Controller
 
             _continueButton = GameObject.Find("ContinueButton").GetComponent<AudioButton>();
             
-            if (CachedUserData.IsGameStarted())
+            if (CachedPrefs.IsGameStarted())
             {
                 _continueButton.OnClick = () => _sceneController.ToQuest();
             }

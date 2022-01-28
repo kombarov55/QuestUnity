@@ -2589,7 +2589,7 @@ MonoBehaviour:
   journalItemPanelPrefab: {fileID: 7069380015193903361, guid: 9dffc206ef1c05f1fb1f30da6ab2cb7b, type: 3}
   animationPanelPrefab: {fileID: 2223993742860295501, guid: 384db9cc526624db0a00583712aa5375, type: 3}
   audioGameObject: {fileID: 606190998}
-  cachedUserData: {fileID: 1335600913}
+  cachedPrefs: {fileID: 1335600913}
   transitionService: {fileID: 1335600910}
   onQuestNodeShowService: {fileID: 0}
   audioScript: {fileID: 0}

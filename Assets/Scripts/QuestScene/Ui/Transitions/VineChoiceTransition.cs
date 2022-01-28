@@ -18,7 +18,7 @@ namespace DefaultNamespace.transitions
         {
             MainPanelController mainPanelController = questSceneFlow.mainPanelController;
             QuestPanelController questPanelController = questSceneFlow.questPanelController;
-            CachedUserData cachedUserData = questSceneFlow.cachedUserData;
+            CachedPrefs cachedPrefs = questSceneFlow.cachedPrefs;
             AnimationPanelController animationPanelController = questSceneFlow.animationPanelController;
             BackgroundMusicBehaviour backgroundMusicBehaviour = questSceneFlow.backgroundMusicBehaviour;
             

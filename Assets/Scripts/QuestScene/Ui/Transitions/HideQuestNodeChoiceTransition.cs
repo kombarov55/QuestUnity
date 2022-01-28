@@ -13,7 +13,7 @@ public class HideQuestNodeChoiceTransition : Transition
     {
         var questPanelController = questSceneFlow.questPanelController;
 
-        questSceneFlow.cachedUserData.HideQuestNode(nextChoiceId);
+        questSceneFlow.cachedPrefs.HideQuestNode(nextChoiceId);
         questPanelController.displayQuestNode(selectedChoice.nextId);
         
     }

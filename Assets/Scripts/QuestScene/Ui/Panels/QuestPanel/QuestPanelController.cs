@@ -10,7 +10,7 @@ namespace DefaultNamespace
     public class QuestPanelController : MonoBehaviour
     {
         
-        public CachedUserData cachedUserData;
+        public CachedPrefs cachedPrefs;
         public TransitionService transitionService;
         public QuestNodesRepository questNodesRepository;
         public OnQuestNodeShowService onQuestNodeShowService;
@@ -21,17 +21,17 @@ namespace DefaultNamespace
         
         private QuestSceneFlow questSceneFlow;
 
-        public void init(QuestSceneFlow questSceneFlow, CachedUserData cachedUserData, TransitionService transitionService, OnQuestNodeShowService onQuestNodeShowService, AudioScript audioScript, Image background)
+        public void init(QuestSceneFlow questSceneFlow, CachedPrefs cachedPrefs, TransitionService transitionService, OnQuestNodeShowService onQuestNodeShowService, AudioScript audioScript, Image background)
         {
             _questPanelPresenter = GetComponent<QuestPanelPresenter>();
             questNodesRepository = GetComponent<QuestNodesRepository>();
             
-            this.cachedUserData = cachedUserData;
+            this.cachedPrefs = cachedPrefs;
             this.transitionService = transitionService;
             this.onQuestNodeShowService = onQuestNodeShowService;
             this.questSceneFlow = questSceneFlow;
 
-            cachedUserData.Load();
+            cachedPrefs.Load();
 
             _questPanelPresenter.init(audioScript, background);
             
@@ -76,7 +76,7 @@ namespace DefaultNamespace
             _questPanelPresenter.setTitle(title);
             _questPanelPresenter.setDescription(description);
 
-            var visibleChoices = findVisibleChoices(cachedUserData, choices);
+            var visibleChoices = findVisibleChoices(cachedPrefs, choices);
 
             _questPanelPresenter.setChoices(visibleChoices);
         }
@@ -97,13 +97,13 @@ namespace DefaultNamespace
             return questNodesRepository.findById(currentQuestNodeId);
         }
 
-        private List<QuestNodeChoice> findVisibleChoices(CachedUserData cachedUserData, List<QuestNodeChoice> choices)
+        private List<QuestNodeChoice> findVisibleChoices(CachedPrefs cachedPrefs, List<QuestNodeChoice> choices)
         {
             var visibleChoices = new List<QuestNodeChoice>();
             
             foreach (var choice in choices)
             {
-                var isChoiceVisible = !cachedUserData.HiddenQuestNodes.Contains(choice.nextId);
+                var isChoiceVisible = !cachedPrefs.HiddenQuestNodes.Contains(choice.nextId);
 
                 if (isChoiceVisible)
                 {
