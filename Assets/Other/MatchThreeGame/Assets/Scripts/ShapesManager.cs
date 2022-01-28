@@ -320,7 +320,7 @@ public class ShapesManager : MonoBehaviour
             if (timesRun >= 2)
                 IncreaseScore(Constants.SubsequentMatchScore);
 
-            soundManager.PlayCrincle();
+            // soundManager.PlayCrincle();
 
             foreach (var item in totalMatches)
             {

@@ -4,55 +4,56 @@ using System.Collections.Generic;
 
 public class SoundManager : MonoBehaviour {
 
-    //crincle sound found here: http://freesound.org/people/volivieri/sounds/37171/
-
-    public AudioClip crincleAudioClip;
     public List<AudioClip> buffSpellAudioClips;
     public List<AudioClip> debuffSpellAudioClips;
     public List<AudioClip> damageSpellAudioClips;
     public List<AudioClip> healingSpellAudioClips;
+    public AudioClip attackAudioClip;
+    public AudioClip healAudioClip;
+    public AudioClip coinAudioClip;
+    public AudioClip manaAudioClip;
     
-    AudioSource _crincle;
-    AudioSource _spellAudioSource;
-
-    void Awake()
-    {
-        _crincle = AddAudio();
-        _spellAudioSource = AddAudio();
-    }
-
-    public void PlayCrincle()
-    {
-        _crincle.clip = crincleAudioClip;
-        _crincle.Play();
-    }
+    public AudioSource spellAudioSource;
+    public AudioSource fishkaAudioSource;
 
     public void PlayBuffSpellSound()
     {
-        PlayRandomSound(buffSpellAudioClips, _spellAudioSource);
+        PlayRandomSound(buffSpellAudioClips, spellAudioSource);
     }
 
     public void PlayHealingSpellSound()
     {
-        PlayRandomSound(healingSpellAudioClips, _spellAudioSource);
+        PlayRandomSound(healingSpellAudioClips, spellAudioSource);
     }
 
     public void PlayDamageSpellSound()
     {
-        PlayRandomSound(damageSpellAudioClips, _spellAudioSource);
+        PlayRandomSound(damageSpellAudioClips, spellAudioSource);
     }
 
     public void PlayDebuffSpellSound()
     {
-        PlayRandomSound(debuffSpellAudioClips, _spellAudioSource);
+        PlayRandomSound(debuffSpellAudioClips, spellAudioSource);
+    }
+
+    public void PlayAttackSound()
+    {
+        PlaySound(attackAudioClip, fishkaAudioSource);
     }
     
-    
-    private AudioSource AddAudio()
+    public void PlayHealSound()
     {
-        AudioSource audioSource = gameObject.AddComponent<AudioSource>();
-        audioSource.playOnAwake = false;
-        return audioSource;
+        PlaySound(healAudioClip, fishkaAudioSource);
+    }
+    
+    public void PlayCoinSound()
+    {
+        PlaySound(coinAudioClip, fishkaAudioSource);
+    }
+    
+    public void PlayManaSound()
+    {
+        PlaySound(manaAudioClip, fishkaAudioSource);
     }
 
     private void PlayRandomSound(List<AudioClip> audioClips, AudioSource audioSource)
@@ -60,6 +61,11 @@ public class SoundManager : MonoBehaviour {
         var clip = audioClips[Random.Range(0, audioClips.Count - 1)];
         audioSource.clip = clip;
         audioSource.Play();
+    }
+
+    private void PlaySound(AudioClip audioClip, AudioSource audioSource)
+    {
+        audioSource.PlayOneShot(audioClip);
     }
     
 }

@@ -6,11 +6,14 @@ using UnityEngine;
 namespace Other.MatchThreeGame.Assets.Scripts
 {
     public class CollapseObserverBehaviour : MonoBehaviour
-    {       
+    {
+        private SoundManager _soundManager;
+        
         private void Start()
         {
             StateManager stateManager = StateManager.Get();
             GameLifecycleObservables gameLifecycleObservables = stateManager.GameLifecycleObservables;
+            _soundManager = stateManager.SoundManager;
             
             gameLifecycleObservables.OnCollapse.Subscribe(tuple =>
             {
@@ -57,6 +60,8 @@ namespace Other.MatchThreeGame.Assets.Scripts
             {
                 StateAlterationService.DoDamageToPlayer(stateManager, Constants.Damage);
             }
+            
+            _soundManager.PlayAttackSound();
         }
         private void OnHeal(StateManager stateManager, bool isPlayersTurn) 
         {
@@ -68,6 +73,8 @@ namespace Other.MatchThreeGame.Assets.Scripts
             {
                 StateAlterationService.HealEnemy(stateManager, Constants.Heal);
             }
+            
+            _soundManager.PlayHealSound();
         }
         
         private void OnCoin(StateManager stateManager, bool isPlayersTurn) 
@@ -76,6 +83,8 @@ namespace Other.MatchThreeGame.Assets.Scripts
             {
                 stateManager.CoinCount += 1;
             }
+            
+            _soundManager.PlayCoinSound();
         }
         
         private void OnMana(StateManager stateManager, bool isPlayersTurn) 
@@ -88,6 +97,8 @@ namespace Other.MatchThreeGame.Assets.Scripts
             {
                 StateAlterationService.RestoreManaForEnemy(stateManager, Constants.Mana);
             }
+            
+            _soundManager.PlayManaSound();
         }
     }
 
