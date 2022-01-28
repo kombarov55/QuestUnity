@@ -63,7 +63,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
                         largeAmountCounterText.text = "x" + amount;
                         break;
                 }
-            });
+            }, true);
         }
     }
 }

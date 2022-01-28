@@ -37,7 +37,7 @@ namespace Other.MatchThreeGame.Assets.Scripts
         public int EnemyHealAddition = 0;
         public int PlayerManaRestoreAddition = 0;
         public int EnemyManaRestoreAddition = 0;
-        public Observable<int> CastsLeftForPlayer = new Observable<int>(2);
+        public Observable<int> CastsLeftForPlayer = new Observable<int>(1);
         public Observable<int> CastsLeftForEnemy = new Observable<int>(1);
         public Dictionary<Spell, Observable<int>> PlayerSpellsToCooldownObservable = new Dictionary<Spell, Observable<int>>();
         public List<Spell> SilentedSpellsForPlayer = new List<Spell>();

@@ -4528,8 +4528,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 23.9, y: 77.5}
-  m_SizeDelta: {x: 58.6178, y: 62.9597}
+  m_AnchoredPosition: {x: -104.2, y: 34.661522}
+  m_SizeDelta: {x: 87.0359, y: 93.4827}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &490982246
 MonoBehaviour:
@@ -10178,8 +10178,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 23.9, y: -75.4}
-  m_SizeDelta: {x: 58.6178, y: 62.9597}
+  m_AnchoredPosition: {x: 114, y: 32.2}
+  m_SizeDelta: {x: 93.9671, y: 100.9274}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1128252476
 MonoBehaviour:
@@ -11126,8 +11126,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 23.9, y: 0}
-  m_SizeDelta: {x: 58.6178, y: 62.9597}
+  m_AnchoredPosition: {x: 3.1, y: 34.6}
+  m_SizeDelta: {x: 87.0359, y: 93.4827}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1232088571
 MonoBehaviour:
@@ -15756,7 +15756,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1691387202}
   m_Layer: 5
-  m_Name: ButtonsSideBar
+  m_Name: Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15771,16 +15771,16 @@ RectTransform:
   m_GameObject: {fileID: 1691387201}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_Children:
   - {fileID: 2001342497}
   m_Father: {fileID: 1066478621}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 26, y: -23.7}
-  m_SizeDelta: {x: 50.845, y: 279.646}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 30}
+  m_SizeDelta: {x: 386.26123, y: 75.36798}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1697140991
 PrefabInstance:
