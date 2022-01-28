@@ -13,12 +13,15 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
         public GameObject fadingTextInitialPosition;
         public GameObject fadingTextTargetPosition;
         public float fadingTextDurationInSeconds = 1f;
+
+        private BounceBehaviour _currentHealthBounceBehaviour;
         
         private void Start()
         {
             StateManager stateManager = StateManager.Get();
             Slider slider = gameObject.GetComponent<Slider>();
             Text currentHealthText = currentHealth.GetComponent<Text>();
+            _currentHealthBounceBehaviour = currentHealth.GetComponent<BounceBehaviour>();
 
             if (isPlayer)
             {
@@ -31,6 +34,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
                 {
                     slider.value = value;
                     currentHealthText.text = value.ToString();
+                    _currentHealthBounceBehaviour.Run();
                 });
 
                 if (showHealthDelta)
@@ -59,6 +63,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
                 {
                     slider.value = value;
                     currentHealthText.text = value.ToString();
+                    _currentHealthBounceBehaviour.Run();
                 });
                 
                 if (showHealthDelta)

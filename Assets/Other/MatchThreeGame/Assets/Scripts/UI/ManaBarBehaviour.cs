@@ -13,12 +13,15 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
         public GameObject fadingTextInitialPosition;
         public GameObject fadingTextTargetPosition;
         public int fadingTextDurationInSeconds = 1;
+
+        private BounceBehaviour _currentManaBounceBehaviour;
         
         private void Start()
         {
             StateManager stateManager = StateManager.Get();
             Slider slider = gameObject.GetComponent<Slider>();
             Text currentManaText = currentMana.GetComponent<Text>();
+            _currentManaBounceBehaviour = currentManaText.GetComponent<BounceBehaviour>();
 
             if (isPlayer)
             {
@@ -27,6 +30,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
                 {
                     currentManaText.text = mana.ToString();
                     slider.value = mana;
+                    _currentManaBounceBehaviour.Run();
                 });
 
                 if (showManaDiff)
@@ -51,6 +55,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
                 {
                     currentManaText.text = mana.ToString();
                     slider.value = mana;
+                    _currentManaBounceBehaviour.Run();
                 });
                 
                 if (showManaDiff)

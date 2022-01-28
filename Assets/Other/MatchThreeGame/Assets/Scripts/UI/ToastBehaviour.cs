@@ -54,7 +54,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
             gameObject.SetActive(true);
             messagePanel.SetActive(true);
             messageHeader.text = "Победа!";
-            StartCoroutine(FlyAwayAfterDelay(messagePanel, false, () => SceneManager.LoadScene("MainMenu")));
+            StartCoroutine(FlyAwayAfterDelay(messagePanel, false, () => SceneManager.LoadScene("Scenes/QuestScene")));
         }
         
         public void ShowFailure()
@@ -62,7 +62,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
             gameObject.SetActive(true);
             messagePanel.SetActive(true);
             messageHeader.text = "Поражение";
-            StartCoroutine(FlyAwayAfterDelay(messagePanel, false));
+            StartCoroutine(FlyAwayAfterDelay(messagePanel, false, () => SceneManager.LoadScene("Scenes/QuestScene")));
         }
 
         private IEnumerator FlyAwayAfterDelay(GameObject panel, bool fadeBackground, Action then = null)
