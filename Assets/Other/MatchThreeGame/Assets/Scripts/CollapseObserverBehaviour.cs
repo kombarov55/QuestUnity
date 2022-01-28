@@ -15,7 +15,9 @@ namespace Other.MatchThreeGame.Assets.Scripts
 
         public float flyDurationInSeconds = 2f;
         public float targetScale = 0.5f;
-        public Vector2 targetPosition = new Vector2(-1.78f, 4.16f);
+        
+        private Vector2 playerTargetPosition = new Vector2(-1.78f, 4.16f);
+        private Vector2 enemyTargetPosition = new Vector2(1f, 4.16f);
 
 
         private SoundManager _soundManager;
@@ -32,7 +34,7 @@ namespace Other.MatchThreeGame.Assets.Scripts
                 
                 var collapseType = DetermineCollapseType(match);
 
-                StartFlyOfFishka(collapseType, match[0].transform.position);
+                StartFlyOfFishka(collapseType, match[0].transform.position, isPlayersTurn);
                 
                 switch (collapseType)
                 {
@@ -114,7 +116,7 @@ namespace Other.MatchThreeGame.Assets.Scripts
             _soundManager.PlayManaSound();
         }
 
-        public void StartFlyOfFishka(CollapseType collapseType, Vector3 initialPosition)
+        public void StartFlyOfFishka(CollapseType collapseType, Vector3 initialPosition, bool isPlayersTurn)
         {
             GameObject prefab = null;
             switch (collapseType)
@@ -133,10 +135,23 @@ namespace Other.MatchThreeGame.Assets.Scripts
                     break;
             }
 
+            Vector2 target = IsPlayerTargeted(isPlayersTurn, collapseType) ? playerTargetPosition : enemyTargetPosition;
+                
+
             var go = Instantiate(prefab, initialPosition, Quaternion.identity);
-            go.transform.positionTo(flyDurationInSeconds, targetPosition);
+            go.transform.positionTo(flyDurationInSeconds, target);
             go.transform.scaleTo(flyDurationInSeconds, targetScale);
             Destroy(go, flyDurationInSeconds);
+        }
+
+        private bool IsPlayerTargeted(bool isPlayersTurn, CollapseType collapseType)
+        {
+            if (collapseType == CollapseType.Hit)
+            {
+                return !isPlayersTurn;
+            }
+
+            return isPlayersTurn;
         }
         
     }
