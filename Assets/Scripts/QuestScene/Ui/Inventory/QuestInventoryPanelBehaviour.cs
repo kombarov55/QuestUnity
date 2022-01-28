@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using DefaultNamespace.Model;
 using QuestScene.Repositories;
 using UnityEngine;
@@ -11,6 +12,8 @@ namespace QuestScene.Ui
         public GameObject inventoryItemPrefab;
         public GameObject grid;
 
+        public QuestInventoryTabsPanelBehaviour tabsPanelBehaviour; 
+
         public Text itemNameText;
         public Text itemDescriptionText;
         public Image itemImage;
@@ -19,18 +22,24 @@ namespace QuestScene.Ui
 
         public void Start()
         {
-            Clear();
-            ClearDisplayOfItem();
-
             List<StoredItem> storedItems = InventoryItemsRepository.getAllStoredItems();
-            foreach (var storedItem in storedItems)
-            {
-                var go = Instantiate(inventoryItemPrefab, grid.transform);
-                instantiatedItems.Add(go);
 
-                var questInventoryItemBehaviour = go.GetComponent<QuestInventoryItemBehaviour>();
-                questInventoryItemBehaviour.Display(storedItem, () => DisplayItem(storedItem));
-            }
+            tabsPanelBehaviour.selectedGameType.Subscribe(gameType =>
+            {
+                Clear();
+                ClearDisplayOfItem();
+                
+                var storedItemsOfNeededType = storedItems.Where(v => v.Item.forWhatGame == gameType);
+
+                foreach (var storedItem in storedItemsOfNeededType)
+                {
+                    var go = Instantiate(inventoryItemPrefab, grid.transform);
+                    instantiatedItems.Add(go);
+
+                    var questInventoryItemBehaviour = go.GetComponent<QuestInventoryItemBehaviour>();
+                    questInventoryItemBehaviour.Display(storedItem, () => DisplayItem(storedItem));                    
+                }
+            }, true);
         }
 
         private void DisplayItem(StoredItem storedItem)

@@ -30,6 +30,9 @@ public class AudioButton : MonoBehaviour
 
     public virtual void InvokeAction()
     {
-        OnClick.Invoke();
+        if (OnClick != null)
+        {
+            OnClick.Invoke();
+        }
     }
 }

@@ -6,11 +6,7 @@ namespace DefaultNamespace.Common
     public class SignalObservable
     {
         private Dictionary<string, Action> _subscribers = new Dictionary<string, Action>();
-
-        public SignalObservable()
-        {
-        }
-
+        
         public void Emit()
         {
             foreach (var pair in _subscribers)
