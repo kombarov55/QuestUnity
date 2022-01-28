@@ -13,7 +13,7 @@ namespace Other.MatchThreeGame.Assets.Scripts
 
        public void Start()
         { 
-            StateManager stateManager = GameObject.Find("State").GetComponent<StateManager>();
+            StateManager stateManager = StateManager.Get();
 
             Clear();
 

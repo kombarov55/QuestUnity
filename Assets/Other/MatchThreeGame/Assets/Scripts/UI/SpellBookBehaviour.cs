@@ -27,7 +27,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
 
         public void Start()
         { 
-            _stateManager = GameObject.Find("State").GetComponent<StateManager>();
+            _stateManager = StateManager.Get();
             _soundManager = _stateManager.SoundManager;
             _button = audioButton.GetComponent<Button>();
 

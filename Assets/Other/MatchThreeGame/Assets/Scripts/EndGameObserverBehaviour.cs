@@ -10,7 +10,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
         public void Start()
         {
             SceneController sceneController = GameObject.Find("SceneController").GetComponent<SceneController>();
-            StateManager stateManager = GameObject.Find("State").GetComponent<StateManager>();
+            StateManager stateManager = StateManager.Get();
 
             stateManager.SubscribeOnLevelInitialized(level =>
             {

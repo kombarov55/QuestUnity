@@ -25,7 +25,7 @@ namespace DefaultNamespace.Common.UI
 
             if (setFlagsOnStateManager)
             {
-                var stateManager = GameObject.Find("State").GetComponent<StateManager>();
+                var stateManager = StateManager.Get();
                 stateManager.IsAnyPanelDisplayedOnUI = flagValue;
             }
         }

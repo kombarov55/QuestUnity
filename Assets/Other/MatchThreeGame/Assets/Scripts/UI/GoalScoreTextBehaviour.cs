@@ -8,7 +8,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
         private void Start()
         {
             Text text = gameObject.GetComponent<Text>();
-            StateManager stateManager = GameObject.Find("State").GetComponent<StateManager>();
+            StateManager stateManager = StateManager.Get();
 
             // stateManager.SubscribeOnLevelInitialized(level => text.text = level.Goals[0].Amount.ToString());
         }

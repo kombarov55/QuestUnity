@@ -6,7 +6,7 @@ namespace Other.MatchThreeGame.Assets.Scripts
     {
         private void Start()
         {
-            StateManager stateManager = GameObject.Find("State").GetComponent<StateManager>();
+            StateManager stateManager = StateManager.Get();
             
             stateManager.SubscribeOnIsPlayersTurn(isPlayersTurn =>
             {

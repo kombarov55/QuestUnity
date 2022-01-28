@@ -6,27 +6,31 @@ using UnityEngine;
 namespace Other.MatchThreeGame.Assets.Scripts
 {
     public class CollapseObserverBehaviour : MonoBehaviour
-    {        private void Start()
+    {       
+        private void Start()
         {
-            StateManager stateManager = GameObject.Find("State").GetComponent<StateManager>();
+            StateManager stateManager = StateManager.Get();
+            GameLifecycleObservables gameLifecycleObservables = stateManager.GameLifecycleObservables;
             
-            stateManager.SubscribeOnCollapse(match =>
+            gameLifecycleObservables.OnCollapse.Subscribe(tuple =>
             {
+                var (isPlayersTurn, match) = tuple;
+                
                 var collapseType = DetermineCollapseType(match);
 
                 switch (collapseType)
                 {
                     case CollapseType.Hit: 
-                        OnHit(stateManager, stateManager.IsPlayersTurn);
+                        OnHit(stateManager, isPlayersTurn);
                         break;
                     case CollapseType.Heal: 
-                        OnHeal(stateManager, stateManager.IsPlayersTurn);
+                        OnHeal(stateManager, isPlayersTurn);
                         break;
                     case CollapseType.Coin: 
-                        OnCoin(stateManager, stateManager.IsPlayersTurn);
+                        OnCoin(stateManager, isPlayersTurn);
                         break;
                     case CollapseType.Mana: 
-                        OnMana(stateManager, stateManager.IsPlayersTurn);
+                        OnMana(stateManager, isPlayersTurn);
                         break;
                 }
             });
@@ -49,36 +53,10 @@ namespace Other.MatchThreeGame.Assets.Scripts
             {
                 StateAlterationService.DoDamageToEnemy(stateManager, Constants.Damage);
             } 
-            else {
+            else 
+            {
                 StateAlterationService.DoDamageToPlayer(stateManager, Constants.Damage);
             }
-            
-            // if (isPlayersTurn && stateManager.IsDamageToEnemyReflected)
-            // {
-            //     isPlayersTurn = false;
-            // }
-            //
-            // if (!isPlayersTurn && stateManager.IsDamageToPlayerReflected)
-            // {
-            //     isPlayersTurn = true;
-            // }
-            //
-            // if (isPlayersTurn)
-            // {
-            //     int damageDealt = Constants.Damage - stateManager.EnemyDamageBlocked + stateManager.PlayerDamageAddition;
-            //
-            //     stateManager.EnemyHealthLeft -= damageDealt;
-            //     stateManager.EnemyDamageBlocked = 0;
-            //     stateManager.OnEnemyHealthChanged(-damageDealt);
-            // }
-            // else
-            // {
-            //     int damageDealt = Constants.Damage - stateManager.PlayerDamageBlocked + stateManager.EnemyDamageAddition;
-            //     
-            //     stateManager.PlayerHealthLeft -= damageDealt;
-            //     stateManager.PlayerDamageBlocked = 0;
-            //     stateManager.OnPlayerHealthChanged(-damageDealt);
-            // }    
         }
         private void OnHeal(StateManager stateManager, bool isPlayersTurn) 
         {
@@ -90,21 +68,6 @@ namespace Other.MatchThreeGame.Assets.Scripts
             {
                 StateAlterationService.HealEnemy(stateManager, Constants.Heal);
             }
-            
-            // if (isPlayersTurn && stateManager.PlayerHealthLeft < stateManager.Level.PlayerHealth)
-            // {
-            //     int healAmount = stateManager.BlockHealingOnPlayer ? 0 : Constants.Heal + stateManager.PlayerHealAddition;
-            //     
-            //     stateManager.PlayerHealthLeft += healAmount;
-            //     stateManager.OnPlayerHealthChanged(healAmount);
-            // }
-            // else if (stateManager.EnemyHealthLeft < stateManager.Level.EnemyHealth)
-            // {
-            //     int healAmount = stateManager.BlockHealingOnEnemy ? 0 : Constants.Heal + stateManager.EnemyHealAddition;
-            //     
-            //     stateManager.EnemyHealthLeft += healAmount;
-            //     stateManager.OnEnemyHealthChanged(healAmount);
-            // }
         }
         
         private void OnCoin(StateManager stateManager, bool isPlayersTurn) 

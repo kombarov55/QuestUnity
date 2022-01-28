@@ -1,14 +1,20 @@
-﻿using DefaultNamespace.Common;
+﻿using System;
+using System.Collections.Generic;
+using DefaultNamespace.Common;
+using UnityEngine;
 
 namespace Other.MatchThreeGame.Assets.Scripts
 {
     public class GameLifecycleObservables
     {
-        public static SignalObservable BeforeSuccessfulShapeSwapByPlayer = new SignalObservable();
+        public SignalObservable BeforeSuccessfulShapeSwapByPlayer = new SignalObservable();
         
-        public static SignalObservable BeforePlayerTurn = new SignalObservable();
-        public static SignalObservable AfterPlayerTurn = new SignalObservable();
-        public static SignalObservable BeforeEnemyTurn = new SignalObservable();
-        public static SignalObservable AfterEnemyTurn = new SignalObservable();
+        public SignalObservable BeforePlayerTurn = new SignalObservable();
+        public SignalObservable AfterPlayerTurn = new SignalObservable();
+        public SignalObservable BeforeEnemyTurn = new SignalObservable();
+        public SignalObservable AfterEnemyTurn = new SignalObservable();
+
+        // IsPlayersTurn -> Match
+        public Observable<Tuple<bool, List<GameObject>>> OnCollapse = new Observable<Tuple<bool, List<GameObject>>>(null);
     }
 }

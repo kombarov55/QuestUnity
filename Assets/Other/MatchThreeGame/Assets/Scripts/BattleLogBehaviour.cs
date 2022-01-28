@@ -8,7 +8,7 @@ namespace Other.MatchThreeGame.Assets.Scripts
         {
             if (Constants.BattleLogEnabled)
             {
-                StateManager stateManager = GameObject.Find("State").GetComponent<StateManager>();
+                StateManager stateManager = StateManager.Get();
 
                 stateManager.SubscribeOnPlayerHealthDiff(amount => Debug.Log("Вы: " + amount + "хп"));
                 stateManager.SubscribeOnEnemyHealthDiff(amount => Debug.Log("Враг: " + amount + "хп"));

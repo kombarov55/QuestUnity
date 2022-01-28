@@ -16,6 +16,7 @@ public class ShapesManager : MonoBehaviour
     public ShapesArray shapes;
     
     private StateManager _stateManager;
+    private GameLifecycleObservables _gameLifecycleObservables;
 
     public readonly Vector2 BottomRight = new Vector2(-2f, -4.73f + 0.7f);
     public readonly Vector2 CandySize = new Vector2(0.7f * 0.8f, 0.7f * 0.8f);
@@ -115,16 +116,16 @@ public class ShapesManager : MonoBehaviour
 
                 //check if two previous horizontal are of the same type
                 while (column >= 2 && shapes[row, column - 1].GetComponent<Shape>()
-                    .IsSameType(newCandy.GetComponent<Shape>())
-                    && shapes[row, column - 2].GetComponent<Shape>().IsSameType(newCandy.GetComponent<Shape>()))
+                                       .IsSameType(newCandy.GetComponent<Shape>())
+                                   && shapes[row, column - 2].GetComponent<Shape>().IsSameType(newCandy.GetComponent<Shape>()))
                 {
                     newCandy = GetRandomCandy();
                 }
 
                 //check if two previous vertical are of the same type
                 while (row >= 2 && shapes[row - 1, column].GetComponent<Shape>()
-                    .IsSameType(newCandy.GetComponent<Shape>())
-                    && shapes[row - 2, column].GetComponent<Shape>().IsSameType(newCandy.GetComponent<Shape>()))
+                                    .IsSameType(newCandy.GetComponent<Shape>())
+                                && shapes[row - 2, column].GetComponent<Shape>().IsSameType(newCandy.GetComponent<Shape>()))
                 {
                     newCandy = GetRandomCandy();
                 }
@@ -142,7 +143,7 @@ public class ShapesManager : MonoBehaviour
     private void InstantiateAndPlaceNewCandy(int row, int column, GameObject newCandy)
     {
         GameObject go = Instantiate(newCandy,
-            BottomRight + new Vector2(column * CandySize.x, row * CandySize.y), Quaternion.identity)
+                BottomRight + new Vector2(column * CandySize.x, row * CandySize.y), Quaternion.identity)
             as GameObject;
 
         //assign the specific properties
@@ -156,7 +157,7 @@ public class ShapesManager : MonoBehaviour
         for (int column = 0; column < Constants.Columns; column++)
         {
             SpawnPositions[column] = BottomRight
-                + new Vector2(column * CandySize.x, Constants.Rows * CandySize.y);
+                                     + new Vector2(column * CandySize.x, Constants.Rows * CandySize.y);
         }
     }
 
@@ -272,7 +273,7 @@ public class ShapesManager : MonoBehaviour
         var hitGo2matchesInfo = shapes.GetMatches(hitGo2);
 
         var totalMatches = hitGomatchesInfo.MatchedCandy
-            .Union(hitGo2matchesInfo.MatchedCandy).Distinct();
+            .Union(hitGo2matchesInfo.MatchedCandy).Distinct().ToList();
 
         //if user's swap didn't create at least a 3-match, undo their swap
         if (totalMatches.Count() < Constants.MinimumMatches)
@@ -289,7 +290,7 @@ public class ShapesManager : MonoBehaviour
 
             if (_stateManager.IsPlayersTurn)
             {
-                GameLifecycleObservables.BeforeSuccessfulShapeSwapByPlayer.Emit();
+                _gameLifecycleObservables.BeforeSuccessfulShapeSwapByPlayer.Emit();
                 _stateManager.TurnsLeft -= 1;
                 _stateManager.SequentialTurnsForPlayer.Value -= 1;
             }
@@ -297,8 +298,8 @@ public class ShapesManager : MonoBehaviour
 
         //if more than 3 matches and no Bonus is contained in the line, we will award a new Bonus
         bool addBonus = Constants.BonusEnabled && (totalMatches.Count() >= Constants.MinimumMatchesForBonus &&
-            !BonusTypeUtilities.ContainsDestroyWholeRowColumn(hitGomatchesInfo.BonusesContained) &&
-            !BonusTypeUtilities.ContainsDestroyWholeRowColumn(hitGo2matchesInfo.BonusesContained));
+                                                   !BonusTypeUtilities.ContainsDestroyWholeRowColumn(hitGomatchesInfo.BonusesContained) &&
+                                                   !BonusTypeUtilities.ContainsDestroyWholeRowColumn(hitGo2matchesInfo.BonusesContained));
 
         Shape hitGoCache = null;
         if (addBonus)
@@ -314,7 +315,7 @@ public class ShapesManager : MonoBehaviour
             //increase score
             IncreaseScore((totalMatches.Count() - 2) * Constants.Match3Score);
             
-            _stateManager.OnCollapse(totalMatches);
+            _gameLifecycleObservables.OnCollapse.Emit(new Tuple<bool, List<GameObject>>(_stateManager.IsPlayersTurn, totalMatches));
 
             if (timesRun >= 2)
                 IncreaseScore(Constants.SubsequentMatchScore);
@@ -361,7 +362,7 @@ public class ShapesManager : MonoBehaviour
 
             //search if there are matches with the new/collapsed items
             totalMatches = shapes.GetMatches(collapsedCandyInfo.AlteredCandy).
-                Union(shapes.GetMatches(newCandyInfo.AlteredCandy)).Distinct();
+                Union(shapes.GetMatches(newCandyInfo.AlteredCandy)).Distinct().ToList();
 
 
 
@@ -384,8 +385,9 @@ public class ShapesManager : MonoBehaviour
     private IEnumerator StartEnemyTurn()
     {
         _stateManager.BeforeEnemyTurn();
-        GameLifecycleObservables.AfterPlayerTurn.Emit();
-        GameLifecycleObservables.BeforeEnemyTurn.Emit();
+
+        _gameLifecycleObservables.AfterPlayerTurn.Emit();
+        _gameLifecycleObservables.BeforeEnemyTurn.Emit();
 
         if (!_stateManager.IsPlayersTurn)
         {
@@ -402,8 +404,8 @@ public class ShapesManager : MonoBehaviour
             {
                 _stateManager.GameState = GameState.None;
                 _stateManager.AfterEnemyTurn();
-                GameLifecycleObservables.AfterEnemyTurn.Emit();
-                GameLifecycleObservables.BeforePlayerTurn.Emit();
+                _gameLifecycleObservables.AfterEnemyTurn.Emit();
+                _gameLifecycleObservables.BeforePlayerTurn.Emit();
             }));
         }
     }
@@ -415,8 +417,8 @@ public class ShapesManager : MonoBehaviour
     private void CreateBonus(Shape hitGoCache)
     {
         GameObject Bonus = Instantiate(GetBonusFromType(hitGoCache.Type), BottomRight
-            + new Vector2(hitGoCache.Column * CandySize.x,
-                hitGoCache.Row * CandySize.y), Quaternion.identity)
+                                                                          + new Vector2(hitGoCache.Column * CandySize.x,
+                                                                              hitGoCache.Row * CandySize.y), Quaternion.identity)
             as GameObject;
         shapes[hitGoCache.Row, hitGoCache.Column] = Bonus;
         var BonusShape = Bonus.GetComponent<Shape>();
@@ -496,7 +498,8 @@ public class ShapesManager : MonoBehaviour
 
     private void InitializeVariables()
     {
-        _stateManager = GameObject.Find("State").GetComponent<StateManager>();
+        _stateManager = StateManager.Get();
+        _gameLifecycleObservables = _stateManager.GameLifecycleObservables;
     }
 
     private void IncreaseScore(int amount)

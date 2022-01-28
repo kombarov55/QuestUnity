@@ -15,7 +15,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
 
         public void Start()
         {
-            StateManager stateManager = GameObject.Find("State").GetComponent<StateManager>();
+            StateManager stateManager = StateManager.Get();
 
             Observable<int> observable = isForPlayer ? stateManager.CastsLeftForPlayer : stateManager.CastsLeftForEnemy;
 

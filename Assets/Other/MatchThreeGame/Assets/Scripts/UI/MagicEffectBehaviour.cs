@@ -31,7 +31,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
             _animator = GetComponent<Animator>();
             _image = GetComponent<Image>();
             
-            var stateManager = GameObject.Find("State").GetComponent<StateManager>();
+            var stateManager = StateManager.Get();
             
             (isOnPlayer ? 
                     stateManager.MagicEffectThrownOnPlayer : 

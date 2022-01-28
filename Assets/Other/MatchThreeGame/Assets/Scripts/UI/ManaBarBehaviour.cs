@@ -16,7 +16,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
         
         private void Start()
         {
-            StateManager stateManager = GameObject.Find("State").GetComponent<StateManager>();
+            StateManager stateManager = StateManager.Get();
             Slider slider = gameObject.GetComponent<Slider>();
             Text currentManaText = currentMana.GetComponent<Text>();
 

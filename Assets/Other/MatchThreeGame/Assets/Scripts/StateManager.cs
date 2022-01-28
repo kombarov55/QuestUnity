@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using DefaultNamespace;
 using DefaultNamespace.Common;
 using Other.MatchThreeGame.Assets.Scripts.Model;
@@ -50,8 +49,14 @@ namespace Other.MatchThreeGame.Assets.Scripts
 
         public List<Spell> Spells;
         public SoundManager SoundManager;
+        public GameLifecycleObservables GameLifecycleObservables = new GameLifecycleObservables();
 
         public int Score;
+
+        public static StateManager Get()
+        {
+            return GameObject.Find("State").GetComponent<StateManager>();
+        }
         
         private void Start()
         {
@@ -278,16 +283,6 @@ namespace Other.MatchThreeGame.Assets.Scripts
         public void SubscribeOnCollapse(Action<List<GameObject>> subscriber)
         {
             OnCollapseSubscribers.Add(subscriber);
-        }
-
-        public void OnCollapse(IEnumerable<GameObject> match)
-        {
-            var list = match.ToList();
-            
-            foreach (var subscriber in OnCollapseSubscribers)
-            {
-                subscriber.Invoke(list);
-            }
         }
 
         public void SubscribeOnCoinCountChanged(Action<int> action)

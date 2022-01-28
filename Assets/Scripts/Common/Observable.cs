@@ -40,6 +40,11 @@ namespace DefaultNamespace.Common
             return guid;
         }
 
+        public void Emit(T t)
+        {
+            Value = t;
+        }
+
         public void Unsubscribe(string guid)
         {
             _subscribers.Remove(guid);
