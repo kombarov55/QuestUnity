@@ -80,9 +80,6 @@ namespace DefaultNamespace
             inventoryPanel = Instantiate(inventoryPanelPrefab, rootPanel.transform);
             inventoryPanel.SetActive(false);
 
-            dialogBehaviour = GameObject.Find("Dialog").GetComponent<DialogBehaviour>();
-            dialogBehaviour.gameObject.SetActive(false);
-            
             transitionService = GetComponent<TransitionService>();
             transitionService.init();
             
