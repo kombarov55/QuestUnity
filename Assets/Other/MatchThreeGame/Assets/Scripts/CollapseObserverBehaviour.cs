@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using DefaultNamespace.Common.UI;
 using Other.MatchThreeGame.Assets.Scripts.Service;
 using UnityEngine;
 
@@ -7,8 +8,18 @@ namespace Other.MatchThreeGame.Assets.Scripts
 {
     public class CollapseObserverBehaviour : MonoBehaviour
     {
+        public GameObject attackFishkaPrefab;
+        public GameObject healFishkaPrefab;
+        public GameObject coinFishkaPrefab;
+        public GameObject manaFishkaPrefab;
+
+        public float flyDurationInSeconds = 2f;
+        public float targetScale = 0.5f;
+        public Vector2 targetPosition = new Vector2(-1.78f, 4.16f);
+
+
         private SoundManager _soundManager;
-        
+
         private void Start()
         {
             StateManager stateManager = StateManager.Get();
@@ -21,6 +32,8 @@ namespace Other.MatchThreeGame.Assets.Scripts
                 
                 var collapseType = DetermineCollapseType(match);
 
+                StartFlyOfFishka(collapseType, match[0].transform.position);
+                
                 switch (collapseType)
                 {
                     case CollapseType.Hit: 
@@ -100,9 +113,35 @@ namespace Other.MatchThreeGame.Assets.Scripts
             
             _soundManager.PlayManaSound();
         }
+
+        public void StartFlyOfFishka(CollapseType collapseType, Vector3 initialPosition)
+        {
+            GameObject prefab = null;
+            switch (collapseType)
+            {
+                case CollapseType.Heal:
+                    prefab = healFishkaPrefab;
+                    break;
+                case CollapseType.Hit:
+                    prefab = attackFishkaPrefab;
+                    break;
+                case CollapseType.Mana:
+                    prefab = manaFishkaPrefab;
+                    break;
+                case CollapseType.Coin:
+                    prefab = coinFishkaPrefab;
+                    break;
+            }
+
+            var go = Instantiate(prefab, initialPosition, Quaternion.identity);
+            go.transform.positionTo(flyDurationInSeconds, targetPosition);
+            go.transform.scaleTo(flyDurationInSeconds, targetScale);
+            Destroy(go, flyDurationInSeconds);
+        }
+        
     }
 
-    enum CollapseType
+    public enum CollapseType
     {
         Hit, Heal, Mana, Coin
     }
