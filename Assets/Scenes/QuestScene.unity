@@ -2506,7 +2506,6 @@ MonoBehaviour:
   journalPanelPrefab: {fileID: 6489117442415762208, guid: f01b990bfff3e03dc91f7932807c48fd, type: 3}
   journalItemPanelPrefab: {fileID: 7069380015193903361, guid: 9dffc206ef1c05f1fb1f30da6ab2cb7b, type: 3}
   animationPanelPrefab: {fileID: 2223993742860295501, guid: 384db9cc526624db0a00583712aa5375, type: 3}
-  inventoryPanelPrefab: {fileID: 3184605110831234427, guid: ec6c4d06de2c1da9aae20b6a2720ebbe, type: 3}
   audioGameObject: {fileID: 606190998}
   cachedUserData: {fileID: 1335600913}
   transitionService: {fileID: 1335600910}
@@ -2519,7 +2518,6 @@ MonoBehaviour:
   journalItemPanelController: {fileID: 0}
   mainPanelController: {fileID: 0}
   animationPanelController: {fileID: 0}
-  InventoryPanelController: {fileID: 0}
   dialogBehaviour: {fileID: 1046523796}
   loadingPanelBehaviour: {fileID: 1856541605}
 --- !u!114 &1335600909
@@ -2715,7 +2713,7 @@ GameObject:
   - component: {fileID: 1476968230}
   - component: {fileID: 1476968232}
   m_Layer: 0
-  m_Name: InventoryPanelV2
+  m_Name: InventoryPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

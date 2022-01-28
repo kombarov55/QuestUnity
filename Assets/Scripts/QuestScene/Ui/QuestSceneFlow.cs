@@ -5,11 +5,8 @@ using DefaultNamespace.JournalPanel;
 using DefaultNamespace.MainPanel;
 using DefaultNamespace.model;
 using DefaultNamespace.OnQuestNodeShow;
-using DefaultNamespace.Panels.InventoryPanel;
-using QuestScene.Repositories;
 using QuestScene.Ui;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 /**
@@ -25,7 +22,6 @@ namespace DefaultNamespace
         public GameObject journalPanelPrefab;
         public GameObject journalItemPanelPrefab;
         public GameObject animationPanelPrefab;
-        public GameObject inventoryPanelPrefab;
 
         public GameObject audioGameObject;
 
@@ -41,7 +37,6 @@ namespace DefaultNamespace
         public JournalItemPanelController journalItemPanelController;
         public MainPanelController mainPanelController;
         public AnimationPanelController animationPanelController;
-        public InventoryPanelController InventoryPanelController;
 
         public DialogBehaviour dialogBehaviour;
         public LoadingPanelBehaviour loadingPanelBehaviour;
@@ -77,8 +72,6 @@ namespace DefaultNamespace
             animationPanel.SetActive(false);
             journalItemPanel = Instantiate(journalItemPanelPrefab, rootPanel.transform);
             journalItemPanel.SetActive(false);
-            inventoryPanel = Instantiate(inventoryPanelPrefab, rootPanel.transform);
-            inventoryPanel.SetActive(false);
 
             transitionService = GetComponent<TransitionService>();
             transitionService.init();
@@ -102,9 +95,6 @@ namespace DefaultNamespace
             
             animationPanelController = animationPanel.GetComponent<AnimationPanelController>();
             animationPanelController.init(audioScript);
-
-            InventoryPanelController = inventoryPanel.GetComponent<InventoryPanelController>();
-            InventoryPanelController.init(audioScript, this);
         }
 
         public void showQuestScene()
@@ -144,18 +134,6 @@ namespace DefaultNamespace
         public void hideJournalItemPanel()
         {
             journalItemPanel.SetActive(false);
-        }
-
-        public void showInventoryPanel()
-        {
-            inventoryPanel.SetActive(true);
-            mainPanelController.dropUnseenInventoryItemsCount();
-            InventoryPanelController.show(InventoryItemsRepository.findOpened(cachedUserData.AddedInventoryItems));
-        }
-
-        public void hideInventoryPanel()
-        {
-            inventoryPanel.SetActive(false);
         }
 
         public void back()
