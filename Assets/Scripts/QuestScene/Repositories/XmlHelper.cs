@@ -1,4 +1,5 @@
 using System.Xml;
+using DefaultNamespace.model;
 
 namespace DefaultNamespace
 {
@@ -8,6 +9,13 @@ namespace DefaultNamespace
         {
             XmlNode node = getChildByName(elem, name);
             return node.InnerText;
+        }
+        
+        public static InventoryItemGameType GetGameType(XmlNode xmlNode, string name) 
+        {
+            InventoryItemGameType forWhatGame;
+            InventoryItemGameType.TryParse(XmlHelper.GetValue(xmlNode, "ForWhatGame"), true, out forWhatGame);
+            return forWhatGame;
         }
 
         public static XmlNode getChildByName(XmlNode elem, string name)

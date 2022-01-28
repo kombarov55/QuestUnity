@@ -6,5 +6,6 @@ namespace DefaultNamespace.model
         public string name;
         public string description;
         public string imgPath;
+        public InventoryItemGameType forWhatGame;
     }
 }

@@ -1,7 +1,9 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml;
 using DefaultNamespace;
 using DefaultNamespace.model;
+using DefaultNamespace.Model;
 using UnityEngine;
 
 namespace QuestScene.Repositories
@@ -10,6 +12,13 @@ namespace QuestScene.Repositories
     {
 
         private static List<InventoryItem> list = new List<InventoryItem>();
+
+        public static List<StoredItem> getAllStoredItems()
+        {
+            return getAll()
+                .Select(v => new StoredItem(v, 1, false))
+                .ToList();
+        }
         
         public static List<InventoryItem> getAll()
         {
@@ -68,6 +77,7 @@ namespace QuestScene.Repositories
                 item.name = XmlHelper.GetValue(xmlNode, "Name");
                 item.description = XmlHelper.GetValue(xmlNode, "Description");
                 item.imgPath = XmlHelper.GetValue(xmlNode, "ImgPath");
+                item.forWhatGame = XmlHelper.GetGameType(xmlNode, "ForWhatGame"); 
 
                 result.Add(item);
             }

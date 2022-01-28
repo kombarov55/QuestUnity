@@ -5,12 +5,14 @@
         <Name>Карта и ключ</Name>
         <Description>Старинная карта и ключ.</Description>
         <ImgPath>Images/KeyAndMap</ImgPath>
+        <ForWhatGame>Quest</ForWhatGame>
     </InventoryItem>
     <InventoryItem>
         <Id>Шкатулка</Id>
         <Name>Шкатулка</Name>
         <Description>Таинственная шкатулка. Древняя сила запечатана в ней.</Description>
         <ImgPath>Images/Box</ImgPath>
+        <ForWhatGame>Quest</ForWhatGame>
     </InventoryItem>
     
     <!--
