@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using DefaultNamespace.Common.UI;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace DefaultNamespace
@@ -8,6 +9,8 @@ namespace DefaultNamespace
         public GameObject mainMenuComponentPrefab;
         public GameObject miniGamesComponentPrefab;
         public GameObject dialogComponentPrefab;
+
+        public LoadingPanelBehaviour loadingPanelBehaviour;
         
         public void ShowMinigames()
         {
@@ -23,12 +26,12 @@ namespace DefaultNamespace
 
         public void ToQuest()
         {
-            SceneManager.LoadScene("Scenes/QuestScene");
+            loadingPanelBehaviour.LoadScene("Scenes/QuestScene");
         }
         
         public void ToThreeInARow()
         {
-            SceneManager.LoadScene("Other/MatchThreeGame/Assets/Scenes/mainGame");
+            loadingPanelBehaviour.LoadScene("Other/MatchThreeGame/Assets/Scenes/mainGame");
             CrossSceneStorage.BackSceneName = "Scenes/MainMenu";
         }
 

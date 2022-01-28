@@ -366,7 +366,23 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     new List<StatusEffect>(),
                     new List<StatusEffect>(),
                     SpellType.Buff
-                )
+                ),
+                new Spell(
+                    "end_game",
+                    "Закончить раунд",
+                    "Выиграть раунд",
+                    "RpgPack/S_Fire03",
+                    0,
+                    0,
+                    new List<SpellAction>(),
+                    new List<SpellAction>()
+                    {
+                        new SpellDamageAction(666)
+                    },
+                    new List<StatusEffect>(),
+                    new List<StatusEffect>(),
+                    SpellType.Damage
+                ),
             };
         }
     }

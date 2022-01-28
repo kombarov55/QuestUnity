@@ -49,20 +49,20 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
             StartCoroutine(FlyAwayAfterDelay(gameGoalPanel, true));
         }
 
-        public void ShowVictory()
+        public void ShowVictory(Action then)
         {
             gameObject.SetActive(true);
             messagePanel.SetActive(true);
             messageHeader.text = "Победа!";
-            StartCoroutine(FlyAwayAfterDelay(messagePanel, false, () => SceneManager.LoadScene("Scenes/QuestScene")));
+            StartCoroutine(FlyAwayAfterDelay(messagePanel, false, then));
         }
         
-        public void ShowFailure()
+        public void ShowFailure(Action then)
         {
             gameObject.SetActive(true);
             messagePanel.SetActive(true);
             messageHeader.text = "Поражение";
-            StartCoroutine(FlyAwayAfterDelay(messagePanel, false, () => SceneManager.LoadScene("Scenes/QuestScene")));
+            StartCoroutine(FlyAwayAfterDelay(messagePanel, false, then));
         }
 
         private IEnumerator FlyAwayAfterDelay(GameObject panel, bool fadeBackground, Action then = null)

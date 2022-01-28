@@ -1,4 +1,5 @@
 ﻿using DefaultNamespace;
+using DefaultNamespace.Common.UI;
 using Other.MatchThreeGame.Assets.Scripts.Model;
 using Other.MatchThreeGame.Assets.Scripts.UI;
 using UnityEngine;
@@ -10,6 +11,8 @@ namespace Other.MatchThreeGame.Assets.Scripts
     public class SceneController : MonoBehaviour
     {
 
+        public LoadingPanelBehaviour loadingPanelBehaviour;
+        
         [SerializeField] private GameObject toastComponent;
         [SerializeField] private Button spellBookButton;
         [SerializeField] private Button inventoryBookButton;
@@ -40,24 +43,19 @@ namespace Other.MatchThreeGame.Assets.Scripts
         public void ShowFailure()
         {
             Prefs.CurrentSceneId = QuestSceneConstants.ThreeInArowFailureNodeId;
-            // StartCoroutine(_toastBehaviour.ShowWithFlyAway("Поражение", ReturnToPreviousScene));
+            _toastBehaviour.ShowFailure(then: () =>
+            {
+                loadingPanelBehaviour.LoadScene(CrossSceneStorage.BackSceneName);
+            });
         }
 
         public void ShowVictory()
         {
             Prefs.CurrentSceneId = QuestSceneConstants.ThreeInARowVictoryNodeId;
-            _toastBehaviour.ShowVictory();
-            
-            // StartCoroutine(_toastBehaviour.ShowWithFlyAway("Победа", ReturnToPreviousScene));
-        }
-
-        public void ReturnToPreviousScene()
-        {
-            if (CrossSceneStorage.IsMinigameInQuest)
+            _toastBehaviour.ShowVictory(then: () =>
             {
-                SceneManager.LoadScene(CrossSceneStorage.BackSceneName);
-            }
-            
+                loadingPanelBehaviour.LoadScene(CrossSceneStorage.BackSceneName);
+            });
         }
 
         private bool IsSpellBookButtonActive(StateManager stateManager)

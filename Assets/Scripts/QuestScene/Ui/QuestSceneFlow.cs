@@ -1,4 +1,5 @@
 using DefaultNamespace.AnimationPanel;
+using DefaultNamespace.Common.UI;
 using DefaultNamespace.JournalItemPanel;
 using DefaultNamespace.JournalPanel;
 using DefaultNamespace.MainPanel;
@@ -43,6 +44,7 @@ namespace DefaultNamespace
         public InventoryPanelController InventoryPanelController;
 
         public DialogBehaviour dialogBehaviour;
+        public LoadingPanelBehaviour loadingPanelBehaviour;
 
         private GameObject questPanel;
         private GameObject journalPanel;
@@ -161,7 +163,7 @@ namespace DefaultNamespace
 
         public void back()
         {
-            SceneManager.LoadScene("Scenes/MainMenu");
+            loadingPanelBehaviour.LoadScene("Scenes/MainMenu");
         }
 
     }

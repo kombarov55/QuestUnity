@@ -21,7 +21,7 @@ namespace QuestScene.Ui.Transitions
                 CrossSceneStorage.BackSceneName = "Scenes/QuestScene";
                 CrossSceneStorage.IsMinigameInQuest = true;
 
-                SceneManager.LoadScene("Other/MatchThreeGame/Assets/Scenes/mainGame");
+                questSceneFlow.loadingPanelBehaviour.LoadScene("Other/MatchThreeGame/Assets/Scenes/mainGame");
             }
             else
             {
