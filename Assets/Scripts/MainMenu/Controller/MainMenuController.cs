@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using DefaultNamespace.Common;
+using UnityEngine;
 
 namespace DefaultNamespace.Controller
 {
@@ -10,14 +11,17 @@ namespace DefaultNamespace.Controller
         private AudioButton _audioButton;
         private AudioButton _minigamesButton;
         private AudioButton _continueButton;
+
+        private GlobalSerializedState _globalSerializedState;
         private void Start()
         {
+            _globalSerializedState  = GlobalSerializedState.Get();
             _sceneController = Context.SceneController(); 
             
             _audioButton = GameObject.Find("StartGameButton").GetComponent<AudioButton>();
             _audioButton.OnClick = () =>
             {
-                CachedPrefs.Reset();
+                _globalSerializedState.Reset();
                 _sceneController.ToQuest();
             };
 
@@ -26,7 +30,7 @@ namespace DefaultNamespace.Controller
 
             _continueButton = GameObject.Find("ContinueButton").GetComponent<AudioButton>();
             
-            if (CachedPrefs.IsGameStarted())
+            if (_globalSerializedState.IsGameStarted.Value)
             {
                 _continueButton.OnClick = () => _sceneController.ToQuest();
             }

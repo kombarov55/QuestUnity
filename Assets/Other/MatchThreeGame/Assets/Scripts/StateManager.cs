@@ -105,7 +105,7 @@ namespace Other.MatchThreeGame.Assets.Scripts
                 EnemyManaLeft = value.EnemyMana;
                 _turnsLeft = value.TurnsAmount;
 
-                CoinCount = Prefs.CoinCount;
+                CoinCount = GlobalSerializedState.Get().CoinCount.Value;
             }
         }
 
@@ -199,7 +199,7 @@ namespace Other.MatchThreeGame.Assets.Scripts
             set
             {
                 _coin = value;
-                Prefs.CoinCount = value;
+                GlobalSerializedState.Get().CoinCount.Value = value;
                 foreach (var subscriber in OnCoinCountChangedSubscribers)
                 {
                     subscriber.Invoke(value);

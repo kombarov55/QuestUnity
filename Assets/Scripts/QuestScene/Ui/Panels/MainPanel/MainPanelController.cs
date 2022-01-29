@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using DefaultNamespace.Common;
 using UnityEngine;
 
 namespace DefaultNamespace.MainPanel
@@ -5,27 +7,28 @@ namespace DefaultNamespace.MainPanel
     public class MainPanelController : MonoBehaviour
     {
         private MainPanelPresenter mainPanelPresenter;
-        private CachedPrefs _cachedPrefs;
         private JournalItemsService journalItemsService;
+        
+        private GlobalSerializedState _globalSerializedState;
 
         private long statusLineStartTime = -1;
 
         private long statusLineDuration = 5000;
 
-        public void init(CachedPrefs cachedPrefs, JournalItemsService journalItemsService)
+        public void init(JournalItemsService journalItemsService)
         {
-            this._cachedPrefs = cachedPrefs;
+            _globalSerializedState = GlobalSerializedState.Get();
             this.journalItemsService = journalItemsService;
             mainPanelPresenter = GetComponent<MainPanelPresenter>();
-            mainPanelPresenter.setCoinCountText(Prefs.CoinCount);
+            mainPanelPresenter.setCoinCountText(_globalSerializedState.CoinCount.Value);
         }
 
         public void decrementCoinCount()
         {
-            if (Prefs.CoinCount >= 1)
+            if (_globalSerializedState.CoinCount.Value >= 1)
             {
-                Prefs.CoinCount -= 1;
-                mainPanelPresenter.setCoinCountText(Prefs.CoinCount);
+                _globalSerializedState.CoinCount.Value -= 1;
+                mainPanelPresenter.setCoinCountText(_globalSerializedState.CoinCount.Value);
             }
         }
 
@@ -35,41 +38,41 @@ namespace DefaultNamespace.MainPanel
             {
                 setStatusLineText("Открыта запись в журнале (" + noteId + ")");
                 journalItemsService.openJournalItem(noteId);
-                incUnreadJournalItemsCounter();
+                incUnreadJournalItemsCounter(noteId);
             }
         }
 
-        public void addInventoryItem(string id)
+        public void addInventoryItem(string itemId)
         {
-            if (!_cachedPrefs.AddedInventoryItems.Contains(id))
+            if (!_globalSerializedState.AddedInventoryItemIds.GetCopy().Contains(itemId))
             {
-                _cachedPrefs.AddInventoryItem(id);
-                setStatusLineText("\"" + id + "\" добавлен в инвентарь.");
-                incUnseenInventoryItemsCount();
+                _globalSerializedState.AddedInventoryItemIds.Add(itemId);
+                setStatusLineText("\"" + itemId + "\" добавлен в инвентарь.");
+                incUnseenInventoryItemsCount(itemId);
             }
         }
 
-        public void incUnreadJournalItemsCounter()
+        public void incUnreadJournalItemsCounter(string noteId)
         {
-            _cachedPrefs.UnreadJournalItemsCount += 1;
-            mainPanelPresenter.SetJournalCounterText(_cachedPrefs.UnreadJournalItemsCount);
+            _globalSerializedState.UnseenJournalItemIds.Add(noteId);
+            mainPanelPresenter.SetJournalCounterText(_globalSerializedState.UnseenJournalItemIds.GetCopy().Count);
         }
 
-        public void incUnseenInventoryItemsCount()
+        public void incUnseenInventoryItemsCount(string itemId)
         {
-            _cachedPrefs.UnseenInventoryItemsCount += 1;
-            mainPanelPresenter.SetInventoryCounterText(_cachedPrefs.UnseenInventoryItemsCount);
+            _globalSerializedState.UnseenInventoryItemIds.Add(itemId);
+            mainPanelPresenter.SetInventoryCounterText(_globalSerializedState.UnseenInventoryItemIds.GetCopy().Count);
         }
 
         public void dropUnreadJournalItemsCounter()
         {
-            _cachedPrefs.UnreadJournalItemsCount = 0;
+            _globalSerializedState.UnseenJournalItemIds.SetValues(new List<string>());
             mainPanelPresenter.SetJournalCounterText(0);
         }
         
         public void dropUnseenInventoryItemsCount()
         {
-            _cachedPrefs.UnseenInventoryItemsCount = 0;
+            _globalSerializedState.UnseenInventoryItemIds.SetValues(new List<string>());
             mainPanelPresenter.SetInventoryCounterText(0);
         }
 

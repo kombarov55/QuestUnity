@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using DefaultNamespace.Common;
 using DefaultNamespace.JournalPanel;
 using DefaultNamespace.MainPanel;
 using DefaultNamespace.model;
@@ -8,23 +9,18 @@ namespace DefaultNamespace
 {
     public class JournalItemsService : MonoBehaviour
     {
-        private CachedPrefs _cachedPrefs;
+        private GlobalSerializedState _globalSerializedState;
 
-        public void Start()
-        {
-            _cachedPrefs = GetComponent<CachedPrefs>();
-        }
-        
         public void init()
         {
-            Start();
+            _globalSerializedState = GlobalSerializedState.Get();
         }
         
         public List<JournalItem> GetOpenedJournalItems(JournalItemRepository journalItemRepository)
         {
             List<JournalItem> result = new List<JournalItem>();
             
-            foreach (string id in _cachedPrefs.OpenedJournalItems)
+            foreach (string id in _globalSerializedState.OpenedJournalItemIds.GetCopy())
             {
                 result.Add(journalItemRepository.findById(id));
             }
@@ -35,14 +31,14 @@ namespace DefaultNamespace
         public void openJournalItem(string id)
         {
             if (!isJournalItemOpened(id))
-            {
-                _cachedPrefs.OpenJournalItem(id);
+            { 
+                _globalSerializedState.OpenedJournalItemIds.Add(id);
             }
         }
 
         public bool isJournalItemOpened(string id)
         {
-            foreach (var itemId in _cachedPrefs.OpenedJournalItems)
+            foreach (var itemId in _globalSerializedState.OpenedJournalItemIds.GetCopy())
             {
                 if (itemId == id)
                 {

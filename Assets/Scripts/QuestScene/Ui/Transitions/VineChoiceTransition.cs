@@ -1,4 +1,5 @@
 using DefaultNamespace.AnimationPanel;
+using DefaultNamespace.Common;
 using DefaultNamespace.MainPanel;
 using DefaultNamespace.model;
 
@@ -18,11 +19,11 @@ namespace DefaultNamespace.transitions
         {
             MainPanelController mainPanelController = questSceneFlow.mainPanelController;
             QuestPanelController questPanelController = questSceneFlow.questPanelController;
-            CachedPrefs cachedPrefs = questSceneFlow.cachedPrefs;
             AnimationPanelController animationPanelController = questSceneFlow.animationPanelController;
             BackgroundMusicBehaviour backgroundMusicBehaviour = questSceneFlow.backgroundMusicBehaviour;
+            GlobalSerializedState globalSerializedState = GlobalSerializedState.Get();
             
-            int coinCount = Prefs.CoinCount;
+            int coinCount = globalSerializedState.CoinCount.Value;
             
             if (coinCount >= 1)
             {

@@ -196,7 +196,9 @@ public class ShapesManager : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 //get the hit position
-                var hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+                Debug.Log("Click: " + Input.mousePosition + ", translated: " + Camera.main.ScreenToWorldPoint(Input.mousePosition));
+                
+                RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
                 if (hit.collider != null) //we have a hit!!!
                 {
                     hitGo = hit.collider.gameObject;
@@ -211,7 +213,7 @@ public class ShapesManager : MonoBehaviour
             if (Input.GetMouseButton(0))
             {
                 
-
+                Debug.Log("Click2: " + Input.mousePosition + ", translated: " + Camera.main.ScreenToWorldPoint(Input.mousePosition));
                 RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
                 //we have a hit
                 if (hit.collider != null && hitGo != hit.collider.gameObject)

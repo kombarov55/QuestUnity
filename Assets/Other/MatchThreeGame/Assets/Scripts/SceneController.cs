@@ -1,4 +1,5 @@
 ﻿using DefaultNamespace;
+using DefaultNamespace.Common;
 using DefaultNamespace.Common.UI;
 using Other.MatchThreeGame.Assets.Scripts.Model;
 using Other.MatchThreeGame.Assets.Scripts.UI;
@@ -19,11 +20,14 @@ namespace Other.MatchThreeGame.Assets.Scripts
 
         private ToastBehaviour _toastBehaviour;
 
+        private GlobalSerializedState _globalSerializedState;
+
         private void Start()
         {
             StateManager stateManager = StateManager.Get();
             _toastBehaviour = toastComponent.GetComponent<ToastBehaviour>();
             _toastBehaviour.Init(stateManager);
+            _globalSerializedState = GlobalSerializedState.Get();
 
             stateManager.SubscribeOnIsPlayersTurn(_ =>
             {
@@ -42,7 +46,8 @@ namespace Other.MatchThreeGame.Assets.Scripts
 
         public void ShowFailure()
         {
-            Prefs.CurrentSceneId = QuestSceneConstants.ThreeInArowFailureNodeId;
+            _globalSerializedState.CurrentSceneId.Value = QuestSceneConstants.ThreeInArowFailureNodeId; 
+                
             _toastBehaviour.ShowFailure(then: () =>
             {
                 loadingPanelBehaviour.LoadScene(CrossSceneStorage.BackSceneName);
@@ -51,7 +56,7 @@ namespace Other.MatchThreeGame.Assets.Scripts
 
         public void ShowVictory()
         {
-            Prefs.CurrentSceneId = QuestSceneConstants.ThreeInARowVictoryNodeId;
+            _globalSerializedState.CurrentSceneId.Value = QuestSceneConstants.ThreeInARowVictoryNodeId;
             _toastBehaviour.ShowVictory(then: () =>
             {
                 loadingPanelBehaviour.LoadScene(CrossSceneStorage.BackSceneName);

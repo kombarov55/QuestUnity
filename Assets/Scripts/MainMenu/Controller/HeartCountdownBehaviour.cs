@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using DefaultNamespace;
+using DefaultNamespace.Common;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,21 +17,14 @@ namespace MainMenu.Controller
         {
             _text = GetComponent<Text>();
 
-            if (Prefs.ThreeInARowLifes < GlobalConstants.MaxLifes)
-            {
-                _guid = Prefs.SubscribeOnLifesCountdown(text => _text.text = text);
-            }
-            else
-            {
-                _text.text = "00:00";
-            }
+            var guid = GlobalState.LifesCountdownObservable.Subscribe(str => _text.text = str, true);
         }
 
         private void OnDestroy()
         {
             if (_guid != null)
             {
-                Prefs.UnsubscribeOnLifesChange(_guid);                
+                GlobalState.LifesCountdownObservable.Unsubscribe(_guid);                
             }
         }
     }

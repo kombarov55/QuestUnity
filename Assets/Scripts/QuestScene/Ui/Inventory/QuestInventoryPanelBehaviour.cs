@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using DefaultNamespace;
+using DefaultNamespace.Common;
 using DefaultNamespace.Model;
 using QuestScene.Repositories;
 using UnityEngine;
@@ -23,7 +23,7 @@ namespace QuestScene.Ui
 
         public void Start()
         {
-            CachedPrefs cachedPrefs = GameObject.Find("Scripts").GetComponent<CachedPrefs>();
+            GlobalSerializedState globalSerializedState = GlobalSerializedState.Get();
             List<StoredItem> storedItems = InventoryItemsRepository.getAllStoredItems();
 
             tabsPanelBehaviour.selectedGameType.Subscribe(gameType =>
@@ -33,7 +33,7 @@ namespace QuestScene.Ui
                 
                 var storedItemsOfNeededType = storedItems
                     .Where(v => v.Item.forWhatGame == gameType)
-                    .Where(v => cachedPrefs.AddedInventoryItems.Contains(v.Item.id));
+                    .Where(v => globalSerializedState.AddedInventoryItemIds.GetCopy().Contains(v.Item.id));
 
                 foreach (var storedItem in storedItemsOfNeededType)
                 {

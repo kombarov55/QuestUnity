@@ -1,4 +1,5 @@
 ﻿using DefaultNamespace;
+using DefaultNamespace.Common;
 using DefaultNamespace.model;
 using DefaultNamespace.transitions;
 using Other.MatchThreeGame.Assets.Scripts.Model;
@@ -14,10 +15,11 @@ namespace QuestScene.Ui.Transitions
 
         public override void run(QuestNode currentQuestNode, QuestNodeChoice selectedChoice, QuestSceneFlow questSceneFlow)
         {
+            GlobalSerializedState globalSerializedState = GlobalSerializedState.Get();
 
-            if (Prefs.ThreeInARowLifes > 0)
+            if (globalSerializedState.ThreeInARowLifes.Value > 0)
             {
-                Prefs.CurrentSceneId = "6.3.1";
+                globalSerializedState.CurrentSceneId.Value = "6.3.1";
                 CrossSceneStorage.BackSceneName = "Scenes/QuestScene";
                 CrossSceneStorage.IsMinigameInQuest = true;
 

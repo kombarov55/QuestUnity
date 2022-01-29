@@ -1,4 +1,5 @@
-﻿using DefaultNamespace.Common.UI;
+﻿using DefaultNamespace.Common;
+using DefaultNamespace.Common.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,6 +12,13 @@ namespace DefaultNamespace
         public GameObject dialogComponentPrefab;
 
         public LoadingPanelBehaviour loadingPanelBehaviour;
+
+        private GlobalSerializedState _globalSerializedState;
+
+        private void Start()
+        {
+            _globalSerializedState = GlobalSerializedState.Get();
+        }
         
         public void ShowMinigames()
         {
@@ -26,6 +34,7 @@ namespace DefaultNamespace
 
         public void ToQuest()
         {
+            _globalSerializedState.IsGameStarted.Value = true;
             loadingPanelBehaviour.LoadScene("Scenes/QuestScene");
         }
         

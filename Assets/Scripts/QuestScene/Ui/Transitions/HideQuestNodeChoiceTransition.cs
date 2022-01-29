@@ -1,4 +1,5 @@
 ﻿using DefaultNamespace;
+using DefaultNamespace.Common;
 using DefaultNamespace.model;
 using DefaultNamespace.transitions;
 
@@ -12,8 +13,9 @@ public class HideQuestNodeChoiceTransition : Transition
     public override void run(QuestNode currentQuestNode, QuestNodeChoice selectedChoice, QuestSceneFlow questSceneFlow)
     {
         var questPanelController = questSceneFlow.questPanelController;
+        var observablePrefs = GlobalSerializedState.Get();
 
-        questSceneFlow.cachedPrefs.HideQuestNode(nextChoiceId);
+        observablePrefs.HiddenQuestNodeIds.Add(nextChoiceId);
         questPanelController.displayQuestNode(selectedChoice.nextId);
         
     }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using DefaultNamespace.Common;
 using DefaultNamespace.model;
 using DefaultNamespace.OnQuestNodeShow;
 using QuestScene.Repositories;
@@ -10,28 +11,27 @@ namespace DefaultNamespace
     public class QuestPanelController : MonoBehaviour
     {
         
-        public CachedPrefs cachedPrefs;
         public TransitionService transitionService;
         public QuestNodesRepository questNodesRepository;
         public OnQuestNodeShowService onQuestNodeShowService;
 
         private QuestPanelPresenter _questPanelPresenter;
+        private GlobalSerializedState _globalSerializedState;
         
         private QuestNode currentQuestNode;
         
         private QuestSceneFlow questSceneFlow;
 
-        public void init(QuestSceneFlow questSceneFlow, CachedPrefs cachedPrefs, TransitionService transitionService, OnQuestNodeShowService onQuestNodeShowService, AudioScript audioScript, Image background)
+        public void init(QuestSceneFlow questSceneFlow, TransitionService transitionService,
+            OnQuestNodeShowService onQuestNodeShowService, AudioScript audioScript, Image background)
         {
+            _globalSerializedState = GlobalSerializedState.Get();
             _questPanelPresenter = GetComponent<QuestPanelPresenter>();
             questNodesRepository = GetComponent<QuestNodesRepository>();
             
-            this.cachedPrefs = cachedPrefs;
             this.transitionService = transitionService;
             this.onQuestNodeShowService = onQuestNodeShowService;
             this.questSceneFlow = questSceneFlow;
-
-            cachedPrefs.Load();
 
             _questPanelPresenter.init(audioScript, background);
             
@@ -59,7 +59,7 @@ namespace DefaultNamespace
         {
             QuestNode questNode = questNodesRepository.findById(id);
             displayQuestNode(questNode);
-            Prefs.CurrentSceneId = id;
+            _globalSerializedState.CurrentSceneId.Value = id;
         }
         
         public void displayQuestNode(QuestNode questNode)
@@ -67,7 +67,7 @@ namespace DefaultNamespace
             displayQuestNode(questNode.imgPath, questNode.title, questNode.description, questNode.choices);
             onQuestNodeShowService.findOnQuestNodeShow(questNode.id).run(questSceneFlow);
             currentQuestNode = questNode;
-            Prefs.CurrentSceneId = currentQuestNode.id;
+            _globalSerializedState.CurrentSceneId.Value = currentQuestNode.id;
         }
 
         private void displayQuestNode(string imgPath, string title, string description, List<QuestNodeChoice> choices)
@@ -76,7 +76,7 @@ namespace DefaultNamespace
             _questPanelPresenter.setTitle(title);
             _questPanelPresenter.setDescription(description);
 
-            var visibleChoices = findVisibleChoices(cachedPrefs, choices);
+            var visibleChoices = findVisibleChoices(choices);
 
             _questPanelPresenter.setChoices(visibleChoices);
         }
@@ -88,7 +88,7 @@ namespace DefaultNamespace
 
         private QuestNode findCurrentQuestNode()
         {
-            string currentQuestNodeId = Prefs.CurrentSceneId;
+            string currentQuestNodeId = _globalSerializedState.CurrentSceneId.Value;
             if (currentQuestNodeId == null || currentQuestNodeId == "")
             {
                 currentQuestNodeId = QuestSceneConstants.FIRST_NODE_ID;
@@ -97,13 +97,13 @@ namespace DefaultNamespace
             return questNodesRepository.findById(currentQuestNodeId);
         }
 
-        private List<QuestNodeChoice> findVisibleChoices(CachedPrefs cachedPrefs, List<QuestNodeChoice> choices)
+        private List<QuestNodeChoice> findVisibleChoices(List<QuestNodeChoice> choices)
         {
             var visibleChoices = new List<QuestNodeChoice>();
             
             foreach (var choice in choices)
             {
-                var isChoiceVisible = !cachedPrefs.HiddenQuestNodes.Contains(choice.nextId);
+                var isChoiceVisible = !_globalSerializedState.HiddenQuestNodeIds.GetCopy().Contains(choice.nextId);
 
                 if (isChoiceVisible)
                 {
