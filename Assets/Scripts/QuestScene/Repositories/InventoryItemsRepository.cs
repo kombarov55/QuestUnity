@@ -24,7 +24,7 @@ namespace QuestScene.Repositories
         {
             if (list.Count == 0)
             {
-                list = load();
+                list = Load();
             }
 
             return list;
@@ -59,30 +59,12 @@ namespace QuestScene.Repositories
         }
         
 
-        private static List<InventoryItem> load()
+        private static List<InventoryItem> Load()
         {
-            TextAsset textAsset = (TextAsset) Resources.Load("Inventory");
-            XmlDocument xmldoc = new XmlDocument();
-            xmldoc.LoadXml(textAsset.text);
-            XmlNodeList xmlNodes = xmldoc.GetElementsByTagName("InventoryItem");
-
-            List<InventoryItem> result = new List<InventoryItem>();
-
-            for (var i = 0; i < xmlNodes.Count; i++)
-            {
-                var xmlNode = xmlNodes[i];
-
-                var item = new InventoryItem();
-                item.id = XmlHelper.GetValue(xmlNode, "Id");
-                item.name = XmlHelper.GetValue(xmlNode, "Name");
-                item.description = XmlHelper.GetValue(xmlNode, "Description");
-                item.imgPath = XmlHelper.GetValue(xmlNode, "ImgPath");
-                item.forWhatGame = XmlHelper.GetGameType(xmlNode, "ForWhatGame"); 
-
-                result.Add(item);
-            }
-
-            return result;
+            return Resources.LoadAll<TextAsset>("Items")
+                .Select(textAsset => JsonUtility.FromJson<JSONItems>(textAsset.text).data)
+                .SelectMany(list => list)
+                .ToList();
         }
     }
 }

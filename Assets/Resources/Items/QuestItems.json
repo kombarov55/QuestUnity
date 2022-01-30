@@ -1,0 +1,22 @@
+﻿{
+  "data": [
+    {
+      "id": "Карта и ключ",
+      "name": "Карта и ключ",
+      "description": "Старинная карта и ключ.",
+      "imgPath": "Images/KeyAndMap",
+      "forWhatGame": "Quest",
+      "canBeBought": false,
+      "price": 0
+    },
+    {
+      "id": "Шкатулка",
+      "name": "Шкатулка",
+      "description": "Таинственная шкатулка. Древняя сила запечатана в ней.",
+      "imgPath": "Images/Box",
+      "forWhatGame": "Quest",
+      "canBeBought": false,
+      "price": 0
+    }
+  ]
+}

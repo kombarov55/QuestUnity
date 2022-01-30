@@ -1,5 +1,8 @@
+using System;
+
 namespace DefaultNamespace.model
 {
+    [Serializable]
     public class InventoryItem
     {
         public string id;
@@ -7,5 +10,7 @@ namespace DefaultNamespace.model
         public string description;
         public string imgPath;
         public InventoryItemGameType forWhatGame;
+        public bool canBeBought;
+        public int price;
     }
 }
