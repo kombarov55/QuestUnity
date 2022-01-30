@@ -9,19 +9,16 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
         
         private void Start()
         {
-            GameLifecycleObservables gameLifecycleObservables = StateManager.Get().GameLifecycleObservables;
-            
+            StateManager stateManager = StateManager.Get();
+
 
             if (isForPlayer)
             {
-                gameLifecycleObservables.BeforePlayerTurn.Subscribe(() => gameObject.SetActive(true));
-                gameLifecycleObservables.AfterPlayerTurn.Subscribe(() => gameObject.SetActive(false));
+                stateManager.SequentialTurnsForPlayer.Subscribe(v => gameObject.SetActive(v != 0), true);
             }
             else
             {
-                gameLifecycleObservables.BeforeEnemyTurn.Subscribe(() => gameObject.SetActive(true));
-                gameLifecycleObservables.AfterEnemyTurn.Subscribe(() => gameObject.SetActive(false));
-                gameObject.SetActive(false);
+                stateManager.SequentialTurnsForEnemy.Subscribe(v => gameObject.SetActive(v != 0), true);
             }
         }
     }

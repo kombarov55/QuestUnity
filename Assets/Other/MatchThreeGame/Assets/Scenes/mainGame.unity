@@ -6045,7 +6045,7 @@ MonoBehaviour:
   manaDiffFadingTextPrefab: {fileID: 8398455720858643925, guid: 5d96913dffd02764d983f4547ab6af17, type: 3}
   fadingTextInitialPosition: {fileID: 1646870692}
   fadingTextTargetPosition: {fileID: 1536976426}
-  fadingTextDurationInSeconds: 1
+  fadingTextDurationInSeconds: 2
 --- !u!114 &653823547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8170,7 +8170,7 @@ MonoBehaviour:
   manaDiffFadingTextPrefab: {fileID: 8398455720858643925, guid: 5d96913dffd02764d983f4547ab6af17, type: 3}
   fadingTextInitialPosition: {fileID: 1865588369}
   fadingTextTargetPosition: {fileID: 1343641335}
-  fadingTextDurationInSeconds: 1
+  fadingTextDurationInSeconds: 2
 --- !u!1 &933643506
 GameObject:
   m_ObjectHideFlags: 0
@@ -8945,7 +8945,7 @@ MonoBehaviour:
   healthDiffFadingTextPrefab: {fileID: 3178226035461959503, guid: dc8d32b700ca2a94c8dc8c1c87232f15, type: 3}
   fadingTextInitialPosition: {fileID: 268369339}
   fadingTextTargetPosition: {fileID: 456765615}
-  fadingTextDurationInSeconds: 1
+  fadingTextDurationInSeconds: 2
 --- !u!114 &1010547595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14791,7 +14791,7 @@ MonoBehaviour:
   healthDiffFadingTextPrefab: {fileID: 3178226035461959503, guid: dc8d32b700ca2a94c8dc8c1c87232f15, type: 3}
   fadingTextInitialPosition: {fileID: 2037146125}
   fadingTextTargetPosition: {fileID: 1124300667}
-  fadingTextDurationInSeconds: 1
+  fadingTextDurationInSeconds: 2
 --- !u!1001 &1592586844
 PrefabInstance:
   m_ObjectHideFlags: 0

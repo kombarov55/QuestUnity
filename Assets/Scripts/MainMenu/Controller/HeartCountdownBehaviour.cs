@@ -16,8 +16,7 @@ namespace MainMenu.Controller
         private void Start()
         {
             _text = GetComponent<Text>();
-
-            var guid = GlobalState.LifesCountdownObservable.Subscribe(str => _text.text = str, true);
+            _guid = GlobalState.LifesCountdownObservable.Subscribe(str => _text.text = str, true);
         }
 
         private void OnDestroy()

@@ -23,7 +23,7 @@ namespace Other.MatchThreeGame.Assets.Scripts
         public List<RunningStatusEffect> StatusEffectsOnPlayer = new List<RunningStatusEffect>();
         public List<RunningStatusEffect> StatusEffectsOnEnemy = new List<RunningStatusEffect>();
         public Observable<int> SequentialTurnsForPlayer = new Observable<int>(1);
-        public Observable<int> SequentialTurnsForEnemy = new Observable<int>(1);
+        public Observable<int> SequentialTurnsForEnemy = new Observable<int>(0);
         public Observable<int> PlayerDamageBlocked = new Observable<int>(0);
         public Observable<int> EnemyDamageBlocked = new Observable<int>(0);
         public bool IsDamageToPlayerReflected = false;
@@ -407,11 +407,10 @@ namespace Other.MatchThreeGame.Assets.Scripts
 
         public void BeforeEnemyTurn()
         {
-            // перенёс
-            // SequentialTurnsForPlayer.Value -= 1;
             if (SequentialTurnsForPlayer.Value == 0)
             {
                 IsPlayersTurn = false;
+                SequentialTurnsForEnemy.Value = 1;
 
                 foreach (var subscriber in OnIsPlayersTurnSubscribers)
                 {

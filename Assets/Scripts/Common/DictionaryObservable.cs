@@ -33,6 +33,11 @@ namespace DefaultNamespace.Common
             }
         }
 
+        public Dictionary<K, V> GetCopy()
+        {
+            return new Dictionary<K, V>(_innerDictionary);
+        }
+
         public void SetValues(Dictionary<K, V> v)
         {
             _innerDictionary = v;

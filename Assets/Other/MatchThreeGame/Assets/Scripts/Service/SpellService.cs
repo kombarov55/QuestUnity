@@ -369,8 +369,8 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                 ),
                 new Spell(
                     "end_game",
-                    "Закончить раунд",
-                    "Выиграть раунд",
+                    "Выиграть",
+                    "Нанести врагу 666 урона",
                     "RpgPack/S_Fire03",
                     0,
                     0,
@@ -383,6 +383,22 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
                     new List<StatusEffect>(),
                     SpellType.Damage
                 ),
+                new Spell(
+                    "fail_game",
+                    "Проиграть",
+                    "Нанести себе 666 урона",
+                    "RpgPack/S_Fire03",
+                    0,
+                    0,
+                    new List<SpellAction>()
+                    {
+                        new SpellDamageAction(666)
+                    },
+                    new List<SpellAction>(),
+                new List<StatusEffect>(),
+                    new List<StatusEffect>(),
+                    SpellType.Damage
+                )
             };
         }
     }

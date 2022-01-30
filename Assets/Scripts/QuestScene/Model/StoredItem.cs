@@ -6,13 +6,11 @@ namespace DefaultNamespace.Model
     {
         public InventoryItem Item;
         public int Amount;
-        public bool isUnseen;
-
-        public StoredItem(InventoryItem item, int amount, bool isUnseen)
+        
+        public StoredItem(InventoryItem item, int amount)
         {
             Item = item;
             Amount = amount;
-            this.isUnseen = isUnseen;
         }
     }
 }

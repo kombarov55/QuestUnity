@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using DefaultNamespace.Common;
 using DefaultNamespace.Model;
@@ -21,19 +22,17 @@ namespace QuestScene.Ui
 
         private List<GameObject> instantiatedItems = new List<GameObject>();
 
-        public void Start()
+        public void OnEnable()
         {
-            GlobalSerializedState globalSerializedState = GlobalSerializedState.Get();
             List<StoredItem> storedItems = InventoryItemsRepository.getAllStoredItems();
 
             tabsPanelBehaviour.selectedGameType.Subscribe(gameType =>
             {
                 Clear();
                 ClearDisplayOfItem();
-                
+
                 var storedItemsOfNeededType = storedItems
-                    .Where(v => v.Item.forWhatGame == gameType)
-                    .Where(v => globalSerializedState.AddedInventoryItems.Contains(v.Item.id));
+                    .Where(v => v.Item.forWhatGame == gameType);
 
                 foreach (var storedItem in storedItemsOfNeededType)
                 {

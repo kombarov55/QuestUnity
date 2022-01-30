@@ -296,6 +296,10 @@ public class ShapesManager : MonoBehaviour
                 _stateManager.TurnsLeft -= 1;
                 _stateManager.SequentialTurnsForPlayer.Value -= 1;
             }
+            else
+            {
+                _stateManager.SequentialTurnsForEnemy.Value -= 1;
+            }
         }
 
         //if more than 3 matches and no Bonus is contained in the line, we will award a new Bonus

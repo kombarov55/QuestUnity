@@ -1,4 +1,5 @@
-﻿using DefaultNamespace;
+﻿using System;
+using DefaultNamespace;
 using DefaultNamespace.Common;
 using DefaultNamespace.Common.UI;
 using Other.MatchThreeGame.Assets.Scripts.Model;
@@ -46,7 +47,8 @@ namespace Other.MatchThreeGame.Assets.Scripts
 
         public void ShowFailure()
         {
-            _globalSerializedState.CurrentSceneId.Value = QuestSceneConstants.ThreeInArowFailureNodeId; 
+            _globalSerializedState.CurrentSceneId.Value = QuestSceneConstants.ThreeInArowFailureNodeId;
+            _globalSerializedState.ThreeInARowLifes.Value -= 1;
                 
             _toastBehaviour.ShowFailure(then: () =>
             {
