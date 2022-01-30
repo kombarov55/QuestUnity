@@ -2,6 +2,7 @@
 
 namespace Other.MatchThreeGame.Assets.Scripts.Model
 {
+    [Serializable]
     public abstract class StatusEffect
     {
         public int Duration;

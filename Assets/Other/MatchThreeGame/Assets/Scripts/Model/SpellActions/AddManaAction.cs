@@ -1,7 +1,9 @@
-﻿using Other.MatchThreeGame.Assets.Scripts.Service;
+﻿using System;
+using Other.MatchThreeGame.Assets.Scripts.Service;
 
 namespace Other.MatchThreeGame.Assets.Scripts.Model
 {
+    [Serializable]
     public class AddManaAction : SpellAction
     {
         public int ManaAmount;

@@ -7,12 +7,6 @@ namespace DefaultNamespace.Common
 {
     public class GlobalSerializedState
     {
-        private static GlobalSerializedState _instance;
-
-        private GlobalSerializedState()
-        {
-        }
-
         public Observable<int> CoinCount = new PrefsIntObservable("CoinCount");
         public Observable<string> CurrentSceneId = new PrefsStringObservable("CurrentSceneId");
         public Observable<bool> IsGameStarted = new PrefsBoolObservable("IsGameStarted");
@@ -23,6 +17,10 @@ namespace DefaultNamespace.Common
         public ListObservable<string> HiddenQuestNodeIds = new PrefsListOfStringObservable("HiddenQuestNodes");
         public ListObservable<string> UnseenJournalItemIds = new PrefsListOfStringObservable("UnseenJournalItems");
         public ListObservable<string> UnseenInventoryItemIds = new PrefsListOfStringObservable("UnseenInventoryItems");
+
+        private static GlobalSerializedState _instance;
+
+        private GlobalSerializedState() { }
         
         public static GlobalSerializedState Get()
         {

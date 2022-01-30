@@ -1,6 +1,9 @@
-﻿namespace Other.MatchThreeGame.Assets.Scripts.Model 
+﻿using System;
+
+namespace Other.MatchThreeGame.Assets.Scripts.Model 
 {
 
+    [Serializable]
     public abstract class SpellAction
     {
         public SpellActionType ActionType;

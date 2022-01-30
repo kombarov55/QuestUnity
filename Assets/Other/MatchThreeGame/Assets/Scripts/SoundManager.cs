@@ -55,6 +55,11 @@ public class SoundManager : MonoBehaviour {
     {
         PlaySound(manaAudioClip, fishkaAudioSource);
     }
+    
+    public void PlaySound(string path)
+    {
+        fishkaAudioSource.PlayOneShot(Resources.Load<AudioClip>(path));
+    }
 
     private void PlayRandomSound(List<AudioClip> audioClips, AudioSource audioSource)
     {
@@ -62,7 +67,7 @@ public class SoundManager : MonoBehaviour {
         audioSource.clip = clip;
         audioSource.Play();
     }
-
+    
     private void PlaySound(AudioClip audioClip, AudioSource audioSource)
     {
         audioSource.PlayOneShot(audioClip);

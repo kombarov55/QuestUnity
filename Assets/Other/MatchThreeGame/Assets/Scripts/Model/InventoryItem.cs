@@ -4,10 +4,10 @@ namespace Other.MatchThreeGame.Assets.Scripts.Model
 {
     public class InventoryItem
     {
-        public ItemTemplate ItemTemplate;
+        public ThreeInARowItemTemplate ItemTemplate;
         public Observable<int> Amount;
 
-        public InventoryItem(ItemTemplate itemTemplate, int amount)
+        public InventoryItem(ThreeInARowItemTemplate itemTemplate, int amount)
         {
             ItemTemplate = itemTemplate;
             Amount = new Observable<int>(amount);

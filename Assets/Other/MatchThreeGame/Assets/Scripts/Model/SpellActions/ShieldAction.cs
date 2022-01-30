@@ -1,7 +1,9 @@
-﻿using Other.MatchThreeGame.Assets.Scripts.Model;
+﻿using System;
+using Other.MatchThreeGame.Assets.Scripts.Model;
 
 namespace Other.MatchThreeGame.Assets.Scripts.Model
 {
+    [Serializable]
     public class ShieldAction : SpellAction
     {
         public int BlockedAmount;

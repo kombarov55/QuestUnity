@@ -3,6 +3,7 @@ using System.Linq;
 
 namespace Other.MatchThreeGame.Assets.Scripts.Model
 {
+    [Serializable]
     public class PassStatusEffectsAction : SpellAction
     {
         public Func<RunningStatusEffect, bool> StatusEffectSelector;

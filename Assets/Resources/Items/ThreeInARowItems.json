@@ -17,6 +17,24 @@
       "forWhatGame": 2,
       "canBeBought": true,
       "price": 2
+    },
+    {
+      "id": "minor-health-restoration-potion",
+      "name": "Малое зелье восстановления здоровья",
+      "description": "В течение 4х ходов вы будете восстанавливать по 5 единиц здоровья",
+      "imgPath": "RpgPack/P_Orange02",
+      "forWhatGame": 2,
+      "canBeBought": true,
+      "price": 3
+    },
+    {
+      "id": "minor-poison-potion",
+      "name": "Слабый яд",
+      "description": "В течение 2х ходов враг будет получать по 3 урона",
+      "imgPath": "RpgPack/S_Poison02",
+      "forWhatGame": 2,
+      "canBeBought": true,
+      "price": 3
     }
   ]
 }

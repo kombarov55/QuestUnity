@@ -1,46 +1,47 @@
-﻿using UnityEngine;
+﻿using Other.MatchThreeGame.Assets.Scripts.Model;
+using UnityEngine;
 
 namespace Other.MatchThreeGame.Assets.Scripts
 {
     public class StatusEffectObserverBehaviour : MonoBehaviour
     {
+        private StateManager _stateManager;
+        
         private void Start()
         {
-            StateManager stateManager = StateManager.Get();
+            _stateManager = StateManager.Get();
             
-            stateManager.SubscribeOnIsPlayersTurn(isPlayersTurn =>
+            _stateManager.SubscribeOnIsPlayersTurn(isPlayersTurn =>
             {
-                stateManager.ResetStats();
+                _stateManager.ResetStats();
                 
                 if (isPlayersTurn)
                 {
-                    foreach (var runningStatusEffect in stateManager.StatusEffectsOnPlayer)
+                    foreach (var runningStatusEffect in _stateManager.StatusEffectsOnPlayer)
                     {
-                        runningStatusEffect.TurnsLeft -= 1;
-                        runningStatusEffect.StatusEffect.Tick(stateManager, true);
-                        stateManager.AfterStatusEffectTickOnPlayer(runningStatusEffect);
-
-                        if (runningStatusEffect.TurnsLeft == 0)
-                        {
-                            stateManager.RemoveStatusEffectOnPlayer(runningStatusEffect);
-                        }
+                        ApplyStatusEffect(runningStatusEffect, true);
                     }
                 }
                 else
                 {
-                    foreach (var runningStatusEffect in stateManager.StatusEffectsOnEnemy)
+                    foreach (var runningStatusEffect in _stateManager.StatusEffectsOnEnemy)
                     {
-                        runningStatusEffect.TurnsLeft -= 1;
-                        runningStatusEffect.StatusEffect.Tick(stateManager, false);
-                        stateManager.AfterStatusEffectTickOnEnemy(runningStatusEffect);
-
-                        if (runningStatusEffect.TurnsLeft == 0)
-                        {
-                            stateManager.RemoveStatusEffectOnEnemy(runningStatusEffect);
-                        }
+                        ApplyStatusEffect(runningStatusEffect, false);
                     }
                 }
             });
+        }
+
+        private void ApplyStatusEffect(RunningStatusEffect runningStatusEffect, bool isOnPlayer)
+        {
+            runningStatusEffect.TurnsLeft -= 1;
+            runningStatusEffect.StatusEffect.Tick(_stateManager, isOnPlayer);
+            _stateManager.AfterStatusEffectTickOnEnemy(runningStatusEffect);
+
+            if (runningStatusEffect.TurnsLeft == 0)
+            {
+                _stateManager.RemoveStatusEffectOnEnemy(runningStatusEffect);
+            }
         }
     }
 }

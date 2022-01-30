@@ -1,5 +1,8 @@
-﻿namespace Other.MatchThreeGame.Assets.Scripts.Model.StatusEffects
+﻿using System;
+
+namespace Other.MatchThreeGame.Assets.Scripts.Model.StatusEffects
 {
+    [Serializable]
     public class BlockHealingStatusEffect : StatusEffect
     {
         public BlockHealingStatusEffect(int duration) : base(duration, "RpgPack/S_Buff07", SpellActionType.Debuff)

@@ -1,5 +1,8 @@
-﻿namespace Other.MatchThreeGame.Assets.Scripts.Model
+﻿using System;
+
+namespace Other.MatchThreeGame.Assets.Scripts.Model
 {
+    [Serializable]
     public class AdditionalManaRestoreAction : SpellAction
     {
         public int Amount;

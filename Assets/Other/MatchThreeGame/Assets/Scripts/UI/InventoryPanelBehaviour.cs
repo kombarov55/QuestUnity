@@ -63,7 +63,12 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
                         var itemTemplate = inventoryItem.ItemTemplate;
                         itemTemplate.ActionsOfSelfWhenUsed.ForEach(v => v.Cast(_stateManager, true));
                         itemTemplate.ActionsOfEnemyWhenUsed.ForEach(v => v.Cast(_stateManager, false));
+                        itemTemplate.StatusEffectsOnSelfWhenUsed.ForEach(v =>
+                            _stateManager.AddStatusEffectOnPlayer(new RunningStatusEffect(v)));
+                        itemTemplate.StatusEffectsOnEnemyWhenUsed.ForEach(v =>
+                            _stateManager.AddStatusEffectOnEnemy(new RunningStatusEffect(v)));
 
+                        _stateManager.SoundManager.PlaySound(itemTemplate.SoundOnUsePath);
                         inventoryItem.Amount.Value -= 1;
 
                         ClearDisplayOfItem();
@@ -83,6 +88,11 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
                     _button.interactable = amount != 0;
                 }, true);                
             }
+        }
+
+        private void UseItem()
+        {
+            
         }
 
         public void OnEnable()

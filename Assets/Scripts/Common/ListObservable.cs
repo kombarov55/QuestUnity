@@ -26,7 +26,7 @@ namespace DefaultNamespace.Common
 
         public void SetValues(List<T> list)
         {
-            _value = list;
+            _value = new List<T>(list);
             foreach (var pair in _subscribersOnListChange)
             {
                 pair.Value.Invoke(_value);

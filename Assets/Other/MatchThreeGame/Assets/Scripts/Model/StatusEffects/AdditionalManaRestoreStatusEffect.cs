@@ -1,5 +1,8 @@
-﻿namespace Other.MatchThreeGame.Assets.Scripts.Model.StatusEffects
+﻿using System;
+
+namespace Other.MatchThreeGame.Assets.Scripts.Model.StatusEffects
 {
+    [Serializable]
     public class AdditionalManaRestoreStatusEffect : StatusEffect
     {
         public int Amount;

@@ -1,7 +1,9 @@
-﻿using Other.MatchThreeGame.Assets.Scripts.Model;
+﻿using System;
+using Other.MatchThreeGame.Assets.Scripts.Model;
 
 namespace Other.MatchThreeGame.Assets.Scripts
 {
+    [Serializable]
     public class DamageOverTimeStatusEffect : StatusEffect
     {
         public int DamageAmount;

@@ -32,7 +32,7 @@ namespace QuestScene.Ui
                         {
                             ShopService.Purchase(item);
                             itemForSaleBehaviour.ShowFadingText("ОК");
-                            ItemService.AddItemToInventory(item, 1);
+                            QuestItemService.AddItemToInventory(item, 1);
                         }
                         else
                         {

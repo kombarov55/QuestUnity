@@ -1,13 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Other.MatchThreeGame.Assets.Scripts.Model
 {
-    public class ItemTemplate
+    [Serializable]
+    public class ThreeInARowItemTemplate
     {
         public string Id;
         public string Name;
         public string Description;
         public string ImagePath;
+        public string SoundOnUsePath;
         public List<SpellAction> ActionsOfSelfWhenUsed;
         public List<SpellAction> ActionsOfEnemyWhenUsed;
         public List<StatusEffect> StatusEffectsOnSelfWhenUsed;
@@ -15,11 +18,12 @@ namespace Other.MatchThreeGame.Assets.Scripts.Model
         public List<StatusEffect> PassiveStatusEffectsOnSelf;
         public List<StatusEffect> PassiveStatusEffectsOnEnemy;
         
-        public ItemTemplate(
+        public ThreeInARowItemTemplate(
             string id, 
             string name, 
             string description, 
             string imagePath, 
+            string soundOnUsePath,
             List<SpellAction> actionsOfSelfWhenUsed,
             List<SpellAction> actionsOfEnemyWhenUsed,
             List<StatusEffect> statusEffectsOnSelfWhenUsed,
@@ -32,6 +36,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Model
             Name = name;
             Description = description;
             ImagePath = imagePath;
+            SoundOnUsePath = soundOnUsePath;
             ActionsOfSelfWhenUsed = actionsOfSelfWhenUsed;
             ActionsOfEnemyWhenUsed = actionsOfEnemyWhenUsed;
             StatusEffectsOnSelfWhenUsed = statusEffectsOnSelfWhenUsed;

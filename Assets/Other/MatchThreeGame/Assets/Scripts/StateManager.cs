@@ -72,7 +72,7 @@ namespace Other.MatchThreeGame.Assets.Scripts
 
             SoundManager = GameObject.Find("SoundManager").GetComponent<SoundManager>();
 
-            InventoryItemsOfPlayer = new ItemService().GetInventoryItems();
+            InventoryItemsOfPlayer = new ThreeInARowItemService().GetInventoryItems();
         }
 
         public int TurnsLeft

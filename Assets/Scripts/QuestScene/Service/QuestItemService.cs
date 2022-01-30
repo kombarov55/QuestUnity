@@ -3,7 +3,7 @@ using DefaultNamespace.model;
 
 namespace DefaultNamespace.Service
 {
-    public class ItemService
+    public class QuestItemService
     {
         public static void AddItemToInventory(InventoryItem item, int amount)
         {
