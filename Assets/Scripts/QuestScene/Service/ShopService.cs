@@ -16,7 +16,7 @@ namespace DefaultNamespace.Service
             {
                 var state = GlobalSerializedState.Get();
                 state.CoinCount.Value -= item.price;
-                state.AddedInventoryItemIds.Add(item.id);
+                
             }
         }
     }

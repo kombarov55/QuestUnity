@@ -6,7 +6,7 @@ namespace DefaultNamespace.Common
     public class ListObservable <T>
     {
         private List<T> _value;
-        private Dictionary<string, Action<List<T>>> _subscribers = new Dictionary<string, Action<List<T>>>();
+        private Dictionary<string, Action<List<T>>> _subscribersOnListChange = new Dictionary<string, Action<List<T>>>();
 
         public ListObservable()
         {
@@ -27,7 +27,7 @@ namespace DefaultNamespace.Common
         public void SetValues(List<T> list)
         {
             _value = list;
-            foreach (var pair in _subscribers)
+            foreach (var pair in _subscribersOnListChange)
             {
                 pair.Value.Invoke(_value);
             }
@@ -36,7 +36,7 @@ namespace DefaultNamespace.Common
         public void Add(T v) 
         {
             _value.Add(v);
-            foreach (var pair in _subscribers)
+            foreach (var pair in _subscribersOnListChange)
             {
                 pair.Value.Invoke(_value);
             }
@@ -45,7 +45,7 @@ namespace DefaultNamespace.Common
         public void Remove(T v)
         {
             _value.Remove(v);
-            foreach (var pair in _subscribers)
+            foreach (var pair in _subscribersOnListChange)
             {
                 pair.Value.Invoke(_value);
             }
@@ -55,7 +55,7 @@ namespace DefaultNamespace.Common
         {
             string guid = DateTime.Now.ToString("yyyyMMddHHmmssfff");
             
-            _subscribers[guid] = subscriber;
+            _subscribersOnListChange[guid] = subscriber;
             if (invokeOnSubscription)
             {
                 subscriber.Invoke(_value);
@@ -66,7 +66,7 @@ namespace DefaultNamespace.Common
 
         public void UnsubscribeFromChanges(string guid)
         {
-            _subscribers.Remove(guid);
+            _subscribersOnListChange.Remove(guid);
         }
     }
 }

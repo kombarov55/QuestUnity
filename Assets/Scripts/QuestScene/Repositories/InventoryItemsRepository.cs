@@ -62,7 +62,7 @@ namespace QuestScene.Repositories
             }
             return result;
         }
-        
+
 
         private static List<InventoryItem> Load()
         {

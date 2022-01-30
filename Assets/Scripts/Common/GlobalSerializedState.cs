@@ -19,7 +19,7 @@ namespace DefaultNamespace.Common
         public Observable<int> ThreeInARowLifes = new PrefsIntObservable("ThreeInARowLifes");
         public Observable<DateTime> LastLifeCountdownUpdate = new PrefsDateTimeObservable("LastLifeCountdownUpdate");
         public ListObservable<string> OpenedJournalItemIds = new PrefsListOfStringObservable("OpenedJournalItems");
-        public ListObservable<string> AddedInventoryItemIds = new PrefsListOfStringObservable("AddedInventoryItems");
+        public DictionaryObservable<string, int> AddedInventoryItems = new PrefsDictionaryObservable("AddedInventoryItems1");        
         public ListObservable<string> HiddenQuestNodeIds = new PrefsListOfStringObservable("HiddenQuestNodes");
         public ListObservable<string> UnseenJournalItemIds = new PrefsListOfStringObservable("UnseenJournalItems");
         public ListObservable<string> UnseenInventoryItemIds = new PrefsListOfStringObservable("UnseenInventoryItems");
@@ -42,11 +42,11 @@ namespace DefaultNamespace.Common
             ThreeInARowLifes.Value = PrefsDefaultValues.ThreeInARowLifes;
             LastLifeCountdownUpdate.Value = PrefsDefaultValues.LastLifeCountdownUpdate; 
             OpenedJournalItemIds.SetValues(PrefsDefaultValues.OpenedJournalItemIds);
-            AddedInventoryItemIds.SetValues(PrefsDefaultValues.AddedInventoryItemIds);
+            AddedInventoryItems.SetValues(PrefsDefaultValues.AddedInventoryItemIds);
             HiddenQuestNodeIds.SetValues(PrefsDefaultValues.HiddenQuestNodeIds);
             UnseenJournalItemIds.SetValues(PrefsDefaultValues.UnseenJournalItemIds);
             UnseenInventoryItemIds.SetValues(PrefsDefaultValues.UnseenInventoryItemIds);
-            
+            PlayerPrefs.SetString("AddedInventoryItems", "");
         }
     }
 }

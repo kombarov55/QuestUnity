@@ -11,7 +11,8 @@ namespace DefaultNamespace
         public static readonly int ThreeInARowLifes = GlobalConstants.MaxLifes;
         public static readonly DateTime LastLifeCountdownUpdate = DateTime.Now;
         public static readonly List<string> OpenedJournalItemIds = new List<string>();
-        public static readonly List<string> AddedInventoryItemIds = new List<string>();
+        public static readonly Dictionary<string, int> AddedInventoryItemIds = new Dictionary<string, int>();
+        
         public static readonly List<string> HiddenQuestNodeIds = new List<string>();
         public static readonly List<string> UnseenJournalItemIds = new List<string>();
         public static readonly List<string> UnseenInventoryItemIds = new List<string>();

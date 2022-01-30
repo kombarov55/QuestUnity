@@ -44,9 +44,9 @@ namespace DefaultNamespace.MainPanel
 
         public void addInventoryItem(string itemId)
         {
-            if (!_globalSerializedState.AddedInventoryItemIds.GetCopy().Contains(itemId))
+            if (!_globalSerializedState.AddedInventoryItems.Contains(itemId))
             {
-                _globalSerializedState.AddedInventoryItemIds.Add(itemId);
+                _globalSerializedState.AddedInventoryItems[itemId] = 1;
                 setStatusLineText("\"" + itemId + "\" добавлен в инвентарь.");
                 incUnseenInventoryItemsCount(itemId);
             }

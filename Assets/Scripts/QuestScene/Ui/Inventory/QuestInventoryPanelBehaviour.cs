@@ -33,7 +33,7 @@ namespace QuestScene.Ui
                 
                 var storedItemsOfNeededType = storedItems
                     .Where(v => v.Item.forWhatGame == gameType)
-                    .Where(v => globalSerializedState.AddedInventoryItemIds.GetCopy().Contains(v.Item.id));
+                    .Where(v => globalSerializedState.AddedInventoryItems.Contains(v.Item.id));
 
                 foreach (var storedItem in storedItemsOfNeededType)
                 {
