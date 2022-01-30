@@ -7,12 +7,9 @@ public class AudioScript : MonoBehaviour
 {
     public AudioClip buttonClickAudioClip;
     public AudioClip screamAudioClip;
+    public AudioClip coin1Clip;
     
     public AudioSource audioSource;
-    void Start()
-    {
-
-    }
 
     public void PlayButtonClickSound()
     {
@@ -24,6 +21,11 @@ public class AudioScript : MonoBehaviour
     {
         audioSource.clip = screamAudioClip;
         audioSource.Play();
+    }
+
+    public void PlayCoin1()
+    {
+        audioSource.PlayOneShot(coin1Clip);
     }
 
     public void stop()

@@ -6,17 +6,20 @@ namespace DefaultNamespace
     public class Context
     {
 
+        private static AudioScript _audioScript;
+        
         public static AudioScript AudioScript()
         {
-            var go = GameObject.FindWithTag("Audio");
-            if (go != null)
+            if (_audioScript == null)
             {
-                return go.GetComponent<AudioScript>();
+                var go = GameObject.Find("Audio");
+                if (go != null)
+                {
+                    _audioScript = go.GetComponent<AudioScript>();
+                }
             }
-            else
-            {
-                return null;
-            }
+
+            return _audioScript;
         }
 
         public static AudioButton FindButton(string name)

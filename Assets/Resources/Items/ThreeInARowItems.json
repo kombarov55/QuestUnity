@@ -1,0 +1,22 @@
+﻿{
+  "data": [
+    {
+      "id": "minor-health-potion",
+      "name": "Малое зелье здоровья",
+      "description": "Восстанавливает вам 2 ХП",
+      "imgPath": "RpgPack/P_Orange02",
+      "forWhatGame": 2,
+      "canBeBought": true,
+      "price": 2
+    },
+    {
+      "id": "minor-mana-potion",
+      "name": "Малое зелье маны",
+      "description": "Восстанавливает вам 2 маны",
+      "imgPath": "RpgPack/P_Blue02",
+      "forWhatGame": 2,
+      "canBeBought": true,
+      "price": 2
+    }
+  ]
+}

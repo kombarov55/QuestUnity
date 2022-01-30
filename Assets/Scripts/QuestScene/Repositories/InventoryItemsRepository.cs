@@ -15,12 +15,12 @@ namespace QuestScene.Repositories
 
         public static List<StoredItem> getAllStoredItems()
         {
-            return getAll()
+            return GetAll()
                 .Select(v => new StoredItem(v, 1, false))
                 .ToList();
         }
         
-        public static List<InventoryItem> getAll()
+        public static List<InventoryItem> GetAll()
         {
             if (list.Count == 0)
             {
@@ -32,7 +32,7 @@ namespace QuestScene.Repositories
 
         public static InventoryItem findById(string id)
         {
-            var items = getAll();
+            var items = GetAll();
             foreach (var inventoryItem in items)
             {
                 if (inventoryItem.id == id)
@@ -42,6 +42,11 @@ namespace QuestScene.Repositories
             }
 
             return null;
+        }
+
+        public static List<InventoryItem> FindItemsForSaleByGameType(InventoryItemGameType gameType)
+        {
+            return GetAll().Where(v => v.forWhatGame == gameType && v.canBeBought).ToList();
         }
 
         public static List<InventoryItem> findOpened(List<string> openedItemsIds)
