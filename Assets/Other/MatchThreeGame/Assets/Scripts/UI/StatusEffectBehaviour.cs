@@ -21,5 +21,10 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
         {
             turnsLeftText.text = newAmount.ToString();
         }
+
+        public void UpdateTurnsLeft(string text)
+        {
+            turnsLeftText.text = text;
+        }
     }
 }

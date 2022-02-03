@@ -8,12 +8,14 @@ namespace Other.MatchThreeGame.Assets.Scripts.Model
         public int Duration;
         public string ImagePath;
         public SpellActionType ActionType;
+        public bool IsPassive;
 
-        protected StatusEffect(int duration, string imagePath, SpellActionType actionType)
+        protected StatusEffect(int duration, string imagePath, SpellActionType actionType, bool isPassive = false)
         {
             Duration = duration;
             ImagePath = imagePath;
             ActionType = actionType;
+            IsPassive = isPassive;
         }
 
         public abstract void Tick(StateManager stateManager, bool isOnPlayer);

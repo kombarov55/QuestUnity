@@ -35,6 +35,15 @@
       "forWhatGame": 2,
       "canBeBought": true,
       "price": 3
+    },
+    {
+      "id": "fury-blade",
+      "name": "Клинок ярости",
+      "description": "Пассивный эффект: фишками вы наносите на 2 урона больше",
+      "imgPath": "RpgPack/S_Sword16",
+      "forWhatGame": 2,
+      "canBeBought": true,
+      "price": 30
     }
   ]
 }

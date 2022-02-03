@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Other.MatchThreeGame.Assets.Scripts.Model.StatusEffects;
 
 namespace Other.MatchThreeGame.Assets.Scripts.Model
 {
@@ -70,6 +71,22 @@ namespace Other.MatchThreeGame.Assets.Scripts.Model
                     new DamageOverTimeStatusEffect(2, 3)
                 },
                 new List<StatusEffect>(),
+                new List<StatusEffect>()
+            ),
+            new ThreeInARowItemTemplate(
+                "fury-blade",
+                "Клинок ярости",
+                "Пассивный эффект: ваши атаки фишками наносят на 2 урона больше",
+                "RpgPack/S_Sword16",
+                "Sounds/Sword",
+                new List<SpellAction>(),
+                new List<SpellAction>(),
+                new List<StatusEffect>(),
+                new List<StatusEffect>(),
+                new List<StatusEffect>()
+                {
+                    new AdditionalDamageStatusEffect(666, 2, true)
+                },
                 new List<StatusEffect>()
             )
         };

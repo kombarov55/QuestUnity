@@ -7,6 +7,8 @@ namespace DefaultNamespace.Common
     {
         private List<T> _value;
         private Dictionary<string, Action<List<T>>> _subscribersOnListChange = new Dictionary<string, Action<List<T>>>();
+        private Dictionary<string, Action<T>> _subscribersOnItemAdded = new Dictionary<string, Action<T>>();
+        private Dictionary<string, Action<T>> _subscribersOnItemRemoved = new Dictionary<string, Action<T>>();
 
         public ListObservable()
         {

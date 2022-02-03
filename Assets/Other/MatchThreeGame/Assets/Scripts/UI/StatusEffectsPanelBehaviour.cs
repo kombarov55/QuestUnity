@@ -15,11 +15,12 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
         {
             StateManager stateManager = StateManager.Get();
 
+            var statusEffectObservable = isForPlayer ? 
+                stateManager.StatusEffectsOnPlayer1 : 
+                stateManager.StatusEffectsOnEnemy1;
+            
             if (isForPlayer)
             {
-
-
-
                 stateManager.OnPlayerStatusEffectAddedSubscribers.Add(runningStatusEffect =>
                 {
                     var go = Instantiate(statusEffectPrefab, gameObject.transform);
@@ -35,7 +36,14 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
                         var statusEffectBehaviour = statusEffectGo.GetComponent<StatusEffectBehaviour>();
                         if (statusEffectBehaviour.StatusEffect == runningStatusEffect.StatusEffect)
                         {
-                            statusEffectBehaviour.UpdateTurnsLeft(runningStatusEffect.TurnsLeft);
+                            if (runningStatusEffect.StatusEffect.IsPassive)
+                            {
+                                statusEffectBehaviour.UpdateTurnsLeft("");
+                            }
+                            else
+                            {
+                                statusEffectBehaviour.UpdateTurnsLeft(runningStatusEffect.TurnsLeft);    
+                            }
                             break;
                         }
                     }

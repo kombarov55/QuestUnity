@@ -7,7 +7,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.Model.StatusEffects
     {
         public int Amount;
 
-        public AdditionalDamageStatusEffect(int duration, int amount) : base(duration, "RpgPack/S_Sword16", SpellActionType.Buff)
+        public AdditionalDamageStatusEffect(int duration, int amount, bool isPassive = false) : base(duration, "RpgPack/S_Sword16", SpellActionType.Buff, isPassive)
         {
             Amount = amount;
         }

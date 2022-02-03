@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using DefaultNamespace;
+using System.Linq;
 using DefaultNamespace.Common;
 using Other.MatchThreeGame.Assets.Scripts.Model;
 using Other.MatchThreeGame.Assets.Scripts.Service;
@@ -22,6 +22,10 @@ namespace Other.MatchThreeGame.Assets.Scripts
 
         public List<RunningStatusEffect> StatusEffectsOnPlayer = new List<RunningStatusEffect>();
         public List<RunningStatusEffect> StatusEffectsOnEnemy = new List<RunningStatusEffect>();
+
+        public ListObservable<RunningStatusEffect> StatusEffectsOnPlayer1 = new ListObservable<RunningStatusEffect>();
+        public ListObservable<RunningStatusEffect> StatusEffectsOnEnemy1 = new ListObservable<RunningStatusEffect>();
+
         public Observable<int> SequentialTurnsForPlayer = new Observable<int>(1);
         public Observable<int> SequentialTurnsForEnemy = new Observable<int>(0);
         public Observable<int> PlayerDamageBlocked = new Observable<int>(0);
@@ -63,16 +67,12 @@ namespace Other.MatchThreeGame.Assets.Scripts
             LevelService levelService = new LevelService();
 
             Level = levelService.GetCurrentLevel();
-
             Spells = new SpellService().GetAll();
-            foreach (var spell in Spells)
-            {
-                PlayerSpellsToCooldownObservable[spell] = new Observable<int>(0);
-            }
-
             SoundManager = GameObject.Find("SoundManager").GetComponent<SoundManager>();
-
             InventoryItemsOfPlayer = new ThreeInARowItemService().GetInventoryItems();
+            
+            FillSpellToCooldownDictionary();
+            ApplyPassiveStatusEffectFromItems();
         }
 
         public int TurnsLeft
@@ -447,6 +447,36 @@ namespace Other.MatchThreeGame.Assets.Scripts
             CastsLeftForPlayer.Value = 1;
             SilentedSpellsForPlayer = new List<Spell>();
             SilentedSpellsForEnemy = new List<Spell>();
+        }
+
+        private void FillSpellToCooldownDictionary()
+        {
+            foreach (var spell in Spells)
+            {
+                PlayerSpellsToCooldownObservable[spell] = new Observable<int>(0);
+            }
+        }
+        
+        private void ApplyPassiveStatusEffectFromItems()
+        {
+            foreach (var inventoryItem in InventoryItemsOfPlayer)
+            {
+                var item = inventoryItem.ItemTemplate;
+                item.PassiveStatusEffectsOnSelf.ForEach(v =>
+                {
+                    var runningStatusEffect = new RunningStatusEffect(v);
+                    AddStatusEffectOnPlayer(runningStatusEffect);
+                    v.Tick(this, true);
+                    AfterStatusEffectTickOnPlayer(runningStatusEffect);
+                });
+                item.PassiveStatusEffectsOnEnemy.ForEach(v =>
+                {
+                    var runningStatusEffect = new RunningStatusEffect(v);
+                    AddStatusEffectOnEnemy(runningStatusEffect);
+                    v.Tick(this, false);
+                    AfterStatusEffectTickOnEnemy(runningStatusEffect);
+                });
+            }
         }
     }
 }

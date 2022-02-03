@@ -34,13 +34,30 @@ namespace Other.MatchThreeGame.Assets.Scripts
 
         private void ApplyStatusEffect(RunningStatusEffect runningStatusEffect, bool isOnPlayer)
         {
-            runningStatusEffect.TurnsLeft -= 1;
             runningStatusEffect.StatusEffect.Tick(_stateManager, isOnPlayer);
-            _stateManager.AfterStatusEffectTickOnEnemy(runningStatusEffect);
 
-            if (runningStatusEffect.TurnsLeft == 0)
+            if (!runningStatusEffect.StatusEffect.IsPassive)
             {
-                _stateManager.RemoveStatusEffectOnEnemy(runningStatusEffect);
+                runningStatusEffect.TurnsLeft -= 1;
+            }
+
+            if (isOnPlayer)
+            {
+                _stateManager.AfterStatusEffectTickOnPlayer(runningStatusEffect);
+
+                if (runningStatusEffect.TurnsLeft == 0)
+                {
+                    _stateManager.RemoveStatusEffectOnPlayer(runningStatusEffect);
+                }                
+            }
+            else
+            {
+                _stateManager.AfterStatusEffectTickOnEnemy(runningStatusEffect);
+
+                if (runningStatusEffect.TurnsLeft == 0)
+                {
+                    _stateManager.RemoveStatusEffectOnEnemy(runningStatusEffect);
+                }                
             }
         }
     }

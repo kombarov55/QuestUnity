@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using Other.MatchThreeGame.Assets.Scripts;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-public class ShapesManager : MonoBehaviour
+public class ShapesManager : MonoBehaviour, IEndDragHandler
 {
     public Text DebugText;
     public bool ShowDebugInfo = false;
@@ -41,12 +42,66 @@ public class ShapesManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        
         InitializeTypesOnPrefabShapesAndBonuses();
 
         InitializeCandyAndSpawnPositions();
 
         StartCheckForPotentialMatches();
+
+        SwipeDetector.OnSwipe.Subscribe(tuple =>
+        {
+            var (position, direction) = tuple;
+            
+            Debug.Log("position: " + position + ", direction: " + direction);
+            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(position), Vector2.zero);
+            if (hit.collider != null)
+            {
+                var go1 = hit.collider.gameObject;
+                var go2 = GetNeighbourShape(go1, direction);
+                
+                StopCheckForPotentialMatches();
+                _stateManager.GameState = GameState.Animating;
+                FixSortingLayer(go1, go2);
+                StartCoroutine(FindMatchesAndCollapse(go1, go2,  then: () => StartCoroutine(StartEnemyTurn())));
+            }
+        });
     }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        Debug.Log("start: " + eventData.pressPosition);
+        Debug.Log("end: " + eventData.position);
+        var directionVector = (eventData.position - eventData.pressPosition).normalized;
+        Debug.Log("vectorDirection: " + directionVector);
+        Debug.Log("Direction: " + GetDragDirection(directionVector));
+    }
+
+    private enum DraggedDirection
+    {
+        Up,
+        Down,
+        Right,
+        Left
+    }
+
+    private DraggedDirection GetDragDirection(Vector3 dragVector)
+    {
+        float positiveX = Mathf.Abs(dragVector.x);
+        float positiveY = Mathf.Abs(dragVector.y);
+        DraggedDirection draggedDir;
+        if (positiveX > positiveY)
+        {
+            draggedDir = (dragVector.x > 0) ? DraggedDirection.Right : DraggedDirection.Left;
+        }
+        else
+        {
+            draggedDir = (dragVector.y > 0) ? DraggedDirection.Up : DraggedDirection.Down;
+        }
+        Debug.Log(draggedDir);
+        return draggedDir;
+    }
+    
 
     /// <summary>
     /// Initialize shapes
@@ -180,73 +235,71 @@ public class ShapesManager : MonoBehaviour
 
 
     // Update is called once per frame
-    void Update()
-    {
-        if (ShowDebugInfo)
-            DebugText.text = DebugUtilities.GetArrayContents(shapes);
-
-        if (_stateManager.GameState == GameState.EnemyTurn && !_stateManager.IsAnyPanelDisplayedOnUI)
-        {
-            return;
-        }
-        
-        if (_stateManager.GameState == GameState.None && !_stateManager.IsAnyPanelDisplayedOnUI)
-        {
-            //user has clicked or touched
-            if (Input.GetMouseButtonDown(0))
-            {
-                //get the hit position
-                Debug.Log("Click: " + Input.mousePosition + ", translated: " + Camera.main.ScreenToWorldPoint(Input.mousePosition));
-                
-                RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-                if (hit.collider != null) //we have a hit!!!
-                {
-                    hitGo = hit.collider.gameObject;
-                    _stateManager.GameState = GameState.SelectionStarted;
-                }
-                
-            }
-        }
-        else if (_stateManager.GameState == GameState.SelectionStarted)
-        {
-            //user dragged
-            if (Input.GetMouseButton(0))
-            {
-                
-                Debug.Log("Click2: " + Input.mousePosition + ", translated: " + Camera.main.ScreenToWorldPoint(Input.mousePosition));
-                RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-                //we have a hit
-                if (hit.collider != null && hitGo != hit.collider.gameObject)
-                {
-
-                    //user did a hit, no need to show him hints 
-                    StopCheckForPotentialMatches();
-
-                    //if the two shapes are diagonally aligned (different row and column), just return
-                    if (!Utilities.AreVerticalOrHorizontalNeighbors(hitGo.GetComponent<Shape>(),
-                        hit.collider.gameObject.GetComponent<Shape>()))
-                    {
-                        _stateManager.GameState = GameState.None;
-                    }
-                    else
-                    {
-                        _stateManager.GameState = GameState.Animating;
-                        FixSortingLayer(hitGo, hit.collider.gameObject);
-                        StartCoroutine(FindMatchesAndCollapse(hit.collider.gameObject, () => StartCoroutine(StartEnemyTurn())));
-                    }
-                }
-            }
-        }
-    }
+    // void Update()
+    // {
+    //     if (ShowDebugInfo)
+    //         DebugText.text = DebugUtilities.GetArrayContents(shapes);
+    //
+    //     if (_stateManager.GameState == GameState.EnemyTurn && !_stateManager.IsAnyPanelDisplayedOnUI)
+    //     {
+    //         return;
+    //     }
+    //     
+    //     if (_stateManager.GameState == GameState.None && !_stateManager.IsAnyPanelDisplayedOnUI)
+    //     {
+    //         // user has clicked or touched
+    //          if (Input.GetMouseButtonDown(0))
+    //          {
+    //              //get the hit position
+    //              Debug.Log("Click: " + Input.mousePosition + ", translated: " + Camera.main.ScreenToWorldPoint(Input.mousePosition));
+    //
+    //              RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+    //              if (hit.collider != null) //we have a hit!!!
+    //              {
+    //                  hitGo = hit.collider.gameObject;
+    //                  _stateManager.GameState = GameState.SelectionStarted;
+    //              }
+    //          }
+    //     }
+    //     else if (_stateManager.GameState == GameState.SelectionStarted)
+    //     {
+    //         //user dragged
+    //         if (Input.GetMouseButton(0))
+    //         {
+    //             
+    //             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+    //             //we have a hit
+    //             if (hit.collider != null && hitGo != hit.collider.gameObject)
+    //             {
+    //             
+    //                 //user did a hit, no need to show him hints 
+    //                 StopCheckForPotentialMatches();
+    //             
+    //                 //if the two shapes are diagonally aligned (different row and column), just return
+    //                 if (!Utilities.AreVerticalOrHorizontalNeighbors(hitGo.GetComponent<Shape>(),
+    //                     hit.collider.gameObject.GetComponent<Shape>()))
+    //                 {
+    //                     _stateManager.GameState = GameState.None;
+    //                 }
+    //                 else
+    //                 {
+    //                     _stateManager.GameState = GameState.Animating;
+    //                     FixSortingLayer(hitGo, hit.collider.gameObject);
+    //                     StartCoroutine(FindMatchesAndCollapse(hit.collider.gameObject, () => StartCoroutine(StartEnemyTurn())));
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
 
     /// <summary>
     /// Modifies sorting layers for better appearance when dragging/animating
     /// </summary>
     /// <param name="hitGo"></param>
     /// <param name="hitGo2"></param>
-    private void FixSortingLayer(GameObject hitGo, GameObject hitGo2)
+    private void FixSortingLayer(GameObject hitGo1, GameObject hitGo2)
     {
-        SpriteRenderer sp1 = hitGo.GetComponent<SpriteRenderer>();
+        SpriteRenderer sp1 = hitGo1.GetComponent<SpriteRenderer>();
         SpriteRenderer sp2 = hitGo2.GetComponent<SpriteRenderer>();
         if (sp1.sortingOrder <= sp2.sortingOrder)
         {
@@ -258,20 +311,20 @@ public class ShapesManager : MonoBehaviour
 
 
 
-    private IEnumerator FindMatchesAndCollapse(GameObject hitGo2, Action then)
+    private IEnumerator FindMatchesAndCollapse(GameObject hitGo1, GameObject hitGo2, Action then)
     {
         bool turnMade = false;
         
         //get the second item that was part of the swipe
-        shapes.Swap(hitGo, hitGo2);
+        shapes.Swap(hitGo1, hitGo2);
 
         //move the swapped ones
-        hitGo.transform.positionTo(Constants.SwapDuration, hitGo2.transform.position);
-        hitGo2.transform.positionTo(Constants.SwapDuration, hitGo.transform.position);
+        hitGo1.transform.positionTo(Constants.SwapDuration, hitGo2.transform.position);
+        hitGo2.transform.positionTo(Constants.SwapDuration, hitGo1.transform.position);
         yield return new WaitForSeconds(Constants.SwapDuration);
 
         //get the matches via the helper methods
-        var hitGomatchesInfo = shapes.GetMatches(hitGo);
+        var hitGomatchesInfo = shapes.GetMatches(hitGo1);
         var hitGo2matchesInfo = shapes.GetMatches(hitGo2);
 
         var totalMatches = hitGomatchesInfo.MatchedCandy
@@ -280,8 +333,8 @@ public class ShapesManager : MonoBehaviour
         //if user's swap didn't create at least a 3-match, undo their swap
         if (totalMatches.Count() < Constants.MinimumMatches)
         {
-            hitGo.transform.positionTo(Constants.SwapDuration, hitGo2.transform.position);
-            hitGo2.transform.positionTo(Constants.SwapDuration, hitGo.transform.position);
+            hitGo1.transform.positionTo(Constants.SwapDuration, hitGo2.transform.position);
+            hitGo2.transform.positionTo(Constants.SwapDuration, hitGo1.transform.position);
             yield return new WaitForSeconds(Constants.SwapDuration);
 
             shapes.UndoSwap();
@@ -406,7 +459,7 @@ public class ShapesManager : MonoBehaviour
 
             hitGo = itemsToSwap.Item1;
 
-            StartCoroutine(FindMatchesAndCollapse(itemsToSwap.Item2, () =>
+            StartCoroutine(FindMatchesAndCollapse(itemsToSwap.Item1, itemsToSwap.Item2, () =>
             {
                 _stateManager.GameState = GameState.None;
                 _stateManager.AfterEnemyTurn();
@@ -625,5 +678,42 @@ public class ShapesManager : MonoBehaviour
         }
 
         throw new Exception("Wrong type, check your premade level");
+    }
+
+    private GameObject GetNeighbourShape(GameObject go, Direction direction)
+    {
+        var shape = go.GetComponent<Shape>();
+        
+        int row = -1, 
+            column = -1; 
+        
+        switch (direction)
+        {
+            case Direction.Down:
+                row = shape.Row - 1;
+                column = shape.Column;
+                break;
+            case Direction.Right:
+                row = shape.Row;
+                column = shape.Column + 1;
+                break;
+            case Direction.Up:
+                row = shape.Row + 1;
+                column = shape.Column;
+                break;
+            case Direction.Left:
+                row = shape.Row;
+                column = shape.Column - 1;
+                break;
+        }
+
+        if (row >= 0 && column >= 0 && row < Constants.Rows && column < Constants.Columns)
+        {
+            return shapes[row, column];
+        }
+        else
+        {
+            return null;
+        }
     }
 }
