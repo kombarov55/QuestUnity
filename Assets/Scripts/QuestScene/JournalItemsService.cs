@@ -33,6 +33,7 @@ namespace DefaultNamespace
             if (!isJournalItemOpened(id))
             { 
                 _globalSerializedState.OpenedJournalItemIds.Add(id);
+                _globalSerializedState.UnseenJournalItemIds.Add(id);
             }
         }
 

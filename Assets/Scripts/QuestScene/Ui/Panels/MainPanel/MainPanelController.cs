@@ -54,7 +54,7 @@ namespace DefaultNamespace.MainPanel
 
         public void incUnreadJournalItemsCounter(string noteId)
         {
-            _globalSerializedState.UnseenJournalItemIds.Add(noteId);
+            
             mainPanelPresenter.SetJournalCounterText(_globalSerializedState.UnseenJournalItemIds.GetCopy().Count);
         }
 
@@ -68,12 +68,6 @@ namespace DefaultNamespace.MainPanel
         {
             _globalSerializedState.UnseenJournalItemIds.SetValues(new List<string>());
             mainPanelPresenter.SetJournalCounterText(0);
-        }
-        
-        public void dropUnseenInventoryItemsCount()
-        {
-            _globalSerializedState.UnseenInventoryItemIds.SetValues(new List<string>());
-            mainPanelPresenter.SetInventoryCounterText(0);
         }
 
         public void setStatusLineText(string text)
