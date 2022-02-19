@@ -10,13 +10,13 @@ namespace QuestScene.Ui
     {
         public GameObject itemForSalePrefab;
         public GameObject grid;
-        public ShopTabPanelBehaviour shopTabPanelBehaviour;
+        public ItemTypeDropdownListener itemTypeDropdownListener;
 
         private List<GameObject> _instantiatedGos = new List<GameObject>();
         
         public void Start()
         {
-            shopTabPanelBehaviour.selectedGameType.Subscribe(gameType =>
+            itemTypeDropdownListener.SelectedGameType.Subscribe(gameType =>
             {
                 Clear();
                 
