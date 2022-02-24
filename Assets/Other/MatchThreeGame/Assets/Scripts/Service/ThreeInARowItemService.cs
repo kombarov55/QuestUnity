@@ -7,12 +7,13 @@ namespace Other.MatchThreeGame.Assets.Scripts.Service
 {
     public class ThreeInARowItemService
     {
-        public List<InventoryItem> GetInventoryItems()
+        public List<StoredItem> GetAddedItems()
         {
             var itemIdToAmount = GlobalSerializedState.Get().AddedInventoryItems.GetCopy();
 
             return itemIdToAmount
-                .Select(pair => new InventoryItem(ThreeInARowItems.ItemIdToItemTemplate[pair.Key], pair.Value))
+                .Where(pair => ItemRepository.ItemIdToItemTemplate.ContainsKey(pair.Key))
+                .Select(pair => new StoredItem(ItemRepository.ItemIdToItemTemplate[pair.Key], pair.Value))
                 .ToList();
         }
     }

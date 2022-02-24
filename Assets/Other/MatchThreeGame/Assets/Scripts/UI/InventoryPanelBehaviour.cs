@@ -42,25 +42,25 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
             }
         }
 
-        private void DisplaySelectedItem(InventoryItem inventoryItem)
+        private void DisplaySelectedItem(StoredItem storedItem)
         {
-            if (inventoryItem == null)
+            if (storedItem == null)
             {
                 ClearDisplayOfItem();
             }
             else
             {
-                itemNameText.text = inventoryItem.ItemTemplate.Name;
-                itemDescriptionText.text = inventoryItem.ItemTemplate.Description;
+                itemNameText.text = storedItem.ItemRepository.Name;
+                itemDescriptionText.text = storedItem.ItemRepository.Description;
                 itemImage.gameObject.SetActive(true);
-                itemImage.sprite = Resources.Load<Sprite>(inventoryItem.ItemTemplate.ImagePath);
+                itemImage.sprite = Resources.Load<Sprite>(storedItem.ItemRepository.ImagePath);
 
                 audioButton.gameObject.SetActive(true);
                 audioButton.OnClick = () =>
                 {
                     if (_button.interactable)
                     {
-                        var itemTemplate = inventoryItem.ItemTemplate;
+                        var itemTemplate = storedItem.ItemRepository;
                         itemTemplate.ActionsOfSelfWhenUsed.ForEach(v => v.Cast(_stateManager, true));
                         itemTemplate.ActionsOfEnemyWhenUsed.ForEach(v => v.Cast(_stateManager, false));
                         itemTemplate.StatusEffectsOnSelfWhenUsed.ForEach(v =>
@@ -69,7 +69,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
                             _stateManager.AddStatusEffectOnEnemy(new RunningStatusEffect(v)));
 
                         _stateManager.SoundManager.PlaySound(itemTemplate.SoundOnUsePath);
-                        inventoryItem.Amount.Value -= 1;
+                        storedItem.Amount.Value -= 1;
 
                         ClearDisplayOfItem();
                         gameObject.SetActive(false);
@@ -81,7 +81,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
                     _amountObservable.Unsubscribe(_subscriberGuidOfItemAmountChangeOnButton);
                 }
 
-                _amountObservable = inventoryItem.Amount;
+                _amountObservable = storedItem.Amount;
             
                 _subscriberGuidOfItemAmountChangeOnButton = _amountObservable.Subscribe(amount =>
                 {

@@ -23,65 +23,61 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
         private StateManager _stateManager;
         private SoundManager _soundManager;
 
-        private Observable<Spell> _spellObservable = new Observable<Spell>(null);
+        private Observable<StoredSpell> _selectedSpell = new Observable<StoredSpell>(null);
 
-        public void Start()
-        { 
+        public void OnEnable()
+        {
+            GameObject.Find("State").GetComponent<StateManager>().IsAnyPanelDisplayedOnUI = true;
             _stateManager = StateManager.Get();
             _soundManager = _stateManager.SoundManager;
             _button = audioButton.GetComponent<Button>();
 
             ClearGrid();
-
-            _spellObservable.Subscribe(spell =>
+            
+            foreach (StoredSpell storedSpell in _stateManager.StoredSpells)
             {
-                DisplaySpell(spell);
+                var go = Instantiate(spellPrefab, scrollViewContent.transform);
+                go.GetComponent<SpellBehaviourV2>().Display(storedSpell, _stateManager, () => _selectedSpell.Value = storedSpell);
+                _instantiatedSpells.Add(go);
+            }
 
-                if (spell != null)
+            _selectedSpell.Subscribe(storedSpell =>
+            {
+                DisplaySpell(storedSpell);
+
+                if (storedSpell != null)
                 {
-                
-                    bool playerHasEnoughMana = _stateManager.PlayerManaLeft >= spell.ManaCost;
-                    bool spellIsNotOnCooldown = _stateManager.PlayerSpellsToCooldownObservable[spell].Value == 0;
-                    bool spellIsNotSilented = _stateManager.SilentedSpellsForPlayer.Find(v => v.Id == spell.Id) == null;
+                    bool playerHasEnoughMana = _stateManager.PlayerManaLeft >= storedSpell.Spell.ManaCost;
+                    bool spellIsNotOnCooldown = !storedSpell.IsOnCooldown(_stateManager.TurnsLeft);
+                    bool spellIsNotSilented = _stateManager.SilentedSpellsForPlayer.Find(v => v.Id == storedSpell.Spell.Id) == null;
                 
                 
                     _button.interactable = playerHasEnoughMana && spellIsNotOnCooldown && spellIsNotSilented;
                 }
             }, true);
-
-            foreach (var spell in _stateManager.PlayerSpellsToCooldownObservable.Keys)
-            {
-                var go = Instantiate(spellPrefab, scrollViewContent.transform);
-                go.GetComponent<SpellBehaviourV2>().Display(spell, _stateManager, () => _spellObservable.Value = spell);
-                _instantiatedSpells.Add(go);
-            }
-
+            
             audioButton.OnClick = () =>
             {
-                Spell spell = _spellObservable.Value;
+                StoredSpell storedSpell = _selectedSpell.Value;
             
-                if (spell == null)
+                if (storedSpell == null)
                 {
                     return;
                 }
             
-                Cast(spell);
+                Cast(storedSpell);
             };
-        }
-
-        public void OnEnable()
-        {
-            GameObject.Find("State").GetComponent<StateManager>().IsAnyPanelDisplayedOnUI = true;
         }
 
         public void OnDisable()
         {
             GameObject.Find("State").GetComponent<StateManager>().IsAnyPanelDisplayedOnUI = false;
+            ClearGrid();
         }
 
-        private void DisplaySpell(Spell spell)
+        private void DisplaySpell(StoredSpell storedSpell)
         {
-            if (spell == null)
+            if (storedSpell == null)
             {
                 spellNameText.text = "";
                 spellDescriptionText.text = "";
@@ -93,57 +89,57 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
             }
             else
             {
-                spellNameText.text = spell.Name;
-                spellDescriptionText.text = spell.Description;
+                spellNameText.text = storedSpell.Spell.Name;
+                spellDescriptionText.text = storedSpell.Spell.Description;
                 spellImage.gameObject.SetActive(true);
                 audioButton.gameObject.SetActive(true);
                 manaImage.gameObject.SetActive(true);
-                spellImage.sprite = Resources.Load<Sprite>(spell.ImagePath);
-                manacostText.text = "x" + spell.ManaCost;
-                cooldownText.text = "Перезарядка: " + spell.Cooldown + " ходов";
+                spellImage.sprite = Resources.Load<Sprite>(storedSpell.Spell.ImagePath);
+                manacostText.text = "x" + storedSpell.Spell.ManaCost;
+                cooldownText.text = "Перезарядка " + storedSpell.Spell.Cooldown + " ходов";
             }
         }
         
-        private void Cast(Spell spell)
+        private void Cast(StoredSpell storedSpell)
         {
             gameObject.SetActive(false);
-            _spellObservable.Value = null;
+            _selectedSpell.Value = null;
             _stateManager.CastsLeftForPlayer.Value -= 1;
-            _stateManager.PlayerSpellsToCooldownObservable[spell].Value = spell.Cooldown;
-            
-            _stateManager.PlayerManaLeft -= spell.ManaCost;
-            _stateManager.OnPlayerManaChanged(-spell.ManaCost);
-            
-            PlaySpellSound(spell);
+            storedSpell.TurnWhenUsed = _stateManager.TurnsLeft;
 
-            foreach (var spellAction in spell.SpellActionsToSelf)
+            _stateManager.PlayerManaLeft -= storedSpell.Spell.ManaCost;
+            _stateManager.OnPlayerManaChanged(-storedSpell.Spell.ManaCost);
+            
+            PlaySpellSound(storedSpell.Spell);
+
+            foreach (var spellAction in storedSpell.Spell.SpellActionsToSelf)
             {
                 spellAction.Cast(_stateManager, true);
             }
             
-            foreach (var spellAction in spell.SpellActionsToEnemy)
+            foreach (var spellAction in storedSpell.Spell.SpellActionsToEnemy)
             {
                 spellAction.Cast(_stateManager, false);
             }
             
-            foreach (var statusEffect in spell.StatusEffectsOnSelf)
+            foreach (var statusEffect in storedSpell.Spell.StatusEffectsOnSelf)
             {
                 _stateManager.AddStatusEffectOnPlayer(statusEffect);
             }
 
-            foreach (var statusEffect in spell.StatusEffectsOnEnemy)
+            foreach (var statusEffect in storedSpell.Spell.StatusEffectsOnEnemy)
             {
                 _stateManager.AddStatusEffectOnEnemy(statusEffect);
             }
 
-            if (spell.SpellActionsToSelf.Count != 0 || spell.StatusEffectsOnSelf.Count != 0)
+            if (storedSpell.Spell.SpellActionsToSelf.Count != 0 || storedSpell.Spell.StatusEffectsOnSelf.Count != 0)
             {
-                _stateManager.MagicEffectThrownOnPlayer.Value = spell.SpellType;
+                _stateManager.MagicEffectThrownOnPlayer.Value = storedSpell.Spell.SpellType;
             }
             
-            if (spell.SpellActionsToEnemy.Count != 0 || spell.StatusEffectsOnEnemy.Count != 0)
+            if (storedSpell.Spell.SpellActionsToEnemy.Count != 0 || storedSpell.Spell.StatusEffectsOnEnemy.Count != 0)
             {
-                _stateManager.MagicEffectThrownOnEnemy.Value = spell.SpellType;
+                _stateManager.MagicEffectThrownOnEnemy.Value = storedSpell.Spell.SpellType;
             }
         }
         

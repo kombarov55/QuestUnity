@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DefaultNamespace.Common;
 using Other.MatchThreeGame.Assets.Scripts.Model;
+using Other.MatchThreeGame.Assets.Scripts.Repository;
 using Other.MatchThreeGame.Assets.Scripts.Service;
 using UnityEngine;
 
@@ -30,32 +31,44 @@ namespace Other.MatchThreeGame.Assets.Scripts
         public Observable<int> SequentialTurnsForEnemy = new Observable<int>(0);
         public Observable<int> PlayerDamageBlocked = new Observable<int>(0);
         public Observable<int> EnemyDamageBlocked = new Observable<int>(0);
+        
         public bool IsDamageToPlayerReflected = false;
         public bool IsDamageToEnemyReflected = false;
+        
         public bool BlockHealingOnPlayer = false;
         public bool BlockHealingOnEnemy = false;
+        
         public int PlayerDamageAddition = 0;
         public int EnemyDamageAddition = 0;
+        
         public int PlayerHealAddition = 0;
         public int EnemyHealAddition = 0;
+        
         public int PlayerManaRestoreAddition = 0;
         public int EnemyManaRestoreAddition = 0;
+        
         public Observable<int> CastsLeftForPlayer = new Observable<int>(1);
         public Observable<int> CastsLeftForEnemy = new Observable<int>(1);
-        public Dictionary<Spell, Observable<int>> PlayerSpellsToCooldownObservable = new Dictionary<Spell, Observable<int>>();
+
         public List<Spell> SilentedSpellsForPlayer = new List<Spell>();
         public List<Spell> SilentedSpellsForEnemy = new List<Spell>();
+        
         public bool IsAnyPanelDisplayedOnUI = false;
+        
         public Observable<SpellType> MagicEffectThrownOnPlayer = new Observable<SpellType>(SpellType.Other);
         public Observable<SpellType> MagicEffectThrownOnEnemy = new Observable<SpellType>(SpellType.Other);
 
-        public List<InventoryItem> InventoryItemsOfPlayer;
-
+        public List<StoredItem> InventoryItemsOfPlayer;
+        public List<StoredSpell> StoredSpells;
+        
         public List<Spell> Spells;
         public SoundManager SoundManager;
+        
         public GameLifecycleObservables GameLifecycleObservables = new GameLifecycleObservables();
-
+        
         public int Score;
+
+        public SpellService SpellService;
 
         public static StateManager Get()
         {
@@ -65,13 +78,14 @@ namespace Other.MatchThreeGame.Assets.Scripts
         private void Start()
         {
             LevelService levelService = new LevelService();
+            SpellService = new SpellService();
 
             Level = levelService.GetCurrentLevel();
-            Spells = new SpellService().GetAll();
+            Spells = SpellRepository.spells;
+            StoredSpells = SpellService.GetAddedSpells();
             SoundManager = GameObject.Find("SoundManager").GetComponent<SoundManager>();
-            InventoryItemsOfPlayer = new ThreeInARowItemService().GetInventoryItems();
+            InventoryItemsOfPlayer = new ThreeInARowItemService().GetAddedItems();
             
-            FillSpellToCooldownDictionary();
             ApplyPassiveStatusEffectFromItems();
         }
 
@@ -448,20 +462,11 @@ namespace Other.MatchThreeGame.Assets.Scripts
             SilentedSpellsForPlayer = new List<Spell>();
             SilentedSpellsForEnemy = new List<Spell>();
         }
-
-        private void FillSpellToCooldownDictionary()
-        {
-            foreach (var spell in Spells)
-            {
-                PlayerSpellsToCooldownObservable[spell] = new Observable<int>(0);
-            }
-        }
-        
         private void ApplyPassiveStatusEffectFromItems()
         {
             foreach (var inventoryItem in InventoryItemsOfPlayer)
             {
-                var item = inventoryItem.ItemTemplate;
+                var item = inventoryItem.ItemRepository;
                 item.PassiveStatusEffectsOnSelf.ForEach(v =>
                 {
                     var runningStatusEffect = new RunningStatusEffect(v);

@@ -12,19 +12,19 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
         public Text amountText;
         public Color disabledColor = new Color(53, 53, 53);
         
-        private Action<InventoryItem> _onClick;
-        private InventoryItem _inventoryItem;
+        private Action<StoredItem> _onClick;
+        private StoredItem _storedItem;
         private Color _enabledColor;
 
-        public void Display(InventoryItem inventoryItem, Action<InventoryItem> onClick)
+        public void Display(StoredItem storedItem, Action<StoredItem> onClick)
         {
-            _inventoryItem = inventoryItem;
+            _storedItem = storedItem;
             _onClick = onClick;
 
             _enabledColor = image.color;
             
-            image.sprite = Resources.Load<Sprite>(_inventoryItem.ItemTemplate.ImagePath);
-            inventoryItem.Amount.Subscribe(amount =>
+            image.sprite = Resources.Load<Sprite>(_storedItem.ItemRepository.ImagePath);
+            storedItem.Amount.Subscribe(amount =>
             {
                 amountText.text = amount.ToString();
                 
@@ -36,7 +36,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
         {
             if (_onClick != null)
             {
-                _onClick.Invoke(_inventoryItem);
+                _onClick.Invoke(_storedItem);
             }
         }
     }

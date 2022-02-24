@@ -17,42 +17,28 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
         private StateManager _stateManager;
         private Action _onClick;
         
-        public void Display(Spell spell, StateManager stateManager, Action onClick)
+        public void Display(StoredSpell storedSpell, StateManager stateManager, Action onClick)
         {
             _stateManager = stateManager;
-            _spell = spell;
+            _spell = storedSpell.Spell;
             _onClick = onClick;
 
-            image.sprite = Resources.Load<Sprite>(spell.ImagePath);
+            image.sprite = Resources.Load<Sprite>(_spell.ImagePath);
 
-            _stateManager.PlayerSpellsToCooldownObservable[_spell].Subscribe(currentCooldown =>
-            {
-                if (currentCooldown == 0)
-                {
-                    image.color = _enabledColor;
-                    cooldownText.gameObject.SetActive(false);
-                }
-                else
-                {
-                    cooldownText.gameObject.SetActive(true);
-                    image.color = disabledColor;
-
-                    cooldownText.text = currentCooldown.ToString();
-                }
-            }, true);
+            int currentCooldown = storedSpell.GetCurrentCooldown(_stateManager.TurnsLeft);
             
-            _stateManager.SubscribeOnIsPlayersTurn(isPlayersTurn =>
+            if (currentCooldown == 0)
             {
-                if (isPlayersTurn)
-                {
-                    int currentCooldown = _stateManager.PlayerSpellsToCooldownObservable[_spell].Value;
+                image.color = _enabledColor;
+                cooldownText.gameObject.SetActive(false);
+            }
+            else
+            {
+                cooldownText.gameObject.SetActive(true);
+                image.color = disabledColor;
 
-                    if (currentCooldown > 0)
-                    {
-                        _stateManager.PlayerSpellsToCooldownObservable[_spell].Value = currentCooldown - 1;
-                    }
-                }
-            });
+                cooldownText.text = currentCooldown.ToString();
+            }
         }
 
         public void OnPointerClick(PointerEventData eventData)

@@ -4,7 +4,7 @@ using Other.MatchThreeGame.Assets.Scripts.Model.StatusEffects;
 
 namespace Other.MatchThreeGame.Assets.Scripts.Model
 {
-    public static class ThreeInARowItems
+    public static class ItemRepository
     {
         
         public static List<ThreeInARowItemTemplate> AllItemTemplates = new List<ThreeInARowItemTemplate>()

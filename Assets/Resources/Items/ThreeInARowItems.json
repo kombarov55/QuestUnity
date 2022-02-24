@@ -44,6 +44,15 @@
       "forWhatGame": 2,
       "canBeBought": true,
       "price": 30
+    },
+    {
+      "id": "fireball",
+      "name": "Огненный шар",
+      "description": "Бросить в противника огненный шар, наносящий 8 урона",
+      "imgPath": "RpgPack/S_Fire03",
+      "forWhatGame": 2,
+      "canBeBought": true,
+      "price": 1
     }
   ]
 }
