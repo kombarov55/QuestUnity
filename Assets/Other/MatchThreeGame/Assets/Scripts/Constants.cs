@@ -6,7 +6,7 @@
         public static readonly bool BonusEnabled = false;
 
         public static readonly float SwapDuration =  0.2f;
-        public static readonly float MoveAnimationMinDuration = 0.05f * 10;
+        public static readonly float MoveAnimationMinDuration = 0.05f * 2;
         public static readonly float CollapseDuration = 0.15f;
         public static readonly float ExplosionDuration = 0.3f;
         public static readonly float OpacityAnimationFrameDelay = 0.05f;

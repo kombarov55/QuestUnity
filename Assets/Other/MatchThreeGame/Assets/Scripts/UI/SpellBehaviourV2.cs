@@ -10,6 +10,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
     {
         public Image image;
         public Text cooldownText;
+        public Text amountText;
         public Color disabledColor;
         
         private Color _enabledColor = new Color(255, 255, 255);
@@ -24,6 +25,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
             _onClick = onClick;
 
             image.sprite = Resources.Load<Sprite>(_spell.ImagePath);
+            amountText.text = storedSpell.AmountLeft + "";
 
             int currentCooldown = storedSpell.GetCurrentCooldown(_stateManager.TurnsLeft);
             

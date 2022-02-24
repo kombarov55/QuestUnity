@@ -50,9 +50,10 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
                     bool playerHasEnoughMana = _stateManager.PlayerManaLeft >= storedSpell.Spell.ManaCost;
                     bool spellIsNotOnCooldown = !storedSpell.IsOnCooldown(_stateManager.TurnsLeft);
                     bool spellIsNotSilented = _stateManager.SilentedSpellsForPlayer.Find(v => v.Id == storedSpell.Spell.Id) == null;
+                    bool enoughCastsLeft = storedSpell.AmountLeft > 0;
                 
                 
-                    _button.interactable = playerHasEnoughMana && spellIsNotOnCooldown && spellIsNotSilented;
+                    _button.interactable = playerHasEnoughMana && spellIsNotOnCooldown && spellIsNotSilented && enoughCastsLeft;
                 }
             }, true);
             
@@ -106,6 +107,7 @@ namespace Other.MatchThreeGame.Assets.Scripts.UI
             _selectedSpell.Value = null;
             _stateManager.CastsLeftForPlayer.Value -= 1;
             storedSpell.TurnWhenUsed = _stateManager.TurnsLeft;
+            storedSpell.AmountLeft -= 1;
 
             _stateManager.PlayerManaLeft -= storedSpell.Spell.ManaCost;
             _stateManager.OnPlayerManaChanged(-storedSpell.Spell.ManaCost);
